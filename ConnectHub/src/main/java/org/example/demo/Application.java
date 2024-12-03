@@ -29,22 +29,53 @@ public class Application extends javafx.application.Application {
             stage.setTitle("Log in");
             loginScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             stage.setScene(loginScene);
+            Button loginDone = (Button) loginLoader.getNamespace().get("loginDone");
+            loginDone.setOnAction(event ->handleHome(stage));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     private void handleSignClick(Stage stage) {
         try {
-            FXMLLoader loginLoader = new FXMLLoader(Application.class.getResource("signUp.fxml"));
-            Scene signUpScene = new Scene(loginLoader.load(), 950, 580);
+            FXMLLoader signLoader = new FXMLLoader(Application.class.getResource("signUp.fxml"));
+            Scene signUpScene = new Scene(signLoader.load(), 950, 580);
             stage.setTitle("Sign Up");
             signUpScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             stage.setScene(signUpScene);
+            Button signupDone = (Button) signLoader.getNamespace().get("SignUpDone");
+            signupDone.setOnAction(event ->handleProfile(stage));
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    private void handleProfile(Stage stage)
+    {
+        try {
+            FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
+            Scene profileScene = new Scene(profileLoader.load(), 950, 580);
+            stage.setTitle("Profile");
+            profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            stage.setScene(profileScene);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void handleHome(Stage stage)
+    {
+        try {
+            FXMLLoader homeLoader = new FXMLLoader(Application.class.getResource("homePage.fxml"));
+            Scene homeLoaderScene = new Scene(homeLoader.load(), 950, 580);
+            stage.setTitle("Profile");
+            homeLoaderScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            stage.setScene(homeLoaderScene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         launch();
     }
