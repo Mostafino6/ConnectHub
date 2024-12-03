@@ -1,0 +1,77 @@
+
+.root
+{
+    -fx-background-color: white;
+}
+.header
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: #6135D2;
+    -fx-font-weight: 700;
+
+}
+.btn1,.btn2,.btn3
+
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-min-width: 250px;
+    -fx-min-height: 40px;
+    -fx-background-color: #6135D2;
+}
+
+
+.root
+{
+    -fx-background-color: white;
+
+}
+.lbls
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: #6135D2;
+    -fx-font-weight: 700;
+    -fx-font-family: Inter;
+}
+.fields
+{
+    -fx-start-margin: 20px;
+    -fx-font-family: Inter;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+    -fx-min-width: 250px;
+    -fx-min-height: 40px;
+    -fx-background-color: #bdbdbd;
+}
+btn
+
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-min-width: 250px;
+    -fx-min-height: 40px;
+    -fx-background-color: #6135D2;
+    -fx-font-family: Inter;
+}.hbox-centered {
+     -fx-alignment: CENTER;
+     -fx-spacing: 15px;
+ }
+
+VBox {
+    -fx-alignment: CENTER;
+}
+
+VBox {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 50px;
+
+}
+.lblsPass
+{
+    -fx-font-size: 16px;
+    -fx-text-fill: #6135D2;
+    -fx-font-weight: 700;
+    -fx-font-family: Inter;
+}
