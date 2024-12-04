@@ -58,6 +58,8 @@ public class Application extends javafx.application.Application {
             stage.setTitle("Profile");
             profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             stage.setScene(profileScene);
+            Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
+            manageFriends.setOnAction(event->friendsManager(stage));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,6 +78,21 @@ public class Application extends javafx.application.Application {
             e.printStackTrace();
         }
     }
+    private void friendsManager(Stage stage) {
+        try {
+            FXMLLoader friendsLoader = new FXMLLoader(Application.class.getResource("FriendManager.fxml"));
+            Scene friendsScene = new Scene(friendsLoader.load(), 321, 317);
+            Stage newStage = new Stage();
+            newStage.setTitle("Friends");
+            friendsScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            newStage.setScene(friendsScene);
+            newStage.initOwner(stage);
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch();
     }

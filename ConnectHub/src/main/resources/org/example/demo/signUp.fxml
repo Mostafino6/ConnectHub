@@ -7,7 +7,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<?import impl.org.controlsfx.skin.GridRow?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.demo.Controller">
     <padding>
@@ -17,24 +16,22 @@
     <ImageView fx:id="imageView" fitWidth="200" fitHeight="200" preserveRatio="true">
         <Image url="@logo.png"/>
     </ImageView>
-        <GridPane hgap="10" vgap="10"  alignment="CENTER">
-            <Label styleClass="lbls" text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <TextField fx:id="signUpUsernameField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    <GridPane hgap="10" vgap="10" alignment="CENTER">
+        <Label styleClass="lbls" text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="signUpUsernameField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-            <Label styleClass="lbls" text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <TextField fx:id="signUpNameField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label styleClass="lbls" text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="signUpNameField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-            <Label styleClass="lbls" text="DOB:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-            <DatePicker fx:id="signUpDobField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Label styleClass="lbls" text="DOB:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <DatePicker fx:id="signUpDobField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
-            <Label styleClass="lbls" text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-            <TextField fx:id="signUpemailField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <Label styleClass="lbls" text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="signUpemailField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-            <Label styleClass="lblsPass" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-            <PasswordField fx:id="signUpPasswordField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-        </GridPane>
-
+        <Label styleClass="lblsPass" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <PasswordField fx:id="signUpPasswordField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    </GridPane>
 
     <Button styleClass="btn3" fx:id="SignUpDone" text="Sign Up" />
-
 </VBox>

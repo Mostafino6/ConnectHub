@@ -1,6 +1,8 @@
 package org.example.demo;
 
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class User {
     private String userID;
@@ -12,11 +14,10 @@ public class User {
     private boolean status;
     //pfp
     //cover
-    //bio
-    //friends
+    private String bio;
+    private FriendManagement friends;
     //posts
     //constructor
-
     public String getUserID() {
         return userID;
     }
@@ -59,5 +60,17 @@ public class User {
     }
     public void setStatus(boolean status) {
         this.status = status;
+    }
+    public String getBio() {
+        return bio;
+    }
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+    public FriendManagement getFriends() {
+        return friends;
+    }
+    public void setFriends(FriendManagement friends) {
+        this.friends = friends;
     }
 }

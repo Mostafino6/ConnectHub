@@ -7,55 +7,49 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<?import impl.org.controlsfx.skin.GridRow?>
 <VBox styleClass="vPrf" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.demo.Controller">
 
+    <HBox styleClass="cover">
+        <VBox styleClass="vPrfIn">
+            <ImageView styleClass="pp" fx:id="imageView" fitWidth="150" fitHeight="150" preserveRatio="true">
+                <Image url="@profile-icon.png"/>
+            </ImageView>
+            <Button fx:id="editProfile" styleClass="btn4">Edit Profile</Button>
+        </VBox>
 
-        <HBox styleClass="cover" >
-            <VBox styleClass="vPrfIn">
-                <ImageView styleClass="pp" fx:id="imageView" fitWidth="150" fitHeight="150" preserveRatio="true">
-                    <Image url="@profile-icon.png"/>
-                </ImageView>
-                <Button fx:id="editProfile" styleClass="btn4">Edit Profile</Button>
-            </VBox>
-
-            <VBox styleClass="vPrfIn2">
-                <Label styleClass="name">Eyad Ahmed Aly</Label>
-                <Label styleClass="bio">gdx gdxd rgsd hdfx ghndfx dxfd</Label>
-            </VBox>
-
-        </HBox>
-
+        <VBox styleClass="vPrfIn2">
+            <Label styleClass="name">Eyad Ahmed Aly</Label>
+            <Label styleClass="bio">gdx gdxd rgsd hdfx ghndfx dxfd</Label>
+        </VBox>
+    </HBox>
 
     <BorderPane>
-
         <left>
-           <VBox styleClass="leftVbox">
-               <HBox styleClass="acHb">
-                   <Label styleClass="psts">Posts</Label>
-                   <HBox styleClass="btnsHbox">
-                       <Button fx:id="addPost" styleClass="btn4">Add Post</Button>
-                       <Button fx:id="addStory" styleClass="btn4">Add Story</Button>
-                   </HBox>
-               </HBox>
-               <HBox styleClass="textPost">
-                   <ImageView styleClass="pp" fx:id="textPostImage_1" fitWidth="50" fitHeight="50" preserveRatio="true">
-                       <Image url="@profile-icon.png"/>
-                   </ImageView>
-                   <Label styleClass="textPostContent" fx:id="textPostContent_1">dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg</Label>
-               </HBox>
+            <VBox styleClass="leftVbox">
+                <HBox styleClass="acHb">
+                    <Label styleClass="psts">Posts</Label>
+                    <HBox styleClass="btnsHbox">
+                        <Button fx:id="addPost" styleClass="btn4">Add Post</Button>
+                        <Button fx:id="addStory" styleClass="btn4">Add Story</Button>
+                    </HBox>
+                </HBox>
+                <HBox styleClass="textPost">
+                    <ImageView styleClass="pp" fx:id="textPostImage_1" fitWidth="50" fitHeight="50" preserveRatio="true">
+                        <Image url="@profile-icon.png"/>
+                    </ImageView>
+                    <Label styleClass="textPostContent" fx:id="textPostContent_1">dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg</Label>
+                </HBox>
 
-               <HBox styleClass="imagePost">
-                   <ImageView styleClass="pp" fx:id="postImagePp_1" fitWidth="50" fitHeight="50" preserveRatio="true">
-                       <Image url="@profile-icon.png"/>
-                   </ImageView>
-                   <ImageView styleClass="postImage" fx:id="imagePostImage_1" fitWidth="400"  preserveRatio="true">
-                       <Image url="@testPostjpg.jpg"/>
-                   </ImageView>
-               </HBox>
-
-           </VBox>
+                <HBox styleClass="imagePost">
+                    <ImageView styleClass="pp" fx:id="postImagePp_1" fitWidth="50" fitHeight="50" preserveRatio="true">
+                        <Image url="@profile-icon.png"/>
+                    </ImageView>
+                    <ImageView styleClass="postImage" fx:id="imagePostImage_1" fitWidth="400" preserveRatio="true">
+                        <Image url="@testPostjpg.jpg"/>
+                    </ImageView>
+                </HBox>
+            </VBox>
         </left>
         <right>
             <VBox styleClass="rightVBox">
@@ -71,8 +65,6 @@
                         <Label styleClass="friendName" fx:id="friendName_1">Eyad Ahmed</Label>
                         <Label styleClass="friendStatus" fx:id="friendStatus_1">Online</Label>
                     </VBox>
-
-
                 </HBox>
                 <HBox styleClass="showFriends">
                     <ImageView styleClass="pp" fx:id="imgFriends2" fitWidth="50" fitHeight="50" preserveRatio="true">
@@ -82,8 +74,6 @@
                         <Label styleClass="friendName" fx:id="friendName2">Mostafa Abyazyd</Label>
                         <Label styleClass="friendStatus" fx:id="friendStatus2">Online</Label>
                     </VBox>
-
-
                 </HBox>
                 <HBox styleClass="showFriends">
                     <ImageView styleClass="pp" fx:id="imgFriends3" fitWidth="50" fitHeight="50" preserveRatio="true">
@@ -93,8 +83,6 @@
                         <Label styleClass="friendName" fx:id="friendName3">Belal Mohamed</Label>
                         <Label styleClass="friendStatus" fx:id="friendStatus3">Online</Label>
                     </VBox>
-
-
                 </HBox>
                 <HBox styleClass="showFriends">
                     <ImageView styleClass="pp" fx:id="imgFriends4" fitWidth="50" fitHeight="50" preserveRatio="true">
@@ -104,15 +92,9 @@
                         <Label styleClass="friendName" fx:id="friendName4">Hossam elshazly</Label>
                         <Label styleClass="friendStatus" fx:id="friendStatus4">Online</Label>
                     </VBox>
-
-
                 </HBox>
-
             </VBox>
-
-
         </right>
     </BorderPane>
-
 </VBox>
 
