@@ -26,7 +26,7 @@
 
     <BorderPane>
         <left>
-            <VBox styleClass="leftVbox">
+            <VBox fx:id="postContainer" styleClass="leftVbox">
                 <HBox styleClass="acHb">
                     <Label styleClass="psts">Posts</Label>
                     <HBox styleClass="btnsHbox">
@@ -34,21 +34,21 @@
                         <Button fx:id="addStory" styleClass="btn4">Add Story</Button>
                     </HBox>
                 </HBox>
-                <HBox styleClass="textPost">
-                    <ImageView styleClass="pp" fx:id="textPostImage_1" fitWidth="50" fitHeight="50" preserveRatio="true">
-                        <Image url="@profile-icon.png"/>
-                    </ImageView>
-                    <Label styleClass="textPostContent" fx:id="textPostContent_1">dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg</Label>
-                </HBox>
+<!--                <HBox styleClass="textPost">-->
+<!--                    <ImageView styleClass="pp" fx:id="textPostImage_1" fitWidth="50" fitHeight="50" preserveRatio="true">-->
+<!--                        <Image url="@profile-icon.png"/>-->
+<!--                    </ImageView>-->
+<!--                    <Label styleClass="textPostContent" fx:id="textPostContent_1">dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg</Label>-->
+<!--                </HBox>-->
 
-                <HBox styleClass="imagePost">
-                    <ImageView styleClass="pp" fx:id="postImagePp_1" fitWidth="50" fitHeight="50" preserveRatio="true">
-                        <Image url="@profile-icon.png"/>
-                    </ImageView>
-                    <ImageView styleClass="postImage" fx:id="imagePostImage_1" fitWidth="400" preserveRatio="true">
-                        <Image url="@testPostjpg.jpg"/>
-                    </ImageView>
-                </HBox>
+<!--                <HBox styleClass="imagePost">-->
+<!--                    <ImageView styleClass="pp" fx:id="postImagePp_1" fitWidth="50" fitHeight="50" preserveRatio="true">-->
+<!--                        <Image url="@profile-icon.png"/>-->
+<!--                    </ImageView>-->
+<!--                    <ImageView styleClass="postImage" fx:id="imagePostImage_1" fitWidth="400" preserveRatio="true">-->
+<!--                        <Image fx:id="imagePost" url="@testPostjpg.jpg"/>-->
+<!--                    </ImageView>-->
+<!--                </HBox>-->
             </VBox>
         </left>
         <right>
