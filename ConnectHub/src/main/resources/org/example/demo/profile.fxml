@@ -26,7 +26,7 @@
 
     <BorderPane>
         <left>
-            <VBox styleClass="leftVbox">
+            <VBox fx:id="postContainer" styleClass="leftVbox">
                 <HBox styleClass="acHb">
                     <Label styleClass="psts">Posts</Label>
                     <HBox styleClass="btnsHbox">
