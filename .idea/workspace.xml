@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/editProfile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ConnectHub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ConnectHub.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/profile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ConnectHub/main/resources/org/example/demo/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ConnectHub/main/resources/org/example/demo/login.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ConnectHub/main/resources/org/example/demo/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ConnectHub/main/resources/org/example/demo/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ConnectHub/main/resources/org/example/demo/signUp.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +126,7 @@
       <workItem from="1733309891254" duration="13000" />
       <workItem from="1733310343045" duration="360000" />
       <workItem from="1733310948965" duration="65000" />
-      <workItem from="1733341295570" duration="5807000" />
+      <workItem from="1733341295570" duration="7011000" />
     </task>
     <servers />
   </component>
