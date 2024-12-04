@@ -18,6 +18,7 @@ public class User {
     private FriendManagement friends;
     //posts
     //constructor
+    private ArrayList<Post> posts;
     public String getUserID() {
         return userID;
     }

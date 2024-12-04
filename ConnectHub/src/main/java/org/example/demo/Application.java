@@ -76,8 +76,7 @@ public class Application extends javafx.application.Application {
             stage.setScene(profileScene);
             Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
             Button addPost=(Button) profileLoader.getNamespace().get("addPost");
-            VBox postContainer=(VBox) profileLoader.getNamespace().get("postContainer");
-            addPost.setOnAction(event ->handleAddPost(stage,postContainer));
+            addPost.setOnAction(event ->handleAddPost(stage));
             manageFriends.setOnAction(event->friendsManager(stage));
 
         } catch (IOException e) {
@@ -94,7 +93,7 @@ public class Application extends javafx.application.Application {
             VBox postContainer=(VBox) homeLoader.getNamespace().get("postContainer");
 
             Button addPost=(Button) homeLoader.getNamespace().get("addPost");
-            addPost.setOnAction(event ->handleAddPost(stage,postContainer));
+            addPost.setOnAction(event ->handleAddPost(stage));
             stage.setScene(homeLoaderScene);
 
         } catch (IOException e) {
@@ -117,7 +116,7 @@ public class Application extends javafx.application.Application {
     }
 
 
-    private void handleAddPost(Stage stage,VBox postContainer)
+    private void handleAddPost(Stage stage)
     {
         try {
             FXMLLoader addPostLoader = new FXMLLoader(Application.class.getResource("addPost.fxml"));
@@ -127,22 +126,24 @@ public class Application extends javafx.application.Application {
             stage.setScene(addPostScene);
             Button postDone=(Button) addPostLoader.getNamespace().get("postDone");
             Button cancelPost=(Button) addPostLoader.getNamespace().get("cancelPost");
+            cancelPost.setOnAction(event ->{
+                stage.close();
+            });s
             Button imageChooser=(Button) addPostLoader.getNamespace().get("imageChooser");
             TextField textPost=(TextField) addPostLoader.getNamespace().get("textPost");
             int[] textPostFlag = {0};
             int[] imgPostFlag = {0};
-
             postDone.setOnAction(event -> {
+                
                 if (!textPost.getText().equals("")) {
                     String textPostContent = textPost.getText();
                     Post post = new Post(textPostContent);
-                    addTextPost(textPostContent,postContainer);
                     System.out.println(textPostContent);
                     textPostFlag[0] = 1;
                     imageChooser.setDisable(true);
 
                 }
-
+                handleProfile(stage);
             });
             imageChooser.setOnAction(event -> {
                 FileChooser fileChooser = new FileChooser();
@@ -154,11 +155,10 @@ public class Application extends javafx.application.Application {
                 File file = fileChooser.showOpenDialog(imageChooser.getScene().getWindow());
 
                 if (file != null) {
-                    Image image = new Image(file.toURI().toString());
-                    addImagePost(file,postContainer);
+                   Post post = new Post(file.getAbsolutePath());
                 }
-            });
 
+            });
 
 
 
@@ -167,37 +167,6 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    private void addTextPost(String content,VBox postContainer) {
-        HBox textPostBox = new HBox();
-        textPostBox.getStyleClass().add("textPost");
-        ImageView profileImage = new ImageView(new Image(getClass().getResource("/org/example/demo/profile-icon.png").toExternalForm()));
-        profileImage.setFitHeight(50);
-        profileImage.setFitWidth(50);
-        profileImage.setPreserveRatio(true);
-        profileImage.getStyleClass().add("pp");
-        Label postContent = new Label(content);
-        postContent.getStyleClass().add("textPostContent");
-        textPostBox.getChildren().addAll(profileImage, postContent);
-        postContainer.getChildren().add(textPostBox);
-    }
-    private void addImagePost(File imageFile,VBox postContainer) {
-        HBox imagePostBox = new HBox();
-        imagePostBox.getStyleClass().add("imagePost");
-        ImageView profileImage = new ImageView(new Image(getClass().getResource("/org/example/demo/profile-icon.png").toExternalForm()));
-        profileImage.setFitHeight(50);
-        profileImage.setFitWidth(50);
-        profileImage.setPreserveRatio(true);
-        profileImage.getStyleClass().add("pp");
-        ImageView postImage = new ImageView(new Image(imageFile.toURI().toString()));
-        postImage.setFitHeight(249);
-        postImage.setFitWidth(311);
-        postImage.setPreserveRatio(true);
-        postImage.getStyleClass().add("postImage");
-
-        imagePostBox.getChildren().addAll(profileImage, postImage);
-
-        postContainer.getChildren().add(imagePostBox);
-    }
 
 
     public static void main(String[] args) {
