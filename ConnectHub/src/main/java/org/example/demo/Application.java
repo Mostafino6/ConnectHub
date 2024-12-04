@@ -88,11 +88,26 @@ public class Application extends javafx.application.Application {
             newStage.setScene(friendsScene);
             newStage.initOwner(stage);
             newStage.show();
+            Button viewFriends = (Button) friendsLoader.getNamespace().get("viewFriends");
+            viewFriends.setOnAction(event -> viewFriendsList(stage));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    private void viewFriendsList(Stage stage) {
+        try {
+            FXMLLoader friendsLoader = new FXMLLoader(Application.class.getResource("viewFriends.fxml"));
+            Scene friendsListScene = new Scene(friendsLoader.load(), 528, 329);
+            Stage newStage = new Stage();
+            newStage.setTitle("Friends");
+            friendsListScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            newStage.setScene(friendsListScene);
+            newStage.initOwner(stage);
+            newStage.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         launch();
     }

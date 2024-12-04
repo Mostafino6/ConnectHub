@@ -51,4 +51,3 @@ public class FriendManagement extends User{
         this.getBlockedFriends().add(user);
     }
 }
-
