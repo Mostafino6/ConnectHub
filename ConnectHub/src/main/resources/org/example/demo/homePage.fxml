@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ListView?>
 <VBox styleClass="vPrf" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.example.demo.Controller">
 
     <HBox styleClass="storiesSection">
@@ -27,7 +28,8 @@
 
     <BorderPane>
         <left>
-            <VBox styleClass="leftVbox">
+            <ListView fx:id=""> </ListView>
+            <VBox fx:id="postContainer" styleClass="leftVbox">
                 <HBox styleClass="acHb">
                     <Label styleClass="psts">Posts</Label>
                     <HBox styleClass="btnsHbox">
@@ -35,24 +37,25 @@
                         <Button fx:id="addStory" styleClass="btn4">Add Story</Button>
                     </HBox>
                 </HBox>
-                <HBox styleClass="textPost">
-                    <ImageView fx:id="textPostImage_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <Label fx:id="textPostContent_1" styleClass="textPostContent">
-                        dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg
-                    </Label>
-                </HBox>
+<!--                <HBox styleClass="textPost">-->
+<!--                    <ImageView fx:id="textPostImage_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">-->
+<!--                        <Image url="@profile-icon.png" />-->
+<!--                    </ImageView>-->
+<!--                    <Label fx:id="textPostContent_1" styleClass="textPostContent">-->
+<!--                        dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg-->
+<!--                    </Label>-->
+<!--                </HBox>-->
 
-                <HBox styleClass="imagePost">
-                    <ImageView fx:id="postImagePp_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <ImageView fx:id="imagePostImage_1" fitHeight="249.0" fitWidth="311.0" preserveRatio="true" styleClass="postImage">
-                        <Image url="@testPostjpg.jpg" />
-                    </ImageView>
-                </HBox>
+<!--                <HBox styleClass="imagePost">-->
+<!--                    <ImageView fx:id="postImagePp_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">-->
+<!--                        <Image url="@profile-icon.png" />-->
+<!--                    </ImageView>-->
+<!--                    <ImageView fx:id="imagePostImage_1" fitHeight="249.0" fitWidth="311.0" preserveRatio="true" styleClass="postImage">-->
+<!--                        <Image fx:id="imagePost" url="@testPostjpg.jpg" />-->
+<!--                    </ImageView>-->
+<!--                </HBox>-->
             </VBox>
+
         </left>
         <right>
             <VBox styleClass="rightVBox">
