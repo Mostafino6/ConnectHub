@@ -7,4 +7,5 @@ public class Post{
     private String content;
     private String image;
     private Date datePosted;
+    private int id
 }
