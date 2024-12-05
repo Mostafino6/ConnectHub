@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/addPost.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/homePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/homePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/FriendManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/FriendManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/ViewFriends.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/ViewFriends.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/FriendManager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/FriendManager.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/profile.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +24,7 @@
       <list>
         <option value="module-info" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -46,6 +47,9 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2pifMcfIpH5FgaqARpX7Rjhphtt" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -56,15 +60,16 @@
     "Application.org.example.demo.MainApp.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "NewsFeed",
+    "git-widget-placeholder": "ManageFriends",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/openjfx-23.0.1_windows-x64_bin-sdk/javafx-sdk-23.0.1/lib/javafx.web.jar",
+    "last_directory_selection": "C:/Users/Gebriel/Desktop/Term 5/Programming II/Lab9/ConnectHub/ConnectHub/src/main/java/org/example/demo",
+    "last_opened_file_path": "C:/Users/Gebriel/Desktop/Term 5/Programming II/Lab9/ConnectHub/ConnectHub/src/main/resources/org/example/demo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.24827586",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -72,6 +77,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Gebriel\Desktop\Term 5\Programming II\Lab9\ConnectHub\ConnectHub\src\main\resources\org\example\demo" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="org.example.demo.MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.demo.MainApp" />
@@ -95,8 +105,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
       </set>
     </attachedChunks>
   </component>
@@ -123,6 +133,9 @@
       <workItem from="1733327709617" duration="474000" />
       <workItem from="1733328198044" duration="10856000" />
       <workItem from="1733339857614" duration="3556000" />
+      <workItem from="1733391419048" duration="11000" />
+      <workItem from="1733391437202" duration="822000" />
+      <workItem from="1733392278975" duration="9956000" />
     </task>
     <servers />
   </component>

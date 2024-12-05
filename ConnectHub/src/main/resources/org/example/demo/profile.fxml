@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+<VBox prefHeight="731.0" prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
 
     <HBox styleClass="cover">
         <VBox styleClass="vPrfIn">
@@ -52,7 +52,7 @@
             </VBox>
         </left>
         <right>
-            <VBox styleClass="rightVBox">
+            <VBox prefHeight="555.0" prefWidth="321.0" styleClass="rightVBox">
             <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
                <children>
                   <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Friends" />
@@ -60,9 +60,17 @@
                </children>
             </HBox>
                 <fx:include source="viewFriends.fxml" />
-                <HBox prefHeight="0.0" prefWidth="268.0" styleClass="showFriends">
-                    <VBox styleClass="friendsData" />
-                </HBox>
+            <HBox prefHeight="30.0" prefWidth="69.0">
+               <children>
+                  <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Suggested" />
+                        <Button fx:id="viewSuggested" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="View All" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+                <fx:include source="suggestedFriends.fxml" />
             </VBox>
         </right>
     </BorderPane>

@@ -17,6 +17,9 @@ public class User {
     private String bio;
     private FriendManagement friends;
     private ArrayList<Post> posts;
+    public User() {
+        this.friends = new FriendManagement();
+    }
     public String getUserID() {
         return userID;
     }
@@ -83,6 +86,21 @@ public class User {
         return coverphotoPath;
     }
     public void setCoverphotoPath(String coverphotoPath) {
-        this.coverphotoPath = coverphotoPath;
+        this.coverphotoPath = "file:///" + coverphotoPath;
+    }
+    public void sendFriendRequest(User user) {
+        friends.sendFriendRequest(this, user);
+    }
+
+    public void acceptFriendRequest(User user) {
+        friends.acceptFriendRequest(this, user);
+    }
+
+    public void rejectFriendRequest(User user) {
+        friends.rejectFriendRequest(this, user);
+    }
+
+    public void blockFriend(User user) {
+        friends.blockFriend(this, user);
     }
 }

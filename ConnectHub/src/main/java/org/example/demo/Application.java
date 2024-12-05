@@ -70,7 +70,7 @@ public class Application extends javafx.application.Application {
     {
         try {
             FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-            Scene profileScene = new Scene(profileLoader.load(), 995, 580);
+            Scene profileScene = new Scene(profileLoader.load(), 995,800);
             stage.setTitle("Profile");
             profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             stage.setScene(profileScene);
@@ -79,6 +79,8 @@ public class Application extends javafx.application.Application {
             addPost.setOnAction(event ->handleAddPost(stage,postContainer));
             Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
             manageFriends.setOnAction(event -> friendsManager(stage));
+            Button viewSuggested = (Button) profileLoader.getNamespace().get("viewSuggested");
+            viewSuggested.setOnAction(event -> handleSuggested(stage));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -104,7 +106,7 @@ public class Application extends javafx.application.Application {
     private void viewFriendsList(Stage stage) {
         try {
             FXMLLoader friendsLoader = new FXMLLoader(Application.class.getResource("viewFriends.fxml"));
-            Scene friendsListScene = new Scene(friendsLoader.load(), 329, 528);
+            Scene friendsListScene = new Scene(friendsLoader.load(), 289, 189);
             Stage newStage = new Stage();
             newStage.setTitle("Friends");
             friendsListScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
@@ -128,6 +130,54 @@ public class Application extends javafx.application.Application {
             newStage.show();
             Button viewFriends = (Button) friendsLoader.getNamespace().get("viewFriends");
             viewFriends.setOnAction(event -> viewFriendsList(stage));
+            Button cancel = (Button) friendsLoader.getNamespace().get("cancel");
+            cancel.setOnAction(event -> newStage.close());
+            Button friendRequests = (Button) friendsLoader.getNamespace().get("viewFriendRequests");
+            friendRequests.setOnAction(event -> handleFR(stage));
+            Button blockRemove = (Button) friendsLoader.getNamespace().get("blockRemove");
+            blockRemove.setOnAction(event -> handleBlockRemove(stage));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void handleSuggested(Stage stage) {
+        try {
+            FXMLLoader suggestedLoader = new FXMLLoader(Application.class.getResource("suggestedFriends.fxml"));
+            Scene suggestedListScene = new Scene(suggestedLoader.load(), 289, 189);
+            Stage newStage = new Stage();
+            newStage.setTitle("Suggested Friends");
+            suggestedListScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            newStage.setScene(suggestedListScene);
+            newStage.initOwner(stage);
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void handleFR(Stage stage) {
+        try {
+            FXMLLoader FRLoader = new FXMLLoader(Application.class.getResource("friendRequests.fxml"));
+            Scene FRScene = new Scene(FRLoader.load(), 289, 189);
+            Stage newStage = new Stage();
+            newStage.setTitle("Friend Requests");
+            FRScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            newStage.setScene(FRScene);
+            newStage.initOwner(stage);
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void handleBlockRemove(Stage stage) {
+        try {
+            FXMLLoader BRLoader = new FXMLLoader(Application.class.getResource("blockRemove.fxml"));
+            Scene BRScene = new Scene(BRLoader.load(), 289, 189);
+            Stage newStage = new Stage();
+            newStage.setTitle("Block / Remove");
+            BRScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            newStage.setScene(BRScene);
+            newStage.initOwner(stage);
+            newStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

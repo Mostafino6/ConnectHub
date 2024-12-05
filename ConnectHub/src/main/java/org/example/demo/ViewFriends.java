@@ -13,7 +13,7 @@ public class ViewFriends extends User{
     private ListView<User> friendsListView;
     @FXML
     public void initialize() {
-        ArrayList<User> friends = new ArrayList<>();
+        User user =  new User();
         User friend = new User();
         friend.setName("Mostafa Abayazeed");
         friend.setStatus(true);
@@ -22,10 +22,10 @@ public class ViewFriends extends User{
         friend2.setName("John Smith");
         friend2.setStatus(false);
         friend2.setPfpPath("C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\testPostjpg.jpg");
-        friends.add(friend);
-        friends.add(friend2);
+        user.getFriends().getFriendsList().add(friend);
+        user.getFriends().getFriendsList().add(friend2);
         ObservableList<User> friendss = FXCollections.observableArrayList(
-                friends
+                user.getFriends().getFriendsList()
         );
         friendsListView.setItems(friendss);
         friendsListView.setCellFactory(listView -> new profileCell());
