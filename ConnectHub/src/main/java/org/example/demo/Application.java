@@ -104,7 +104,7 @@
                 Button updateCoverPhoto = (Button) editProfileLoader.getNamespace().get("updateCoverPhoto");
                 updateCoverPhoto.setOnAction(event -> {
                     System.out.println("update cover photo Button Clicked");
-                  //  handleupdateCoverPhoto(stage);
+                    handleupdateCoverPhoto(stage);
                 });
 
                 Button changeBioButton = (Button) editProfileLoader.getNamespace().get("changeBio");
@@ -229,28 +229,28 @@
                 }
             }
         }
-        //        private void handleupdateCoverPhoto(Stage stage) {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Select cover photo File");
-//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-//            );
-//            File selectedFile = fileChooser.showOpenDialog(stage);
-//            if (selectedFile != null) {
-//                try {
-//                    Image newImage = new Image(selectedFile.toURI().toString());
-//                    FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-//                    Scene profileScene = new Scene(profileLoader.load(), 995, 800);
-//                    ImageView imageView = (ImageView) profileLoader.getNamespace().get("imageView");
-//                    profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-//                    imageView.setImage(newImage);
-//                    stage.setScene(profileScene);
-//                    //user.setpfpPath(selectedfile.absouloutepath()); when user functionality is added
-//                    stage.show();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
+                private void handleupdateCoverPhoto(Stage stage) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select cover photo File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+            );
+            File selectedFile = fileChooser.showOpenDialog(stage);
+            if (selectedFile != null) {
+                try {
+                    Image newImage = new Image(selectedFile.toURI().toString());
+                    FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
+                    Scene profileScene = new Scene(profileLoader.load(), 995, 800);
+                    ImageView imageView = (ImageView) profileLoader.getNamespace().get("coverPhoto");
+                    profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                    imageView.setImage(newImage);
+                    stage.setScene(profileScene);
+                    currentUser.setCoverphotoPath(selectedFile.getAbsolutePath());
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
 
 
