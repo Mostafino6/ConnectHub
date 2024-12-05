@@ -98,7 +98,7 @@ public class User {
     }
 
     public void setPfpPath(String pfpPath) {
-        this.pfpPath = pfpPath;
+        this.pfpPath = "file:///" + pfpPath;
     }
 
     public String getCoverphotoPath() {
@@ -106,7 +106,22 @@ public class User {
     }
 
     public void setCoverphotoPath(String coverphotoPath) {
-        this.coverphotoPath = coverphotoPath;
+        this.coverphotoPath = "file:///" + coverphotoPath;
+    }
+    public void sendFriendRequest(User user) {
+        friends.sendFriendRequest(this, user);
+    }
+
+    public void acceptFriendRequest(User user) {
+        friends.acceptFriendRequest(this, user);
+    }
+
+    public void rejectFriendRequest(User user) {
+        friends.rejectFriendRequest(this, user);
+    }
+
+    public void blockFriend(User user) {
+        friends.blockFriend(this, user);
     }
 
     public void sendFriendRequest(User user) {

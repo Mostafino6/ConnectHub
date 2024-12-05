@@ -5,9 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
-public class ViewFriends {
+public class blockRemove {
     @FXML
-    private ListView<User> friendsListView;
+    private ListView<User> blockRemove;
     @FXML
     public void initialize() {
         User currentUser = Application.getCurrentUser();
@@ -16,7 +16,7 @@ public class ViewFriends {
             return;
         }
         ObservableList<User> friendsList = FXCollections.observableArrayList(currentUser.getFriends().getFriendsList());
-        friendsListView.setItems(friendsList);
-        friendsListView.setCellFactory(listView -> new profileCell());
+        blockRemove.setItems(friendsList);
+        blockRemove.setCellFactory(listView -> new BRcell());
     }
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+<VBox prefHeight="731.0" prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
 
     <HBox styleClass="cover">
         <VBox styleClass="vPrfIn">
@@ -26,7 +26,7 @@
 
     <BorderPane>
         <left>
-            <VBox fx:id="postContainer" styleClass="leftVbox">
+            <VBox styleClass="leftVbox">
                 <HBox styleClass="acHb">
                     <Label styleClass="psts">Posts</Label>
                     <HBox styleClass="btnsHbox">
@@ -52,47 +52,25 @@
             </VBox>
         </left>
         <right>
-            <VBox styleClass="rightVBox">
-                <HBox styleClass="friends">
-                    <Label styleClass="psts2">Friends</Label>
-                    <Button fx:id="manageFriends" styleClass="btn4">Manage Friends</Button>
-                </HBox>
-                <HBox styleClass="showFriends">
-                    <ImageView fx:id="imgFriends1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <VBox styleClass="friendsData">
-                        <Label fx:id="friendName_1" styleClass="friendName">Eyad Ahmed</Label>
-                        <Label fx:id="friendStatus_1" styleClass="friendStatus">Online</Label>
-                    </VBox>
-                </HBox>
-                <HBox styleClass="showFriends">
-                    <ImageView fx:id="imgFriends2" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <VBox styleClass="friendsData">
-                        <Label fx:id="friendName2" styleClass="friendName">Mostafa Abyazyd</Label>
-                        <Label fx:id="friendStatus2" styleClass="friendStatus">Online</Label>
-                    </VBox>
-                </HBox>
-                <HBox styleClass="showFriends">
-                    <ImageView fx:id="imgFriends3" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <VBox styleClass="friendsData">
-                        <Label fx:id="friendName3" styleClass="friendName">Belal Mohamed</Label>
-                        <Label fx:id="friendStatus3" styleClass="friendStatus">Online</Label>
-                    </VBox>
-                </HBox>
-                <HBox styleClass="showFriends">
-                    <ImageView fx:id="imgFriends4" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <VBox styleClass="friendsData">
-                        <Label fx:id="friendName4" styleClass="friendName">Hossam elshazly</Label>
-                        <Label fx:id="friendStatus4" styleClass="friendStatus">Online</Label>
-                    </VBox>
-                </HBox>
+            <VBox prefHeight="555.0" prefWidth="321.0" styleClass="rightVBox">
+            <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Friends" />
+                  <Button fx:id="manageFriends" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="Manage Friends" textAlignment="CENTER" />
+               </children>
+            </HBox>
+                <fx:include source="viewFriends.fxml" />
+            <HBox prefHeight="30.0" prefWidth="69.0">
+               <children>
+                  <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Suggested" />
+                        <Button fx:id="viewSuggested" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="View All" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+                <fx:include source="suggestedFriends.fxml" />
             </VBox>
         </right>
     </BorderPane>

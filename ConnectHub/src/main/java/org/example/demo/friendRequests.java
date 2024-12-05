@@ -5,9 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
-public class ViewFriends {
+public class friendRequests {
     @FXML
-    private ListView<User> friendsListView;
+    private ListView<User> friendRequests;
     @FXML
     public void initialize() {
         User currentUser = Application.getCurrentUser();
@@ -15,8 +15,8 @@ public class ViewFriends {
             System.out.println("Current user is null!");
             return;
         }
-        ObservableList<User> friendsList = FXCollections.observableArrayList(currentUser.getFriends().getFriendsList());
-        friendsListView.setItems(friendsList);
-        friendsListView.setCellFactory(listView -> new profileCell());
+        ObservableList<User> friendsList = FXCollections.observableArrayList(currentUser.getFriends().getFriendRequests());
+        friendRequests.setItems(friendsList);
+        friendRequests.setCellFactory(listView -> new FRcell());
     }
 }
