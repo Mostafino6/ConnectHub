@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+    <StackPane>
+        <!-- Cover Image -->
+        <ImageView id="coverPhoto" fx:id="coverImageView" fitHeight="200" fitWidth="980" preserveRatio="false" styleClass="cover">
+        </ImageView>
+
+        <!-- Foreground Content -->
+        <HBox styleClass="cover">
+            <VBox styleClass="vPrfIn">
+                <ImageView fx:id="imageView" fitHeight="150" fitWidth="150" preserveRatio="true" styleClass="pp">
+                    <Image url="@profile-icon.png" />
+                </ImageView>
+                <Button fx:id="editProfileButton" styleClass="btn4" text="Edit Profile" />
+            </VBox>
+            <VBox styleClass="vPrfIn2">
+                <Label styleClass="name">Eyad Ahmed Aly</Label>
+                <Label fx:id="bioplace" prefHeight="9.0" prefWidth="250.0" styleClass="lblsPass" stylesheets="@main.css" text="Your Bio Here" />
+            </VBox>
+        </HBox>
+    </StackPane>
+
+    <BorderPane>
+        <left>
+            <VBox styleClass="leftVbox">
+                <HBox styleClass="acHb">
+                    <Label styleClass="psts">Posts</Label>
+                    <HBox styleClass="btnsHbox">
+                        <Button fx:id="addPost" styleClass="btn4">Add Post</Button>
+                        <Button fx:id="addStory" styleClass="btn4">Add Story</Button>
+                    </HBox>
+                </HBox>
+                <HBox styleClass="textPost">
+                    <ImageView fx:id="textPostImage_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
+                        <Image url="@profile-icon.png" />
+                    </ImageView>
+                    <Label fx:id="textPostContent_1" styleClass="textPostContent">dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg</Label>
+                </HBox>
+                <HBox styleClass="imagePost">
+                    <ImageView fx:id="postImagePp_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
+                        <Image url="@profile-icon.png" />
+                    </ImageView>
+                    <ImageView fx:id="imagePostImage_1" fitWidth="400" preserveRatio="true" styleClass="postImage">
+                        <Image url="@testPostjpg.jpg" />
+                    </ImageView>
+                </HBox>
+            </VBox>
+        </left>
+        <right>
+            <VBox styleClass="rightVBox">
+                <HBox styleClass="friends">
+                    <Label styleClass="psts2">Friends</Label>
+                    <Button fx:id="manageFriends" styleClass="btn4">Manage Friends</Button>
+                </HBox>
+                <HBox styleClass="showFriends">
+                    <ImageView fx:id="imgFriends1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
+                        <Image url="@profile-icon.png" />
+                    </ImageView>
+                    <VBox styleClass="friendsData">
+                        <Label fx:id="friendName_1" styleClass="friendName">Eyad Ahmed</Label>
+                        <Label fx:id="friendStatus_1" styleClass="friendStatus">Online</Label>
+                    </VBox>
+                </HBox>
+                <HBox styleClass="showFriends">
+                    <ImageView fx:id="imgFriends2" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
+                        <Image url="@profile-icon.png" />
+                    </ImageView>
+                    <VBox styleClass="friendsData">
+                        <Label fx:id="friendName2" styleClass="friendName">Mostafa Abyazyd</Label>
+                        <Label fx:id="friendStatus2" styleClass="friendStatus">Online</Label>
+                    </VBox>
+                </HBox>
+                <HBox styleClass="showFriends">
+                    <ImageView fx:id="imgFriends3" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
+                        <Image url="@profile-icon.png" />
+                    </ImageView>
+                    <VBox styleClass="friendsData">
+                        <Label fx:id="friendName3" styleClass="friendName">Belal Mohamed</Label>
+                        <Label fx:id="friendStatus3" styleClass="friendStatus">Online</Label>
+                    </VBox>
+                </HBox>
+                <HBox styleClass="showFriends">
+                    <ImageView fx:id="imgFriends4" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
+                        <Image url="@profile-icon.png" />
+                    </ImageView>
+                    <VBox styleClass="friendsData">
+                        <Label fx:id="friendName4" styleClass="friendName">Hossam elshazly</Label>
+                        <Label fx:id="friendStatus4" styleClass="friendStatus">Online</Label>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </right>
+    </BorderPane>
+</VBox>
