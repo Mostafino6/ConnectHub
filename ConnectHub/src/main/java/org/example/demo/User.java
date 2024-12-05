@@ -18,15 +18,6 @@ public class User {
     private FriendManagement friends;
     private ArrayList<Post> posts;
 
-    public User(String username, String name, String email, Date DOB) {
-        this.username = username;
-        this.name = name;
-        this.email = email;
-        this.DOB = DOB;
-        this.friends = new FriendManagement();
-        this.status = false;
-    }
-
     public String getUserID() {
         return userID;
     }

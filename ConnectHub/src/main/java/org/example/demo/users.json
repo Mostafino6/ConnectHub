@@ -1,56 +1,107 @@
 [
   {
-    "userID": "12345",
+    "userID": "1",
     "username": "johndoe",
     "name": "John Doe",
     "email": "johndoe@example.com",
-    "password": "c1d543c4306bc76d8654f71b19cca84d803cea6e7a5d410c20878b6ea824e923",
+    "password": "1d5df648c48fd5aa23ef2220be26b28bfd42698c7d2f097cbb6e8813d902a674",
     "DOB": "1990-01-01",
     "status": true,
     "bio": "Software developer with a passion for technology and innovation.",
     "friends": {
-      "friendsList": [
-        {
-          "userID": "67890",
-          "username": "janedoe",
-          "name": "Jane Doe",
-          "email": "janedoe@example.com",
-          "DOB": "1992-05-15",
-          "status": true,
-          "bio": "Loves coding and solving complex problems."
-        },
-        {
-          "userID": "54321",
-          "username": "bobby",
-          "name": "Bobby Smith",
-          "email": "bobby@example.com",
-          "DOB": "1991-09-10",
-          "status": true,
-          "bio": "Enjoys hiking and traveling."
-        }
-      ],
-      "friendRequests": [
-        {
-          "userID": "98765",
-          "username": "susan",
-          "name": "Susan Walker",
-          "email": "susan@example.com",
-          "DOB": "1993-03-30",
-          "status": false,
-          "bio": "Aspiring artist and photographer."
-        }
-      ],
-      "blockedFriends": [
-        {
-          "userID": "13579",
-          "username": "alex",
-          "name": "Alex Johnson",
-          "email": "alex@example.com",
-          "DOB": "1990-12-25",
-          "status": false,
-          "bio": "Likes gaming and video editing."
-        }
-      ]
+      "friendsList": ["2","3"],
+      "friendRequests": ["4"],
+      "blockedFriends": ["5"]
+    }
+  },
+  {
+    "userID": "2",
+    "username": "janedoe",
+    "name": "Jane Doe",
+    "email": "janedoe@example.com",
+    "password": "e1bf7628e5c3c7b9e3f975d7e50c9a6c612fd5f5bd92c9d764eb155eeb5c85ef",
+    "DOB": "1992-05-15",
+    "status": true,
+    "bio": "Loves coding and solving complex problems.",
+    "friends": {
+      "friendsList": ["1","3"],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "3",
+    "username": "bobby",
+    "name": "Bobby Smith",
+    "email": "bobby@example.com",
+    "password": "a6e90c8e3e4d5678f2f4769b6a2c1b2d56f1cd7db4c8a1e8b6e245fb623e1345",
+    "DOB": "1991-09-10",
+    "status": true,
+    "bio": "Enjoys hiking and traveling.",
+    "friends": {
+      "friendsList": ["1","2"],
+      "friendRequests": [],
+      "blockedFriends": ["5"]
+    }
+  },
+  {
+    "userID": "4",
+    "username": "susan",
+    "name": "Susan Walker",
+    "email": "susan@example.com",
+    "password": "9dce642a96d2c2b3d0f923b58b6e27f8c18f75445c9d1e78b6256a6f7e123456",
+    "DOB": "1993-03-30",
+    "status": false,
+    "bio": "Aspiring artist and photographer.",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": ["1"],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "5",
+    "username": "alex",
+    "name": "Alex Johnson",
+    "email": "alex@example.com",
+    "password": "7f3c2e6b7d6e42839bf91f72edfc5a9d6e45cd6a893f7b1e56a2349b6785df90",
+    "DOB": "1990-12-25",
+    "status": false,
+    "bio": "Likes gaming and video editing.",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": ["1","3"]
+    }
+  },
+  {
+    "userID": "6",
+    "username": "mostafa",
+    "name": "Mostafa Abayazeed",
+    "email": "mostafaabayazeed@yahoo.com",
+    "password": "c1d543c4306bc76d8654f71b19cca84d803cea6e7a5d410c20878b6ea824e923",
+    "DOB": "2023-12-04",
+    "status": true,
+    "bio": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "7",
+    "username": "mostafa43",
+    "name": "mmm",
+    "email": "ssss@rrr.com",
+    "password": "1016e16522b039485820bd6a34029de583616d96bab1d7ff8f3abe2d15a2fd7e",
+    "DOB": "2022-12-13",
+    "status": false,
+    "bio": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
     }
   }
 ]

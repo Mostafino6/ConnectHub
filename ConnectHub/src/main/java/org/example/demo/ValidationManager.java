@@ -73,7 +73,8 @@ public class ValidationManager {
             if (!validateUsername(username)) {
                 System.out.println("2");
                 return false;
-            }; //"Username must be at least 3 characters long and contain only letters, numbers, or underscores.";
+            }
+            ; //"Username must be at least 3 characters long and contain only letters, numbers, or underscores.";
             if (!validateName(name)) {
                 System.out.println("3");
                 return false;
@@ -99,8 +100,13 @@ public class ValidationManager {
             }
 
             String hashedPassword = hashPassword(password);
-            User newUser = new User(username, name, email, dateOfBirth);
-            newUser.setPassword(hashedPassword); // Set hashed password
+            User newUser = new User();
+            newUser.setUsername(username);
+            newUser.setName(name);
+            newUser.setEmail(email);
+            newUser.setDOB(dateOfBirth);
+            newUser.setPassword(hashedPassword);
+            newUser.setUserID(databaseManager.getNextUserID(users));// Set hashed password
 
             users.add(newUser);
             databaseManager.writeUser(newUser); // Save new user
@@ -111,7 +117,6 @@ public class ValidationManager {
             return false; //"An error occurred during signup.";
         }
     }
-
     // Login method
     public Boolean login(String email, String password) {
         try {

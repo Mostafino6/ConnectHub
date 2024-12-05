@@ -3,18 +3,18 @@ package org.example.demo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
 
 public class DatabaseManager {
-    private static final String DATABASE_FILE = "D:\\CCE\\Term 5\\Programming-02\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\users.json";
+    private static final String DATABASE_FILE = "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\users.json";
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
 
     // Parses a date string into a Date object
     public Date parseDate(String dateString) throws Exception {
@@ -26,7 +26,6 @@ public class DatabaseManager {
         return dateFormat.format(date);
     }
 
-    @SuppressWarnings("unchecked")
     public ArrayList<User> readUsers() throws Exception {
         File file = new File(DATABASE_FILE);
         if (!file.exists()) {
@@ -37,13 +36,15 @@ public class DatabaseManager {
         JSONParser parser = new JSONParser();
         JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(file));
 
+        // Create a HashMap to store userID -> User mapping
+        HashMap<String, User> userMap = new HashMap<>();
         ArrayList<User> userList = new ArrayList<>();
 
-        // Iterate through each JSON object in the array
+        // First pass: create User objects and store them in the map
         for (Object obj : jsonArray) {
             JSONObject jsonObject = (JSONObject) obj;
 
-            // Extract the main user information
+            // Extract main user information
             String userId = (String) jsonObject.get("userID");
             String username = (String) jsonObject.get("username");
             String name = (String) jsonObject.get("name");
@@ -53,71 +54,72 @@ public class DatabaseManager {
             boolean status = (boolean) jsonObject.get("status");
             String bio = (String) jsonObject.get("bio");
 
-            // Create the main user object
-            User mainUser = new User(username, name, email, dob);
-            mainUser.setUserID(userId);
-            mainUser.setPassword(password);  // Store the password (likely hashed in real usage)
-            mainUser.setStatus(status);
-            mainUser.setBio(bio);
-
-            // Parsing the friends section (nested objects)
-            JSONObject friendsObject = (JSONObject) jsonObject.get("friends");
-
-            // Parse friends list
-            JSONArray friendsList = (JSONArray) friendsObject.get("friendsList");
-            mainUser.getFriends().setFriendsList(parseNestedUsers(friendsList));
-
-            // Parse friend requests
-            JSONArray friendRequests = (JSONArray) friendsObject.get("friendRequests");
-            mainUser.getFriends().setFriendRequests(parseNestedUsers(friendRequests));
-
-            // Parse blocked friends
-            JSONArray blockedFriends = (JSONArray) friendsObject.get("blockedFriends");
-            mainUser.getFriends().setBlockedFriends(parseNestedUsers(blockedFriends));
-
-            // Add the main user to the list
-            userList.add(mainUser);
-        }
-
-        return userList;  // Return the list of users
-    }
-
-
-    private ArrayList<User> parseNestedUsers(JSONArray jsonArray) throws Exception {
-        ArrayList<User> users = new ArrayList<>();
-        for (Object obj : jsonArray) {
-            JSONObject jsonUser = (JSONObject) obj;
-
-            String userId = (String) jsonUser.get("userID");
-            String username = (String) jsonUser.get("username");
-            String name = (String) jsonUser.get("name");
-            String email = (String) jsonUser.get("email");
-            Date dob = parseDate((String) jsonUser.get("DOB"));
-            boolean status = (boolean) jsonUser.get("status");
-            String bio = (String) jsonUser.get("bio");
-
-            User user = new User(username, name, email, dob);
+            // Create the User object
+            User user = new User();
+            user.setUsername(username);
+            user.setName(name);
+            user.setEmail(email);
+            user.setDOB(dob);
             user.setUserID(userId);
+            user.setPassword(password); // Store the password (likely hashed)
             user.setStatus(status);
             user.setBio(bio);
-            users.add(user);
+
+            // Add user to the map and list
+            userMap.put(userId, user);
+            userList.add(user);
         }
-        return (ArrayList<User>) users;
+
+        // Second pass: Populate friend-related lists
+        for (Object obj : jsonArray) {
+            JSONObject jsonObject = (JSONObject) obj;
+            String userId = (String) jsonObject.get("userID");
+            User user = userMap.get(userId);
+
+            // Parse friends object
+            JSONObject friendsObject = (JSONObject) jsonObject.get("friends");
+
+            // Populate friendsList
+            JSONArray friendsList = (JSONArray) friendsObject.get("friendsList");
+            user.getFriends().setFriendsList(getUserObjectsFromIDs(friendsList, userMap));
+
+            // Populate friendRequests
+            JSONArray friendRequests = (JSONArray) friendsObject.get("friendRequests");
+            user.getFriends().setFriendRequests(getUserObjectsFromIDs(friendRequests, userMap));
+
+            // Populate blockedFriends
+            JSONArray blockedFriends = (JSONArray) friendsObject.get("blockedFriends");
+            user.getFriends().setBlockedFriends(getUserObjectsFromIDs(blockedFriends, userMap));
+        }
+
+        return userList; // Return the list of users
     }
 
-    @SuppressWarnings("unchecked")
-    public void writeUser(User user) throws IOException {
-        ArrayList<User> userList;
-        try {
-            userList = readUsers();
-            if (userList == null) {
-                userList = new ArrayList<>();
+    private ArrayList<User> getUserObjectsFromIDs(JSONArray ids, HashMap<String, User> userMap) {
+        ArrayList<User> users = new ArrayList<>();
+        for (Object idObj : ids) {
+            String userId = (String) idObj;
+            User user = userMap.get(userId);
+            if (user != null) {
+                users.add(user); // Add the User object if it exists in the map
             }
-        } catch (Exception e) {
+        }
+        return users;
+    }
+
+    public void writeUser(User user) throws Exception {
+        ArrayList<User> userList = readUsers();
+        if (userList == null) {
             userList = new ArrayList<>();
         }
 
-        // Check if the user exists and update their data
+        // If it's a new user, generate a unique userID
+        if (user.getUserID() == null || user.getUserID().isEmpty()) {
+            String newUserID = getNextUserID(userList);
+            user.setUserID(newUserID);
+        }
+
+        // Update existing user or add a new user
         boolean userExists = false;
         for (int i = 0; i < userList.size(); i++) {
             if (userList.get(i).getUserID().equals(user.getUserID())) {
@@ -126,13 +128,12 @@ public class DatabaseManager {
                 break;
             }
         }
-
         if (!userExists) {
             userList.add(user);
         }
 
-        // Write the updated list to the JSON file
-        JSONArray usersArray = new JSONArray();
+        // Prepare the JSON array
+        JSONArray jsonArray = new JSONArray();
         for (User existingUser : userList) {
             JSONObject jsonUser = new JSONObject();
             jsonUser.put("userID", existingUser.getUserID());
@@ -141,40 +142,79 @@ public class DatabaseManager {
             jsonUser.put("email", existingUser.getEmail());
             jsonUser.put("password", existingUser.getPassword());
             jsonUser.put("DOB", formatDate(existingUser.getDOB()));
-            jsonUser.put("status", existingUser.getStatus());
+            if(existingUser.getStatus().equals("Online")) jsonUser.put("status", true);
+            else jsonUser.put("status", false);
             jsonUser.put("bio", existingUser.getBio());
 
+            // Friends information
             JSONObject friendsObject = new JSONObject();
-            friendsObject.put("friendsList", serializeNestedUsers(existingUser.getFriends().getFriendsList()));
-            friendsObject.put("friendRequests", serializeNestedUsers(existingUser.getFriends().getFriendRequests()));
-            friendsObject.put("blockedFriends", serializeNestedUsers(existingUser.getFriends().getBlockedFriends()));
+            friendsObject.put("friendsList", getIDsFromUserObjects(existingUser.getFriends().getFriendsList()));
+            friendsObject.put("friendRequests", getIDsFromUserObjects(existingUser.getFriends().getFriendRequests()));
+            friendsObject.put("blockedFriends", getIDsFromUserObjects(existingUser.getFriends().getBlockedFriends()));
             jsonUser.put("friends", friendsObject);
 
-            usersArray.add(jsonUser);
+            jsonArray.add(jsonUser);
         }
 
+        // Write to the file with proper formatting
         try (FileWriter writer = new FileWriter(DATABASE_FILE)) {
-            writer.write(usersArray.toJSONString());
+            writer.write("[\n");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject jsonUser = (JSONObject) jsonArray.get(i);
+                writer.write("  {\n");
+
+                // Write user details with new lines for readability
+                writer.write("    \"userID\": \"" + jsonUser.get("userID") + "\",\n");
+                writer.write("    \"username\": \"" + jsonUser.get("username") + "\",\n");
+                writer.write("    \"name\": \"" + jsonUser.get("name") + "\",\n");
+                writer.write("    \"email\": \"" + jsonUser.get("email") + "\",\n");
+                writer.write("    \"password\": \"" + jsonUser.get("password") + "\",\n");
+                writer.write("    \"DOB\": \"" + jsonUser.get("DOB") + "\",\n");
+                writer.write("    \"status\": " + jsonUser.get("status") + ",\n");
+                writer.write("    \"bio\": \"" + jsonUser.get("bio") + "\",\n");
+
+                // Write friends object
+                JSONObject friendsObject = (JSONObject) jsonUser.get("friends");
+                writer.write("    \"friends\": {\n");
+                writer.write("      \"friendsList\": " + friendsObject.get("friendsList").toString() + ",\n");
+                writer.write("      \"friendRequests\": " + friendsObject.get("friendRequests").toString() + ",\n");
+                writer.write("      \"blockedFriends\": " + friendsObject.get("blockedFriends").toString() + "\n");
+                writer.write("    }\n");
+
+                // Close the user object
+                if (i < jsonArray.size() - 1) {
+                    writer.write("  },\n");
+                } else {
+                    writer.write("  }\n");
+                }
+            }
+            writer.write("]");
         }
     }
 
-
-    // Helper method to serialize nested users and keep status as boolean
-    @SuppressWarnings("unchecked")
-    private JSONArray serializeNestedUsers(ArrayList<User> users) {
-        JSONArray jsonArray = new JSONArray();
-        for (User user : users) {
-            JSONObject jsonUser = new JSONObject();
-            jsonUser.put("userID", user.getUserID());
-            jsonUser.put("username", user.getUsername());
-            jsonUser.put("name", user.getName());
-            jsonUser.put("email", user.getEmail());
-            jsonUser.put("DOB", formatDate(user.getDOB()));
-            jsonUser.put("status", user.getStatus()); // Keep the status as boolean
-            jsonUser.put("bio", user.getBio());
-            jsonArray.add(jsonUser);
+    // Generate the next available userID
+    public String getNextUserID(ArrayList<User> userList) {
+        int maxID = 0;
+        for (User user : userList) {
+            try {
+                int userID = Integer.parseInt(user.getUserID());
+                maxID = Math.max(maxID, userID);
+            } catch (NumberFormatException e) {
+                // Handle invalid userID format
+                continue;
+            }
         }
-        return jsonArray;
+        return String.valueOf(maxID + 1);
+    }
+    private JSONArray getIDsFromUserObjects(ArrayList<User> users) {
+        JSONArray ids = new JSONArray();
+        for (User user : users) {
+            // Ensure the user has a valid userID before adding it to the list
+            if (user.getUserID() != null && !user.getUserID().isEmpty()) {
+                ids.add(user.getUserID());
+            }
+        }
+        return ids;
     }
 
 }
