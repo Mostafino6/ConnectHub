@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/homePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/homePage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" afterDir="false" />
-    </list>
+    <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,11 +56,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "ManageFriends",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/Gebriel/Desktop/Term 5/Programming II/Lab9/ConnectHub/ConnectHub/src/main/java/org/example/demo",
-    "last_opened_file_path": "C:/Users/Gebriel/Desktop/Term 5/Programming II/Lab9/ConnectHub/ConnectHub/src/main/resources/org/example/demo",
-    "git-widget-placeholder": "LoginSignup",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Downloads/json-simple-1.1.1.jar",
     "node.js.detected.package.eslint": "true",
@@ -73,7 +64,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.24827586",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -81,12 +72,6 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Gebriel\Desktop\Term 5\Programming II\Lab9\ConnectHub\ConnectHub\src\main\resources\org\example\demo" />
-    </key>
-  </component>
-  <component name="RunManager">
   <component name="RunManager" selected="Application.org.example.demo.MainApp">
     <configuration name="ValidationManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.demo.ValidationManager" />
@@ -152,13 +137,10 @@
       <workItem from="1733327709617" duration="474000" />
       <workItem from="1733328198044" duration="10856000" />
       <workItem from="1733339857614" duration="3556000" />
-      <workItem from="1733391419048" duration="11000" />
-      <workItem from="1733391437202" duration="822000" />
-      <workItem from="1733392278975" duration="17796000" />
       <workItem from="1733346118822" duration="473000" />
       <workItem from="1733347487710" duration="9828000" />
       <workItem from="1733383179162" duration="21327000" />
-      <workItem from="1733420782573" duration="337000" />
+      <workItem from="1733420782573" duration="1163000" />
     </task>
     <servers />
   </component>

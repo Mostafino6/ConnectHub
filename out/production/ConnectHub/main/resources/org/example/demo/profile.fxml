@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="731.0" prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+
+    <HBox styleClass="cover">
+        <VBox styleClass="vPrfIn">
+            <ImageView fx:id="imageView" fitHeight="150" fitWidth="150" preserveRatio="true" styleClass="pp">
+                <Image url="@profile-icon.png" />
+            </ImageView>
+            <Button fx:id="editProfile" styleClass="btn4">Edit Profile</Button>
+        </VBox>
+
+        <VBox styleClass="vPrfIn2">
+            <Label styleClass="name" text="Eyad Ahmed Aly">Eyad Ahmed Aly</Label>
+            <Label styleClass="bio" text="gdx gdxd rgsd hdfx ghndfx dxfd">gdx gdxd rgsd hdfx ghndfx dxfd</Label>
+        </VBox>
+    </HBox>
+
+    <BorderPane>
+        <left>
+            <VBox styleClass="leftVbox">
+                <HBox styleClass="acHb">
+                    <Label styleClass="psts">Posts</Label>
+                    <HBox styleClass="btnsHbox">
+                        <Button fx:id="addPost" styleClass="btn4">Add Post</Button>
+                        <Button fx:id="addStory" styleClass="btn4" text="Add Story">Add Story</Button>
+                    </HBox>
+                </HBox>
+                <HBox styleClass="textPost">
+                    <ImageView fx:id="textPostImage_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
+                        <Image url="@profile-icon.png" />
+                    </ImageView>
+                    <Label fx:id="textPostContent_1" styleClass="textPostContent">dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg</Label>
+                </HBox>
+
+                <HBox styleClass="imagePost">
+                    <ImageView fx:id="postImagePp_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
+                        <Image url="@profile-icon.png" />
+                    </ImageView>
+                    <ImageView fx:id="imagePostImage_1" fitWidth="400" preserveRatio="true" styleClass="postImage">
+                        <Image url="@testPostjpg.jpg" />
+                    </ImageView>
+                </HBox>
+            </VBox>
+        </left>
+        <right>
+            <VBox prefHeight="555.0" prefWidth="321.0" styleClass="rightVBox">
+            <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Friends" />
+                  <Button fx:id="manageFriends" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="Manage Friends" textAlignment="CENTER" />
+               </children>
+            </HBox>
+                <fx:include source="viewFriends.fxml" />
+            <HBox prefHeight="30.0" prefWidth="69.0">
+               <children>
+                  <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Suggested" />
+                        <Button fx:id="viewSuggested" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="View All" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+                <fx:include source="suggestedFriends.fxml" />
+            </VBox>
+        </right>
+    </BorderPane>
+</VBox>

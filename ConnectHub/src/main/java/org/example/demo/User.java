@@ -123,20 +123,4 @@ public class User {
     public void blockFriend(User user) {
         friends.blockFriend(this, user);
     }
-
-    public void sendFriendRequest(User user) {
-        friends.sendFriendRequest(this, user);
-    }
-
-    public void acceptFriendRequest(User user) {
-        friends.acceptFriendRequest(this, user);
-    }
-
-    public void rejectFriendRequest(User user) {
-        friends.rejectFriendRequest(this, user);
-    }
-
-    public void blockFriend(User user) {
-        friends.blockFriend(this, user);
-    }
 }

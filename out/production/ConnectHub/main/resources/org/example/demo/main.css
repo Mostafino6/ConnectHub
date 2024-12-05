@@ -1,0 +1,242 @@
+
+.root
+{
+    -fx-background-color: white;
+}
+.header
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: #6135D2;
+    -fx-font-weight: 700;
+
+}
+.btn1,.btn2,.btn3
+
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-min-width: 250px;
+    -fx-min-height: 40px;
+    -fx-background-color: #6135D2;
+}
+
+.btn4
+{
+    -fx-font-size: 10px;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-min-width: 120px;
+    -fx-min-height: 20px;
+    -fx-background-color: #6135D2;
+}
+
+
+.root
+{
+    -fx-background-color: white;
+
+}
+.lbls
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: #6135D2;
+    -fx-font-weight: 700;
+    -fx-font-family: Inter;
+}
+.fields
+{
+    -fx-start-margin: 20px;
+    -fx-font-family: Inter;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+    -fx-min-width: 250px;
+    -fx-min-height: 40px;
+    -fx-background-color: #bdbdbd;
+}
+btn
+
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-min-width: 250px;
+    -fx-min-height: 40px;
+    -fx-background-color: #6135D2;
+    -fx-font-family: Inter;
+}.hbox-centered {
+     -fx-alignment: CENTER;
+     -fx-spacing: 15px;
+ }
+
+VBox {
+    -fx-alignment: CENTER;
+}
+
+VBox {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 50px;
+
+}
+.lblsPass
+{
+    -fx-font-size: 16px;
+    -fx-text-fill: #6135D2;
+    -fx-font-weight: 700;
+    -fx-font-family: Inter;
+}
+.vPrf
+ {
+    -fx-min-height:580px;
+    -fx-min-width: 100%;
+    -fx-background-color: #ffffff;
+    -fx-alignment: top-center;
+    -fx-padding: 0;
+    -fx-spacing: 0;
+}
+.cover {
+    -fx-min-width:980px;
+    -fx-min-height: 130px;
+    -fx-background-color:#bdbdbd ;
+    -fx-background-image: url("coverTest.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;    -fx-padding: 5px 90px 0 90px;
+    -fx-spacing: 50px;
+}
+.pp
+{
+    -fx-alignment: top-right;
+}
+.vPrfIn
+{
+    -fx-padding: 10px 10px 10px 10px;
+    -fx-min-height:100%;
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-spacing: 10px;
+}
+.vPrfIn2
+{
+    -fx-min-height:100%;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-spacing: 0px;
+    -fx-alignment: center;
+}
+.name
+{
+    -fx-font-family: Inter;
+    -fx-font-size: 60px;
+    -fx-text-fill: #6135D2;
+    -fx-font-weight: 700;
+    -fx-padding: 0 0 0 0;
+
+}
+
+.bio
+{
+    -fx-padding: 0 0 0 0;
+    -fx-font-family: Inter;
+    -fx-font-size: 20px;
+    -fx-text-fill: rgba(255, 255, 255, 0.24);
+    -fx-font-weight: 300;
+}
+.acHb
+{
+    -fx-min-width: 590px;
+    -fx-padding: 15px 0 0 150px;
+    -fx-spacing: 190px;
+
+}
+.btnsHbox
+{
+    -fx-spacing: 15px;
+}
+
+.psts
+{
+    -fx-font-family: Inter;
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+}
+.friends
+{
+    -fx-padding: 0px 0 0 0px;
+    -fx-spacing: 30px;
+    -fx-alignment: top-left;
+    -fx-spacing: 20px;
+
+}
+
+.rightVBox,.leftVbox {
+    -fx-background-color: rgba(255, 0, 0, 0);
+    -fx-padding: 15px 15px 0 15px;
+    -fx-alignment: top-left;
+    -fx-spacing: 18px;
+
+
+}
+
+.rightVBox
+{
+    -fx-border-color: rgba(0, 0, 0, 0.46);
+    -fx-min-width: 300px;
+}
+
+
+.psts2
+{
+    -fx-font-family: Inter;
+    -fx-font-size: 15px;
+    -fx-font-weight: 800;
+}
+.showFriends
+{
+    -fx-padding: 0px 0 0 0px;
+    -fx-spacing: 1px;
+
+}
+.friendsData
+{
+    -fx-padding: 4px 0 0 0px;
+    -fx-background-color: rgba(23, 253, 97, 0);
+    -fx-alignment: top-center;
+}
+.friendName
+{
+    -fx-font-family: Inter;
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+}.friendStatus
+{
+    -fx-padding: 0 0 0 0;
+    -fx-font-family: Inter;
+    -fx-font-size: 10px;
+    -fx-font-weight: 300;
+    -fx-text-fill: rgba(2, 2, 4, 0.51);
+}
+
+ .textPostContent
+ {
+     -fx-padding: 5px 0 0 8px;
+ }
+ .textPost,.imagePost
+ {
+     -fx-background-color: rgba(255, 0, 0, 0);
+     -fx-padding: 15px 0 0 150px;
+ }
+ .postImage
+ {
+     -fx-max-width: 600px;
+     -fx-padding: 0 0 0 10px;
+
+ }
+.storiesSection
+{
+
+     -fx-alignment: center;
+     -fx-min-width:980px;
+     -fx-min-height: 60px;
+     -fx-background-color: rgba(97, 53, 210, 0.26);
+     -fx-padding: 10px;
+     -fx-spacing: 30px;
+ }
