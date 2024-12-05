@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/DatabaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/ValidationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/ValidationManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +53,7 @@
   "keyToString": {
     "Application.MainApp.executor": "Run",
     "Application.ValidationManager.executor": "Run",
-    "Application.org.example.demo.MainApp.executor": "Debug",
+    "Application.org.example.demo.MainApp.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -116,8 +113,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
       </set>
     </attachedChunks>
   </component>
@@ -147,6 +144,7 @@
       <workItem from="1733346118822" duration="473000" />
       <workItem from="1733347487710" duration="9828000" />
       <workItem from="1733383179162" duration="21327000" />
+      <workItem from="1733420782573" duration="337000" />
     </task>
     <servers />
   </component>

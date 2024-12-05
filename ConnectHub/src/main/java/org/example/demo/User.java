@@ -17,7 +17,9 @@ public class User {
     private String bio;
     private FriendManagement friends;
     private ArrayList<Post> posts;
-
+    public User(){
+        this.friends = new FriendManagement();
+    }
     public String getUserID() {
         return userID;
     }
