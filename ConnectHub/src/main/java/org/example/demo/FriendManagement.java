@@ -7,7 +7,8 @@ public class FriendManagement {
     private ArrayList<User> friendRequests;
     private ArrayList<User> blockedFriends;
 
-    public FriendManagement() {
+
+    public FriendManagement(){
         this.friendsList = new ArrayList<>();
         this.friendRequests = new ArrayList<>();
         this.blockedFriends = new ArrayList<>();
@@ -16,15 +17,21 @@ public class FriendManagement {
     public ArrayList<User> getFriendsList() {
         return friendsList;
     }
-
+    public void setFriendsList(ArrayList<User> friends) {
+        this.friendsList = friends;
+    }
     public ArrayList<User> getFriendRequests() {
         return friendRequests;
     }
-
+    public void setFriendRequests(ArrayList<User> friendRequests) {
+        this.friendRequests = friendRequests;
+    }
     public ArrayList<User> getBlockedFriends() {
         return blockedFriends;
     }
-
+    public void setBlockedFriends(ArrayList<User> blockedFriends) {
+        this.blockedFriends = blockedFriends;
+    }
     public void sendFriendRequest(User sender, User receiver) {
         if (!receiver.getFriends().getFriendRequests().contains(sender) &&
                 !receiver.getFriends().isBlocked(sender)) {

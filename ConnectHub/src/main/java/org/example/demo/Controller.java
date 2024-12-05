@@ -10,9 +10,6 @@ public class Controller {
     private Label welcomeText;
     @FXML
     private ImageView imageView;
-
     @FXML
     private VBox postContainer;
-
-
 }
