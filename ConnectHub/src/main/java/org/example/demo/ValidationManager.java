@@ -13,7 +13,7 @@ public class ValidationManager {
     }
 
     // Validate email format
-    private boolean validateEmail(String email) {
+    public boolean validateEmail(String email) {
         return email != null && email.matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
     }
 
@@ -66,12 +66,30 @@ public class ValidationManager {
     // Signup method
     public Boolean signup(String email, String username, String name, String password, String reenteredPassword, Date dateOfBirth) {
         try {
-            if (!validateEmail(email)) return false; //Invalid email format.
-            if (!validateUsername(username)) return false; //"Username must be at least 3 characters long and contain only letters, numbers, or underscores.";
-            if (!validateName(name)) return false; //"Invalid name format.";
-            if (!validateDateOfBirth(dateOfBirth)) return false; //"Date of birth must be in the past.";
-            if (!validatePassword(password)) return false; //"Password must be at least 8 characters long, contain at least one uppercase letter, and one digit.";
-            if (!validatePasswordMatch(password, reenteredPassword)) return false; //"Passwords do not match.";
+            if (!validateEmail(email)) {
+                System.out.println("1");
+                return false;
+            } //Invalid email format.
+            if (!validateUsername(username)) {
+                System.out.println("2");
+                return false;
+            }; //"Username must be at least 3 characters long and contain only letters, numbers, or underscores.";
+            if (!validateName(name)) {
+                System.out.println("3");
+                return false;
+            } //"Invalid name format.";
+            if (!validateDateOfBirth(dateOfBirth)) {
+                System.out.println("4");
+                return false;
+            } //"Date of birth must be in the past.";
+            if (!validatePassword(password)) {
+                System.out.println("5");
+                return false;
+            } //"Password must be at least 8 characters long, contain at least one uppercase letter, and one digit.";
+            if (!validatePasswordMatch(password, reenteredPassword)) {
+                System.out.println("6");
+                return false;
+            } //"Passwords do not match.";
 
             // Check for existing email and username
             ArrayList<User> users = databaseManager.readUsers();
@@ -89,6 +107,7 @@ public class ValidationManager {
             return true; //"Signup successful!";
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("error");
             return false; //"An error occurred during signup.";
         }
     }

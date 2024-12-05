@@ -24,6 +24,7 @@ public class User {
         this.email = email;
         this.DOB = DOB;
         this.friends = new FriendManagement();
+        this.status = false;
     }
 
     public String getUserID() {
@@ -113,5 +114,21 @@ public class User {
 
     public void setCoverphotoPath(String coverphotoPath) {
         this.coverphotoPath = coverphotoPath;
+    }
+
+    public void sendFriendRequest(User user) {
+        friends.sendFriendRequest(this, user);
+    }
+
+    public void acceptFriendRequest(User user) {
+        friends.acceptFriendRequest(this, user);
+    }
+
+    public void rejectFriendRequest(User user) {
+        friends.rejectFriendRequest(this, user);
+    }
+
+    public void blockFriend(User user) {
+        friends.blockFriend(this, user);
     }
 }

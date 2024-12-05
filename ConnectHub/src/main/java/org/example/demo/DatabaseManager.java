@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 public class DatabaseManager {
-    private static final String DATABASE_FILE = "users.json";
+    private static final String DATABASE_FILE = "D:\\CCE\\Term 5\\Programming-02\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\users.json";
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 
@@ -30,7 +30,7 @@ public class DatabaseManager {
     public ArrayList<User> readUsers() throws Exception {
         File file = new File(DATABASE_FILE);
         if (!file.exists()) {
-            return null; // If the file does not exist, return null or an empty list
+            return new ArrayList<>(); // If the file does not exist, return null or an empty list
         }
 
         JSONParser parser = new JSONParser();
@@ -100,27 +100,59 @@ public class DatabaseManager {
 
     @SuppressWarnings("unchecked")
     public void writeUser(User user) throws IOException {
-        JSONObject jsonUser = new JSONObject();
-        jsonUser.put("userID", user.getUserID());
-        jsonUser.put("username", user.getUsername());
-        jsonUser.put("name", user.getName());
-        jsonUser.put("email", user.getEmail());
-        jsonUser.put("password", user.getPassword());
-        jsonUser.put("DOB", formatDate(user.getDOB()));
-        jsonUser.put("status", user.getStatus());
-        jsonUser.put("bio", user.getBio());
+        ArrayList<User> userList;
+        try {
+            userList = readUsers();
+            if (userList == null) {
+                userList = new ArrayList<>();
+            }
+        } catch (Exception e) {
+            userList = new ArrayList<>();
+        }
 
-        JSONObject friends = new JSONObject();
-        friends.put("friendsList", serializeNestedUsers(user.getFriends().getFriendsList()));
-        friends.put("friendRequests", serializeNestedUsers(user.getFriends().getFriendRequests()));
-        friends.put("blockedFriends", serializeNestedUsers(user.getFriends().getBlockedFriends()));
-        jsonUser.put("friends", friends);
+        // Check if the user exists and update their data
+        boolean userExists = false;
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getUserID().equals(user.getUserID())) {
+                userList.set(i, user);
+                userExists = true;
+                break;
+            }
+        }
+
+        if (!userExists) {
+            userList.add(user);
+        }
+
+        // Write the updated list to the JSON file
+        JSONArray usersArray = new JSONArray();
+        for (User existingUser : userList) {
+            JSONObject jsonUser = new JSONObject();
+            jsonUser.put("userID", existingUser.getUserID());
+            jsonUser.put("username", existingUser.getUsername());
+            jsonUser.put("name", existingUser.getName());
+            jsonUser.put("email", existingUser.getEmail());
+            jsonUser.put("password", existingUser.getPassword());
+            jsonUser.put("DOB", formatDate(existingUser.getDOB()));
+            jsonUser.put("status", existingUser.getStatus());
+            jsonUser.put("bio", existingUser.getBio());
+
+            JSONObject friendsObject = new JSONObject();
+            friendsObject.put("friendsList", serializeNestedUsers(existingUser.getFriends().getFriendsList()));
+            friendsObject.put("friendRequests", serializeNestedUsers(existingUser.getFriends().getFriendRequests()));
+            friendsObject.put("blockedFriends", serializeNestedUsers(existingUser.getFriends().getBlockedFriends()));
+            jsonUser.put("friends", friendsObject);
+
+            usersArray.add(jsonUser);
+        }
 
         try (FileWriter writer = new FileWriter(DATABASE_FILE)) {
-            writer.write(jsonUser.toJSONString());
+            writer.write(usersArray.toJSONString());
         }
     }
 
+
+    // Helper method to serialize nested users and keep status as boolean
     @SuppressWarnings("unchecked")
     private JSONArray serializeNestedUsers(ArrayList<User> users) {
         JSONArray jsonArray = new JSONArray();
@@ -131,10 +163,11 @@ public class DatabaseManager {
             jsonUser.put("name", user.getName());
             jsonUser.put("email", user.getEmail());
             jsonUser.put("DOB", formatDate(user.getDOB()));
-            jsonUser.put("status", user.getStatus());
+            jsonUser.put("status", user.getStatus()); // Keep the status as boolean
             jsonUser.put("bio", user.getBio());
             jsonArray.add(jsonUser);
         }
         return jsonArray;
     }
+
 }
