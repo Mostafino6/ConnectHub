@@ -1,5 +1,6 @@
 package org.example.demo;
 
+import java.awt.*;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Map;
@@ -13,11 +14,13 @@ public class User {
     private Date DOB;
     private boolean status;
     //pfp
+    private Image profilePicture;
     //cover
     private String bio;
     private FriendManagement friends;
     //posts
     //constructor
+
     public String getUserID() {
         return userID;
     }
@@ -72,5 +75,11 @@ public class User {
     }
     public void setFriends(FriendManagement friends) {
         this.friends = friends;
+    }
+    public Image getProfilePicture() {
+        return profilePicture;
+    }
+    public void setProfilePicture(Image profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }

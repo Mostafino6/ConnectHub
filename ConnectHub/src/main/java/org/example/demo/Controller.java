@@ -9,6 +9,7 @@ public class Controller {
     private Label welcomeText;
     @FXML
     private Button editProfileButton;
-
+    @FXML
+    private Button editpfpButton;
 
 }

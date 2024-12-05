@@ -3,11 +3,16 @@
     import javafx.fxml.FXMLLoader;
     import javafx.scene.Scene;
     import javafx.scene.control.Button;
+    import javafx.stage.FileChooser;
     import javafx.stage.Stage;
+    import javafx.scene.image.Image;
+    import javafx.scene.image.ImageView;
 
+    import java.io.File;
     import java.io.IOException;
 
     public class Application extends javafx.application.Application {
+        private User currentUser;
         @Override
         public void start(Stage stage) throws IOException {
             FXMLLoader home = new FXMLLoader(Application.class.getResource("hello-view.fxml"));
@@ -83,9 +88,41 @@
                 newStage.setScene(editProfileScene);
                 newStage.initOwner(stage);
                 newStage.show();
+                Button updatePfpButton = (Button) editProfileLoader.getNamespace().get("updatePfp");
+                updatePfpButton.setOnAction(event -> {
+                    System.out.println("update Profile pic clicked");
+                    handleUpdatefpfp(stage);
+                });
 
             } catch (IOException | RuntimeException e) {
                 e.printStackTrace();
+            }
+        }
+
+        private void handleUpdatefpfp(Stage stage) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose Profile Picture");
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+            );
+
+            File selectedFile = fileChooser.showOpenDialog(stage);
+
+            if (selectedFile != null) {
+                try {
+                    Image newImage = new Image(selectedFile.toURI().toString());
+                    FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
+                    Scene profileScene = new Scene(profileLoader.load(), 950, 580);
+                    ImageView imageView = (ImageView) profileLoader.getNamespace().get("imageView");
+                    imageView.setImage(newImage);
+                    Stage newStage = new Stage();
+                    newStage.setScene(profileScene);
+                    newStage.initOwner(stage);
+                    newStage.show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         private void handleHome(Stage stage)
