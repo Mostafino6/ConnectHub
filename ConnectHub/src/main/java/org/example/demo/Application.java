@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -21,8 +18,12 @@ import java.io.IOException;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.util.Date;
 
 public class Application extends javafx.application.Application {
+
+    private final ValidationManager validationManager = new ValidationManager();
+
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -45,12 +46,36 @@ public class Application extends javafx.application.Application {
             stage.setTitle("Log in");
             loginScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             stage.setScene(loginScene);
+
             Button loginDone = (Button) loginLoader.getNamespace().get("loginDone");
-            loginDone.setOnAction(event ->handleHome(stage));
+            TextField emailField = (TextField) loginLoader.getNamespace().get("LoginEmailField");
+            PasswordField passwordField = (PasswordField) loginLoader.getNamespace().get("LoginPassField");
+
+            loginDone.setOnAction(event -> {
+                String email = emailField.getText();
+                String password = passwordField.getText();
+
+                boolean loginSuccessful = validationManager.login(email, password);
+
+                if (loginSuccessful) {
+                    showAlert(Alert.AlertType.INFORMATION, "Login Successful", "Welcome back!");
+                    handleHome(stage); // Navigate to home on successful login
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid email or password. Please try again.");
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    private void showAlert(Alert.AlertType type, String title, String content) {
+        Alert alert = new Alert(type, content, ButtonType.OK);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.showAndWait();
+    }
+
     private void handleSignClick(Stage stage) {
         try {
             FXMLLoader signLoader = new FXMLLoader(Application.class.getResource("signUp.fxml"));
@@ -58,14 +83,50 @@ public class Application extends javafx.application.Application {
             stage.setTitle("Sign Up");
             signUpScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             stage.setScene(signUpScene);
-            Button signupDone = (Button) signLoader.getNamespace().get("SignUpDone");
-            signupDone.setOnAction(event ->handleProfile(stage));
 
+            Button signUpDone = (Button) signLoader.getNamespace().get("SignUpDone");
+            TextField usernameField = (TextField) signLoader.getNamespace().get("signUpUsernameField");
+            TextField nameField = (TextField) signLoader.getNamespace().get("signUpNameField");
+            DatePicker dobField = (DatePicker) signLoader.getNamespace().get("signUpDobField");
+            TextField emailField = (TextField) signLoader.getNamespace().get("signUpemailField");
+            PasswordField passwordField = (PasswordField) signLoader.getNamespace().get("signUpPasswordField");
+            PasswordField RewritePasswordField = (PasswordField) signLoader.getNamespace().get("signUpRewritePasswordField");
 
+            signUpDone.setOnAction(event -> {
+                String username = usernameField.getText();
+                String name = nameField.getText();
+                String email = emailField.getText();
+                String password = passwordField.getText();
+                String rewritePassword = RewritePasswordField.getText();
+                java.time.LocalDate dob = dobField.getValue();
+
+                if (username.isEmpty() || name.isEmpty() || email.isEmpty() || password.isEmpty() || dob == null) {
+                    showAlert(Alert.AlertType.ERROR, "Missing Fields", "All fields are required.");
+                    return;
+                }
+
+                try {
+                    DatabaseManager dbManager = new DatabaseManager();
+                    Date dateOfBirth = dbManager.parseDate(dob.toString());
+
+                    boolean signUpSuccessful = validationManager.signup(email, username, name, password, rewritePassword, dateOfBirth);
+
+                    if (signUpSuccessful) {
+                        showAlert(Alert.AlertType.INFORMATION, "Signup Successful", "Welcome! Your account has been created.");
+                        handleProfile(stage); // Navigate to profile on success
+                    } else {
+                        showAlert(Alert.AlertType.ERROR, "Signup Failed", "Signup failed. Please check your inputs and try again.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while processing your signup.");
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     private void handleProfile(Stage stage)
     {
         try {
