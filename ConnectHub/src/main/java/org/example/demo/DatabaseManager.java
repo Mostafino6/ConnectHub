@@ -30,51 +30,58 @@ public class DatabaseManager {
     public ArrayList<User> readUsers() throws Exception {
         File file = new File(DATABASE_FILE);
         if (!file.exists()) {
-            return new ArrayList<>(); // If the file does not exist, return null or an empty list
+            return new ArrayList<>(); // If the file does not exist, return an empty list
         }
 
+        // Parse the JSON file
         JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(file));
+        JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(file));
 
         ArrayList<User> userList = new ArrayList<>();
 
-        // Extract the main user information
-        String userId = (String) jsonObject.get("userID");
-        String username = (String) jsonObject.get("username");
-        String name = (String) jsonObject.get("name");
-        String email = (String) jsonObject.get("email");
-        String password = (String) jsonObject.get("password");
-        Date dob = parseDate((String) jsonObject.get("DOB"));
-        boolean status = (boolean) jsonObject.get("status");
-        String bio = (String) jsonObject.get("bio");
+        // Iterate through each JSON object in the array
+        for (Object obj : jsonArray) {
+            JSONObject jsonObject = (JSONObject) obj;
 
-        // Create a main user object
-        User mainUser = new User(username, name, email, dob);
-        mainUser.setUserID(userId);
-        mainUser.setPassword(password);  // Store the password (likely hashed in real usage)
-        mainUser.setStatus(status);
-        mainUser.setBio(bio);
+            // Extract the main user information
+            String userId = (String) jsonObject.get("userID");
+            String username = (String) jsonObject.get("username");
+            String name = (String) jsonObject.get("name");
+            String email = (String) jsonObject.get("email");
+            String password = (String) jsonObject.get("password");
+            Date dob = parseDate((String) jsonObject.get("DOB"));
+            boolean status = (boolean) jsonObject.get("status");
+            String bio = (String) jsonObject.get("bio");
 
-        // Parsing the friends section (nested objects)
-        JSONObject friendsObject = (JSONObject) jsonObject.get("friends");
+            // Create the main user object
+            User mainUser = new User(username, name, email, dob);
+            mainUser.setUserID(userId);
+            mainUser.setPassword(password);  // Store the password (likely hashed in real usage)
+            mainUser.setStatus(status);
+            mainUser.setBio(bio);
 
-        // Parse friends list
-        JSONArray friendsList = (JSONArray) friendsObject.get("friendsList");
-        mainUser.getFriends().setFriendsList(parseNestedUsers(friendsList));
+            // Parsing the friends section (nested objects)
+            JSONObject friendsObject = (JSONObject) jsonObject.get("friends");
 
-        // Parse friend requests
-        JSONArray friendRequests = (JSONArray) friendsObject.get("friendRequests");
-        mainUser.getFriends().setFriendRequests(parseNestedUsers(friendRequests));
+            // Parse friends list
+            JSONArray friendsList = (JSONArray) friendsObject.get("friendsList");
+            mainUser.getFriends().setFriendsList(parseNestedUsers(friendsList));
 
-        // Parse blocked friends
-        JSONArray blockedFriends = (JSONArray) friendsObject.get("blockedFriends");
-        mainUser.getFriends().setBlockedFriends(parseNestedUsers(blockedFriends));
+            // Parse friend requests
+            JSONArray friendRequests = (JSONArray) friendsObject.get("friendRequests");
+            mainUser.getFriends().setFriendRequests(parseNestedUsers(friendRequests));
 
-        // Add the main user to the list
-        userList.add(mainUser);
+            // Parse blocked friends
+            JSONArray blockedFriends = (JSONArray) friendsObject.get("blockedFriends");
+            mainUser.getFriends().setBlockedFriends(parseNestedUsers(blockedFriends));
 
-        return userList;  // Return the list of users (only one in this case)
+            // Add the main user to the list
+            userList.add(mainUser);
+        }
+
+        return userList;  // Return the list of users
     }
+
 
     private ArrayList<User> parseNestedUsers(JSONArray jsonArray) throws Exception {
         ArrayList<User> users = new ArrayList<>();

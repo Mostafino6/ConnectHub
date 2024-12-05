@@ -7,10 +7,8 @@
     <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/FriendManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/FriendManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/MainApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/ValidationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/ValidationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +126,7 @@
       <workItem from="1733339857614" duration="3556000" />
       <workItem from="1733346118822" duration="473000" />
       <workItem from="1733347487710" duration="9828000" />
-      <workItem from="1733383179162" duration="21327000" />
+      <workItem from="1733383179162" duration="26292000" />
     </task>
     <servers />
   </component>
