@@ -158,8 +158,6 @@
                 e.printStackTrace();
             }
         }
-
-
         private void handleUpdateBio(Stage stage) {
             try {
                 // Load the Bio FXML (the scene where the user enters new bio)
