@@ -3,6 +3,7 @@
     import javafx.fxml.FXMLLoader;
     import javafx.scene.Scene;
     import javafx.scene.control.Button;
+    import javafx.scene.shape.Circle;
     import javafx.stage.FileChooser;
     import javafx.stage.Stage;
     import javafx.scene.image.Image;
@@ -60,7 +61,7 @@
         private void handleProfile(Stage stage) {
             try {
                 FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-                Scene profileScene = new Scene(profileLoader.load(), 950, 580);
+                Scene profileScene = new Scene(profileLoader.load(), 995, 800);
                 stage.setTitle("Profile");
                 profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
                 stage.setScene(profileScene);
@@ -105,21 +106,22 @@
             fileChooser.getExtensionFilters().add(
                     new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
             );
-
             File selectedFile = fileChooser.showOpenDialog(stage);
-
             if (selectedFile != null) {
                 try {
                     Image newImage = new Image(selectedFile.toURI().toString());
                     FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
                     Scene profileScene = new Scene(profileLoader.load(), 950, 580);
                     ImageView imageView = (ImageView) profileLoader.getNamespace().get("imageView");
+                    profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                    Circle clip = new Circle();
+                    clip.setRadius(imageView.getFitWidth() / 2);
+                    clip.setCenterX(imageView.getFitWidth() / 2);
+                    clip.setCenterY(imageView.getFitHeight() / 2);
+                    imageView.setClip(clip);
                     imageView.setImage(newImage);
-                    Stage newStage = new Stage();
-                    newStage.setScene(profileScene);
-                    newStage.initOwner(stage);
-                    newStage.show();
-
+                    stage.setScene(profileScene);
+                    stage.show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

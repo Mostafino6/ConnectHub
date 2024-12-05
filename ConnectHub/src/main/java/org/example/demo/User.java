@@ -1,6 +1,5 @@
 package org.example.demo;
 
-import java.awt.*;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Map;
@@ -13,14 +12,11 @@ public class User {
     private String password;
     private Date DOB;
     private boolean status;
-    //pfp
-    private Image profilePicture;
-    //cover
+    private String pfpPath;
+    private String coverphotoPath;
     private String bio;
     private FriendManagement friends;
-    //posts
-    //constructor
-
+    private ArrayList<Post> posts;
     public String getUserID() {
         return userID;
     }
@@ -58,8 +54,9 @@ public class User {
     public void setDOB(Date DOB) {
         this.DOB = DOB;
     }
-    public boolean isStatus() {
-        return status;
+    public String getStatus() {
+        if(status) return "Online";
+        else return "Offline";
     }
     public void setStatus(boolean status) {
         this.status = status;
@@ -76,10 +73,16 @@ public class User {
     public void setFriends(FriendManagement friends) {
         this.friends = friends;
     }
-    public Image getProfilePicture() {
-        return profilePicture;
+    public String getPfpPath() {
+        return pfpPath;
     }
-    public void setProfilePicture(Image profilePicture) {
-        this.profilePicture = profilePicture;
+    public void setPfpPath(String pfpPath) {
+        this.pfpPath = "file:///" + pfpPath;
+    }
+    public String getCoverphotoPath() {
+        return coverphotoPath;
+    }
+    public void setCoverphotoPath(String coverphotoPath) {
+        this.coverphotoPath = coverphotoPath;
     }
 }
