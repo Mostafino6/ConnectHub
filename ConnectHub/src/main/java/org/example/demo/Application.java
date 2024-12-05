@@ -23,7 +23,37 @@ import javafx.stage.FileChooser;
 import java.io.File;
 
 public class Application extends javafx.application.Application {
-    @Override
+    private static User currentUser;
+    public Application() {
+        currentUser = new User();
+        User friend = new User();
+        friend.setName("Mostafa Abayazeed");
+        friend.setStatus(true);
+        friend.setPfpPath("C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg");
+        User friend2 = new User();
+        friend2.setName("John Smith");
+        friend2.setStatus(false);
+        friend2.setPfpPath("C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\testPostjpg.jpg");
+        currentUser.getFriends().getFriendsList().add(friend);
+        currentUser.getFriends().getFriendsList().add(friend2);
+        User friend3 = new User();
+        friend3.setName("John Pork");
+        friend3.setStatus(true);
+        friend3.setPfpPath("C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg");
+        User friend4 = new User();
+        friend4.setName("Chill Guy");
+        friend4.setStatus(false);
+        friend4.setPfpPath("C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\Screenshot 2024-12-05 123219.png");
+        currentUser.getFriends().getFriendRequests().add(friend3);
+        currentUser.getFriends().getFriendRequests().add(friend4);
+    }
+    public static void setCurrentUser(User user) {
+        currentUser = user;
+    }
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+        @Override
     public void start(Stage stage) throws IOException {
 
         FXMLLoader home = new FXMLLoader(Application.class.getResource("hello-view.fxml"));
@@ -90,7 +120,7 @@ public class Application extends javafx.application.Application {
     {
         try {
             FXMLLoader homeLoader = new FXMLLoader(Application.class.getResource("homePage.fxml"));
-            Scene homeLoaderScene = new Scene(homeLoader.load(), 950, 580);
+            Scene homeLoaderScene = new Scene(homeLoader.load(), 995, 800);
             stage.setTitle("Profile");
             homeLoaderScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             VBox postContainer=(VBox) homeLoader.getNamespace().get("postContainer");
@@ -98,6 +128,10 @@ public class Application extends javafx.application.Application {
             Button addPost=(Button) homeLoader.getNamespace().get("addPost");
             addPost.setOnAction(event ->handleAddPost(stage,postContainer));
             stage.setScene(homeLoaderScene);
+            Button manageFriends = (Button) homeLoader.getNamespace().get("manageFriends");
+            manageFriends.setOnAction(event -> friendsManager(stage));
+            Button viewSuggested = (Button) homeLoader.getNamespace().get("viewSuggested");
+            viewSuggested.setOnAction(event -> handleSuggested(stage));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -113,7 +147,6 @@ public class Application extends javafx.application.Application {
             newStage.setScene(friendsListScene);
             newStage.initOwner(stage);
             newStage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -171,7 +204,7 @@ public class Application extends javafx.application.Application {
     private void handleBlockRemove(Stage stage) {
         try {
             FXMLLoader BRLoader = new FXMLLoader(Application.class.getResource("blockRemove.fxml"));
-            Scene BRScene = new Scene(BRLoader.load(), 289, 189);
+            Scene BRScene = new Scene(BRLoader.load(), 376, 225);
             Stage newStage = new Stage();
             newStage.setTitle("Block / Remove");
             BRScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
