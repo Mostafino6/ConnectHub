@@ -70,15 +70,15 @@ public class Application extends javafx.application.Application {
     {
         try {
             FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-            Scene profileScene = new Scene(profileLoader.load(), 950, 580);
+            Scene profileScene = new Scene(profileLoader.load(), 995, 580);
             stage.setTitle("Profile");
             profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             stage.setScene(profileScene);
-            Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
             Button addPost=(Button) profileLoader.getNamespace().get("addPost");
             VBox postContainer=(VBox) profileLoader.getNamespace().get("postContainer");
             addPost.setOnAction(event ->handleAddPost(stage,postContainer));
-            manageFriends.setOnAction(event->friendsManager(stage));
+            Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
+            manageFriends.setOnAction(event -> friendsManager(stage));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -101,6 +101,21 @@ public class Application extends javafx.application.Application {
             e.printStackTrace();
         }
     }
+    private void viewFriendsList(Stage stage) {
+        try {
+            FXMLLoader friendsLoader = new FXMLLoader(Application.class.getResource("viewFriends.fxml"));
+            Scene friendsListScene = new Scene(friendsLoader.load(), 329, 528);
+            Stage newStage = new Stage();
+            newStage.setTitle("Friends");
+            friendsListScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            newStage.setScene(friendsListScene);
+            newStage.initOwner(stage);
+            newStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void friendsManager(Stage stage) {
         try {
             FXMLLoader friendsLoader = new FXMLLoader(Application.class.getResource("FriendManager.fxml"));
@@ -114,20 +129,6 @@ public class Application extends javafx.application.Application {
             Button viewFriends = (Button) friendsLoader.getNamespace().get("viewFriends");
             viewFriends.setOnAction(event -> viewFriendsList(stage));
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void viewFriendsList(Stage stage) {
-        try {
-            FXMLLoader friendsLoader = new FXMLLoader(Application.class.getResource("viewFriends.fxml"));
-            Scene friendsListScene = new Scene(friendsLoader.load(), 528, 329);
-            Stage newStage = new Stage();
-            newStage.setTitle("Friends");
-            friendsListScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-            newStage.setScene(friendsListScene);
-            newStage.initOwner(stage);
-            newStage.show();
-        }catch (IOException e){
             e.printStackTrace();
         }
     }

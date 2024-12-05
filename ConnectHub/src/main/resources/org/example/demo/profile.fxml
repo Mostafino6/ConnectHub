@@ -26,7 +26,7 @@
 
     <BorderPane>
         <left>
-            <VBox fx:id="postContainer" styleClass="leftVbox">
+            <VBox styleClass="leftVbox">
                 <HBox styleClass="acHb">
                     <Label styleClass="psts">Posts</Label>
                     <HBox styleClass="btnsHbox">
@@ -53,45 +53,15 @@
         </left>
         <right>
             <VBox styleClass="rightVBox">
-                <HBox styleClass="friends">
-                    <Label styleClass="psts2">Friends</Label>
-                    <Button fx:id="manageFriends" styleClass="btn4">Manage Friends</Button>
-                </HBox>
-                <HBox styleClass="showFriends">
-                    <ImageView fx:id="imgFriends1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <VBox styleClass="friendsData">
-                        <Label fx:id="friendName_1" styleClass="friendName">Eyad Ahmed</Label>
-                        <Label fx:id="friendStatus_1" styleClass="friendStatus">Online</Label>
-                    </VBox>
-                </HBox>
-                <HBox styleClass="showFriends">
-                    <ImageView fx:id="imgFriends2" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <VBox styleClass="friendsData">
-                        <Label fx:id="friendName2" styleClass="friendName">Mostafa Abyazyd</Label>
-                        <Label fx:id="friendStatus2" styleClass="friendStatus">Online</Label>
-                    </VBox>
-                </HBox>
-                <HBox styleClass="showFriends">
-                    <ImageView fx:id="imgFriends3" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <VBox styleClass="friendsData">
-                        <Label fx:id="friendName3" styleClass="friendName">Belal Mohamed</Label>
-                        <Label fx:id="friendStatus3" styleClass="friendStatus">Online</Label>
-                    </VBox>
-                </HBox>
-                <HBox styleClass="showFriends">
-                    <ImageView fx:id="imgFriends4" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <VBox styleClass="friendsData">
-                        <Label fx:id="friendName4" styleClass="friendName">Hossam elshazly</Label>
-                        <Label fx:id="friendStatus4" styleClass="friendStatus">Online</Label>
-                    </VBox>
+            <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Friends" />
+                  <Button fx:id="manageFriends" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="Manage Friends" textAlignment="CENTER" />
+               </children>
+            </HBox>
+                <fx:include source="viewFriends.fxml" />
+                <HBox prefHeight="0.0" prefWidth="268.0" styleClass="showFriends">
+                    <VBox styleClass="friendsData" />
                 </HBox>
             </VBox>
         </right>

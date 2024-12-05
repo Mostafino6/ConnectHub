@@ -6,6 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
 import javafx.geometry.Insets;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 public class profileCell extends ListCell<User>{
     private HBox userInfo;
@@ -17,12 +19,15 @@ public class profileCell extends ListCell<User>{
         pfp.setFitHeight(50);
         pfp.setFitWidth(50);
         pfp.setPreserveRatio(true);
+        Circle clip = new Circle(25, 25, 25);
+        pfp.setClip(clip);
         name = new Label();
+        name.setStyle("-fx-font-weight: bold;");
         status = new Label();
         HBox text = new HBox(5,name,status);
         text.setSpacing(10);
-        userInfo = new HBox(10,pfp,text);
-        userInfo.setPadding(new Insets(5));
+        userInfo = new HBox(15,pfp,text);
+        userInfo.setPadding(new Insets(10));
     }
     @Override
     protected void updateItem(User user, boolean empty) {

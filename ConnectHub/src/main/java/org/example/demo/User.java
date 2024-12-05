@@ -77,7 +77,7 @@ public class User {
         return pfpPath;
     }
     public void setPfpPath(String pfpPath) {
-        this.pfpPath = pfpPath;
+        this.pfpPath = "file:///" + pfpPath;
     }
     public String getCoverphotoPath() {
         return coverphotoPath;
