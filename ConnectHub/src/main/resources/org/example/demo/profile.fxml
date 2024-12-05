@@ -13,7 +13,6 @@
     <StackPane>
         <!-- Cover Image -->
         <ImageView id="coverPhoto" fx:id="coverImageView" fitHeight="200" fitWidth="980" preserveRatio="false" styleClass="cover">
-            <Image url="@coverTest.jpg" />
         </ImageView>
 
         <!-- Foreground Content -->

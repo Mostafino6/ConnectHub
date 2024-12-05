@@ -229,20 +229,31 @@
                 }
             }
         }
-                private void handleupdateCoverPhoto(Stage stage) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select cover photo File");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+
+        private void handleupdateCoverPhoto(Stage stage) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose Cover Photo");
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
             );
+
             File selectedFile = fileChooser.showOpenDialog(stage);
             if (selectedFile != null) {
                 try {
                     Image newImage = new Image(selectedFile.toURI().toString());
+
+                    // Load the profile FXML file
                     FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
                     Scene profileScene = new Scene(profileLoader.load(), 995, 800);
-                    ImageView imageView = (ImageView) profileLoader.getNamespace().get("coverPhoto");
+
+                    // Get the ImageView for the cover photo from the FXML namespace
+                    ImageView coverPhotoView = (ImageView) profileLoader.getNamespace().get("coverImageView");
                     profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-                    imageView.setImage(newImage);
+
+                    // Set the new image as the cover photo
+                    coverPhotoView.setImage(newImage);
+
+                    // Update the scene and save the new cover photo path
                     stage.setScene(profileScene);
                     currentUser.setCoverphotoPath(selectedFile.getAbsolutePath());
                     stage.show();
@@ -251,6 +262,7 @@
                 }
             }
         }
+
 
 
 
