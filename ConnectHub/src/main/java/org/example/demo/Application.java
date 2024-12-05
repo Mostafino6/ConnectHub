@@ -11,6 +11,7 @@
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
 
+    import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
 
@@ -112,11 +113,52 @@
                     handleUpdateBio(stage);
                 });
 
+                Button changePassword = (Button) editProfileLoader.getNamespace().get("changePassword");
+                changePassword.setOnAction(event -> {
+                    System.out.println("change password button clicked");
+                    handleUpdatePassword(stage);
+                });
+
 
             } catch (IOException | RuntimeException e) {
                 e.printStackTrace();
             }
         }
+
+        private void handleUpdatePassword(Stage stage) {
+            try {
+                // Load the password update scene
+                FXMLLoader passwordLoader = new FXMLLoader(Application.class.getResource("password.fxml"));
+                Scene passwordScene = new Scene(passwordLoader.load(), 600, 400);
+                Stage newStage = new Stage();
+                passwordScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(passwordScene);
+                newStage.initOwner(stage);
+                newStage.show();
+
+                TextField newPasswordField = (TextField) passwordLoader.getNamespace().get("newpass");
+                TextField confirmPasswordField = (TextField) passwordLoader.getNamespace().get("confirmpass");
+
+                Button passDoneButton = (Button) passwordLoader.getNamespace().get("passdonebutton");
+                passDoneButton.setOnAction(event -> {
+                    String newPassword = newPasswordField.getText();
+                    String confirmPassword = confirmPasswordField.getText();
+                    // Validate that both passwords match
+                    if (newPassword.equals(confirmPassword)) {
+                        currentUser.setPassword(newPassword);
+                        JOptionPane.showMessageDialog(null,"Password updated successfully");
+                        System.out.println("Password updated successfully.");
+                        newStage.close();
+                    } else {
+                        JOptionPane.showMessageDialog(null,"Passwords do not match. Please try again.");
+                    System.out.println("Passwords do not match. Please try again.");
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
 
         private void handleUpdateBio(Stage stage) {
             try {
@@ -148,6 +190,7 @@
                         // Set the updated profile scene to the stage
                         stage.setScene(profileScene);
                         stage.show();
+                        currentUser.setBio(newBio);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -157,7 +200,7 @@
                 e.printStackTrace();
             }
         }
-        
+
         private void handleUpdatefpfp(Stage stage) {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choose Profile Picture");
@@ -181,7 +224,7 @@
                     //setting image
                     imageView.setImage(newImage);
                     stage.setScene(profileScene);
-                    //user.setpfpPath(selectedfile.absouloutepath());
+                    currentUser.setPfpPath(selectedFile.getAbsolutePath());
                     stage.show();
                 } catch (IOException e) {
                     e.printStackTrace();

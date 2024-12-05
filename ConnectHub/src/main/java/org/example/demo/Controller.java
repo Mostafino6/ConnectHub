@@ -17,5 +17,7 @@ public class Controller {
     private Button biodoneButton;
     @FXML
     private Label bioplace;
+    @FXML
+    private Button passDoneButton;
 
 }
