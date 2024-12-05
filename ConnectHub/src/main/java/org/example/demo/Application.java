@@ -1,30 +1,21 @@
     package org.example.demo;
 
-    import javafx.fxml.FXML;import javafx.fxml.FXMLLoader;
-    import javafx.geometry.Pos;
-importjavafx.scene.Scene;
+    import javafx.fxml.FXMLLoader;
+    import javafx.scene.Scene;
     import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+    import javafx.scene.image.Image;
+    import javafx.scene.image.ImageView;
+    import javafx.scene.layout.HBox;
+    import javafx.scene.layout.VBox;
     import javafx.scene.control.Label;
     import javafx.scene.control.TextField;
     import javafx.scene.shape.Circle;
     import javafx.stage.FileChooser;
     import javafx.stage.Stage;
-    import javafx.scene.image.Image;
-    import javafx.scene.image.ImageView;
-
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
-
-
-import javafx.stage.FileChooser;
-
-import java.io.File;
-import java.util.Date;
+    import java.util.Date;
 
 public class Application extends javafx.application.Application {
     private final ValidationManager validationManager = new ValidationManager();
@@ -166,19 +157,18 @@ public class Application extends javafx.application.Application {
                 stage.setTitle("Profile");
                 profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
                 stage.setScene(profileScene);
-
                 Button addPost=(Button) profileLoader.getNamespace().get("addPost");
-            VBox postContainer=(VBox) profileLoader.getNamespace().get("postContainer");
-            addPost.setOnAction(event ->handleAddPost(stage,postContainer));Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
-                manageFriends.setOnAction(event -> friendsManager(stage));Button viewSuggested = (Button) profileLoader.getNamespace().get("viewSuggested");
-            viewSuggested.setOnAction(event -> handleSuggested(stage));
-
+                VBox postContainer=(VBox) profileLoader.getNamespace().get("postContainer");
+                addPost.setOnAction(event ->handleAddPost(stage,postContainer));
+                Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
+                manageFriends.setOnAction(event -> friendsManager(stage));
+                Button viewSuggested = (Button) profileLoader.getNamespace().get("viewSuggested");
+                viewSuggested.setOnAction(event -> handleSuggested(stage));
                 Button editProfileButton = (Button) profileLoader.getNamespace().get("editProfileButton");
                 editProfileButton.setOnAction(event -> {
                     System.out.println("Edit Profile Button Clicked");
                     handleEditProfile(stage);
                 });
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -363,9 +353,6 @@ public class Application extends javafx.application.Application {
             }
         }
 
-
-
-
         private void handleHome(Stage stage)
         {
             try {
@@ -506,9 +493,6 @@ public class Application extends javafx.application.Application {
                     addImagePost(file,postContainer);
                 }
             });
-
-
-
 
             } catch (IOException e) {
                 e.printStackTrace();
