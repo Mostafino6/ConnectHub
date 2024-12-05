@@ -34,8 +34,9 @@
                         <Button fx:id="addStory" styleClass="btn4">Add Story</Button>
                     </HBox>
                 </HBox>
-                <ListView fx:id="postContainer" layoutX="50.0" layoutY="250.0" prefHeight="150.0" prefWidth="500.0" />
+<fx:include source="listview.fxml">
 
+</fx:include>
             </VBox>
 
         </left>

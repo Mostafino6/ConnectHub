@@ -1,17 +1,16 @@
 package org.example.demo;
 
 import javafx.scene.Node;
-import javafx.scene.control.ListView;
+import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import java.awt.*;
+
 import java.io.File;
 import java.time.LocalDate;
 
-public class Post {
+public class Post extends ListCell<Post> {
     private User owner;
     private String content;
     private File file;
@@ -38,31 +37,34 @@ public class Post {
         this.imagePath = file.getAbsolutePath();
         initializeImagePost();
     }
-private void initializeTextPost()
-{
-    Label contentLabel = new Label(content);
-    contentLabel.setWrapText(true);
-    pfp = new ImageView(new Image("file:/C:/Users/eyada/OneDrive/Documents/GitHub/ConnectHub/ConnectHub/src/main/resources/org/example/demo/profile-icon.png"));
-    pfp.setFitHeight(50);
-    pfp.setFitWidth(50);
-    pfp.setPreserveRatio(true);
-    hBox = new HBox(5.0, pfp, contentLabel);
 
-    hBox.setSpacing(10);
-}
+    private void initializeTextPost() {
+        Label contentLabel = new Label(content);
+        contentLabel.setWrapText(true);
+
+        // Profile Picture
+        pfp = new ImageView(new Image("file:/C:/path/to/your/profile-icon.png"));
+        pfp.setFitHeight(50);
+        pfp.setFitWidth(50);
+        pfp.setPreserveRatio(true);
+
+        // Combine into HBox for text post
+        hBox = new HBox(10, pfp, contentLabel);
+    }
+
     private void initializeImagePost() {
         imagePost = new ImageView(new Image(file.toURI().toString()));
         imagePost.setFitWidth(200);
         imagePost.setPreserveRatio(true);
 
         // Profile picture initialization
-        pfp = new ImageView(new Image("file:/C:/Users/eyada/OneDrive/Documents/GitHub/ConnectHub/ConnectHub/src/main/resources/org/example/demo/profile-icon.png"));
+        pfp = new ImageView(new Image("file:/C:/path/to/your/profile-icon.png"));
         pfp.setFitHeight(50);
         pfp.setFitWidth(50);
         pfp.setPreserveRatio(true);
 
-        // Combine into HBox
-        hBox = new HBox(5, pfp, imagePost);
+        // Combine into HBox for image post
+        hBox = new HBox(10, pfp, imagePost);
     }
 
     // Getters and setters
@@ -80,6 +82,7 @@ private void initializeTextPost()
 
     public void setContent(String content) {
         this.content = content;
+        initializeTextPost(); // Reinitialize the layout for updated content
     }
 
     public File getFile() {
@@ -90,7 +93,7 @@ private void initializeTextPost()
         this.file = file;
         if (file != null) {
             this.imagePath = file.getAbsolutePath();
-            initializeImagePost();
+            initializeImagePost(); // Reinitialize the layout for updated image
         }
     }
 
@@ -106,4 +109,13 @@ private void initializeTextPost()
         return hBox;
     }
 
+    @Override
+    protected void updateItem(Post post, boolean empty) {
+        super.updateItem(post, empty);
+        if (empty || post == null) {
+            setGraphic(null);
+        } else {
+            setGraphic(post.getPostLayout());
+        }
+    }
 }

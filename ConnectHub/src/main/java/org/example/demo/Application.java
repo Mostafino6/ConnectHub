@@ -122,25 +122,29 @@ public class Application extends javafx.application.Application {
             FXMLLoader addPostLoader = new FXMLLoader(Application.class.getResource("addPost.fxml"));
             Scene addPostScene = new Scene(addPostLoader.load(), 650, 420);
             stage.setTitle("Add Post");
+
+
             addPostScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             stage.setScene(addPostScene);
             Button postDone=(Button) addPostLoader.getNamespace().get("postDone");
             Button cancelPost=(Button) addPostLoader.getNamespace().get("cancelPost");
             cancelPost.setOnAction(event ->{
                 stage.close();
-            });s
+            });
             Button imageChooser=(Button) addPostLoader.getNamespace().get("imageChooser");
             TextField textPost=(TextField) addPostLoader.getNamespace().get("textPost");
             int[] textPostFlag = {0};
             int[] imgPostFlag = {0};
             postDone.setOnAction(event -> {
-                
                 if (!textPost.getText().equals("")) {
                     String textPostContent = textPost.getText();
                     Post post = new Post(textPostContent);
                     System.out.println(textPostContent);
                     textPostFlag[0] = 1;
                     imageChooser.setDisable(true);
+
+                    // Add post to the container here
+                    ListView<Post> postContainer = (ListView<Post>) stage.getScene().lookup("postContainer");
 
                 }
                 handleProfile(stage);
