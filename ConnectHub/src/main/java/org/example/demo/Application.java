@@ -28,7 +28,7 @@ public class Application extends javafx.application.Application {
         User friend = new User();
         friend.setName("Mostafa Abayazeed");
         friend.setStatus(true);
-        friend.setPfpPath("C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg");
+        friend.setPfpPath("D:\\CCE\\Term 5\\Programming-02\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg");
         User friend2 = new User();
         friend2.setName("John Smith");
         friend2.setStatus(false);
@@ -86,18 +86,16 @@ public class Application extends javafx.application.Application {
                 boolean loginSuccessful = validationManager.login(email, password);
 
                 if (loginSuccessful) {
-                    showAlert(Alert.AlertType.INFORMATION, "Login Successful", "Welcome back!");
                     handleHome(stage); // Navigate to home on successful login
-                } else {
-                    showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid email or password. Please try again.");
                 }
             });
         } catch (IOException e) {
             e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "An error occurred with your login.");
         }
     }
 
-    private void showAlert(Alert.AlertType type, String title, String content) {
+    public void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type, content, ButtonType.OK);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -140,10 +138,7 @@ public class Application extends javafx.application.Application {
                     boolean signUpSuccessful = validationManager.signup(email, username, name, password, rewritePassword, dateOfBirth);
 
                     if (signUpSuccessful) {
-                        showAlert(Alert.AlertType.INFORMATION, "Signup Successful", "Welcome! Your account has been created.");
                         handleProfile(stage); // Navigate to profile on success
-                    } else {
-                        showAlert(Alert.AlertType.ERROR, "Signup Failed", "Signup failed. Please check your inputs and try again.");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
