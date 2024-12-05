@@ -70,19 +70,19 @@
                 </HBox>
 
                 <HBox styleClass="friends" />
-                <HBox styleClass="showFriends">
+                <HBox prefHeight="30.0" prefWidth="267.0" styleClass="showFriends">
                     <VBox styleClass="friendsData" />
                <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Friends" />
                <Button fx:id="manageFriends" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="Manage Friends" textAlignment="CENTER" />
                 </HBox>
                 <fx:include source="viewFriends.fxml" />
-            <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
+            <HBox prefHeight="30.0" prefWidth="228.0" styleClass="btnsHbox">
                <children>
                   <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Suggested" />
                   <Button fx:id="viewSuggested" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="View All" textAlignment="CENTER" />
                </children>
             </HBox>
-                <fx:include source="suggestedFriends.fxml"/>
+                <fx:include source="suggestedFriends.fxml" />
             </VBox>
         </right>
     </BorderPane>

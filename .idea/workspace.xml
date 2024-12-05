@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/ViewFriends.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/ViewFriends.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/blockRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/blockRemove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/friendRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/friendRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/blockRemove.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/blockRemove.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/homePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/homePage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +129,7 @@
       <workItem from="1733339857614" duration="3556000" />
       <workItem from="1733391419048" duration="11000" />
       <workItem from="1733391437202" duration="822000" />
-      <workItem from="1733392278975" duration="16849000" />
+      <workItem from="1733392278975" duration="17796000" />
     </task>
     <servers />
   </component>
