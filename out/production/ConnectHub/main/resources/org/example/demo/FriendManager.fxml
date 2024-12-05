@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="321.0" prefWidth="317.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+<AnchorPane prefHeight="350.0" prefWidth="317.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
    <children>
-      <Button layoutX="70.0" layoutY="107.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="btn4" text="View Friends" />
-      <Button layoutX="70.0" layoutY="171.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="btn4" text="View Friends Requests" />
-      <Button layoutX="70.0" layoutY="234.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="btn4" text="Cancel">
+      <Button fx:id="viewFriends" layoutX="70.0" layoutY="107.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="btn4" text="View Friends" />
+      <Button fx:id="viewFriendRequests" layoutX="70.0" layoutY="159.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="btn4" text="View Friends Requests" />
+      <Button fx:id="cancel" layoutX="70.0" layoutY="262.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="btn4" text="Cancel">
          <font>
             <Font size="24.0" />
          </font>

@@ -10,7 +10,9 @@ module org.example.demo {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires javafx.media;
     requires java.desktop;
+    requires json.simple;
 
     opens org.example.demo to javafx.fxml;
     exports org.example.demo;
