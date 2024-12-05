@@ -11,5 +11,11 @@ public class Controller {
     private Button editProfileButton;
     @FXML
     private Button editpfpButton;
+    @FXML
+    private Button changeBioButton;
+    @FXML
+    private Button biodoneButton;
+    @FXML
+    private Label bioplace;
 
 }

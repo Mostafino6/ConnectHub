@@ -3,6 +3,8 @@
     import javafx.fxml.FXMLLoader;
     import javafx.scene.Scene;
     import javafx.scene.control.Button;
+    import javafx.scene.control.Label;
+    import javafx.scene.control.TextField;
     import javafx.scene.shape.Circle;
     import javafx.stage.FileChooser;
     import javafx.stage.Stage;
@@ -16,6 +18,7 @@
         private User currentUser;
         @Override
         public void start(Stage stage) throws IOException {
+            User newUser = new User();
             FXMLLoader home = new FXMLLoader(Application.class.getResource("hello-view.fxml"));
             Scene scene = new Scene(home.load(), 950, 580);
             stage.setTitle("Home");
@@ -74,6 +77,7 @@
                     System.out.println("Edit Profile Button Clicked");
                     handleEditProfile(stage);
                 });
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -82,24 +86,78 @@
         private void handleEditProfile(Stage stage) {
             try {
                 FXMLLoader editProfileLoader = new FXMLLoader(Application.class.getResource("editProfile.fxml"));
-                Scene editProfileScene = new Scene(editProfileLoader.load(), 950, 580);
+                Scene editProfileScene = new Scene(editProfileLoader.load(), 600, 400);
                 Stage newStage = new Stage();
                 stage.setTitle("Edit Profile");
                 editProfileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
                 newStage.setScene(editProfileScene);
                 newStage.initOwner(stage);
                 newStage.show();
+
                 Button updatePfpButton = (Button) editProfileLoader.getNamespace().get("updatePfp");
                 updatePfpButton.setOnAction(event -> {
                     System.out.println("update Profile pic clicked");
                     handleUpdatefpfp(stage);
                 });
 
+                Button updateCoverPhoto = (Button) editProfileLoader.getNamespace().get("updateCoverPhoto");
+                updateCoverPhoto.setOnAction(event -> {
+                    System.out.println("update cover photo Button Clicked");
+                  //  handleupdateCoverPhoto(stage);
+                });
+
+                Button changeBioButton = (Button) editProfileLoader.getNamespace().get("changeBio");
+                changeBioButton.setOnAction(event -> {
+                    System.out.println("update bio button clicked");
+                    handleUpdateBio(stage);
+                });
+
+
             } catch (IOException | RuntimeException e) {
                 e.printStackTrace();
             }
         }
 
+        private void handleUpdateBio(Stage stage) {
+            try {
+                // Load the Bio FXML (the scene where the user enters new bio)
+                FXMLLoader bioLoader = new FXMLLoader(Application.class.getResource("Bio.fxml"));
+                Scene bioScene = new Scene(bioLoader.load(), 600, 400);
+                Stage newStage = new Stage();
+                bioScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(bioScene);
+                newStage.initOwner(stage);
+                newStage.show();
+
+                Button biodoneButton = (Button) bioLoader.getNamespace().get("BIODONE");
+                biodoneButton.setOnAction(event -> {
+                    try {
+                        // Get the new bio from the text field in the Bio window
+                        TextField bioTextField = (TextField) bioLoader.getNamespace().get("bioTextField");
+                        String newBio = bioTextField.getText();
+                        // Close the Bio window
+                        newStage.close();
+                        // Now update the Label in the existing profile scene
+                        FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
+                        Scene profileScene = new Scene(profileLoader.load(), 995, 800);
+                        profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                        // Access the Label from the profile scene
+                        Label bioLabel = (Label) profileLoader.getNamespace().get("bioplace");
+                        // Update the Label text with the new bio
+                        bioLabel.setText(newBio);
+                        // Set the updated profile scene to the stage
+                        stage.setScene(profileScene);
+                        stage.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
         private void handleUpdatefpfp(Stage stage) {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choose Profile Picture");
@@ -111,22 +169,50 @@
                 try {
                     Image newImage = new Image(selectedFile.toURI().toString());
                     FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-                    Scene profileScene = new Scene(profileLoader.load(), 950, 580);
+                    Scene profileScene = new Scene(profileLoader.load(), 995, 800);
                     ImageView imageView = (ImageView) profileLoader.getNamespace().get("imageView");
                     profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
                     Circle clip = new Circle();
+                    //making image in the Imageview circular shape
                     clip.setRadius(imageView.getFitWidth() / 2);
                     clip.setCenterX(imageView.getFitWidth() / 2);
                     clip.setCenterY(imageView.getFitHeight() / 2);
                     imageView.setClip(clip);
+                    //setting image
                     imageView.setImage(newImage);
                     stage.setScene(profileScene);
+                    //user.setpfpPath(selectedfile.absouloutepath());
                     stage.show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+        //        private void handleupdateCoverPhoto(Stage stage) {
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Select cover photo File");
+//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+//            );
+//            File selectedFile = fileChooser.showOpenDialog(stage);
+//            if (selectedFile != null) {
+//                try {
+//                    Image newImage = new Image(selectedFile.toURI().toString());
+//                    FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
+//                    Scene profileScene = new Scene(profileLoader.load(), 995, 800);
+//                    ImageView imageView = (ImageView) profileLoader.getNamespace().get("imageView");
+//                    profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+//                    imageView.setImage(newImage);
+//                    stage.setScene(profileScene);
+//                    //user.setpfpPath(selectedfile.absouloutepath()); when user functionality is added
+//                    stage.show();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+
+
+
         private void handleHome(Stage stage)
         {
             try {

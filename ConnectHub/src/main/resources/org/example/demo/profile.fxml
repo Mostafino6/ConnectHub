@@ -20,7 +20,7 @@
 
         <VBox styleClass="vPrfIn2">
             <Label styleClass="name">Eyad Ahmed Aly</Label>
-            <Label styleClass="bio">gdx gdxd rgsd hdfx ghndfx dxfd</Label>
+            <Label fx:id="bioplace" prefHeight="9.0" prefWidth="250.0" styleClass="bio" text="Your Bio Here" />
         </VBox>
     </HBox>
 
