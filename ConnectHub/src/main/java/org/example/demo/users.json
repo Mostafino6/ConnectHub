@@ -144,6 +144,8 @@
     "DOB": "2023-12-05",
     "status": false,
     "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
     "friends": {
       "friendsList": [],
       "friendRequests": [],
@@ -159,6 +161,8 @@
     "DOB": "2023-12-12",
     "status": false,
     "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
     "friends": {
       "friendsList": [],
       "friendRequests": [],
@@ -174,6 +178,8 @@
     "DOB": "2024-12-05",
     "status": false,
     "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
     "friends": {
       "friendsList": [],
       "friendRequests": [],
@@ -189,6 +195,25 @@
     "DOB": "2023-12-05",
     "status": false,
     "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "12",
+    "username": "bruzz",
+    "name": "bruzz before huzz",
+    "email": "bruzz@example.com",
+    "password": "c81d616de40999a3cdead17d63c4de88cc7274cc945b619c0ffdd3039614926b",
+    "DOB": "2022-12-06",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
     "friends": {
       "friendsList": [],
       "friendRequests": [],
