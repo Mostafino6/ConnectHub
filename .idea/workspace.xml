@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/addPost.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/addPost.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +123,7 @@
       <workItem from="1733339857614" duration="3556000" />
       <workItem from="1733346118822" duration="473000" />
       <workItem from="1733347487710" duration="9828000" />
-      <workItem from="1733383179162" duration="44059000" />
+      <workItem from="1733383179162" duration="45460000" />
     </task>
     <servers />
   </component>
