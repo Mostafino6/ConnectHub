@@ -213,52 +213,59 @@ public class Application extends javafx.application.Application {
             passwordScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             newStage.setScene(passwordScene);
             newStage.initOwner(stage);
-            newStage.initModality(Modality.WINDOW_MODAL); // Make the Password window modal
+            newStage.initModality(Modality.WINDOW_MODAL);
             newStage.show();
-            // Locate the necessary fields and buttons
+
+            // Locate the necessary fields and buttons from the FXML
             PasswordField newPasswordField = (PasswordField) passwordLoader.getNamespace().get("newpass");
             PasswordField confirmPasswordField = (PasswordField) passwordLoader.getNamespace().get("confirmpass");
             Button passDoneButton = (Button) passwordLoader.getNamespace().get("passdonebutton");
+
             // Handle the "Done" button action
             passDoneButton.setOnAction(event -> {
-                String newPassword = newPasswordField.getText();
                 try {
-                    newPassword = validationManager.hashPassword(newPassword);  // Assuming validationManager is defined
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                }
-                String confirmPassword = confirmPasswordField.getText();
-                try {
-                    confirmPassword = validationManager.hashPassword(confirmPassword);  // Assuming validationManager is defined
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                }
+                    String newPassword = newPasswordField.getText();
+                    // Hash the new password before saving
+                    newPassword = validationManager.hashPassword(newPassword);
 
-                if (newPassword.equals(confirmPassword)) {
-                    // Update the user's password
-                    currentUser.setPassword(newPassword);
+                    String confirmPassword = confirmPasswordField.getText();
+                    // Hash the confirm password before checking
+                    confirmPassword = validationManager.hashPassword(confirmPassword);
 
-                    // Notify the user
-                    JOptionPane.showMessageDialog(null, "Password updated successfully.");
-                    System.out.println("Password updated successfully.");
+                    // Check if the passwords match
+                    if (newPassword.equals(confirmPassword)) {
+                        // Update the user's password
+                        currentUser.setPassword(newPassword);
 
-                    // Close the Password window
-                    newStage.close();
-                    try {
-                        databaseManager.writeUser(currentUser);  // Assuming databaseManager is defined
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        // Find the password Label in the current scene and update it
+                        Label passwordLabel = (Label) stage.getScene().lookup("#passwordLabel");
+                        if (passwordLabel != null) {
+                            passwordLabel.setText("Password updated");
+                        }
+
+                        // Notify the user
+                        JOptionPane.showMessageDialog(null, "Password updated successfully.");
+                        System.out.println("Password updated successfully.");
+
+                        // Close the Password window
+                        newStage.close();
+
+                        // Save the updated user profile
+                        databaseManager.writeUser(currentUser);
+                    } else {
+                        // Notify the user if passwords do not match
+                        JOptionPane.showMessageDialog(null, "Passwords do not match. Please try again.");
+                        System.out.println("Passwords do not match. Please try again.");
                     }
-                } else {
-                    // Notify the user of the mismatch
-                    JOptionPane.showMessageDialog(null, "Passwords do not match. Please try again.");
-                    System.out.println("Passwords do not match. Please try again.");
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             });
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 
     private void handleUpdateBio(Stage stage) {

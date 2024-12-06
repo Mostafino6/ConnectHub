@@ -678,5 +678,107 @@
       "friendRequests": [],
       "blockedFriends": []
     }
+  },
+  {
+    "userID": "40",
+    "username": "anakarma",
+    "name": "karma said",
+    "email": "karma@yahooo.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "ana karma enta meen",
+    "profilePicture": "D:\\karma.png",
+    "coverPhoto": "C:\\Users\\ADMIN\\OneDrive\\Pictures\\cx\\images.jpg",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "41",
+    "username": "afgag",
+    "name": "qwgteqhgeqw",
+    "email": "fagqwgt@.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "sad",
+    "profilePicture": "null",
+    "coverPhoto": "D:\\02112007067.jpg",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "42",
+    "username": "sophie",
+    "name": "sophie rain",
+    "email": "sophie@icloud.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "check my onlyfans",
+    "profilePicture": "D:\\karma.png",
+    "coverPhoto": "C:\\Users\\ADMIN\\OneDrive\\Pictures\\cx\\images.jpg",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "43",
+    "username": "sophiee",
+    "name": "sophie rains",
+    "email": "sophie@icloudpo.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "check my only fans",
+    "profilePicture": "D:\\karma.png",
+    "coverPhoto": "D:\\karma.png",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "44",
+    "username": "mandy",
+    "name": "madny opss",
+    "email": "afgafg@icloud.com",
+    "password": "9251c243a63d7c4b54f7845655d8381933cb2dacf2738ee6968383a893772bc7",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "45",
+    "username": "farwla",
+    "name": "frawla ali",
+    "email": "farwla@icloud.com",
+    "password": "9251c243a63d7c4b54f7845655d8381933cb2dacf2738ee6968383a893772bc7",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "ana frwla",
+    "profilePicture": "D:\\karma.png",
+    "coverPhoto": "D:\\karma.png",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
   }
 ]
