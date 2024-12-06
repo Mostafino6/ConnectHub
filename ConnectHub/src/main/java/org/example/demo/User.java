@@ -125,9 +125,15 @@ public class User {
     public void setPosts(ArrayList<Post> posts) {
         this.posts = posts;
     }
-
     public void addPost(Post post) {
-        posts.add(post);
+        this.posts.add(post);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        User user = (User) obj;
+        return userID.equals(user.userID);
     }
 
     // Methods for managing stories

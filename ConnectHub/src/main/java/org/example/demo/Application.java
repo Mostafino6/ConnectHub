@@ -17,6 +17,7 @@
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
+    import java.util.ArrayList;
     import java.util.Date;
     import java.util.Objects;
 
@@ -24,6 +25,7 @@
     private  static final ValidationManager validationManager = new ValidationManager();
     private static User currentUser;
     private static final DatabaseManager databaseManager = new DatabaseManager();
+    private static final PostManager postManager = new PostManager();
 
     public static void setCurrentUser(User user) {
         currentUser = user;
@@ -187,6 +189,8 @@
 
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -421,6 +425,23 @@
             Button viewProfile = (Button) homeLoader.getNamespace().get("viewProfile");
             viewProfile.setOnAction(event -> handleProfile(stage));
             Button refresh = (Button) homeLoader.getNamespace().get("refresh");
+                refresh.setOnAction(event -> {
+                    try {
+                        ArrayList<User> updatedUsers = databaseManager.readUsers();
+                        // Update the current user object with the refreshed data
+                        for (User user : updatedUsers) {
+                            if (user.getUserID().equals(currentUser.getUserID())) {
+                                currentUser = user;
+                                Application.setCurrentUser(currentUser);
+                                break;
+                            }
+                        }
+                        // Refresh the home page with the updated currentUser
+                        handleHome(stage);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
             Button addStory= (Button) homeLoader.getNamespace().get("addStory");
             addStory.setOnAction(event -> handleAddStory(stage));
             Button viewStoriesButton= (Button) homeLoader.getNamespace().get("viewStoriesButton");
@@ -684,9 +705,9 @@
                     // Create a new post based on content
                     Post newPost;
                     if (textContent.isEmpty()) {
-                        newPost = new Post(currentUser, new Image(selectedImagePath[0])); // For image post only
+                        newPost = new Post(currentUser, null,  new Image(selectedImagePath[0])); // For image post only
                     } else {
-                        newPost = new Post(currentUser, textContent); // For text post
+                        newPost = new Post(currentUser, textContent,null); // For text post
                     }
                     addPostToContainer(newPost, postContainer);
                     addPostStage.close();
@@ -737,37 +758,6 @@
         postBox.getChildren().addAll(profileImage, postContentContainer);
         postContainer.getChildren().add(postBox);
     }
-//    private void addTextPost(String content,VBox postContainer) {
-//        HBox textPostBox = new HBox();
-//        textPostBox.getStyleClass().add("textPost");
-//        ImageView profileImage = new ImageView(new Image(getClass().getResource("/org/example/demo/profile-icon.png").toExternalForm()));
-//        profileImage.setFitHeight(50);
-//        profileImage.setFitWidth(50);
-//        profileImage.setPreserveRatio(true);
-//        profileImage.getStyleClass().add("pp");
-//        Label postContent = new Label(content);
-//        postContent.getStyleClass().add("textPostContent");
-//        textPostBox.getChildren().addAll(profileImage, postContent);
-//        postContainer.getChildren().add(textPostBox);
-//    }
-//    private void addImagePost(File imageFile,VBox postContainer) {
-//        HBox imagePostBox = new HBox();
-//        imagePostBox.getStyleClass().add("imagePost");
-//        ImageView profileImage = new ImageView(new Image(getClass().getResource("/org/example/demo/profile-icon.png").toExternalForm()));
-//        profileImage.setFitHeight(50);
-//        profileImage.setFitWidth(50);
-//        profileImage.setPreserveRatio(true);
-//        profileImage.getStyleClass().add("pp");
-//        ImageView postImage = new ImageView(new Image(imageFile.toURI().toString()));
-//        postImage.setFitHeight(249);
-//        postImage.setFitWidth(311);
-//        postImage.setPreserveRatio(true);
-//        postImage.getStyleClass().add("postImage");
-//
-//        imagePostBox.getChildren().addAll(profileImage, postImage);
-//
-//        postContainer.getChildren().add(imagePostBox);
-//    }
     public static void main(String[] args) {
         launch();
     }
