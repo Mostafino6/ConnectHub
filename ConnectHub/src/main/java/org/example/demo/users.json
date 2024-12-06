@@ -627,5 +627,56 @@
       "friendRequests": [],
       "blockedFriends": []
     }
+  },
+  {
+    "userID": "37",
+    "username": "sallwa",
+    "name": "salwa ali",
+    "email": "salwa@icloud.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "38",
+    "username": "farida",
+    "name": "farida salamanka",
+    "email": "farida@icloud.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "39",
+    "username": "dsadqwrfq",
+    "name": "dsadfqwf rqwrqwet",
+    "email": "asffW@icloud.com",
+    "password": "9251c243a63d7c4b54f7845655d8381933cb2dacf2738ee6968383a893772bc7",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
   }
 ]

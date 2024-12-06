@@ -215,25 +215,23 @@ public class Application extends javafx.application.Application {
             newStage.initOwner(stage);
             newStage.initModality(Modality.WINDOW_MODAL); // Make the Password window modal
             newStage.show();
-
             // Locate the necessary fields and buttons
-            TextField newPasswordField = (TextField) passwordLoader.getNamespace().get("newpass");
-            TextField confirmPasswordField = (TextField) passwordLoader.getNamespace().get("confirmpass");
+            PasswordField newPasswordField = (PasswordField) passwordLoader.getNamespace().get("newpass");
+            PasswordField confirmPasswordField = (PasswordField) passwordLoader.getNamespace().get("confirmpass");
             Button passDoneButton = (Button) passwordLoader.getNamespace().get("passdonebutton");
-
             // Handle the "Done" button action
             passDoneButton.setOnAction(event -> {
                 String newPassword = newPasswordField.getText();
                 try {
-                    newPassword= validationManager.hashPassword(newPassword);
+                    newPassword = validationManager.hashPassword(newPassword);  // Assuming validationManager is defined
                 } catch (NoSuchAlgorithmException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
                 String confirmPassword = confirmPasswordField.getText();
                 try {
-                    confirmPassword= validationManager.hashPassword(confirmPassword);
+                    confirmPassword = validationManager.hashPassword(confirmPassword);  // Assuming validationManager is defined
                 } catch (NoSuchAlgorithmException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
 
                 if (newPassword.equals(confirmPassword)) {
@@ -247,9 +245,9 @@ public class Application extends javafx.application.Application {
                     // Close the Password window
                     newStage.close();
                     try {
-                        databaseManager.writeUser(currentUser);
+                        databaseManager.writeUser(currentUser);  // Assuming databaseManager is defined
                     } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        e.printStackTrace();
                     }
                 } else {
                     // Notify the user of the mismatch
@@ -261,6 +259,7 @@ public class Application extends javafx.application.Application {
             e.printStackTrace();
         }
     }
+
 
     private void handleUpdateBio(Stage stage) {
         try {
