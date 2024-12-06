@@ -11,7 +11,7 @@
     "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "friends": {
-      "friendsList": ["2","3","8"],
+      "friendsList": ["2","3","8","13"],
       "friendRequests": [],
       "blockedFriends": ["5"]
     }
@@ -210,12 +210,12 @@
     "email": "muzz@example.com",
     "password": "72ebe8340a1ba9d1bbd7a9071c9d2847acb0b9b679301698bc997378ea28d9d5",
     "DOB": "2023-12-05",
-    "status": true,
+    "status": false,
     "bio": "MANGO MANGO MANGO MANGO MANGO",
     "profilePicture": "D:\\Downloads\\Screenshot 2024-12-06 175312.png",
     "coverPhoto": "D:\\Downloads\\buzz.png",
     "friends": {
-      "friendsList": [],
+      "friendsList": ["1"],
       "friendRequests": [],
       "blockedFriends": []
     }
