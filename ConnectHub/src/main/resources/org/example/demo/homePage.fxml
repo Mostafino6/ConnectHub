@@ -33,8 +33,9 @@
                 <HBox styleClass="acHb">
                     <Label styleClass="psts">Posts</Label>
                     <HBox styleClass="btnsHbox">
-                        <Button fx:id="addPost" minHeight="14.0" minWidth="102.0" prefHeight="14.0" prefWidth="102.0" styleClass="btn4">Add Post</Button>
+                        <Button fx:id="addPost" minHeight="14.0" minWidth="102.0" prefHeight="23.0" prefWidth="102.0" styleClass="btn4">Add Post</Button>
                         <Button fx:id="addStory" styleClass="btn4">Add Story</Button>
+                  <Button fx:id="viewStoriesButton" mnemonicParsing="false" styleClass="btn4" stylesheets="@main.css" text="View Stroies" />
                     </HBox>
                 </HBox>
 <!--                <HBox styleClass="textPost">-->
