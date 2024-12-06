@@ -219,5 +219,175 @@
       "friendRequests": [],
       "blockedFriends": []
     }
+  },
+  {
+    "userID": "13",
+    "username": "Elshazly",
+    "name": "hossam eldin",
+    "email": "hossam@icloud.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-02",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "14",
+    "username": "afsa",
+    "name": "asf",
+    "email": "asfaf@yahhoo.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-02",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "15",
+    "username": "asd",
+    "name": "dsad",
+    "email": "hossam@sadkposa.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-02",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "16",
+    "username": "asda",
+    "name": "asfa",
+    "email": "hossam@icloud.con",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "17",
+    "username": "asf",
+    "name": "asf",
+    "email": "safasf@icliodiu.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-02",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "18",
+    "username": "qsafd",
+    "name": "safsafa",
+    "email": "safsaf@cosajpcosa.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-02",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "19",
+    "username": "afsaasd",
+    "name": "fsaf",
+    "email": "hosasm@icloud.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "20",
+    "username": "asdsad",
+    "name": "sadsad",
+    "email": "sadaasd@.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-02",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "21",
+    "username": "asfsaadsasgdag",
+    "name": "fsafadgdsag",
+    "email": "hossama@icloud.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "22",
+    "username": "dsagdsaghwehgaf",
+    "name": "safsafasfeqagewqag",
+    "email": "afsafaf@iclouc.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "null",
+    "coverPhoto": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
   }
 ]
