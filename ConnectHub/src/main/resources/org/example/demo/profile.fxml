@@ -6,8 +6,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 <VBox prefHeight="731.0" prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
     <StackPane>
@@ -24,8 +24,8 @@
                 <Button fx:id="editProfileButton" styleClass="btn4" text="Edit Profile" />
             </VBox>
             <VBox styleClass="vPrfIn2">
-                <Label styleClass="name">Eyad Ahmed Aly</Label>
-                <Label fx:id="bioplace" prefHeight="9.0" prefWidth="250.0" styleClass="lblsPass" stylesheets="@main.css" text="Your Bio Here" />
+            <Label fx:id="nameuser" prefHeight="88.0" prefWidth="632.0" styleClass="name" stylesheets="@main.css" textAlignment="CENTER" />
+                <Label fx:id="bioplace" prefHeight="25.0" prefWidth="513.0" styleClass="lblsPass" stylesheets="@main.css" text="Your Bio Here." />
             </VBox>
         </HBox>
     </StackPane>
