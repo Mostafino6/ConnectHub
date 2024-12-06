@@ -40,33 +40,6 @@ public class FriendManagement {
     public void setBlockedFriends(ArrayList<User> blockedFriends) {
         this.blockedFriends = blockedFriends;
     }
-    public void sendFriendRequest(User sender, User receiver) {
-        if (!receiver.getFriends().getFriendRequests().contains(sender) &&
-                !receiver.getFriends().isBlocked(sender)) {
-            receiver.getFriends().getFriendRequests().add(sender);
-        }
-    }
-
-    public void acceptFriendRequest(User receiver, User sender) {
-        if (receiver.getFriends().getFriendRequests().contains(sender)) {
-            receiver.getFriends().getFriendRequests().remove(sender);
-            receiver.getFriends().getFriendsList().add(sender);
-            sender.getFriends().getFriendsList().add(receiver); // Symmetry
-        }
-    }
-
-    public void rejectFriendRequest(User receiver, User sender) {
-        receiver.getFriends().getFriendRequests().remove(sender);
-    }
-
-    public void blockFriend(User blocker, User blocked) {
-        if (blocker.getFriends().getFriendsList().contains(blocked)) {
-            blocker.getFriends().getFriendsList().remove(blocked);
-        }
-        if (!blocker.getFriends().getBlockedFriends().contains(blocked)) {
-            blocker.getFriends().getBlockedFriends().add(blocked);
-        }
-    }
     public boolean isFriend(User user) {
         return friendsList.contains(user);
     }

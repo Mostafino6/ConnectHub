@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.geometry.Insets;
 import javafx.scene.shape.Circle;
 
+import javax.swing.*;
+
 public class BRcell extends ListCell<User> {
     private HBox userInfo;
     private ImageView pfp;
@@ -34,6 +36,18 @@ public class BRcell extends ListCell<User> {
         text.setSpacing(10);
         userInfo = new HBox(15,pfp,text);
         userInfo.setPadding(new Insets(10));
+        blockButton.setOnAction(e -> {
+           User user = getItem();
+           if(user != null){
+               handleBlockButton(user);
+           }
+        });
+        removeButton.setOnAction(e -> {
+            User user = getItem();
+            if(user != null){
+                handleRemoveButton(user);
+            }
+        });
     }
     @Override
     protected void updateItem(User user, boolean empty) {
@@ -47,5 +61,35 @@ public class BRcell extends ListCell<User> {
             setGraphic(userInfo);
         }
     }
-
+    private void handleBlockButton(User user){
+        User current = Application.getCurrentUser();
+        if(current != null){
+            JOptionPane.showMessageDialog(null,"User is Blocked!");
+            current.getFriends().getBlockedFriends().add(user);
+            current.getFriends().getFriendsList().remove(user);
+            user.getFriends().getFriendsList().remove(current);
+            try {
+                Application.getDatabaseManager().writeUser(current);
+                Application.getDatabaseManager().writeUser(user);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    private void handleRemoveButton(User user){
+        User current = Application.getCurrentUser();
+        if(current != null){
+            JOptionPane.showMessageDialog(null,"User is Removed!");
+            current.getFriends().getFriendsList().remove(user);
+            user.getFriends().getFriendsList().remove(current);
+            current.getFriends().getSuggestedFriends().add(user);
+            user.getFriends().getSuggestedFriends().add(current);
+            try{
+                Application.getDatabaseManager().writeUser(current);
+                Application.getDatabaseManager().writeUser(user);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
 }

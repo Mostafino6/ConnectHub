@@ -18,13 +18,20 @@
     import java.util.Date;
 
 public class Application extends javafx.application.Application {
-    private final ValidationManager validationManager = new ValidationManager();
+    private  static final ValidationManager validationManager = new ValidationManager();
     private static User currentUser;
+    private static final DatabaseManager databaseManager = new DatabaseManager();
     public static void setCurrentUser(User user) {
         currentUser = user;
     }
     public static User getCurrentUser() {
         return currentUser;
+    }
+    public static DatabaseManager getDatabaseManager() {
+        return databaseManager;
+    }
+    public static ValidationManager getValidationManager() {
+        return validationManager;
     }
     @Override
     public void start(Stage stage) throws IOException {
@@ -333,15 +340,27 @@ public class Application extends javafx.application.Application {
                 stage.setTitle("Profile");
                 homeLoaderScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             VBox postContainer=(VBox) homeLoader.getNamespace().get("postContainer");
-
             Button addPost=(Button) homeLoader.getNamespace().get("addPost");
             addPost.setOnAction(event ->handleAddPost(stage,postContainer));
-                stage.setScene(homeLoaderScene);
+            stage.setScene(homeLoaderScene);
             Button manageFriends = (Button) homeLoader.getNamespace().get("manageFriends");
             manageFriends.setOnAction(event -> friendsManager(stage));
             Button viewSuggested = (Button) homeLoader.getNamespace().get("viewSuggested");
             viewSuggested.setOnAction(event -> handleSuggested(stage));
-
+            Button refresh = (Button) homeLoader.getNamespace().get("refresh");
+            refresh.setOnAction(event -> {
+                handleHome(stage);
+            });
+            Button logout = (Button) homeLoader.getNamespace().get("logOut");
+            logout.setOnAction(event -> {
+                stage.close();
+                currentUser.setStatus(false);
+                try {
+                    databaseManager.writeUser(currentUser);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
             } catch (IOException e) {
             e.printStackTrace();
         }
@@ -399,7 +418,7 @@ public class Application extends javafx.application.Application {
     private void handleFR(Stage stage) {
         try {
             FXMLLoader FRLoader = new FXMLLoader(Application.class.getResource("friendRequests.fxml"));
-            Scene FRScene = new Scene(FRLoader.load(), 289, 189);
+            Scene FRScene = new Scene(FRLoader.load(), 389, 225);
             Stage newStage = new Stage();
             newStage.setTitle("Friend Requests");
             FRScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());

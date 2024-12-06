@@ -196,7 +196,6 @@ public class DatabaseManager {
             friendsObject.put("friendRequests", getIDsFromUserObjects(existingUser.getFriends().getFriendRequests()));
             friendsObject.put("blockedFriends", getIDsFromUserObjects(existingUser.getFriends().getBlockedFriends()));
             jsonUser.put("friends", friendsObject);
-
             jsonArray.add(jsonUser);
         }
 
