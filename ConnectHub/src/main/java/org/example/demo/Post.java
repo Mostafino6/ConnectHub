@@ -3,19 +3,42 @@ package org.example.demo;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Post{
+public class Post {
+    private String postId;
     private User owner;
-    private String content;
-    private String image;
+    private String content; // For text content
+    private String image;   // For image content
     private LocalDate datePosted;
-    public Post( String content) {
+
+    // Constructor for text posts
+    public Post(User owner, String content) {
+        this.owner = owner;
         this.content = content;
         this.datePosted = LocalDate.now();
     }
+
+    // Constructor for image posts
     public Post(User owner, Image imageContent) {
-        this.image = imageContent.toString();
+        this.owner = owner;
+        this.image = imageContent.getUrl(); // Use getUrl to store the image URL
         this.datePosted = LocalDate.now();
+    }
+
+    // Getters and setters
+    public User getOwner() {
+        return owner;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public LocalDate getDatePosted() {
+        return datePosted;
     }
 }

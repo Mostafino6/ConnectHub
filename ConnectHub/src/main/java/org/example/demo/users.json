@@ -134,5 +134,65 @@
       "friendRequests": [],
       "blockedFriends": []
     }
+  },
+  {
+    "userID": "8",
+    "username": "mabayez",
+    "name": "mostafa",
+    "email": "sdsdsds@sdssdsd.com",
+    "password": "c1d543c4306bc76d8654f71b19cca84d803cea6e7a5d410c20878b6ea824e923",
+    "DOB": "2023-12-05",
+    "status": false,
+    "bio": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "9",
+    "username": "dbvbvb",
+    "name": "vsvdvdsv",
+    "email": "svddsvds@sfvsfv.com",
+    "password": "6afdaf399b012040285f420974c8c881cf0d2c566b82f621128de218e748bdd6",
+    "DOB": "2023-12-12",
+    "status": false,
+    "bio": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "10",
+    "username": "balabeelo",
+    "name": "Balabel",
+    "email": "balabel@uuu.com",
+    "password": "c08cdc8cb5b0c0585ad36c6a423b5207945fe3ca09bbbb8dd4c82d54c696331c",
+    "DOB": "2024-12-05",
+    "status": false,
+    "bio": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "11",
+    "username": "dfdfd",
+    "name": "sfdfsddf",
+    "email": "sdfsdfd@fsvsfvfv.com",
+    "password": "dcba457d6ab527e245b1bc5a709ae4839f9eba03fdfb8cedd533086091d9bd8a",
+    "DOB": "2023-12-05",
+    "status": false,
+    "bio": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
   }
 ]

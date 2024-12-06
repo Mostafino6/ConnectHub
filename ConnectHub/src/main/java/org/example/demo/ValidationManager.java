@@ -1,5 +1,7 @@
 package org.example.demo;
 
+import javafx.scene.control.Alert;
+
 import java.security.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,38 +67,43 @@ public class ValidationManager {
 
     // Signup method
     public Boolean signup(String email, String username, String name, String password, String reenteredPassword, Date dateOfBirth) {
+        Application app = new Application();
         try {
             if (!validateEmail(email)) {
-                System.out.println("1");
-                return false;
-            } //Invalid email format.
-            if (!validateUsername(username)) {
-                System.out.println("2");
+                app.showAlert(Alert.AlertType.ERROR, "Signup Failed", "Invalid email must contain '@'.");
                 return false;
             }
-            ; //"Username must be at least 3 characters long and contain only letters, numbers, or underscores.";
+            if (!validateUsername(username)) {
+                app.showAlert(Alert.AlertType.ERROR, "Signup Failed", "Invalid username.");
+                return false;
+            }
             if (!validateName(name)) {
-                System.out.println("3");
+                app.showAlert(Alert.AlertType.ERROR, "Signup Failed", "Invalid name.");
                 return false;
-            } //"Invalid name format.";
+            }
             if (!validateDateOfBirth(dateOfBirth)) {
-                System.out.println("4");
+                app.showAlert(Alert.AlertType.ERROR, "Signup Failed", "Invalid date of birth.");
                 return false;
-            } //"Date of birth must be in the past.";
+            }
             if (!validatePassword(password)) {
-                System.out.println("5");
+                app.showAlert(Alert.AlertType.ERROR, "Signup Failed", "Invalid password, must be at least 8 characters with upper and lower case letters and special characters.");
                 return false;
-            } //"Password must be at least 8 characters long, contain at least one uppercase letter, and one digit.";
+            }
             if (!validatePasswordMatch(password, reenteredPassword)) {
-                System.out.println("6");
+                app.showAlert(Alert.AlertType.ERROR, "Signup Failed", "passwords do not match.");
                 return false;
-            } //"Passwords do not match.";
+            }
 
-            // Check for existing email and username
             ArrayList<User> users = databaseManager.readUsers();
             for (User user : users) {
-                if (user.getEmail().equals(email)) return false; //"Email already exists.";
-                if (user.getUsername().equals(username)) return false; //"Username already exists.";
+                if (user.getEmail().equals(email)) {
+                    app.showAlert(Alert.AlertType.ERROR, "Signup Failed", "Username already in use.");
+                    return false;
+                }
+                if (user.getUsername().equals(username)) {
+                    app.showAlert(Alert.AlertType.ERROR, "Signup Failed", "Email already in use.");
+                    return false;
+                }
             }
 
             String hashedPassword = hashPassword(password);
@@ -114,12 +121,13 @@ public class ValidationManager {
             return true; //"Signup successful!";
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("error");
+            app.showAlert(Alert.AlertType.ERROR, "Signup Failed", "An error occurred during signup.");
             return false; //"An error occurred during signup.";
         }
     }
     // Login method
     public Boolean login(String email, String password) {
+        Application app = new Application();
         try {
             ArrayList<User> users = databaseManager.readUsers();
             for (User user : users) {
@@ -130,14 +138,17 @@ public class ValidationManager {
                         databaseManager.writeUser(user);
                         return true; //"Login successful!";
                     } else {
-                        return false; //"Incorrect password.";
+                        app.showAlert(Alert.AlertType.ERROR, "Login Failed", "Incorrect password.");
+                        return false;
                     }
                 }
             }
-            return false; //"User not found.";
+            app.showAlert(Alert.AlertType.ERROR, "Login Failed", "User not found.");
+            return false; //User not found
         } catch (Exception e) {
             e.printStackTrace();
-            return false; //"An error occurred during login.";
+            app.showAlert(Alert.AlertType.ERROR, "Login Failed", "An error occurred during login.");
+            return false; //An error occurred during login
         }
     }
     public static void main(String[] args) throws NoSuchAlgorithmException {

@@ -6,10 +6,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 <VBox prefHeight="731.0" prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+<VBox styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
     <StackPane>
         <!-- Cover Image -->
         <ImageView id="coverPhoto" fx:id="coverImageView" fitHeight="200" fitWidth="980" preserveRatio="false" styleClass="cover">
@@ -46,6 +47,7 @@
                     </ImageView>
                     <Label fx:id="textPostContent_1" styleClass="textPostContent">dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg</Label>
                 </HBox>
+
                 <HBox styleClass="imagePost">
                     <ImageView fx:id="postImagePp_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
                         <Image url="@profile-icon.png" />
