@@ -6,12 +6,12 @@
     "email": "mostafaabayazeed@yahoo.com",
     "password": "1d5df648c48fd5aa23ef2220be26b28bfd42698c7d2f097cbb6e8813d902a674",
     "DOB": "2004-08-27",
-    "status": false,
+    "status": true,
     "bio": "Fuk dem lame ass huzz mane",
     "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "D:\\Downloads\\buzz.png",
     "friends": {
-      "friendsList": ["2","3","8","13"],
+      "friendsList": ["2","3","8","13","12"],
       "friendRequests": [],
       "blockedFriends": ["5"]
     },
@@ -199,15 +199,15 @@
   },
   {
     "userID": "11",
-    "username": "Hossam",
-    "name": "Hossam ahmed",
-    "email": "hossam@icloud.com",
-    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
-    "DOB": "2024-12-01",
-    "status": true,
-    "bio": "hiii",
-    "profilePicture": "D:\\02112007067.jpg",
-    "coverPhoto": "D:\\shobier.png",
+    "username": "chuzz",
+    "name": "Chopped Shyt",
+    "email": "chuzz@example.com",
+    "password": "4934da4b451b1cfa76398b19fa73043c6369b3b85697c127cc13bae751905470",
+    "DOB": "2023-12-05",
+    "status": false,
+    "bio": "",
+    "profilePicture": "",
+    "coverPhoto": "",
     "friends": {
       "friendsList": [],
       "friendRequests": [],
@@ -227,7 +227,7 @@
     "profilePicture": "D:\\Downloads\\avatars-uXndVm8Hd26XX1J9-mK7k7w-t1080x1080.jpg",
     "coverPhoto": "D:\\Downloads\\avatars-uXndVm8Hd26XX1J9-mK7k7w-t1080x1080.jpg",
     "friends": {
-      "friendsList": [],
+      "friendsList": ["1"],
       "friendRequests": [],
       "blockedFriends": []
     },
