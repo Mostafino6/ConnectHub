@@ -26,6 +26,7 @@ public class DatabaseManager {
         return dateFormat.format(date);
     }
 
+    
     public ArrayList<User> readUsers() throws Exception {
         File file = new File(DATABASE_FILE);
         if (!file.exists()) {
