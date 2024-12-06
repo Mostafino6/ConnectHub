@@ -168,56 +168,6 @@
       "friendRequests": [],
       "blockedFriends": []
     }
-  },
-  {
-    "userID": "10",
-    "username": "balabeelo",
-    "name": "Balabel",
-    "email": "balabel@uuu.com",
-    "password": "c08cdc8cb5b0c0585ad36c6a423b5207945fe3ca09bbbb8dd4c82d54c696331c",
-    "DOB": "2024-12-05",
-    "status": false,
-    "bio": "null",
-    "profilePicture": "null",
-    "coverPhoto": "null",
-    "friends": {
-      "friendsList": [],
-      "friendRequests": [],
-      "blockedFriends": []
-    }
-  },
-  {
-    "userID": "11",
-    "username": "dfdfd",
-    "name": "sfdfsddf",
-    "email": "sdfsdfd@fsvsfvfv.com",
-    "password": "dcba457d6ab527e245b1bc5a709ae4839f9eba03fdfb8cedd533086091d9bd8a",
-    "DOB": "2023-12-05",
-    "status": false,
-    "bio": "null",
-    "profilePicture": "null",
-    "coverPhoto": "null",
-    "friends": {
-      "friendsList": [],
-      "friendRequests": [],
-      "blockedFriends": []
-    }
-  },
-  {
-    "userID": "12",
-    "username": "bruzz",
-    "name": "bruzz before huzz",
-    "email": "bruzz@example.com",
-    "password": "c81d616de40999a3cdead17d63c4de88cc7274cc945b619c0ffdd3039614926b",
-    "DOB": "2022-12-06",
-    "status": true,
-    "bio": "null",
-    "profilePicture": "null",
-    "coverPhoto": "null",
-    "friends": {
-      "friendsList": [],
-      "friendRequests": [],
-      "blockedFriends": []
-    }
   }
+
 ]

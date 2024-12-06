@@ -11,15 +11,18 @@
     import javafx.scene.control.TextField;
     import javafx.scene.shape.Circle;
     import javafx.stage.FileChooser;
+    import javafx.stage.Modality;
     import javafx.stage.Stage;
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
+    import java.security.NoSuchAlgorithmException;
     import java.util.Date;
 
 public class Application extends javafx.application.Application {
     private final ValidationManager validationManager = new ValidationManager();
     private static User currentUser;
+    private final DatabaseManager databaseManager = new DatabaseManager();
     public static void setCurrentUser(User user) {
         currentUser = user;
     }
@@ -104,7 +107,6 @@ public class Application extends javafx.application.Application {
                     showAlert(Alert.AlertType.ERROR, "Missing Fields", "All fields are required.");
                     return;
                 }
-
                 try {
                     DatabaseManager dbManager = new DatabaseManager();
                     Date dateOfBirth = dbManager.parseDate(dob.toString());
@@ -122,29 +124,43 @@ public class Application extends javafx.application.Application {
                 e.printStackTrace();
             }
         }
-        private void handleProfile(Stage stage) {
-            try {
-                FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-                Scene profileScene = new Scene(profileLoader.load(), 995, 800);
-                stage.setTitle("Profile");
-                profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-                stage.setScene(profileScene);
-                Button addPost=(Button) profileLoader.getNamespace().get("addPost");
-                VBox postContainer=(VBox) profileLoader.getNamespace().get("postContainer");
-                addPost.setOnAction(event ->handleAddPost(stage,postContainer));
-                Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
-                manageFriends.setOnAction(event -> friendsManager(stage));
-                Button viewSuggested = (Button) profileLoader.getNamespace().get("viewSuggested");
-                viewSuggested.setOnAction(event -> handleSuggested(stage));
-                Button editProfileButton = (Button) profileLoader.getNamespace().get("editProfileButton");
-                editProfileButton.setOnAction(event -> {
-                    System.out.println("Edit Profile Button Clicked");
-                    handleEditProfile(stage);
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
+    private void handleProfile(Stage stage) {
+        try {
+            // Load the profile FXML file
+            FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
+            Scene profileScene = new Scene(profileLoader.load(), 995, 800);
+            stage.setTitle("Profile");
+            profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            stage.setScene(profileScene);
+            Label nameLabel = (Label) profileLoader.getNamespace().get("nameuser");
+            if (nameLabel != null) {
+                String username = currentUser.getName();
+                System.out.println(username);
+                nameLabel.setText(username);
+            } else {
+                System.out.println("nameLabel is null");
             }
+
+            Button addPost = (Button) profileLoader.getNamespace().get("addPost");
+            VBox postContainer = (VBox) profileLoader.getNamespace().get("postContainer");
+            addPost.setOnAction(event -> handleAddPost(stage, postContainer));
+
+            Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
+            manageFriends.setOnAction(event -> friendsManager(stage));
+
+            Button viewSuggested = (Button) profileLoader.getNamespace().get("viewSuggested");
+            viewSuggested.setOnAction(event -> handleSuggested(stage));
+
+            Button editProfileButton = (Button) profileLoader.getNamespace().get("editProfileButton");
+            editProfileButton.setOnAction(event -> {
+                System.out.println("Edit Profile Button Clicked");
+                handleEditProfile(stage);
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
         private void handleEditProfile(Stage stage) {
             try {
@@ -187,145 +203,179 @@ public class Application extends javafx.application.Application {
             }
         }
 
-        private void handleUpdatePassword(Stage stage) {
-            try {
-                // Load the password update scene
-                FXMLLoader passwordLoader = new FXMLLoader(Application.class.getResource("password.fxml"));
-                Scene passwordScene = new Scene(passwordLoader.load(), 600, 400);
-                Stage newStage = new Stage();
-                passwordScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-                newStage.setScene(passwordScene);
-                newStage.initOwner(stage);
-                newStage.show();
+    private void handleUpdatePassword(Stage stage) {
+        try {
+            // Load the password update FXML
+            FXMLLoader passwordLoader = new FXMLLoader(Application.class.getResource("password.fxml"));
+            Scene passwordScene = new Scene(passwordLoader.load(), 600, 400);
+            Stage newStage = new Stage();
+            newStage.setTitle("Update Password");
+            passwordScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            newStage.setScene(passwordScene);
+            newStage.initOwner(stage);
+            newStage.initModality(Modality.WINDOW_MODAL);
+            newStage.show();
 
-                TextField newPasswordField = (TextField) passwordLoader.getNamespace().get("newpass");
-                TextField confirmPasswordField = (TextField) passwordLoader.getNamespace().get("confirmpass");
+            // Locate the necessary fields and buttons from the FXML
+            PasswordField newPasswordField = (PasswordField) passwordLoader.getNamespace().get("newpass");
+            PasswordField confirmPasswordField = (PasswordField) passwordLoader.getNamespace().get("confirmpass");
+            Button passDoneButton = (Button) passwordLoader.getNamespace().get("passdonebutton");
 
-                Button passDoneButton = (Button) passwordLoader.getNamespace().get("passdonebutton");
-                passDoneButton.setOnAction(event -> {
-                    String newPassword = newPasswordField.getText();
-                    String confirmPassword = confirmPasswordField.getText();
-                    // Validate that both passwords match
-                    if (newPassword.equals(confirmPassword)) {
-                        currentUser.setPassword(newPassword);
-                        JOptionPane.showMessageDialog(null,"Password updated successfully");
-                        System.out.println("Password updated successfully.");
-                        newStage.close();
-                    } else {
-                        JOptionPane.showMessageDialog(null,"Passwords do not match. Please try again.");
-                    System.out.println("Passwords do not match. Please try again.");
-                    }
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        private void handleUpdateBio(Stage stage) {
-            try {
-                // Load the Bio FXML (the scene where the user enters new bio)
-                FXMLLoader bioLoader = new FXMLLoader(Application.class.getResource("Bio.fxml"));
-                Scene bioScene = new Scene(bioLoader.load(), 600, 400);
-                Stage newStage = new Stage();
-                bioScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-                newStage.setScene(bioScene);
-                newStage.initOwner(stage);
-                newStage.show();
-
-                Button biodoneButton = (Button) bioLoader.getNamespace().get("BIODONE");
-                biodoneButton.setOnAction(event -> {
-                    try {
-                        // Get the new bio from the text field in the Bio window
-                        TextField bioTextField = (TextField) bioLoader.getNamespace().get("bioTextField");
-                        String newBio = bioTextField.getText();
-                        // Close the Bio window
-                        newStage.close();
-                        // Now update the Label in the existing profile scene
-                        FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-                        Scene profileScene = new Scene(profileLoader.load(), 995, 800);
-                        profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-                        // Access the Label from the profile scene
-                        Label bioLabel = (Label) profileLoader.getNamespace().get("bioplace");
-                        // Update the Label text with the new bio
-                        bioLabel.setText(newBio);
-                        // Set the updated profile scene to the stage
-                        stage.setScene(profileScene);
-                        stage.show();
-                        currentUser.setBio(newBio);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        private void handleUpdatefpfp(Stage stage) {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Choose Profile Picture");
-            fileChooser.getExtensionFilters().add(
-                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-            );
-            File selectedFile = fileChooser.showOpenDialog(stage);
-            if (selectedFile != null) {
+            // Handle the "Done" button action
+            passDoneButton.setOnAction(event -> {
                 try {
-                    Image newImage = new Image(selectedFile.toURI().toString());
-                    FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-                    Scene profileScene = new Scene(profileLoader.load(), 995, 800);
-                    ImageView imageView = (ImageView) profileLoader.getNamespace().get("imageView");
-                    profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                    String newPassword = newPasswordField.getText();
+                    // Hash the new password before saving
+                    newPassword = validationManager.hashPassword(newPassword);
+
+                    String confirmPassword = confirmPasswordField.getText();
+                    // Hash the confirm password before checking
+                    confirmPassword = validationManager.hashPassword(confirmPassword);
+
+                    // Check if the passwords match
+                    if (newPassword.equals(confirmPassword)) {
+                        // Update the user's password
+                        currentUser.setPassword(newPassword);
+
+                        // Find the password Label in the current scene and update it
+                        Label passwordLabel = (Label) stage.getScene().lookup("#passwordLabel");
+                        if (passwordLabel != null) {
+                            passwordLabel.setText("Password updated");
+                        }
+
+                        // Notify the user
+                        JOptionPane.showMessageDialog(null, "Password updated successfully.");
+                        System.out.println("Password updated successfully.");
+
+                        // Close the Password window
+                        newStage.close();
+
+                        // Save the updated user profile
+                        databaseManager.writeUser(currentUser);
+                    } else {
+                        // Notify the user if passwords do not match
+                        JOptionPane.showMessageDialog(null, "Passwords do not match. Please try again.");
+                        System.out.println("Passwords do not match. Please try again.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    private void handleUpdateBio(Stage stage) {
+        try {
+            // Load the Bio FXML (for entering the new bio)
+            FXMLLoader bioLoader = new FXMLLoader(Application.class.getResource("Bio.fxml"));
+            Scene bioScene = new Scene(bioLoader.load(), 600, 400);
+            Stage newStage = new Stage();
+            newStage.setTitle("Update Bio");
+            bioScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            newStage.setScene(bioScene);
+            newStage.initOwner(stage);
+            newStage.initModality(Modality.WINDOW_MODAL); // Make the Bio window modal
+            newStage.show();
+            Button biodoneButton = (Button) bioLoader.getNamespace().get("BIODONE");
+            biodoneButton.setOnAction(event -> {
+                try {
+                    // Get the new bio from the text field
+                    TextField bioTextField = (TextField) bioLoader.getNamespace().get("bioTextField");
+                    String newBio = bioTextField.getText();
+                    // Update the bio in the current user's profile
+                    currentUser.setBio(newBio);
+                    // Find the bio Label in the current scene and update it
+                    Label bioLabel = (Label) stage.getScene().lookup("#bioplace");
+                    if (bioLabel != null) {
+                        bioLabel.setText(newBio);
+                    }
+                    // Close the Bio window
+                    newStage.close();
+                    databaseManager.writeUser(currentUser);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void handleUpdatefpfp(Stage stage) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Profile Picture");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            try {
+                // Convert the file path to an image
+                String newImagePath = selectedFile.toURI().toString();
+                Image newImage = new Image(newImagePath);
+
+                // Locate the ImageView in the current scene
+                ImageView imageView = (ImageView) stage.getScene().lookup("#imageView");
+                if (imageView != null) {
+                    // Make the ImageView circular
                     Circle clip = new Circle();
-                    //making image in the Imageview circular shape
                     clip.setRadius(imageView.getFitWidth() / 2);
                     clip.setCenterX(imageView.getFitWidth() / 2);
                     clip.setCenterY(imageView.getFitHeight() / 2);
                     imageView.setClip(clip);
-                    //setting image
+                    // Set the new image
                     imageView.setImage(newImage);
-                    stage.setScene(profileScene);
+                    // Update the user's profile picture path (stored as a String)
                     currentUser.setPfpPath(selectedFile.getAbsolutePath());
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    try {
+                        databaseManager.writeUser(currentUser);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    System.out.println("ImageView not found in the current scene.");
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
+    }
 
-        private void handleupdateCoverPhoto(Stage stage) {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Choose Cover Photo");
-            fileChooser.getExtensionFilters().add(
-                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-            );
+    private void handleupdateCoverPhoto(Stage stage) {
+        // Open file chooser for selecting a cover photo
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Cover Photo");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+        File selectedFile = fileChooser.showOpenDialog(stage);
 
-            File selectedFile = fileChooser.showOpenDialog(stage);
-            if (selectedFile != null) {
-                try {
-                    Image newImage = new Image(selectedFile.toURI().toString());
-
-                    // Load the profile FXML file
-                    FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-                    Scene profileScene = new Scene(profileLoader.load(), 995, 800);
-
-                    // Get the ImageView for the cover photo from the FXML namespace
-                    ImageView coverPhotoView = (ImageView) profileLoader.getNamespace().get("coverImageView");
-                    profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-
-                    // Set the new image as the cover photo
+        if (selectedFile != null) {
+            try {
+                String newCoverPhotoPath = selectedFile.getAbsolutePath();
+                Image newImage = new Image(selectedFile.toURI().toString());
+                ImageView coverPhotoView = (ImageView) stage.getScene().lookup("#coverPhoto");
+                if (coverPhotoView != null) {
                     coverPhotoView.setImage(newImage);
-
-                    // Update the scene and save the new cover photo path
-                    stage.setScene(profileScene);
-                    currentUser.setCoverphotoPath(selectedFile.getAbsolutePath());
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    currentUser.setCoverphotoPath(newCoverPhotoPath);
+                    try {
+                        databaseManager.writeUser(currentUser);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    System.out.println("Cover ImageView not found in the current scene.");
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-
-        private void handleHome(Stage stage)
+    }
+    private void handleHome(Stage stage)
         {
             try {
                 FXMLLoader homeLoader = new FXMLLoader(Application.class.getResource("homePage.fxml"));
