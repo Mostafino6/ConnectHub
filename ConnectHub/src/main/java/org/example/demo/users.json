@@ -168,6 +168,22 @@
       "friendRequests": [],
       "blockedFriends": []
     }
+  },
+  {
+    "userID": "10",
+    "username": "fineshyt",
+    "name": "Fine Shyt",
+    "email": "fineshyt@example.com",
+    "password": "6c1402d647724b2cb5e6f168d244f3b829ea775f816cfd26e4609a186e8ebcf9",
+    "DOB": "2023-12-05",
+    "status": true,
+    "bio": "I be getting all da huzz",
+    "profilePicture": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
+    "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
   }
-
 ]
