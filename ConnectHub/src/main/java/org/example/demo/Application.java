@@ -17,10 +17,10 @@
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
-    import java.security.NoSuchAlgorithmException;
     import java.util.Date;
+    import java.util.Objects;
 
-public class Application extends javafx.application.Application {
+    public class Application extends javafx.application.Application {
     private  static final ValidationManager validationManager = new ValidationManager();
     private static User currentUser;
     private static final DatabaseManager databaseManager = new DatabaseManager();
@@ -122,7 +122,7 @@ public class Application extends javafx.application.Application {
             boolean signUpSuccessful = validationManager.signup(email, username, name, password, rewritePassword, dateOfBirth);
 
                     if (signUpSuccessful) {
-                        handleProfile(stage); // Navigate to profile on success
+                        handleHome(stage); // Navigate to profile on success
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -134,9 +134,8 @@ public class Application extends javafx.application.Application {
         }
     private void handleProfile(Stage stage) {
         try {
-            // Load the profile FXML file
             FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-            Scene profileScene = new Scene(profileLoader.load(), 995, 800);
+            Scene profileScene = new Scene(profileLoader.load(), 995, 816);
             stage.setTitle("Profile");
             profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             stage.setScene(profileScene);
@@ -148,17 +147,38 @@ public class Application extends javafx.application.Application {
             } else {
                 System.out.println("nameLabel is null");
             }
-
+            ImageView imageView = (ImageView) stage.getScene().lookup("#imageView");
+            if (imageView != null) {
+                if(!currentUser.getPfpPath().isEmpty()) {
+                Circle clip = new Circle();
+                clip.setRadius(imageView.getFitWidth() / 2);
+                clip.setCenterX(imageView.getFitWidth() / 2);
+                clip.setCenterY(imageView.getFitHeight() / 2);
+                imageView.setClip(clip);
+                imageView.setImage(new Image(currentUser.getPfpPath()));
+                }
+            }
+            ImageView coverPhotoView = (ImageView) stage.getScene().lookup("#coverPhoto");
+            if (coverPhotoView != null) {
+                if (!currentUser.getCoverphotoPath().isEmpty()) {
+                    coverPhotoView.setImage(new Image(currentUser.getCoverphotoPath()));
+                }
+            }
+            Label bioLabel = (Label) stage.getScene().lookup("#bioplace");
+            if (bioLabel != null) {
+                if(!currentUser.getBio().isEmpty()) {
+                    bioLabel.setText(currentUser.getBio());
+                }
+            }
             Button addPost = (Button) profileLoader.getNamespace().get("addPost");
             VBox postContainer = (VBox) profileLoader.getNamespace().get("postContainer");
             addPost.setOnAction(event -> handleAddPost(stage, postContainer));
-
             Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
             manageFriends.setOnAction(event -> friendsManager(stage));
-
             Button viewSuggested = (Button) profileLoader.getNamespace().get("viewSuggested");
             viewSuggested.setOnAction(event -> handleSuggested(stage));
-
+            Button viewHome = (Button) profileLoader.getNamespace().get("viewHome");
+            viewHome.setOnAction(event -> handleHome(stage));
             Button editProfileButton = (Button) profileLoader.getNamespace().get("editProfileButton");
             editProfileButton.setOnAction(event -> {
                 System.out.println("Edit Profile Button Clicked");
@@ -398,6 +418,8 @@ public class Application extends javafx.application.Application {
             manageFriends.setOnAction(event -> friendsManager(stage));
             Button viewSuggested = (Button) homeLoader.getNamespace().get("viewSuggested");
             viewSuggested.setOnAction(event -> handleSuggested(stage));
+            Button viewProfile = (Button) homeLoader.getNamespace().get("viewProfile");
+            viewProfile.setOnAction(event -> handleProfile(stage));
             Button refresh = (Button) homeLoader.getNamespace().get("refresh");
             Button addStory= (Button) homeLoader.getNamespace().get("addStory");
             addStory.setOnAction(event -> handleAddStory(stage));

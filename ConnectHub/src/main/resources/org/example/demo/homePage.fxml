@@ -67,6 +67,7 @@
                     <VBox style="-fx-background-color: rgba(255,0,0,0);-fx-spacing: 5px; -fx-padding: 0">
                         <Button fx:id="refresh" style="-fx-alignment: center" styleClass="btn4">Refresh</Button>
                         <Button fx:id="logOut" style="-fx-alignment: center" styleClass="btn4">Log out</Button>
+                  <Button fx:id="viewProfile" mnemonicParsing="false" styleClass="btn4" text="View Profile" />
                     </VBox>
                 </HBox>
 

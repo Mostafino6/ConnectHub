@@ -7,11 +7,11 @@
     "password": "1d5df648c48fd5aa23ef2220be26b28bfd42698c7d2f097cbb6e8813d902a674",
     "DOB": "2004-08-27",
     "status": false,
-    "bio": "Software developer with a passion for technology and innovation.",
-    "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg",
-    "coverPhoto": "",
+    "bio": "Fuk dem lame ass huzz mane",
+    "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
+    "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "friends": {
-      "friendsList": ["2","3","8"],
+      "friendsList": ["2","3","8","13"],
       "friendRequests": [],
       "blockedFriends": ["5"]
     }
@@ -180,6 +180,57 @@
     "bio": "hiii",
     "profilePicture": "D:\\02112007067.jpg",
     "coverPhoto": "D:\\shobier.png",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "12",
+    "username": "yuzz",
+    "name": "YN Huzz",
+    "email": "yuzz@example.com",
+    "password": "1c8114213713bf71395384f0e8310a3c33805645f41ace3c3ddb027911d0826e",
+    "DOB": "2023-12-05",
+    "status": true,
+    "bio": "fuck wit me and ima up the switch on yo ah bitch ah nigga",
+    "profilePicture": "D:\\Downloads\\avatars-uXndVm8Hd26XX1J9-mK7k7w-t1080x1080.jpg",
+    "coverPhoto": "D:\\Downloads\\avatars-uXndVm8Hd26XX1J9-mK7k7w-t1080x1080.jpg",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "13",
+    "username": "muzz",
+    "name": "Mango Buzz",
+    "email": "muzz@example.com",
+    "password": "72ebe8340a1ba9d1bbd7a9071c9d2847acb0b9b679301698bc997378ea28d9d5",
+    "DOB": "2023-12-05",
+    "status": false,
+    "bio": "MANGO MANGO MANGO MANGO MANGO",
+    "profilePicture": "D:\\Downloads\\Screenshot 2024-12-06 175312.png",
+    "coverPhoto": "D:\\Downloads\\buzz.png",
+    "friends": {
+      "friendsList": ["1"],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "14",
+    "username": "bruzz",
+    "name": "Bruzzzzzz",
+    "email": "bruzz@example.com",
+    "password": "7dc29ebb7566cc3d616654a34bab95d62df69e2fb63fcd150dc9b77d7456e06e",
+    "DOB": "2023-12-04",
+    "status": true,
+    "bio": "",
+    "profilePicture": "",
+    "coverPhoto": "",
     "friends": {
       "friendsList": [],
       "friendRequests": [],
