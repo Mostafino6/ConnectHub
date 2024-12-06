@@ -11,7 +11,7 @@
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["2","3","8"],
+      "friendsList": ["2","3"],
       "friendRequests": ["4"],
       "blockedFriends": ["5"]
     }
@@ -46,7 +46,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": ["1","2"],
-      "friendRequests": [],
+      "friendRequests": ["8"],
       "blockedFriends": ["5"]
     }
   },
@@ -87,7 +87,7 @@
   {
     "userID": "6",
     "username": "mostafa",
-    "name": "Mostafa Abayazeed",
+    "name": "Mostafa Mohamed",
     "email": "mostafaabayazeed@yahoo.com",
     "password": "c1d543c4306bc76d8654f71b19cca84d803cea6e7a5d410c20878b6ea824e923",
     "DOB": "2023-12-04",
