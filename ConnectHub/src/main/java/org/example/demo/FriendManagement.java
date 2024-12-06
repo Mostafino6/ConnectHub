@@ -6,12 +6,14 @@ public class FriendManagement {
     private ArrayList<User> friendsList;
     private ArrayList<User> friendRequests;
     private ArrayList<User> blockedFriends;
+    private ArrayList<User> suggestedFriends;
 
 
     public FriendManagement(){
         this.friendsList = new ArrayList<>();
         this.friendRequests = new ArrayList<>();
         this.blockedFriends = new ArrayList<>();
+        this.suggestedFriends = new ArrayList<>();
     }
 
     public ArrayList<User> getFriendsList() {
@@ -25,6 +27,12 @@ public class FriendManagement {
     }
     public void setFriendRequests(ArrayList<User> friendRequests) {
         this.friendRequests = friendRequests;
+    }
+    public ArrayList<User> getSuggestedFriends(){
+        return suggestedFriends;
+    }
+    public void setSuggestedFriends(ArrayList<User> suggestedFriends) {
+        this.suggestedFriends = suggestedFriends;
     }
     public ArrayList<User> getBlockedFriends() {
         return blockedFriends;
@@ -59,7 +67,6 @@ public class FriendManagement {
             blocker.getFriends().getBlockedFriends().add(blocked);
         }
     }
-
     public boolean isFriend(User user) {
         return friendsList.contains(user);
     }
