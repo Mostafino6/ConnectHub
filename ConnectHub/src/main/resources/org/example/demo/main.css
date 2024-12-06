@@ -94,16 +94,6 @@ VBox {
     -fx-padding: 0;
     -fx-spacing: 0;
 }
-.cover {
-    -fx-min-width:980px;
-    -fx-min-height: 130px;
-    -fx-background-color:#bdbdbd ;
-    -fx-background-image: url("coverTest.jpg");
-    -fx-background-size: cover;
-    -fx-background-position: center center;
-    -fx-background-repeat: no-repeat;    -fx-padding: 5px 90px 0 90px;
-    -fx-spacing: 50px;
-}
 .pp
 {
     -fx-alignment: top-right;

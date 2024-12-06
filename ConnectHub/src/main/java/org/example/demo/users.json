@@ -106,11 +106,26 @@
   },
   {
     "userID": "8",
-    "username": "belal",
-    "name": "belal moh",
-    "email": "beeee@ah",
+    "username": "mabayez",
+    "name": "mostafa",
+    "email": "sdsdsds@sdssdsd.com",
     "password": "c1d543c4306bc76d8654f71b19cca84d803cea6e7a5d410c20878b6ea824e923",
-    "DOB": "2023-12-21",
+    "DOB": "2023-12-05",
+    "status": false,
+    "bio": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "9",
+    "username": "dbvbvb",
+    "name": "vsvdvdsv",
+    "email": "svddsvds@sfvsfv.com",
+    "password": "6afdaf399b012040285f420974c8c881cf0d2c566b82f621128de218e748bdd6",
+    "DOB": "2023-12-12",
     "status": false,
     "bio": "null",
     "friends": {

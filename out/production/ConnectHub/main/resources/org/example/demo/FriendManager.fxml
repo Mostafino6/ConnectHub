@@ -15,6 +15,5 @@
          </font>
       </Button>
       <Label layoutX="32.0" layoutY="44.0" styleClass="psts" text="Manage Friends" />
-      <Button fx:id="blockRemove" layoutX="70.0" layoutY="211.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="btn4" text="Block or Remove" />
    </children>
 </AnchorPane>

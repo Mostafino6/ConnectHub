@@ -7,22 +7,28 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 
 <VBox prefHeight="731.0" prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+    <StackPane>
+        <!-- Cover Image -->
+        <ImageView id="coverPhoto" fx:id="coverImageView" fitHeight="200" fitWidth="980" preserveRatio="false" styleClass="cover">
+        </ImageView>
 
-    <HBox styleClass="cover">
-        <VBox styleClass="vPrfIn">
-            <ImageView fx:id="imageView" fitHeight="150" fitWidth="150" preserveRatio="true" styleClass="pp">
-                <Image url="@profile-icon.png" />
-            </ImageView>
-            <Button fx:id="editProfile" styleClass="btn4">Edit Profile</Button>
-        </VBox>
-
-        <VBox styleClass="vPrfIn2">
-            <Label styleClass="name" text="Eyad Ahmed Aly">Eyad Ahmed Aly</Label>
-            <Label styleClass="bio" text="gdx gdxd rgsd hdfx ghndfx dxfd">gdx gdxd rgsd hdfx ghndfx dxfd</Label>
-        </VBox>
-    </HBox>
+        <!-- Foreground Content -->
+        <HBox styleClass="cover">
+            <VBox styleClass="vPrfIn">
+                <ImageView fx:id="imageView" fitHeight="150" fitWidth="150" preserveRatio="true" styleClass="pp">
+                    <Image url="@profile-icon.png" />
+                </ImageView>
+                <Button fx:id="editProfileButton" styleClass="btn4" text="Edit Profile" />
+            </VBox>
+            <VBox styleClass="vPrfIn2">
+                <Label styleClass="name">Eyad Ahmed Aly</Label>
+                <Label fx:id="bioplace" prefHeight="9.0" prefWidth="250.0" styleClass="lblsPass" stylesheets="@main.css" text="Your Bio Here" />
+            </VBox>
+        </HBox>
+    </StackPane>
 
     <BorderPane>
         <left>
@@ -40,7 +46,6 @@
                     </ImageView>
                     <Label fx:id="textPostContent_1" styleClass="textPostContent">dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg</Label>
                 </HBox>
-
                 <HBox styleClass="imagePost">
                     <ImageView fx:id="postImagePp_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
                         <Image url="@profile-icon.png" />
