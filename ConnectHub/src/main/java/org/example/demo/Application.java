@@ -1,6 +1,7 @@
     package org.example.demo;
 
     import javafx.fxml.FXMLLoader;
+    import javafx.scene.Parent;
     import javafx.scene.Scene;
     import javafx.scene.control.*;
     import javafx.scene.image.Image;
@@ -398,6 +399,10 @@ public class Application extends javafx.application.Application {
             Button viewSuggested = (Button) homeLoader.getNamespace().get("viewSuggested");
             viewSuggested.setOnAction(event -> handleSuggested(stage));
             Button refresh = (Button) homeLoader.getNamespace().get("refresh");
+            Button addStory= (Button) homeLoader.getNamespace().get("addStory");
+            addStory.setOnAction(event -> handleAddStory(stage));
+            Button viewStoriesButton= (Button) homeLoader.getNamespace().get("viewStoriesButton");
+            viewStoriesButton.setOnAction(event -> handleViewStories(stage));
             refresh.setOnAction(event -> {
                 handleHome(stage);
             });
@@ -415,6 +420,135 @@ public class Application extends javafx.application.Application {
             e.printStackTrace();
         }
     }
+
+    private void handleViewStories(Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo/viewStories.fxml"));
+            Parent root = loader.load();
+
+            VBox storyContainer = (VBox) loader.getNamespace().get("storyContainer");
+
+            // Display stories of the current user
+            if (currentUser.getStories() != null && !currentUser.getStories().isEmpty()) {
+                for (Story story : currentUser.getStories()) {
+                    addStoryToContainer(story, storyContainer);
+                }
+            } else {
+                Label noStoriesLabel = new Label("No stories available for you.");
+                noStoriesLabel.getStyleClass().add("noStoriesLabel");
+                storyContainer.getChildren().add(noStoriesLabel);
+            }
+            // Display stories of the user's friends
+            if (currentUser.getFriends() != null && !currentUser.getFriends().getFriendsList().isEmpty()) {
+                for (User friend : currentUser.getFriends().getFriendsList()) {
+                    if (friend.getStories() != null && !friend.getStories().isEmpty()) {
+                        for (Story story : friend.getStories()) {
+                            addStoryToContainer(story, storyContainer);
+                        }
+                    } else {
+                        Label noFriendStoriesLabel = new Label(friend.getUsername() + " has no stories.");
+                        noFriendStoriesLabel.getStyleClass().add("noFriendStoriesLabel");
+                        storyContainer.getChildren().add(noFriendStoriesLabel);
+                    }
+                }
+            } else {
+                Label noFriendsLabel = new Label("You have no friends yet.");
+                noFriendsLabel.getStyleClass().add("noFriendsLabel");
+                storyContainer.getChildren().add(noFriendsLabel);
+            }
+
+            Stage storyStage = new Stage();
+            storyStage.setTitle("User and Friends Stories");
+            storyStage.setScene(new Scene(root, 600, 400));
+            storyStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Unable to load stories view.");
+        }
+    }
+
+    private void addStoryToContainer(Story story, VBox storyContainer) {
+        HBox storyBox = new HBox();
+        storyBox.getStyleClass().add("storyBox");
+
+        ImageView profileImage = new ImageView(new Image(getClass().getResource("/org/example/demo/profile-icon.png").toExternalForm()));
+        profileImage.setFitHeight(50);
+        profileImage.setFitWidth(50);
+        profileImage.setPreserveRatio(true);
+
+        VBox storyContentContainer = new VBox();
+
+        if (story.getCaption() != null && !story.getCaption().isEmpty()) {
+            Label storyCaption = new Label(story.getCaption());
+            storyCaption.getStyleClass().add("storyCaption");
+            storyContentContainer.getChildren().add(storyCaption);
+        }
+
+        if (story.getImageUrl() != null && !story.getImageUrl().isEmpty()) {
+            ImageView storyImage = new ImageView(new Image(story.getImageUrl()));
+            storyImage.setFitHeight(250);
+            storyImage.setFitWidth(250);
+            storyImage.setPreserveRatio(true);
+            storyContentContainer.getChildren().add(storyImage);
+        }
+
+        Label storyDate = new Label(story.getDateCreated().toString());
+        storyDate.getStyleClass().add("storyDate");
+        storyContentContainer.getChildren().add(storyDate);
+
+        Label storyUsername = new Label(story.getOwner().getUsername());
+        storyUsername.getStyleClass().add("storyUsername");
+        storyContentContainer.getChildren().add(storyUsername);
+
+        storyBox.getChildren().addAll(profileImage, storyContentContainer);
+        storyContainer.getChildren().add(storyBox);
+    }
+
+    private void handleAddStory(Stage stage) {
+        try {
+            FXMLLoader storyLoader = new FXMLLoader(Application.class.getResource("addStory.fxml"));
+            Scene addStoryScene = new Scene(storyLoader.load(), 600, 400);
+            Stage addStoryStage = new Stage();
+            addStoryStage.setTitle("Add Story");
+            addStoryScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            addStoryStage.setScene(addStoryScene);
+            Button publishStoryButton = (Button) storyLoader.getNamespace().get("publishStoryButton");
+            Button choosePhotoButton = (Button) storyLoader.getNamespace().get("choosePhotoButton");
+            TextField captionField = (TextField) storyLoader.getNamespace().get("captionField");
+            String[] selectedImagePath = {null};
+            choosePhotoButton.setOnAction(event -> {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+                File file = fileChooser.showOpenDialog(addStoryStage);
+                if (file != null) {
+                    selectedImagePath[0] = file.toURI().toString(); // Store the image path
+                }
+            });
+            publishStoryButton.setOnAction(event -> {
+                String caption = captionField.getText();
+                if (caption.isEmpty() && selectedImagePath[0] == null) {
+                   JOptionPane.showMessageDialog(null, "Empty Story");
+                } else {
+                    Story newStory;
+                    if (selectedImagePath[0] != null) {
+                        newStory = new Story(currentUser, caption, new Image(selectedImagePath[0]));
+                    } else {
+                        newStory = new Story(currentUser, caption);
+                    }
+                    currentUser.addStory(newStory);
+                    System.out.println("Story added for user: " + currentUser.getUsername());
+                    addStoryStage.close();
+                }
+            });
+
+            addStoryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     private void viewFriendsList(Stage stage) {
         try {
             FXMLLoader friendsLoader = new FXMLLoader(Application.class.getResource("viewFriends.fxml"));

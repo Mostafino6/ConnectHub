@@ -152,6 +152,7 @@
       "blockedFriends": []
     }
   },
+  {
     "userID": "10",
     "username": "fineshyt",
     "name": "Fine Shyt",
@@ -162,6 +163,23 @@
     "bio": "I be getting all da huzz",
     "profilePicture": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "11",
+    "username": "Hossam",
+    "name": "Hossam ahmed",
+    "email": "hossam@icloud.com",
+    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
+    "DOB": "2024-12-01",
+    "status": true,
+    "bio": "hiii",
+    "profilePicture": "D:\\02112007067.jpg",
+    "coverPhoto": "D:\\shobier.png",
     "friends": {
       "friendsList": [],
       "friendRequests": [],
