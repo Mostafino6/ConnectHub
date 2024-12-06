@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class DatabaseManager {
-    private static final String DATABASE_FILE = "C:\\Users\\ADMIN\\OneDrive\\Documents\\New folder\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\users.json";
+    private static final String DATABASE_FILE = "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\users.json";
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     // Parses a date string into a Date object
@@ -39,6 +39,9 @@ public class DatabaseManager {
         // Create a HashMap to store userID -> User mapping
         HashMap<String, User> userMap = new HashMap<>();
         ArrayList<User> userList = new ArrayList<>();
+
+        // Create a HashMap to store postID -> Post mapping
+        HashMap<String, Post> postMap = new HashMap<>();
 
         // First pass: create User objects and store them in the map
         for (Object obj : jsonArray) {
@@ -74,7 +77,7 @@ public class DatabaseManager {
             userList.add(user);
         }
 
-        // Second pass: Populate friend-related lists
+        // Second pass: Populate friend-related lists and posts
         for (Object obj : jsonArray) {
             JSONObject jsonObject = (JSONObject) obj;
             String userId = (String) jsonObject.get("userID");
@@ -90,8 +93,22 @@ public class DatabaseManager {
 
             JSONArray blockedFriends = (JSONArray) friendsObject.get("blockedFriends");
             user.getFriends().setBlockedFriends(getUserObjectsFromIDs(blockedFriends, userMap));
+
+            // Parse posts and store them in the user's post list
+            JSONArray postIds = (JSONArray) jsonObject.get("posts");
+            ArrayList<Post> posts = new ArrayList<>();
+            for (Object postIdObj : postIds) {
+                String postId = (String) postIdObj;
+                Post post = postMap.get(postId); // Retrieve Post from postMap using postId
+                if (post != null) {
+                    System.out.println(post);
+                    posts.add(post); // Add the post to the user's list of posts
+                }
+            }
+            user.setPosts(posts); // Set the user's posts list
         }
-        // Suggest friends for each user
+
+        // Suggest friends for each user (existing logic)
         for (User mainUser : userList) {
             if (mainUser.getFriends().getSuggestedFriends() == null) {
                 mainUser.getFriends().setSuggestedFriends(new ArrayList<>());
@@ -101,11 +118,14 @@ public class DatabaseManager {
             ArrayList<String> allBlockedIDs = new ArrayList<>();
 
             for (User friend : mainUser.getFriends().getFriendsList()) {
-                allFriendIDs.add(friend.getUserID());}
+                allFriendIDs.add(friend.getUserID());
+            }
             for (User request : mainUser.getFriends().getFriendRequests()) {
-                allRequestIDs.add(request.getUserID());}
+                allRequestIDs.add(request.getUserID());
+            }
             for (User blocked : mainUser.getFriends().getBlockedFriends()) {
-                allBlockedIDs.add(blocked.getUserID());}
+                allBlockedIDs.add(blocked.getUserID());
+            }
             for (User otherUser : userList) {
                 if (!mainUser.getUserID().equals(otherUser.getUserID()) &&
                         !allFriendIDs.contains(otherUser.getUserID()) &&
@@ -118,7 +138,6 @@ public class DatabaseManager {
 
         return userList;
     }
-
     private ArrayList<User> getUserObjectsFromIDs(JSONArray ids, HashMap<String, User> userMap) {
         ArrayList<User> users = new ArrayList<>();
         for (Object idObj : ids) {
@@ -196,6 +215,14 @@ public class DatabaseManager {
             friendsObject.put("friendRequests", getIDsFromUserObjects(existingUser.getFriends().getFriendRequests()));
             friendsObject.put("blockedFriends", getIDsFromUserObjects(existingUser.getFriends().getBlockedFriends()));
             jsonUser.put("friends", friendsObject);
+
+            // Posts information
+            JSONArray postsArray = new JSONArray();
+            for (Post post : existingUser.getPosts()) {
+                postsArray.add(post);
+            }
+            jsonUser.put("posts", postsArray);
+
             jsonArray.add(jsonUser);
         }
 
@@ -224,7 +251,10 @@ public class DatabaseManager {
                 writer.write("      \"friendsList\": " + friendsObject.get("friendsList").toString() + ",\n");
                 writer.write("      \"friendRequests\": " + friendsObject.get("friendRequests").toString() + ",\n");
                 writer.write("      \"blockedFriends\": " + friendsObject.get("blockedFriends").toString() + "\n");
-                writer.write("    }\n");
+                writer.write("    },\n");
+
+                // Write posts
+                writer.write("    \"posts\": " + jsonUser.get("posts").toString() + "\n");
 
                 // Close the user object
                 if (i < jsonArray.size() - 1) {

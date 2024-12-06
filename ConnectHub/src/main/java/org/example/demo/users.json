@@ -6,15 +6,16 @@
     "email": "mostafaabayazeed@yahoo.com",
     "password": "1d5df648c48fd5aa23ef2220be26b28bfd42698c7d2f097cbb6e8813d902a674",
     "DOB": "2004-08-27",
-    "status": false,
-    "bio": "Software developer with a passion for technology and innovation.",
-    "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg",
-    "coverPhoto": "",
+    "status": true,
+    "bio": "Fuk dem lame ass huzz mane",
+    "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
+    "coverPhoto": "D:\\Downloads\\buzz.png",
     "friends": {
-      "friendsList": ["2","3","8"],
+      "friendsList": ["2","3","8","13","12"],
       "friendRequests": [],
       "blockedFriends": ["5"]
-    }
+    },
+    "posts": []
   },
   {
     "userID": "2",
@@ -23,15 +24,16 @@
     "email": "johnpork@example.com",
     "password": "1d24f5b2e0f540a6938dc091b962bb71b5a6850b12b08d79361a137898fc91ff",
     "DOB": "1992-05-15",
-    "status": true,
+    "status": false,
     "bio": "Loves coding and solving complex problems.",
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["1","3"],
+      "friendsList": ["1","3","8"],
       "friendRequests": [],
       "blockedFriends": []
-    }
+    },
+    "posts": []
   },
   {
     "userID": "3",
@@ -40,7 +42,7 @@
     "email": "chillguy@example.com",
     "password": "9fe5e0a43712f05785002103cfac2add80771a19d76f2c562633f65375ea5581",
     "DOB": "1991-09-10",
-    "status": true,
+    "status": false,
     "bio": "Enjoys hiking and traveling.",
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\Screenshot 2024-12-05 123219.png",
     "coverPhoto": "",
@@ -48,7 +50,8 @@
       "friendsList": ["1","2"],
       "friendRequests": ["8"],
       "blockedFriends": ["5"]
-    }
+    },
+    "posts": []
   },
   {
     "userID": "4",
@@ -65,7 +68,8 @@
       "friendsList": [],
       "friendRequests": ["1"],
       "blockedFriends": []
-    }
+    },
+    "posts": []
   },
   {
     "userID": "5",
@@ -82,7 +86,8 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": ["1","3"]
-    }
+    },
+    "posts": []
   },
   {
     "userID": "6",
@@ -91,7 +96,7 @@
     "email": "mostafaabayazeed@yahoo.com",
     "password": "c1d543c4306bc76d8654f71b19cca84d803cea6e7a5d410c20878b6ea824e923",
     "DOB": "2023-12-04",
-    "status": true,
+    "status": false,
     "bio": "",
     "profilePicture": "",
     "coverPhoto": "",
@@ -99,7 +104,8 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    }
+    },
+    "posts": []
   },
   {
     "userID": "7",
@@ -116,7 +122,8 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    }
+    },
+    "posts": []
   },
   {
     "userID": "8",
@@ -130,10 +137,11 @@
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\img.png",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["1"],
+      "friendsList": ["1","2"],
       "friendRequests": [],
       "blockedFriends": ["3"]
-    }
+    },
+    "posts": []
   },
   {
     "userID": "9",
@@ -150,7 +158,8 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    }
+    },
+    "posts": []
   },
   {
     "userID": "10",
@@ -159,7 +168,7 @@
     "email": "fineshyt@example.com",
     "password": "6c1402d647724b2cb5e6f168d244f3b829ea775f816cfd26e4609a186e8ebcf9",
     "DOB": "2023-12-05",
-    "status": true,
+    "status": false,
     "bio": "I be getting all da huzz",
     "profilePicture": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
@@ -167,23 +176,97 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    }
+    },
+    "posts": []
   },
   {
     "userID": "11",
-    "username": "Hossam",
-    "name": "Hossam ahmed",
-    "email": "hossam@icloud.com",
-    "password": "21c1b4c8e1dd764ce6ae0ec45c06278cbc9e3e9a10d7b1518478b83f474c3224",
-    "DOB": "2024-12-01",
-    "status": true,
-    "bio": "hiii",
-    "profilePicture": "D:\\02112007067.jpg",
-    "coverPhoto": "D:\\shobier.png",
+    "username": "chuzz",
+    "name": "Chopped Shyt",
+    "email": "chuzz@example.com",
+    "password": "4934da4b451b1cfa76398b19fa73043c6369b3b85697c127cc13bae751905470",
+    "DOB": "2023-12-05",
+    "status": false,
+    "bio": "",
+    "profilePicture": "",
+    "coverPhoto": "",
     "friends": {
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    }
+    },
+    "posts": []
+  },
+  {
+    "userID": "11",
+    "username": "chuzz",
+    "name": "Chopped Shyt",
+    "email": "chuzz@example.com",
+    "password": "4934da4b451b1cfa76398b19fa73043c6369b3b85697c127cc13bae751905470",
+    "DOB": "2023-12-05",
+    "status": false,
+    "bio": "",
+    "profilePicture": "",
+    "coverPhoto": "",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    },
+    "posts": []
+  },
+  {
+    "userID": "12",
+    "username": "yuzz",
+    "name": "YN Huzz",
+    "email": "yuzz@example.com",
+    "password": "1c8114213713bf71395384f0e8310a3c33805645f41ace3c3ddb027911d0826e",
+    "DOB": "2023-12-05",
+    "status": false,
+    "bio": "",
+    "profilePicture": "D:\\Downloads\\avatars-uXndVm8Hd26XX1J9-mK7k7w-t1080x1080.jpg",
+    "coverPhoto": "D:\\Downloads\\avatars-uXndVm8Hd26XX1J9-mK7k7w-t1080x1080.jpg",
+    "friends": {
+      "friendsList": ["1"],
+      "friendRequests": [],
+      "blockedFriends": []
+    },
+    "posts": []
+  },
+  {
+    "userID": "13",
+    "username": "muzz",
+    "name": "Mango Buzz",
+    "email": "muzz@example.com",
+    "password": "72ebe8340a1ba9d1bbd7a9071c9d2847acb0b9b679301698bc997378ea28d9d5",
+    "DOB": "2023-12-05",
+    "status": false,
+    "bio": "MANGO MANGO MANGO MANGO MANGO",
+    "profilePicture": "D:\\Downloads\\Screenshot 2024-12-06 175312.png",
+    "coverPhoto": "D:\\Downloads\\buzz.png",
+    "friends": {
+      "friendsList": ["1"],
+      "friendRequests": [],
+      "blockedFriends": []
+    },
+    "posts": []
+  },
+  {
+    "userID": "14",
+    "username": "bruzz",
+    "name": "Bruzzzzzz",
+    "email": "bruzz@example.com",
+    "password": "7dc29ebb7566cc3d616654a34bab95d62df69e2fb63fcd150dc9b77d7456e06e",
+    "DOB": "2023-12-04",
+    "status": false,
+    "bio": "",
+    "profilePicture": "",
+    "coverPhoto": "",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    },
+    "posts": []
   }
 ]
