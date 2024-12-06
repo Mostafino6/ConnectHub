@@ -3,13 +3,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
     <children>
+        <Label layoutX="10.0" layoutY="10.0" text="Stories" styleClass="storyTitle" />
 
-        <Label layoutX="10.0" layoutY="10.0" text="View Stories" styleClass="storyTitle" />
-
-        <VBox fx:id="storyContainer" layoutX="10.0" layoutY="50.0" prefWidth="580.0" spacing="10.0" styleClass="storyContainer">
-        </VBox>
+        <ScrollPane layoutX="10.0" layoutY="50.0" prefWidth="580.0" prefHeight="340.0">
+            <content>
+                <VBox fx:id="storyContainer" spacing="10.0" styleClass="storyContainer">
+                </VBox>
+            </content>
+        </ScrollPane>
     </children>
 </AnchorPane>
