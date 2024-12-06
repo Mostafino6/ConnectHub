@@ -41,20 +41,7 @@
                         <Button fx:id="addStory" styleClass="btn4" text="Add Story">Add Story</Button>
                     </HBox>
                 </HBox>
-                <HBox styleClass="textPost">
-                    <ImageView fx:id="textPostImage_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <Label fx:id="textPostContent_1" styleClass="textPostContent">dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg</Label>
-                </HBox>
-                <HBox styleClass="imagePost">
-                    <ImageView fx:id="postImagePp_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
-                        <Image url="@profile-icon.png" />
-                    </ImageView>
-                    <ImageView fx:id="imagePostImage_1" fitWidth="400" preserveRatio="true" styleClass="postImage">
-                        <Image url="@testPostjpg.jpg" />
-                    </ImageView>
-                </HBox>
+                <fx:include source="profilePosts.fxml" />
             </VBox>
         </left>
         <right>

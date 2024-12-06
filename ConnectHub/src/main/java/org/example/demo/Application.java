@@ -16,6 +16,7 @@
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
+    import java.util.ArrayList;
     import java.util.Date;
     import java.util.Objects;
 
@@ -23,6 +24,7 @@
     private  static final ValidationManager validationManager = new ValidationManager();
     private static User currentUser;
     private static final DatabaseManager databaseManager = new DatabaseManager();
+    private static final PostManager postManager = new PostManager();
 
     public static void setCurrentUser(User user) {
         currentUser = user;
@@ -186,6 +188,8 @@
 
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -420,9 +424,23 @@
             Button viewProfile = (Button) homeLoader.getNamespace().get("viewProfile");
             viewProfile.setOnAction(event -> handleProfile(stage));
             Button refresh = (Button) homeLoader.getNamespace().get("refresh");
-            refresh.setOnAction(event -> {
-                handleHome(stage);
-            });
+                refresh.setOnAction(event -> {
+                    try {
+                        ArrayList<User> updatedUsers = databaseManager.readUsers();
+                        // Update the current user object with the refreshed data
+                        for (User user : updatedUsers) {
+                            if (user.getUserID().equals(currentUser.getUserID())) {
+                                currentUser = user;
+                                Application.setCurrentUser(currentUser);
+                                break;
+                            }
+                        }
+                        // Refresh the home page with the updated currentUser
+                        handleHome(stage);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
             Button logout = (Button) homeLoader.getNamespace().get("logOut");
             logout.setOnAction(event -> {
                 stage.close();
@@ -550,9 +568,9 @@
                     // Create a new post based on content
                     Post newPost;
                     if (textContent.isEmpty()) {
-                        newPost = new Post(currentUser, new Image(selectedImagePath[0])); // For image post only
+                        newPost = new Post(currentUser, null,  new Image(selectedImagePath[0])); // For image post only
                     } else {
-                        newPost = new Post(currentUser, textContent); // For text post
+                        newPost = new Post(currentUser, textContent,null); // For text post
                     }
                     addPostToContainer(newPost, postContainer);
                     addPostStage.close();
