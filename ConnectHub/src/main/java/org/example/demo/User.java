@@ -2,7 +2,6 @@ package org.example.demo;
 
 import java.util.Date;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class User {
     private String userID;
@@ -17,14 +16,19 @@ public class User {
     private String bio;
     private FriendManagement friends;
     private ArrayList<Post> posts;
-    public User(){
+    private ArrayList<Story> stories; // New list to manage user stories
+
+    // Default constructor
+    public User() {
         this.friends = new FriendManagement();
         this.posts = new ArrayList<>();
+        this.stories = new ArrayList<>(); // Initialize stories list
         this.pfpPath = "";
         this.coverphotoPath = "";
         this.bio = "";
     }
 
+    // Getters and setters for user attributes
     public String getUserID() {
         return userID;
     }
@@ -74,8 +78,7 @@ public class User {
     }
 
     public String getStatus() {
-        if (status) return "Online";
-        else return "Offline";
+        return status ? "Online" : "Offline";
     }
 
     public void setStatus(boolean status) {
@@ -113,6 +116,8 @@ public class User {
     public void setCoverphotoPath(String coverphotoPath) {
         this.coverphotoPath = "file:///" + coverphotoPath;
     }
+
+    // Methods for managing posts
     public ArrayList<Post> getPosts() {
         return posts;
     }
@@ -120,14 +125,21 @@ public class User {
     public void setPosts(ArrayList<Post> posts) {
         this.posts = posts;
     }
+
     public void addPost(Post post) {
-        this.posts.add(post);
+        posts.add(post);
     }
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        User user = (User) obj;
-        return userID.equals(user.userID);
+
+    // Methods for managing stories
+    public ArrayList<Story> getStories() {
+        return stories;
+    }
+
+    public void setStories(ArrayList<Story> stories) {
+        this.stories = stories;
+    }
+
+    public void addStory(Story story) {
+        stories.add(story);
     }
 }

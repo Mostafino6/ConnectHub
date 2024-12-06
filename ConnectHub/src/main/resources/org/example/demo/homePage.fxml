@@ -33,11 +33,28 @@
                 <HBox styleClass="acHb">
                     <Label styleClass="psts">Posts</Label>
                     <HBox styleClass="btnsHbox">
-                        <Button fx:id="addPost" minHeight="14.0" minWidth="102.0" prefHeight="14.0" prefWidth="102.0" styleClass="btn4">Add Post</Button>
+                        <Button fx:id="addPost" minHeight="14.0" minWidth="102.0" prefHeight="23.0" prefWidth="102.0" styleClass="btn4">Add Post</Button>
                         <Button fx:id="addStory" styleClass="btn4">Add Story</Button>
+                  <Button fx:id="viewStoriesButton" mnemonicParsing="false" styleClass="btn4" stylesheets="@main.css" text="View Stroies" />
                     </HBox>
                 </HBox>
-                <fx:include source="allPosts.fxml" />
+<!--                <HBox styleClass="textPost">-->
+<!--                    <ImageView fx:id="textPostImage_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">-->
+<!--                        <Image url="@profile-icon.png" />-->
+<!--                    </ImageView>-->
+<!--                    <Label fx:id="textPostContent_1" styleClass="textPostContent">-->
+<!--                        dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg-->
+<!--                    </Label>-->
+<!--                </HBox>-->
+
+<!--                <HBox styleClass="imagePost">-->
+<!--                    <ImageView fx:id="postImagePp_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">-->
+<!--                        <Image url="@profile-icon.png" />-->
+<!--                    </ImageView>-->
+<!--                    <ImageView fx:id="imagePostImage_1" fitHeight="249.0" fitWidth="311.0" preserveRatio="true" styleClass="postImage">-->
+<!--                        <Image fx:id="imagePost" url="@testPostjpg.jpg" />-->
+<!--                    </ImageView>-->
+<!--                </HBox>-->
             </VBox>
 
         </left>
@@ -50,7 +67,6 @@
                     <VBox style="-fx-background-color: rgba(255,0,0,0);-fx-spacing: 5px; -fx-padding: 0">
                         <Button fx:id="refresh" style="-fx-alignment: center" styleClass="btn4">Refresh</Button>
                         <Button fx:id="logOut" style="-fx-alignment: center" styleClass="btn4">Log out</Button>
-                  <Button fx:id="viewProfile" mnemonicParsing="false" styleClass="btn4" text="View Profile" />
                     </VBox>
                 </HBox>
 
