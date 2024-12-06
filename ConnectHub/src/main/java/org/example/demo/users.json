@@ -6,12 +6,12 @@
     "email": "mostafaabayazeed@yahoo.com",
     "password": "1d5df648c48fd5aa23ef2220be26b28bfd42698c7d2f097cbb6e8813d902a674",
     "DOB": "2004-08-27",
-    "status": false,
+    "status": true,
     "bio": "Fuk dem lame ass huzz mane",
     "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "D:\\Downloads\\buzz.png",
     "friends": {
-      "friendsList": ["2","3","8","13"],
+      "friendsList": ["2","3","8","13","12"],
       "friendRequests": [],
       "blockedFriends": ["5"]
     },
@@ -227,7 +227,7 @@
     "profilePicture": "D:\\Downloads\\avatars-uXndVm8Hd26XX1J9-mK7k7w-t1080x1080.jpg",
     "coverPhoto": "D:\\Downloads\\avatars-uXndVm8Hd26XX1J9-mK7k7w-t1080x1080.jpg",
     "friends": {
-      "friendsList": [],
+      "friendsList": ["1"],
       "friendRequests": [],
       "blockedFriends": []
     },
