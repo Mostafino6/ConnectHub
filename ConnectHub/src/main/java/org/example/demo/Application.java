@@ -498,6 +498,7 @@ public class Application extends javafx.application.Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
     private void addPostToContainer(Post post, VBox postContainer) {
         HBox postBox = new HBox();
         postBox.getStyleClass().add("postBox");
@@ -534,7 +535,6 @@ public class Application extends javafx.application.Application {
         postBox.getChildren().addAll(profileImage, postContentContainer);
         postContainer.getChildren().add(postBox);
     }
-
 //    private void addTextPost(String content,VBox postContainer) {
 //        HBox textPostBox = new HBox();
 //        textPostBox.getStyleClass().add("textPost");

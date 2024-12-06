@@ -133,5 +133,35 @@
       "friendRequests": [],
       "blockedFriends": []
     }
+  },
+  {
+    "userID": "10",
+    "username": "balabeelo",
+    "name": "Balabel",
+    "email": "balabel@uuu.com",
+    "password": "c08cdc8cb5b0c0585ad36c6a423b5207945fe3ca09bbbb8dd4c82d54c696331c",
+    "DOB": "2024-12-05",
+    "status": false,
+    "bio": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "11",
+    "username": "dfdfd",
+    "name": "sfdfsddf",
+    "email": "sdfsdfd@fsvsfvfv.com",
+    "password": "dcba457d6ab527e245b1bc5a709ae4839f9eba03fdfb8cedd533086091d9bd8a",
+    "DOB": "2023-12-05",
+    "status": false,
+    "bio": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
   }
 ]
