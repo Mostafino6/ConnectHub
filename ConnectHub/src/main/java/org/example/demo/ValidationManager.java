@@ -117,7 +117,7 @@ public class ValidationManager {
             newUser.setStatus(true);
             users.add(newUser);
             Application.setCurrentUser(newUser);
-            databaseManager.writeUser(newUser);
+            databaseManager.writeUser(newUser); // Save new user
             return true; //"Signup successful!";
         } catch (Exception e) {
             e.printStackTrace();
