@@ -9,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.geometry.Insets;
 import javafx.scene.shape.Circle;
 
+import javax.swing.*;
+import java.util.List;
+
 public class SFcell extends ListCell<User> {
     private HBox userInfo;
     private ImageView pfp;
@@ -30,6 +33,12 @@ public class SFcell extends ListCell<User> {
         text.setSpacing(10);
         userInfo = new HBox(15,pfp,text);
         userInfo.setPadding(new Insets(10));
+        addButton.setOnAction(e -> {
+           User user = getItem();
+           if(user != null){
+               handleAddButton(user);
+           }
+        });
     }
     @Override
     protected void updateItem(User user, boolean empty) {
@@ -43,5 +52,21 @@ public class SFcell extends ListCell<User> {
             setGraphic(userInfo);
         }
     }
+    private void handleAddButton(User user){
+        User currentUser = Application.getCurrentUser();
+        if(currentUser != null){
+            try {
+                user.getFriends().getFriendRequests().add(currentUser);
+                currentUser.getFriends().getSuggestedFriends().remove(user);
+                JOptionPane.showMessageDialog(null,"Friend Request Sent!");
+                Application.getDatabaseManager().writeUser(user);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        else{
+            System.out.println("user not found");
+        }
 
+    }
 }

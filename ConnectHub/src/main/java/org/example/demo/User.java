@@ -20,6 +20,9 @@ public class User {
     public User(){
         this.friends = new FriendManagement();
         this.posts = new ArrayList<>();
+        this.pfpPath = "";
+        this.coverphotoPath = "";
+        this.bio = "";
     }
 
     public String getUserID() {
@@ -120,21 +123,5 @@ public class User {
 
     public void addPost(Post post) {
         posts.add(post);
-    }
-
-    public void sendFriendRequest(User user) {
-        friends.sendFriendRequest(this, user);
-    }
-
-    public void acceptFriendRequest(User user) {
-        friends.acceptFriendRequest(this, user);
-    }
-
-    public void rejectFriendRequest(User user) {
-        friends.rejectFriendRequest(this, user);
-    }
-
-    public void blockFriend(User user) {
-        friends.blockFriend(this, user);
     }
 }
