@@ -11,7 +11,7 @@
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["2","3"],
+      "friendsList": ["2","3","8"],
       "friendRequests": ["4"],
       "blockedFriends": ["5"]
     }
@@ -112,6 +112,23 @@
     "bio": "null",
     "profilePicture": "",
     "coverPhoto": "",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
+  },
+  {
+    "userID": "8",
+    "username": "freakybob",
+    "name": "Freakbob",
+    "email": "freakbob@example.com",
+    "password": "54bfc34cd0653e5709d8390e145824c3bb9977970658eb2a964c1cc21f2e9e2d",
+    "DOB": "2023-12-23",
+    "status": true,
+    "bio": "null",
+    "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\img.png",
+    "coverPhoto": "null",
     "friends": {
       "friendsList": [],
       "friendRequests": [],

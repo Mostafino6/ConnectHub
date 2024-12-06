@@ -108,7 +108,6 @@ public class ValidationManager {
             newUser.setPassword(hashedPassword);
             newUser.setUserID(databaseManager.getNextUserID(users));
             newUser.setStatus(true);
-
             users.add(newUser);
             Application.setCurrentUser(newUser);
             databaseManager.writeUser(newUser); // Save new user

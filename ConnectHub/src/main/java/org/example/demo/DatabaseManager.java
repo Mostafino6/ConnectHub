@@ -176,13 +176,16 @@ public class DatabaseManager {
             if (pfpPath != null && pfpPath.startsWith("file:///")) {
                 pfpPath = pfpPath.substring(8);
             }
-            pfpPath = pfpPath.replace("\\", "\\\\");
-
+            if(pfpPath != null) {
+                pfpPath = pfpPath.replace("\\", "\\\\");
+            }
             String coverphotoPath = existingUser.getCoverphotoPath();
             if (coverphotoPath != null && coverphotoPath.startsWith("file:///")) {
                 coverphotoPath = coverphotoPath.substring(8);
             }
-            coverphotoPath = coverphotoPath.replace("\\", "\\\\");
+            if(coverphotoPath != null) {
+                coverphotoPath = coverphotoPath.replace("\\", "\\\\");
+            }
             jsonUser.put("bio", existingUser.getBio());
             jsonUser.put("profilePicture", pfpPath);
             jsonUser.put("coverPhoto", coverphotoPath);
