@@ -31,8 +31,7 @@
 
         <Label styleClass="lblsPass" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
         <PasswordField fx:id="signUpPasswordField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-
-        <Label styleClass="lblsPass" text="Rewrite Password:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+<Label styleClass="lblsPass" text="Rewrite Password:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
         <PasswordField fx:id="signUpRewritePasswordField" styleClass="fields" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
     </GridPane>
 

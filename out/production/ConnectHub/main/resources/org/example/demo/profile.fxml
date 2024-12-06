@@ -9,24 +9,24 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="816.0" prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+<VBox prefHeight="731.0" prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+<VBox styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
     <StackPane>
         <!-- Cover Image -->
-        <ImageView id="coverPhoto" fx:id="coverImageView" fitHeight="200.0" fitWidth="980" preserveRatio="false" styleClass="cover">
+        <ImageView id="coverPhoto" fx:id="coverImageView" fitHeight="200" fitWidth="980" preserveRatio="false" styleClass="cover">
         </ImageView>
 
         <!-- Foreground Content -->
-        <HBox prefHeight="221.0" prefWidth="995.0" styleClass="cover">
+        <HBox styleClass="cover">
             <VBox styleClass="vPrfIn">
                 <ImageView fx:id="imageView" fitHeight="150" fitWidth="150" preserveRatio="true" styleClass="pp">
                     <Image url="@profile-icon.png" />
                 </ImageView>
                 <Button fx:id="editProfileButton" styleClass="btn4" text="Edit Profile" />
-            <Button fx:id="viewHome" mnemonicParsing="false" styleClass="btn4" text="View Home" />
             </VBox>
             <VBox styleClass="vPrfIn2">
-            <Label fx:id="nameuser" prefHeight="88.0" prefWidth="632.0" styleClass="name" stylesheets="@main.css" textAlignment="CENTER" />
-                <Label fx:id="bioplace" prefHeight="25.0" prefWidth="513.0" styleClass="lblsPass" stylesheets="@main.css" text="Your Bio Here." />
+                <Label styleClass="name">Eyad Ahmed Aly</Label>
+                <Label fx:id="bioplace" prefHeight="9.0" prefWidth="250.0" styleClass="lblsPass" stylesheets="@main.css" text="Your Bio Here" />
             </VBox>
         </HBox>
     </StackPane>
@@ -47,6 +47,7 @@
                     </ImageView>
                     <Label fx:id="textPostContent_1" styleClass="textPostContent">dsdfbfdsdfvnfefcknks rwghmber sdfvjhsbf meg</Label>
                 </HBox>
+
                 <HBox styleClass="imagePost">
                     <ImageView fx:id="postImagePp_1" fitHeight="50" fitWidth="50" preserveRatio="true" styleClass="pp">
                         <Image url="@profile-icon.png" />

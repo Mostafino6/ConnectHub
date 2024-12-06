@@ -2,15 +2,20 @@ package org.example.demo;
 
 import java.util.ArrayList;
 
-public class FriendManagement extends User{
+public class FriendManagement {
     private ArrayList<User> friendsList;
     private ArrayList<User> friendRequests;
     private ArrayList<User> blockedFriends;
+    private ArrayList<User> suggestedFriends;
+
+
     public FriendManagement(){
         this.friendsList = new ArrayList<>();
         this.friendRequests = new ArrayList<>();
         this.blockedFriends = new ArrayList<>();
+        this.suggestedFriends = new ArrayList<>();
     }
+
     public ArrayList<User> getFriendsList() {
         return friendsList;
     }
@@ -23,32 +28,27 @@ public class FriendManagement extends User{
     public void setFriendRequests(ArrayList<User> friendRequests) {
         this.friendRequests = friendRequests;
     }
+    public ArrayList<User> getSuggestedFriends(){
+        return suggestedFriends;
+    }
+    public void setSuggestedFriends(ArrayList<User> suggestedFriends) {
+        this.suggestedFriends = suggestedFriends;
+    }
     public ArrayList<User> getBlockedFriends() {
         return blockedFriends;
     }
     public void setBlockedFriends(ArrayList<User> blockedFriends) {
         this.blockedFriends = blockedFriends;
     }
-    public void sendFriendRequest(User user){
-        if(!user.getFriends().getFriendRequests().contains(this)) {
-            user.getFriends().getFriendRequests().add(this);
-        }
-        else return;
+    public boolean isFriend(User user) {
+        return friendsList.contains(user);
     }
-    public void acceptFriendRequest(User user){
-        if(this.getFriendRequests().contains(user)) {
-            this.getFriendRequests().remove(user);
-            this.getFriendsList().add(user);
-        }
+
+    public boolean hasPendingRequest(User user) {
+        return friendRequests.contains(user);
     }
-    public void rejectFriendRequest(User user){
-        if(this.getFriendRequests().contains(user)) {
-            this.getFriendRequests().remove(user);
-        }
-    }
-    public void blockFriend(User user){
-        if(this.getFriendsList().contains(user)) this.getFriendsList().remove(user);
-        this.getBlockedFriends().add(user);
+
+    public boolean isBlocked(User user) {
+        return blockedFriends.contains(user);
     }
 }
-

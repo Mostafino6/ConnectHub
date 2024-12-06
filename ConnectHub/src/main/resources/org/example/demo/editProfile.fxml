@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+   <children>
+      <Button fx:id="updatePfp" layoutX="131.0" layoutY="92.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" styleClass="btn4" stylesheets="@main.css" text="Update Profile Picture" />
+      <Button fx:id="updateCoverPhoto" layoutX="131.0" layoutY="152.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" styleClass="btn4" stylesheets="@main.css" text="Update Cover Photo" />
+      <Button fx:id="changeBio" layoutX="131.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" styleClass="btn4" stylesheets="@main.css" text="Change Bio" />
+      <Button fx:id="changePassword" layoutX="131.0" layoutY="276.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" styleClass="btn4" stylesheets="@main.css" text="Change Current Password" />
+   </children>
+</AnchorPane>
