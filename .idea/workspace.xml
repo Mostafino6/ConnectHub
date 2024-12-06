@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/DatabaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/profile.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +72,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.24827586",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -153,7 +152,7 @@
       <workItem from="1733429928713" duration="50000" />
       <workItem from="1733430692004" duration="43000" />
       <workItem from="1733431142386" duration="1740000" />
-      <workItem from="1733483272798" duration="4107000" />
+      <workItem from="1733483272798" duration="6549000" />
     </task>
     <servers />
   </component>

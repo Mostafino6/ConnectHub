@@ -16,11 +16,13 @@
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
+    import java.security.NoSuchAlgorithmException;
     import java.util.Date;
 
 public class Application extends javafx.application.Application {
     private final ValidationManager validationManager = new ValidationManager();
     private static User currentUser;
+    private final DatabaseManager databaseManager = new DatabaseManager();
     public static void setCurrentUser(User user) {
         currentUser = user;
     }
@@ -105,7 +107,6 @@ public class Application extends javafx.application.Application {
                     showAlert(Alert.AlertType.ERROR, "Missing Fields", "All fields are required.");
                     return;
                 }
-
                 try {
                     DatabaseManager dbManager = new DatabaseManager();
                     Date dateOfBirth = dbManager.parseDate(dob.toString());
@@ -123,29 +124,43 @@ public class Application extends javafx.application.Application {
                 e.printStackTrace();
             }
         }
-        private void handleProfile(Stage stage) {
-            try {
-                FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-                Scene profileScene = new Scene(profileLoader.load(), 995, 800);
-                stage.setTitle("Profile");
-                profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-                stage.setScene(profileScene);
-                Button addPost=(Button) profileLoader.getNamespace().get("addPost");
-                VBox postContainer=(VBox) profileLoader.getNamespace().get("postContainer");
-                addPost.setOnAction(event ->handleAddPost(stage,postContainer));
-                Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
-                manageFriends.setOnAction(event -> friendsManager(stage));
-                Button viewSuggested = (Button) profileLoader.getNamespace().get("viewSuggested");
-                viewSuggested.setOnAction(event -> handleSuggested(stage));
-                Button editProfileButton = (Button) profileLoader.getNamespace().get("editProfileButton");
-                editProfileButton.setOnAction(event -> {
-                    System.out.println("Edit Profile Button Clicked");
-                    handleEditProfile(stage);
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
+    private void handleProfile(Stage stage) {
+        try {
+            // Load the profile FXML file
+            FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
+            Scene profileScene = new Scene(profileLoader.load(), 995, 800);
+            stage.setTitle("Profile");
+            profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            stage.setScene(profileScene);
+            Label nameLabel = (Label) profileLoader.getNamespace().get("nameuser");
+            if (nameLabel != null) {
+                String username = currentUser.getName();
+                System.out.println(username);
+                nameLabel.setText(username);
+            } else {
+                System.out.println("nameLabel is null");
             }
+
+            Button addPost = (Button) profileLoader.getNamespace().get("addPost");
+            VBox postContainer = (VBox) profileLoader.getNamespace().get("postContainer");
+            addPost.setOnAction(event -> handleAddPost(stage, postContainer));
+
+            Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
+            manageFriends.setOnAction(event -> friendsManager(stage));
+
+            Button viewSuggested = (Button) profileLoader.getNamespace().get("viewSuggested");
+            viewSuggested.setOnAction(event -> handleSuggested(stage));
+
+            Button editProfileButton = (Button) profileLoader.getNamespace().get("editProfileButton");
+            editProfileButton.setOnAction(event -> {
+                System.out.println("Edit Profile Button Clicked");
+                handleEditProfile(stage);
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
         private void handleEditProfile(Stage stage) {
             try {
@@ -209,7 +224,17 @@ public class Application extends javafx.application.Application {
             // Handle the "Done" button action
             passDoneButton.setOnAction(event -> {
                 String newPassword = newPasswordField.getText();
+                try {
+                    newPassword= validationManager.hashPassword(newPassword);
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                }
                 String confirmPassword = confirmPasswordField.getText();
+                try {
+                    confirmPassword= validationManager.hashPassword(confirmPassword);
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                }
 
                 if (newPassword.equals(confirmPassword)) {
                     // Update the user's password
@@ -221,6 +246,11 @@ public class Application extends javafx.application.Application {
 
                     // Close the Password window
                     newStage.close();
+                    try {
+                        databaseManager.writeUser(currentUser);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
                     // Notify the user of the mismatch
                     JOptionPane.showMessageDialog(null, "Passwords do not match. Please try again.");
@@ -259,6 +289,7 @@ public class Application extends javafx.application.Application {
                     }
                     // Close the Bio window
                     newStage.close();
+                    databaseManager.writeUser(currentUser);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -294,6 +325,11 @@ public class Application extends javafx.application.Application {
                     imageView.setImage(newImage);
                     // Update the user's profile picture path (stored as a String)
                     currentUser.setPfpPath(selectedFile.getAbsolutePath());
+                    try {
+                        databaseManager.writeUser(currentUser);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
                     System.out.println("ImageView not found in the current scene.");
                 }
@@ -320,6 +356,11 @@ public class Application extends javafx.application.Application {
                 if (coverPhotoView != null) {
                     coverPhotoView.setImage(newImage);
                     currentUser.setCoverphotoPath(newCoverPhotoPath);
+                    try {
+                        databaseManager.writeUser(currentUser);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
                     System.out.println("Cover ImageView not found in the current scene.");
                 }
