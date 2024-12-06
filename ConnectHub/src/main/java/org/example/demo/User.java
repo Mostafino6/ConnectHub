@@ -2,6 +2,7 @@ package org.example.demo;
 
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class User {
     private String userID;
@@ -16,19 +17,14 @@ public class User {
     private String bio;
     private FriendManagement friends;
     private ArrayList<Post> posts;
-    private ArrayList<Story> stories; // New list to manage user stories
-
-    // Default constructor
-    public User() {
+    public User(){
         this.friends = new FriendManagement();
         this.posts = new ArrayList<>();
-        this.stories = new ArrayList<>(); // Initialize stories list
         this.pfpPath = "";
         this.coverphotoPath = "";
         this.bio = "";
     }
 
-    // Getters and setters for user attributes
     public String getUserID() {
         return userID;
     }
@@ -78,7 +74,8 @@ public class User {
     }
 
     public String getStatus() {
-        return status ? "Online" : "Offline";
+        if (status) return "Online";
+        else return "Offline";
     }
 
     public void setStatus(boolean status) {
@@ -116,8 +113,6 @@ public class User {
     public void setCoverphotoPath(String coverphotoPath) {
         this.coverphotoPath = "file:///" + coverphotoPath;
     }
-
-    // Methods for managing posts
     public ArrayList<Post> getPosts() {
         return posts;
     }
@@ -134,18 +129,5 @@ public class User {
         if (obj == null || getClass() != obj.getClass()) return false;
         User user = (User) obj;
         return userID.equals(user.userID);
-    }
-
-    // Methods for managing stories
-    public ArrayList<Story> getStories() {
-        return stories;
-    }
-
-    public void setStories(ArrayList<Story> stories) {
-        this.stories = stories;
-    }
-
-    public void addStory(Story story) {
-        stories.add(story);
     }
 }
