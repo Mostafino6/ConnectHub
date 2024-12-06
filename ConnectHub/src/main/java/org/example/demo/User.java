@@ -17,9 +17,11 @@ public class User {
     private String bio;
     private FriendManagement friends;
     private ArrayList<Post> posts;
-    public User(){
+
+    public User() {
         this.friends = new FriendManagement();
     }
+
     public String getUserID() {
         return userID;
     }
@@ -32,7 +34,7 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username){
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -41,7 +43,7 @@ public class User {
     }
 
     public void setName(String name) {
-       this.name = name;
+        this.name = name;
     }
 
     public String getEmail() {
@@ -69,7 +71,7 @@ public class User {
     }
 
     public String getStatus() {
-        if(status) return "Online";
+        if (status) return "Online";
         else return "Offline";
     }
 
@@ -107,21 +109,6 @@ public class User {
 
     public void setCoverphotoPath(String coverphotoPath) {
         this.coverphotoPath = "file:///" + coverphotoPath;
-    }
-    public void sendFriendRequest(User user) {
-        friends.sendFriendRequest(this, user);
-    }
-
-    public void acceptFriendRequest(User user) {
-        friends.acceptFriendRequest(this, user);
-    }
-
-    public void rejectFriendRequest(User user) {
-        friends.rejectFriendRequest(this, user);
-    }
-
-    public void blockFriend(User user) {
-        friends.blockFriend(this, user);
     }
 
     public void sendFriendRequest(User user) {

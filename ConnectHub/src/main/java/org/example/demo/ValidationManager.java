@@ -106,9 +106,11 @@ public class ValidationManager {
             newUser.setEmail(email);
             newUser.setDOB(dateOfBirth);
             newUser.setPassword(hashedPassword);
-            newUser.setUserID(databaseManager.getNextUserID(users));// Set hashed password
+            newUser.setUserID(databaseManager.getNextUserID(users));
+            newUser.setStatus(true);
 
             users.add(newUser);
+            Application.setCurrentUser(newUser);
             databaseManager.writeUser(newUser); // Save new user
             return true; //"Signup successful!";
         } catch (Exception e) {
@@ -124,8 +126,9 @@ public class ValidationManager {
             for (User user : users) {
                 if (user.getEmail().equals(email)) {
                     if (user.getPassword().equals(hashPassword(password))) {
-                        user.setStatus(true); // Set user status to online
-                        databaseManager.writeUser(user); // Update user status
+                        user.setStatus(true);
+                        Application.setCurrentUser(user);
+                        databaseManager.writeUser(user);
                         return true; //"Login successful!";
                     } else {
                         return false; //"Incorrect password.";
@@ -137,5 +140,9 @@ public class ValidationManager {
             e.printStackTrace();
             return false; //"An error occurred during login.";
         }
+    }
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        ValidationManager manager = new ValidationManager();
+        System.out.println(manager.hashPassword("chill"));
     }
 }

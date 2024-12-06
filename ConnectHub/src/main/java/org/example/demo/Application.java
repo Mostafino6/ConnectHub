@@ -23,29 +23,6 @@ import java.util.Date;
 public class Application extends javafx.application.Application {
     private final ValidationManager validationManager = new ValidationManager();
     private static User currentUser;
-    public Application() {
-        currentUser = new User();
-        User friend = new User();
-        friend.setName("Mostafa Abayazeed");
-        friend.setStatus(true);
-        friend.setPfpPath("C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg");
-        User friend2 = new User();
-        friend2.setName("John Smith");
-        friend2.setStatus(false);
-        friend2.setPfpPath("C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\testPostjpg.jpg");
-        currentUser.getFriends().getFriendsList().add(friend);
-        currentUser.getFriends().getFriendsList().add(friend2);
-        User friend3 = new User();
-        friend3.setName("John Pork");
-        friend3.setStatus(true);
-        friend3.setPfpPath("C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg");
-        User friend4 = new User();
-        friend4.setName("Chill Guy");
-        friend4.setStatus(false);
-        friend4.setPfpPath("C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\Screenshot 2024-12-05 123219.png");
-        currentUser.getFriends().getFriendRequests().add(friend3);
-        currentUser.getFriends().getFriendRequests().add(friend4);
-    }
     public static void setCurrentUser(User user) {
         currentUser = user;
     }
