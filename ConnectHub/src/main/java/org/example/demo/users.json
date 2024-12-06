@@ -133,20 +133,5 @@
       "friendRequests": [],
       "blockedFriends": []
     }
-  },
-  {
-    "userID": "10",
-    "username": "ffdvgfg",
-    "name": "dgfdfdg",
-    "email": "gdfgdgf@dfgfg.com",
-    "password": "1b677af209f9e5fd95b82f49ce752878134c6556d89957ee9aa1f2d5c6f56c20",
-    "DOB": "2023-12-11",
-    "status": false,
-    "bio": "null",
-    "friends": {
-      "friendsList": [],
-      "friendRequests": [],
-      "blockedFriends": []
-    }
   }
 ]

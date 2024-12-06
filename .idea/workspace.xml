@@ -43,9 +43,6 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2pifMcfIpH5FgaqARpX7Rjhphtt" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -91,6 +88,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainApp.executor": "Run",
+    "Application.org.example.demo.MainApp.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "LoginSignup",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/SceneBuilder/SceneBuilder.exe",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.24827586",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
     <configuration name="org.example.demo.MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.demo.MainApp" />
       <module name="demo" />
@@ -107,7 +131,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.org.example.demo.MainApp" />
-        <item itemvalue="Application.ValidationManager" />
       </list>
     </recent_temporary>
   </component>
@@ -150,6 +173,7 @@
       <workItem from="1733430692004" duration="43000" />
       <workItem from="1733431142386" duration="1740000" />
       <workItem from="1733483272798" duration="625000" />
+      <workItem from="1733383179162" duration="45460000" />
     </task>
     <servers />
   </component>
