@@ -240,3 +240,25 @@ VBox {
      -fx-padding: 10px;
      -fx-spacing: 30px;
  }
+
+.postBox {
+    -fx-background-color: #f9f9f9; /* Light background for posts */
+    -fx-border-color: #e0e0e0; /* Light border */
+    -fx-border-radius: 5px;
+    -fx-padding: 10px; /* Padding inside each post */
+    -fx-spacing: 10px; /* Space between elements in post */
+    -fx-margin: 10px 0; /* Margin between posts */
+}
+
+.postDate {
+    -fx-font-size: 12px; /* Smaller font size for the date */
+    -fx-text-fill: gray; /* Gray text for the date */
+    -fx-padding: 5px 0 0 0; /* Padding above the date */
+}
+
+/* Optional: Adjust image view for posts */
+.imagePostView {
+    -fx-fit-height: 250px; /* Fixed height for post images */
+    -fx-fit-width: 250px; /* Fixed width for post images */
+    -fx-preserve-ratio: true; /* Preserve aspect ratio */
+}
