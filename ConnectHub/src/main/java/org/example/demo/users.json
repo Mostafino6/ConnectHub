@@ -103,5 +103,20 @@
       "friendRequests": [],
       "blockedFriends": []
     }
+  },
+  {
+    "userID": "8",
+    "username": "belal",
+    "name": "belal moh",
+    "email": "beeee@ah",
+    "password": "c1d543c4306bc76d8654f71b19cca84d803cea6e7a5d410c20878b6ea824e923",
+    "DOB": "2023-12-21",
+    "status": false,
+    "bio": "null",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    }
   }
 ]
