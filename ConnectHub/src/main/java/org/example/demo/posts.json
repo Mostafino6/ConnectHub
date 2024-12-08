@@ -8,19 +8,55 @@
   {
     "userID": "2",
     "content": "Enjoying a beautiful day outside!",
-    "image": null,
+    "image": "null",
     "datePosted": "2024-12-06"
   },
   {
     "userID": "3",
     "content": "Just finished reading a great book!",
-    "image": null,
+    "image": "null",
     "datePosted": "2024-12-07"
   },
   {
     "userID": "1",
     "content": "Had an amazing workout session today!",
-    "image": null,
+    "image": "null",
     "datePosted": "2024-12-08"
+  },
+  {
+    "userID": "1",
+    "content": "I love this ish",
+    "image": "null",
+    "datePosted": "2024-12-08"
+  },
+  {
+    "userID": "1",
+    "content": "Ws in the chat mane",
+    "image": "null",
+    "datePosted": "2024-12-08"
+  },
+  {
+    "userID": "1",
+    "content": "I love skibidi rizz plus john pork",
+    "image": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
+    "datePosted": "2024-12-08"
+  },
+  {
+    "userID": "1",
+    "content": "i love hoss el shazly",
+    "image": "D:\\Downloads\\Screenshot 2024-12-08 234833.png",
+    "datePosted": "2024-12-08"
+  },
+  {
+    "userID": "2",
+    "content": "Im john pork, where the huzz at doe",
+    "image": "null",
+    "datePosted": "2024-12-09"
+  },
+  {
+    "userID": "1",
+    "content": "I love programming look at the UML diagram I just created",
+    "image": "D:\\Downloads\\UML.jpeg",
+    "datePosted": "2024-12-09"
   }
 ]

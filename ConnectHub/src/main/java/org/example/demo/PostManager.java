@@ -50,30 +50,14 @@ public class PostManager {
             String datePostedStr = (String) jsonObject.get("datePosted");
             LocalDate datePosted = LocalDate.parse(datePostedStr);
             User user = getUserByID(userID);
-
-            if (user != null) {
-                // Handle image path correctly
-                Image postImage = null;
-                if (image != null) {
-                    if (image.startsWith("/")) {  // It's a classpath resource
-                        postImage = new Image(getClass().getResource(image).toExternalForm());
-                    } else {  // It's an absolute file path
-                        postImage = new Image(new File(image).toURI().toString());
-                    }
-                }
                 if (user != null) {
-                    System.out.println("Found User: " + user.getUserID());  // Debugging line
-                    Post post = new Post(user, content, postImage);
+                    Post post = new Post(user, content, image);
                     post.setDatePosted(datePosted);
                     postList.add(post);
                     user.addPost(post);  // Add post to the user's list
-
-                    // Log the number of posts for this user
-                    System.out.println("User " + user.getUserID() + " posts count: " + user.getPosts().size());
                 }
 
             }
-        }
         return postList;  // Return the list of posts
     }
 
@@ -89,8 +73,15 @@ public class PostManager {
             JSONObject jsonPost = new JSONObject();
             jsonPost.put("userID", p.getOwner().getUserID());
             jsonPost.put("content", p.getContent());
-            jsonPost.put("image", p.getImage());
             jsonPost.put("datePosted", p.getDatePosted().toString());  // Store LocalDate as string
+            String postImage = p.getImage();
+            if (postImage != null && postImage.startsWith("file:///")) {
+                postImage = postImage.substring(8);
+            }
+            if(postImage != null) {
+                postImage = postImage.replace("\\", "\\\\");
+            }
+            jsonPost.put("image", postImage);
             jsonArray.add(jsonPost);
         }
 

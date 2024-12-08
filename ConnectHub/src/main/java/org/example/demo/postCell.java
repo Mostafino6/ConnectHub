@@ -46,7 +46,7 @@ public class postCell extends ListCell<Post> {
 
         postImage = new ImageView();
         postImage.setPreserveRatio(true);
-        postImage.setFitWidth(postImage.getFitWidth());  // Set max width for images
+        postImage.setFitWidth(620);  // Set max width for images
         postImage.setFitHeight(postImage.getFitHeight()); // Adjust height to prevent distortion
 
         postContentBox = new VBox(5, postText, postImage);
@@ -81,7 +81,7 @@ public class postCell extends ListCell<Post> {
             postText.getChildren().clear();
             if (post.hasContent()) {
                 Text textContent = new Text(post.getContent());
-                textContent.setStyle("-fx-font-size: 12px;");
+                textContent.setStyle("-fx-font-size: 20px;");
                 postText.getChildren().add(textContent);
             }
 

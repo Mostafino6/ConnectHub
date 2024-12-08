@@ -1,5 +1,6 @@
     package org.example.demo;
 
+    import eu.hansolo.tilesfx.skins.TestTileSkin;
     import javafx.fxml.FXMLLoader;
     import javafx.scene.Parent;
     import javafx.scene.Scene;
@@ -137,7 +138,7 @@
     private void handleProfile(Stage stage) {
         try {
             FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("profile.fxml"));
-            Scene profileScene = new Scene(profileLoader.load(), 995, 816);
+            Scene profileScene = new Scene(profileLoader.load(), 1200, 816);
             stage.setTitle("Profile");
             profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             stage.setScene(profileScene);
@@ -172,9 +173,7 @@
                     bioLabel.setText(currentUser.getBio());
                 }
             }
-            Button addPost = (Button) profileLoader.getNamespace().get("addPost");
             VBox postContainer = (VBox) profileLoader.getNamespace().get("postContainer");
-            addPost.setOnAction(event -> handleAddPost(stage, postContainer));
             Button manageFriends = (Button) profileLoader.getNamespace().get("manageFriends");
             manageFriends.setOnAction(event -> friendsManager(stage));
             Button viewSuggested = (Button) profileLoader.getNamespace().get("viewSuggested");
@@ -415,8 +414,6 @@
                 stage.setTitle("Profile");
                 homeLoaderScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             VBox postContainer=(VBox) homeLoader.getNamespace().get("postContainer");
-            Button addPost=(Button) homeLoader.getNamespace().get("addPost");
-            addPost.setOnAction(event ->handleAddPost(stage,postContainer));
             stage.setScene(homeLoaderScene);
             Button manageFriends = (Button) homeLoader.getNamespace().get("manageFriends");
             manageFriends.setOnAction(event -> friendsManager(stage));
@@ -428,6 +425,14 @@
             viewStoriesButton.setOnAction(event -> handleViewStories(stage));
             Button addStory= (Button) homeLoader.getNamespace().get("addStory");
             addStory.setOnAction(event -> handleAddStory(stage));
+            Button addPost = (Button) homeLoader.getNamespace().get("addPost");
+            addPost.setOnAction(event -> {
+                try {
+                    handleAddPost(stage);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
             Button refresh = (Button) homeLoader.getNamespace().get("refresh");
                 refresh.setOnAction(event -> {
                     try {
@@ -537,94 +542,6 @@
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    private void handleAddPost(Stage stage, VBox postContainer) {
-        try {
-            FXMLLoader addPostLoader = new FXMLLoader(Application.class.getResource("addPost.fxml"));
-            Scene addPostScene = new Scene(addPostLoader.load(), 650, 420);
-            Stage addPostStage = new Stage();
-            addPostStage.setTitle("Add Post");
-            addPostScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-            addPostStage.setScene(addPostScene);
-
-            Button postDone = (Button) addPostLoader.getNamespace().get("postDone");
-            Button cancelPost = (Button) addPostLoader.getNamespace().get("cancelPost");
-            Button imageChooser = (Button) addPostLoader.getNamespace().get("imageChooser");
-            TextField textPost = (TextField) addPostLoader.getNamespace().get("textPost");
-
-            // Variable to hold the selected image path
-            String[] selectedImagePath = {null};
-
-            // Image chooser button action
-            imageChooser.setOnAction(event -> {
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-                File file = fileChooser.showOpenDialog(addPostStage);
-                if (file != null) {
-                    selectedImagePath[0] = file.toURI().toString(); // Store the image path
-                }
-            });
-            // Post done button action
-            postDone.setOnAction(event -> {
-                String textContent = textPost.getText();
-                if (textContent.isEmpty() && selectedImagePath[0] == null) {
-                    showAlert(Alert.AlertType.ERROR, "Empty Post", "Post content cannot be empty.");
-                } else {
-                    // Create a new post based on content
-                    Post newPost;
-                    if (textContent.isEmpty()) {
-                        newPost = new Post(currentUser, null,  new Image(selectedImagePath[0])); // For image post only
-                    } else {
-                        newPost = new Post(currentUser, textContent,null); // For text post
-                    }
-                    addPostToContainer(newPost, postContainer);
-                    addPostStage.close();
-                }
-            });
-
-            cancelPost.setOnAction(event -> addPostStage.close());
-
-            addPostStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void addPostToContainer(Post post, VBox postContainer) {
-        HBox postBox = new HBox();
-        postBox.getStyleClass().add("postBox");
-        ImageView profileImage = new ImageView(new Image(getClass().getResource("/org/example/demo/profile-icon.png").toExternalForm()));
-        profileImage.setFitHeight(50);
-        profileImage.setFitWidth(50);
-        profileImage.setPreserveRatio(true);
-        VBox postContentContainer = new VBox();
-        // Add content if available
-        if (post.getContent() != null) {
-            Label postContent = new Label(post.getContent());
-            postContent.getStyleClass().add("textPostContent");
-            postContentContainer.getChildren().add(postContent);
-        }
-
-        // Add image if available
-        if (post.getImage() != null) {
-            ImageView postImage = new ImageView(new Image(post.getImage()));
-            postImage.setFitHeight(250);
-            postImage.setFitWidth(250);
-            postImage.setPreserveRatio(true);
-            postContentContainer.getChildren().add(postImage);
-        }
-
-        // Add date
-        Label postDate = new Label(post.getDatePosted().toString()); // Format as needed
-        postDate.getStyleClass().add("postDate"); // Add a style class for the date
-        postContentContainer.getChildren().add(postDate);
-
-        Label postUsername = new Label(post.getOwner().getUsername()); // Format as needed
-        postUsername.getStyleClass().add("postDate"); // Add a style class for the date
-        postContentContainer.getChildren().add(postUsername);
-
-        postBox.getChildren().addAll(profileImage, postContentContainer);
-        postContainer.getChildren().add(postBox);
     }
         private void handleViewStories(Stage stage) {
             try {
@@ -750,6 +667,41 @@
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        private void handleAddPost(Stage stage) throws IOException {
+            FXMLLoader postLoader = new FXMLLoader(Application.class.getResource("addPost.fxml"));
+            Scene addPostScene = new Scene(postLoader.load(), 600, 400);
+            Stage addPostStage = new Stage();
+            addPostStage.setTitle("Add Post");
+            addPostScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            addPostStage.setScene(addPostScene);
+            String selectedImagePath[] = {null};
+            TextField addText = (TextField) postLoader.getNamespace().get("addText");
+            Button addImage = (Button) postLoader.getNamespace().get("addImage");
+            addImage.setOnAction(event -> {
+                FileChooser fileChooser = new FileChooser();
+                File file = fileChooser.showOpenDialog(addPostStage);
+                if (file != null) {
+                    selectedImagePath[0] = file.getAbsolutePath();
+                }
+            });
+            Button addPostButton = (Button) postLoader.getNamespace().get("post");
+            addPostButton.setOnAction(event -> {
+                String text = addText.getText();
+                if (text.isEmpty() && selectedImagePath[0] == null) {
+                    JOptionPane.showMessageDialog(null, "Empty Story");
+                } else {
+                    Post newPost = new Post(currentUser, text, selectedImagePath[0]);
+                    try {
+                        postManager.addPost(newPost);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    addPostStage.close();
+                }
+
+            });
+            addPostStage.show();
         }
     public static void main(String[] args) {
         launch();

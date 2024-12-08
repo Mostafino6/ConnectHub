@@ -5,13 +5,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
    <children>
-      <Label layoutX="127.0" layoutY="85.0" prefHeight="18.0" prefWidth="71.0" styleClass="lbls" text="Post" />
-      <TextField fx:id="textPost" layoutX="206.0" layoutY="87.0" prefHeight="26.0" prefWidth="246.0" />
-      <Label layoutX="300.0" layoutY="146.0" prefHeight="33.0" prefWidth="45.0" styleClass="lbls" text="Or" />
-      <Button fx:id="imageChooser" layoutX="220.0" layoutY="200.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="159.0" styleClass="btn4" text="Pick an image" />
-      <Button fx:id="postDone" layoutX="180.0" layoutY="353.0" minHeight="9.0" minWidth="85.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="85.0" styleClass="btn4" text="Post" />
-      <Button fx:id="cancelPost" layoutX="319.0" layoutY="353.0" minHeight="9.0" minWidth="85.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="85.0" styleClass="btn4" text="Cancel" />
+      <TextField fx:id="addText" layoutX="195.0" layoutY="103.0" prefHeight="44.0" prefWidth="360.0" />
+      <Label layoutX="66.0" layoutY="110.0" styleClass="psts" text="Post Text" />
+      <Button fx:id="addImage" layoutX="268.0" layoutY="200.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="214.0" styleClass="btn4" text="Select Image to Add..." />
+      <Label layoutX="127.0" layoutY="204.0" styleClass="psts" text="Add Image" />
+      <Button fx:id="post" layoutX="175.0" layoutY="304.0" mnemonicParsing="false" styleClass="btn1" text="Post" />
    </children>
 </AnchorPane>

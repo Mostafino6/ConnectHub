@@ -6,14 +6,14 @@
     "email": "mostafaabayazeed@yahoo.com",
     "password": "1d5df648c48fd5aa23ef2220be26b28bfd42698c7d2f097cbb6e8813d902a674",
     "DOB": "2004-08-27",
-    "status": true,
+    "status": false,
     "bio": "I love programming and oop its so fun!!!!!!",
     "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "friends": {
-      "friendsList": ["2","3","8","13","12"],
+      "friendsList": ["8","13","12"],
       "friendRequests": [],
-      "blockedFriends": ["5"]
+      "blockedFriends": ["5","15","2"]
     },
     "posts": []
   },
@@ -29,9 +29,9 @@
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["1","3","8"],
+      "friendsList": ["3","8"],
       "friendRequests": [],
-      "blockedFriends": []
+      "blockedFriends": ["1"]
     },
     "posts": []
   },
@@ -42,12 +42,12 @@
     "email": "chillguy@example.com",
     "password": "9fe5e0a43712f05785002103cfac2add80771a19d76f2c562633f65375ea5581",
     "DOB": "1991-09-10",
-    "status": false,
+    "status": true,
     "bio": "Enjoys hiking and traveling.",
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\Screenshot 2024-12-05 123219.png",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["1","2"],
+      "friendsList": ["2"],
       "friendRequests": ["8"],
       "blockedFriends": ["5"]
     },
@@ -244,6 +244,24 @@
     "bio": "",
     "profilePicture": "",
     "coverPhoto": "",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    },
+    "posts": []
+  },
+  {
+    "userID": "15",
+    "username": "mostafa456",
+    "name": "Mostafa Abayazeed",
+    "email": "adam@example.com",
+    "password": "ad9965d4eb17667cf5b77d5f13ee878d501c26547fa72a90df1d95c7a5bbb42d",
+    "DOB": "2020-12-08",
+    "status": true,
+    "bio": "biooooooo",
+    "profilePicture": "D:\\Downloads\\UML.jpeg",
+    "coverPhoto": "D:\\Downloads\\Use Case.jpeg",
     "friends": {
       "friendsList": [],
       "friendRequests": [],

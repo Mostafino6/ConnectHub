@@ -9,10 +9,10 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="816.0" prefWidth="995.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+<VBox prefHeight="816.0" prefWidth="1200.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
     <StackPane>
         <!-- Cover Image -->
-        <ImageView id="coverPhoto" fx:id="coverImageView" fitHeight="200.0" fitWidth="980" preserveRatio="false" styleClass="cover">
+        <ImageView id="coverPhoto" fx:id="coverImageView" fitHeight="200.0" fitWidth="1164.0" preserveRatio="false" styleClass="cover">
         </ImageView>
 
         <!-- Foreground Content -->
@@ -34,7 +34,7 @@
     <BorderPane>
         <left>
             <VBox styleClass="leftVbox">
-                <HBox styleClass="acHb">
+                <HBox prefHeight="45.0" prefWidth="815.0" styleClass="acHb">
                     <Label styleClass="psts">Posts</Label>
                     <HBox styleClass="btnsHbox">
                         <Button fx:id="addPost" styleClass="btn4">Add Post</Button>

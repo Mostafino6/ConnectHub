@@ -11,10 +11,10 @@ public class Post {
     private String image;   // For image content
     private LocalDate datePosted;
 
-    public Post(User owner, String content, Image imageContent) {
+    public Post(User owner, String content, String image) {
         this.owner = owner;
         this.content = content;
-        this.image = (imageContent != null) ? imageContent.getUrl() : null; // Set image path if an image is provided
+        this.image = image;
         this.datePosted = LocalDate.now(); // Automatically set the date
     }
     public String getPostID() {

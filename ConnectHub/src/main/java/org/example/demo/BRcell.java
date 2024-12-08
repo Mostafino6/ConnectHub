@@ -68,6 +68,7 @@ public class BRcell extends ListCell<User> {
             current.getFriends().getBlockedFriends().add(user);
             current.getFriends().getFriendsList().remove(user);
             user.getFriends().getFriendsList().remove(current);
+            user.getFriends().getBlockedFriends().add(current);
             try {
                 Application.getDatabaseManager().writeUser(current);
                 Application.getDatabaseManager().writeUser(user);

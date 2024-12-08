@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class AllPosts {
     @FXML
     private ListView<Post> postListView;
@@ -18,7 +21,20 @@ public class AllPosts {
             return;
         }
         try {
-            ObservableList<Post> postsList = FXCollections.observableArrayList(postManager.readPosts());
+            ArrayList<Post> posts = postManager.readPosts();
+            ArrayList<Post> friendPosts = new ArrayList<>();
+            for(Post post : posts) {
+                if(currentUser.getUserID().equals(post.getOwner().getUserID())) {
+                    friendPosts.add(post);
+                }
+                for(User users : currentUser.getFriends().getFriendsList()){
+                    if(users.getUserID().equals(post.getOwner().getUserID())){
+                        friendPosts.add(post);
+                    }
+                }
+            }
+            Collections.reverse(friendPosts);
+            ObservableList<Post> postsList = FXCollections.observableArrayList(friendPosts);
             postListView.setItems(postsList);
             postListView.setCellFactory(listView -> new postCell());
         }catch (Exception e) {
