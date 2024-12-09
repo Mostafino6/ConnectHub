@@ -28,12 +28,14 @@ public class Stories {
     private static final StoryManager storyManager = new StoryManager();
     private static final DatabaseManager databaseManager = new DatabaseManager();
     private static final User currentUser = Application.getCurrentUser();
+    private static int clickCount = 0;
 
     public void initialize() throws Exception {
         ArrayList<Story> stories = storyManager.readStories();
         ArrayList<String> postedUserIDs = new ArrayList<>();  // List to track users who have posted a story
         ArrayList<User> users = databaseManager.readUsers();
         try {
+            System.out.println(stories.size());
             ArrayList<Story> friendStories = new ArrayList<>();
             for (Story story : stories) {
                 if (currentUser.getUserID().equals(story.getOwner().getUserID())) {
@@ -46,14 +48,9 @@ public class Stories {
                 }
             }
             // Populate the HBox with stories, avoiding repetition
+            System.out.println(friendStories.size());
             for (Story story : friendStories) {
                 String userID = story.getOwner().getUserID();
-                for (User user : users) {
-                    if (user.getUserID().equals(userID) && !user.getStories().contains(story)) {
-                        System.out.println(user.getStories().contains(story));
-                        user.addStory(story);
-                    }
-                }
                 // Check if the user has already posted a story
                 if (!postedUserIDs.contains(userID)) {
                     VBox storyBox = createStory(story);
@@ -89,10 +86,12 @@ public class Stories {
         storyBox.setStyle("-fx-padding: 10; -fx-alignment: center; -fx-background-color: transparent;");
 
         storyBox.setOnMouseClicked(event -> {
+            clickCount++;
             User poster = story.getOwner();
             System.out.println("Story clicked: " + poster.getUsername());
             showStoryWindow(story, story.getOwner().getStories(), 0);
-            imageContainer.setStyle("-fx-border-color: grey; -fx-border-width: 2; -fx-border-radius: 50; -fx-background-radius: 50;");
+            if(clickCount>0){
+            imageContainer.setStyle("-fx-border-color: grey; -fx-border-width: 2; -fx-border-radius: 50; -fx-background-radius: 50;");}
         });
         return storyBox;
     }

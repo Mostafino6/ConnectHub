@@ -7,10 +7,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
     <children>
-        <Button fx:id="publishStoryButton" layoutX="480.0" layoutY="359.0" mnemonicParsing="false" styleClass="btn1" stylesheets="@main.css" text="Publish Story" />
-        <Label layoutX="77.0" layoutY="129.0" prefHeight="44.0" prefWidth="166.0" styleClass="hbox-centered" stylesheets="@main.css" text="Please Enter Story Caption:" />
-        <Label layoutX="77.0" layoutY="203.0" prefHeight="44.0" prefWidth="166.0" styleClass="hbox-centered" stylesheets="@main.css" text="Please Choose Photo:" />
-        <TextField fx:id="captionField" layoutX="299.0" layoutY="139.0" prefHeight="25.0" prefWidth="228.0" />
-        <Button fx:id="choosePhotoButton" layoutX="302.0" layoutY="213.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="228.0" styleClass="btn4" stylesheets="@main.css" text="Choose photo" />
+        <TextField fx:id="addText" layoutX="195.0" layoutY="103.0" prefHeight="44.0" prefWidth="360.0" />
+        <Label layoutX="66.0" layoutY="110.0" styleClass="psts" text="Story Text" />
+        <Button fx:id="addImage" layoutX="268.0" layoutY="200.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="214.0" styleClass="btn4" text="Select Image to Add..." />
+        <Label layoutX="127.0" layoutY="204.0" styleClass="psts" text="Add Image" />
+        <Button fx:id="post" layoutX="175.0" layoutY="304.0" mnemonicParsing="false" styleClass="btn1" text="Post" />
     </children>
 </AnchorPane>

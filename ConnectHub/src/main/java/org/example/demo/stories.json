@@ -6,27 +6,21 @@
     "datePosted": "2024-12-09T15:52:15"
   },
   {
-    "userID": "2",
-    "caption": "Enjoying a sunset view.",
-    "image": "null",
-    "datePosted": "2024-12-09T18:45:30"
-  },
-  {
-    "userID": "3",
-    "caption": "Just completed my first marathon!",
-    "image": "null",
-    "datePosted": "2024-12-09T09:15:50"
-  },
-  {
     "userID": "1",
     "caption": "Lazy Sunday vibes.",
     "image": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
-    "datePosted": "2024-12-07T11:10:05"
+    "datePosted": "2024-12-09T11:10:05"
   },
   {
-    "userID": "2",
-    "caption": "Coffee time ☕",
-    "image": "null",
-    "datePosted": "2024-12-10T08:25:40"
+    "userID": "12",
+    "caption": "RIP big bro 🕊️",
+    "image": "D:\\Downloads\\von.jpg",
+    "datePosted": "2024-12-09T23:24:20"
+  },
+  {
+    "userID": "1",
+    "caption": "Pull up @yuzz waiting for you cuh",
+    "image": "D:\\Downloads\\glock.jpg",
+    "datePosted": "2024-12-09T23:42:28.962399400"
   }
 ]

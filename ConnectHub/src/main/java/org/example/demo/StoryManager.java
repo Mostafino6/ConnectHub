@@ -56,7 +56,8 @@ public class StoryManager {
                 Story story = new Story(user, caption, image);
                 story.setDateCreated(dateCreated);
                 if(!(Duration.between(story.getDateCreated(), LocalDateTime.now()).toHours() >= 24)) {
-                    storyList.add(story);
+                    if(!storyList.contains(story)) storyList.add(story);
+                    if(!user.getStories().contains(story)) user.addStory(story);
                 }// Add story to the user's list
             }
         }

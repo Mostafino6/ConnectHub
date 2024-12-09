@@ -20,7 +20,6 @@
                     <HBox styleClass="btnsHbox">
                         <Button fx:id="addPost" minHeight="14.0" minWidth="102.0" prefHeight="14.0" prefWidth="102.0" styleClass="btn4">Add Post</Button>
                         <Button fx:id="addStory" styleClass="btn4">Add Story</Button>
-                  <Button fx:id="viewStoriesButton" mnemonicParsing="false" styleClass="btn4" text="View Stories" />
                     </HBox>
                 </HBox>
                 <fx:include source="allPosts.fxml" />
