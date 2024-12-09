@@ -410,7 +410,7 @@
         {
             try {
                 FXMLLoader homeLoader = new FXMLLoader(Application.class.getResource("homePage.fxml"));
-                Scene homeLoaderScene = new Scene(homeLoader.load(), 1200, 800);
+                Scene homeLoaderScene = new Scene(homeLoader.load(), 1200, 900);
                 stage.setTitle("Profile");
                 homeLoaderScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             VBox postContainer=(VBox) homeLoader.getNamespace().get("postContainer");
@@ -423,8 +423,6 @@
             viewProfile.setOnAction(event -> handleProfile(stage));
             Button viewStoriesButton= (Button) homeLoader.getNamespace().get("viewStoriesButton");
             viewStoriesButton.setOnAction(event -> handleViewStories(stage));
-            Button addStory= (Button) homeLoader.getNamespace().get("addStory");
-            addStory.setOnAction(event -> handleAddStory(stage));
             Button addPost = (Button) homeLoader.getNamespace().get("addPost");
             addPost.setOnAction(event -> {
                 try {
@@ -460,6 +458,7 @@
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
+                System.exit(0);
             });
             } catch (IOException e) {
             e.printStackTrace();
@@ -624,49 +623,6 @@
 
             storyBox.getChildren().addAll(profileImage, storyContentContainer);
             storyContainer.getChildren().add(storyBox);
-        }
-
-        private void handleAddStory(Stage stage) {
-            try {
-                FXMLLoader storyLoader = new FXMLLoader(Application.class.getResource("addStory.fxml"));
-                Scene addStoryScene = new Scene(storyLoader.load(), 600, 400);
-                Stage addStoryStage = new Stage();
-                addStoryStage.setTitle("Add Story");
-                addStoryScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-                addStoryStage.setScene(addStoryScene);
-                Button publishStoryButton = (Button) storyLoader.getNamespace().get("publishStoryButton");
-                Button choosePhotoButton = (Button) storyLoader.getNamespace().get("choosePhotoButton");
-                TextField captionField = (TextField) storyLoader.getNamespace().get("captionField");
-                String[] selectedImagePath = {null};
-                choosePhotoButton.setOnAction(event -> {
-                    FileChooser fileChooser = new FileChooser();
-                    File file = fileChooser.showOpenDialog(addStoryStage);
-                    if (file != null) {
-                        selectedImagePath[0] = file.toURI().toString(); // Store the image path
-                    }
-                });
-                publishStoryButton.setOnAction(event -> {
-                    String caption = captionField.getText();
-                    if (caption.isEmpty() && selectedImagePath[0] == null) {
-                        JOptionPane.showMessageDialog(null, "Empty Story");
-                    } else {
-                        Story newStory;
-                        if (selectedImagePath[0] != null) {
-                            newStory = new Story(currentUser, caption, new Image(selectedImagePath[0]));
-                        } else {
-                            newStory = new Story(currentUser, caption);
-                        }
-                        currentUser.addStory(newStory);
-                        System.out.println("Story added for user: " + currentUser.getUsername());
-                        addStoryStage.close();
-                    }
-                });
-
-                addStoryStage.show();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         private void handleAddPost(Stage stage) throws IOException {
             FXMLLoader postLoader = new FXMLLoader(Application.class.getResource("addPost.fxml"));

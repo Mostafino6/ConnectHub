@@ -9,23 +9,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
-
-    <HBox styleClass="storiesSection">
-        <ImageView fx:id="storyIcon1" fitHeight="66.0" fitWidth="56.0" preserveRatio="true" styleClass="storyIcon">
-            <Image url="@profile-icon.png" />
-        </ImageView>
-        <ImageView fx:id="storyIcon2" fitHeight="60" fitWidth="60" preserveRatio="true" styleClass="storyIcon">
-            <Image url="@profile-icon.png" />
-        </ImageView>
-        <ImageView fx:id="storyIcon3" fitHeight="60" fitWidth="60" preserveRatio="true" styleClass="storyIcon">
-            <Image url="@profile-icon.png" />
-        </ImageView>
-        <ImageView fx:id="storyIcon4" fitHeight="60" fitWidth="60" preserveRatio="true" styleClass="storyIcon">
-            <Image url="@profile-icon.png" />
-        </ImageView>
-    </HBox>
-
+<VBox prefHeight="900.0" prefWidth="1202.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+    <fx:include source="storiesSection.fxml" />
     <BorderPane>
         <left>
             <ListView fx:id=""> </ListView>
@@ -43,7 +28,7 @@
 
         </left>
         <right>
-            <VBox styleClass="rightVBox">
+            <VBox prefHeight="747.0" prefWidth="324.0" styleClass="rightVBox">
                 <HBox style="-fx-alignment: center">
                     <ImageView fx:id="imageView" fitHeight="70" fitWidth="70" preserveRatio="true">
                         <Image url="@logo.png" />

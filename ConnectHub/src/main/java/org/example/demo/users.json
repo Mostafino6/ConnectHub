@@ -11,7 +11,7 @@
     "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "friends": {
-      "friendsList": ["8","13","12"],
+      "friendsList": ["8","13","12","3"],
       "friendRequests": [],
       "blockedFriends": ["5","15","2"]
     },
@@ -42,13 +42,13 @@
     "email": "chillguy@example.com",
     "password": "9fe5e0a43712f05785002103cfac2add80771a19d76f2c562633f65375ea5581",
     "DOB": "1991-09-10",
-    "status": true,
+    "status": false,
     "bio": "Enjoys hiking and traveling.",
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\Screenshot 2024-12-05 123219.png",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["2"],
-      "friendRequests": ["8"],
+      "friendsList": ["2","1","8"],
+      "friendRequests": [],
       "blockedFriends": ["5"]
     },
     "posts": []
@@ -137,7 +137,7 @@
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\img.png",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["1","2"],
+      "friendsList": ["1","2","3"],
       "friendRequests": [],
       "blockedFriends": ["3"]
     },

@@ -16,7 +16,8 @@ public class postCell extends ListCell<Post> {
     private VBox cellContainer;  // Main container for the cell (VBox)
     private HBox userBox;        // HBox for the user, profile picture, and date posted
     private ImageView profilePic; // User profile picture
-    private Label userName;      // User's name
+    private Label Name; // Name
+    private Label userName; // UserName
     private Label postDate;      // Date the post was created
     private VBox postContentBox; // Contains text and image content
     private TextFlow postText;   // Flow for displaying text content
@@ -31,14 +32,17 @@ public class postCell extends ListCell<Post> {
         Circle clip = new Circle(25, 25, 25); // Circular clipping for profile picture
         profilePic.setClip(clip);
 
+        Name = new Label();
+        Name.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+
         userName = new Label();
-        userName.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+        userName.setStyle("-fx-font-weight: bold;-fx-font-size: 12px; -fx-text-fill: gray;");
 
         postDate = new Label(); // Label to display the post date
         postDate.setStyle("-fx-font-size: 10px; -fx-text-fill: gray;");
 
         // Create the HBox for user and date with profile picture
-        userBox = new HBox(10, profilePic, userName, postDate);
+        userBox = new HBox(10, profilePic, Name, userName, postDate);
         userBox.setAlignment(Pos.CENTER_LEFT);
 
         postText = new TextFlow();
@@ -72,7 +76,9 @@ public class postCell extends ListCell<Post> {
             if (post.getOwner().getPfpPath() != null && !post.getOwner().getPfpPath().isEmpty()) {
                 profilePic.setImage(new Image(post.getOwner().getPfpPath()));
             }
-            userName.setText(post.getOwner().getName());
+            Name.setText(post.getOwner().getName());
+
+            userName.setText("@" + post.getOwner().getUsername());
 
             // Update post date (assuming you have a LocalDate for the datePosted)
             postDate.setText(post.getDatePosted().toString());

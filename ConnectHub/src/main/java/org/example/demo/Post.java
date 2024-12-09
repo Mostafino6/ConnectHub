@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 import java.time.LocalDate;
 
 public class Post {
-    private String postID;
     private User owner;
     private String content; // For text content
     private String image;   // For image content
@@ -16,12 +15,6 @@ public class Post {
         this.content = content;
         this.image = image;
         this.datePosted = LocalDate.now(); // Automatically set the date
-    }
-    public String getPostID() {
-        return postID;
-    }
-    public void setPostID(String postID) {
-        this.postID = postID;
     }
     // Getters and setters
     public User getOwner() {

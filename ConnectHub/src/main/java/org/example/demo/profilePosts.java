@@ -22,14 +22,13 @@ public class profilePosts {
         }
         try {
             ArrayList<Post> allPosts = postManager.readPosts();
-            ArrayList<Post> cuPosts = new ArrayList<>();
             for (Post post : allPosts) {
                 if(post.getOwner().getUserID().equals(currentUser.getUserID())) {
-                    cuPosts.add(post);
+                    currentUser.getPosts().add(post);
                 }
             }
-            Collections.reverse(cuPosts);
-            ObservableList<Post> postsList = FXCollections.observableArrayList(cuPosts);
+            Collections.reverse(currentUser.getPosts());
+            ObservableList<Post> postsList = FXCollections.observableArrayList(currentUser.getPosts());
             postListView.setItems(postsList);
             postListView.setCellFactory(listView -> new postCell());
         }catch (Exception e) {

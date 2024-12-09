@@ -3,27 +3,23 @@ package org.example.demo;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 public class Story {
-    private String storyId; // Unique ID for the story
     private User owner;     // The user who owns the story
     private String caption; // Caption for the story
     private String imageUrl; // URL of the image content
-    private LocalDate dateCreated; // Date the story was created
-
-    // Constructor for text-only stories
-    public Story(User owner, String caption) {
-        this.owner = owner;
-        this.caption = caption;
-        this.dateCreated = LocalDate.now();
-    }
+    private LocalDateTime dateCreated; // Date the story was created
 
     // Constructor for image stories
-    public Story(User owner, String caption, Image imageContent) {
+    public Story(User owner, String caption, String imageUrl) {
         this.owner = owner;
         this.caption = caption;
-        this.imageUrl = imageContent.getUrl(); // Use getUrl to store the image URL
-        this.dateCreated = LocalDate.now();
+        this.imageUrl = imageUrl; // Use getUrl to store the image URL
+        this.dateCreated = LocalDateTime.now();
     }
 
     // Getters and setters
@@ -36,18 +32,41 @@ public class Story {
     }
 
     public String getImageUrl() {
-        return imageUrl;
+        return "file:///" + imageUrl;
     }
 
-    public LocalDate getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setStoryId(String storyId) {
-        this.storyId = storyId;
+    public void setCaption(String caption) {
+        this.caption = caption;
     }
 
-    public String getStoryId() {
-        return storyId;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public String formatDateTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm     dd/MM/yyyy");
+        return this.getDateCreated().format(formatter);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Story story = (Story) obj;
+
+        // Compare fields that uniquely identify the story
+        return owner.getUserID().equals(story.owner.getUserID()) &&
+                caption.equals(story.caption) &&
+                imageUrl.equals(story.imageUrl) &&
+                dateCreated.truncatedTo(ChronoUnit.SECONDS).equals(story.dateCreated.truncatedTo(ChronoUnit.SECONDS));
+    }
+
 }

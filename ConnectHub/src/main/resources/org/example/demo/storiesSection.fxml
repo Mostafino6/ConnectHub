@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+
+<ScrollPane minHeight="35.0" prefHeight="135.0" prefWidth="1202.0" styleClass="storiesSection" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Stories">
+   <content>
+      <HBox fx:id="storyHBox" prefHeight="118.0" prefWidth="1173.0" styleClass="storiesSection" />
+   </content>
+</ScrollPane>
