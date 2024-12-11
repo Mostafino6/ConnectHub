@@ -62,7 +62,7 @@
     "DOB": "1993-03-30",
     "status": false,
     "bio": "Aspiring artist and photographer.",
-    "profilePicture": "",
+    "profilePicture": "D:\\Downloads\\defaultpfp.jpg",
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
@@ -80,7 +80,7 @@
     "DOB": "1990-12-25",
     "status": false,
     "bio": "Likes gaming and video editing.",
-    "profilePicture": "",
+    "profilePicture": "D:\\Downloads\\defaultpfp.jpg",
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
@@ -98,7 +98,7 @@
     "DOB": "2023-12-04",
     "status": false,
     "bio": "",
-    "profilePicture": "",
+    "profilePicture": "D:\\Downloads\\defaultpfp.jpg",
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
@@ -116,7 +116,7 @@
     "DOB": "2023-12-11",
     "status": false,
     "bio": "",
-    "profilePicture": "",
+    "profilePicture": "D:\\Downloads\\defaultpfp.jpg",
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
@@ -152,7 +152,7 @@
     "DOB": "2023-12-05",
     "status": false,
     "bio": "",
-    "profilePicture": "",
+    "profilePicture": "D:\\Downloads\\defaultpfp.jpg",
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
@@ -188,7 +188,7 @@
     "DOB": "2023-12-05",
     "status": false,
     "bio": "",
-    "profilePicture": "",
+    "profilePicture": "D:\\Downloads\\defaultpfp.jpg",
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
@@ -242,7 +242,7 @@
     "DOB": "2023-12-04",
     "status": false,
     "bio": "",
-    "profilePicture": "",
+    "profilePicture": "D:\\Downloads\\defaultpfp.jpg",
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
@@ -262,6 +262,24 @@
     "bio": "biooooooo",
     "profilePicture": "D:\\Downloads\\UML.jpeg",
     "coverPhoto": "D:\\Downloads\\Use Case.jpeg",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    },
+    "posts": []
+  },
+  {
+    "userID": "16",
+    "username": "newUser",
+    "name": "New",
+    "email": "newUser@example.com",
+    "password": "f5edf1f7774901fbad88e4c310f8818a16ac9e8e567494eed6b172110c1c67e5",
+    "DOB": "2018-12-04",
+    "status": false,
+    "bio": "",
+    "profilePicture": "D:\\Downloads\\defaultpfp.jpg",
+    "coverPhoto": "",
     "friends": {
       "friendsList": [],
       "friendRequests": [],
