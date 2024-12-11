@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/FriendManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/FriendManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/stories.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/homePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/homePage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +40,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Mostafino6/ConnectHub.git&quot;,
-    &quot;accountId&quot;: &quot;2be54a1d-a7e8-4355-834a-bb70bdc51c7d&quot;
+    &quot;accountId&quot;: &quot;42ee9dd9-bf07-4354-ae2e-6f9cf3c8290e&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -63,15 +68,15 @@
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;ProfilePage&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;NewsFeed&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/code/json-simple-1.1.1.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/json-simple-1.1.1.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.24827586&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
@@ -80,8 +85,8 @@
   }
 }</component>
   <component name="RunManager" selected="Application.org.example.demo.MainApp">
-    <configuration name="ValidationManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.demo.ValidationManager" />
+    <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.demo.MainApp" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
@@ -93,8 +98,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="org.example.demo.MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.demo.MainApp" />
+    <configuration name="ValidationManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.demo.ValidationManager" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
@@ -116,8 +121,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
       </set>
     </attachedChunks>
   </component>
@@ -153,11 +158,27 @@
       <workItem from="1733431142386" duration="1740000" />
       <workItem from="1733483272798" duration="9718000" />
       <workItem from="1733494667716" duration="1336000" />
+      <workItem from="1733919569257" duration="654000" />
+      <workItem from="1733920238734" duration="196000" />
+      <workItem from="1733920577536" duration="20000" />
+      <workItem from="1733920615223" duration="5763000" />
+      <workItem from="1733926936996" duration="5962000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

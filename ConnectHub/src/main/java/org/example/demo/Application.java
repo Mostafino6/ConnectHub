@@ -1,13 +1,10 @@
     package org.example.demo;
 
-    import eu.hansolo.tilesfx.skins.TestTileSkin;
     import javafx.fxml.FXMLLoader;
-    import javafx.scene.Parent;
     import javafx.scene.Scene;
     import javafx.scene.control.*;
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
-    import javafx.scene.layout.HBox;
     import javafx.scene.layout.VBox;
     import javafx.scene.control.Label;
     import javafx.scene.control.TextField;
@@ -20,7 +17,6 @@
     import java.io.IOException;
     import java.util.ArrayList;
     import java.util.Date;
-    import java.util.Objects;
 
     public class Application extends javafx.application.Application {
         private static final ValidationManager validationManager = new ValidationManager();
@@ -429,6 +425,15 @@
                 viewSuggested.setOnAction(event -> handleSuggested(stage));
                 Button viewProfile = (Button) homeLoader.getNamespace().get("viewProfile");
                 viewProfile.setOnAction(event -> handleProfile(stage));
+                Button searchBtn=(Button) homeLoader.getNamespace().get("searchBtn");
+                searchBtn.setOnAction(event ->{
+                    try {
+                        handleSearch(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
                 Button addPost = (Button) homeLoader.getNamespace().get("addPost");
                 addPost.setOnAction(event -> {
                     try {
@@ -476,6 +481,7 @@
                 });
             } catch (IOException e) {
                 e.printStackTrace();
+
             }
         }
 
@@ -546,6 +552,58 @@
                 e.printStackTrace();
             }
         }
+        private void handleSearch(Stage stage) throws IOException {
+            try {
+                FXMLLoader searchLoader = new FXMLLoader(Application.class.getResource("searchPage.fxml"));
+                Scene searcSecene = new Scene(searchLoader.load(), 600, 400);
+                Stage newStage = new Stage();
+                newStage.setTitle("Search");
+                searcSecene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(searcSecene);
+                newStage.initOwner(stage);
+                newStage.show();
+                TextField searchField = (TextField) searchLoader.getNamespace().get("searchField");                Button searchDone = (Button) searchLoader.getNamespace().get("searchDone");
+                if (searchDone == null) {
+                    System.out.println("searchDone button not found!");
+                }
+
+                searchDone.setOnAction(event -> {
+                    boolean isfound = false;
+                    boolean isfriend =true;
+                    try {
+                        ArrayList<User> userList=databaseManager.readUsers();
+                        if (!searchField.getText().isEmpty()) {
+                            String username=searchField.getText();
+                            for (int i = 0; i < userList.size(); i++) {
+                                if(username.equals(userList.get(i).getUsername())) {
+                                    User seachedUser =userList.get(i);
+                                    isfound=true;
+                                    showAlert(Alert.AlertType.ERROR,"Error", seachedUser.getUserID());
+                                    SearchCell searchCell=new SearchCell(isfriend,seachedUser);
+                                }
+                            }
+                            if (!isfound) {
+                                showAlert(Alert.AlertType.ERROR,"Error","user not found");
+
+                            }
+                        }
+                        else {
+                            showAlert(Alert.AlertType.ERROR,"Error","Enter Username");
+                        }
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+
+                });
+
+
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         private void handleBlockRemove(Stage stage) {
             try {

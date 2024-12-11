@@ -40,12 +40,20 @@ public class FriendManagement {
     public void setBlockedFriends(ArrayList<User> blockedFriends) {
         this.blockedFriends = blockedFriends;
     }
+    public void setBlockedFriends(User blockedFriend) {
+       blockedFriends.add(blockedFriend);
+    }
+
     public boolean isFriend(User user) {
         return friendsList.contains(user);
     }
 
     public boolean hasPendingRequest(User user) {
         return friendRequests.contains(user);
+    }
+
+    public void removeFriend(User user) {
+        friendsList.remove(user);
     }
 
     public boolean isBlocked(User user) {
