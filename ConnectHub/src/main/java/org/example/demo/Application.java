@@ -1,13 +1,10 @@
     package org.example.demo;
 
-    import eu.hansolo.tilesfx.skins.TestTileSkin;
     import javafx.fxml.FXMLLoader;
-    import javafx.scene.Parent;
     import javafx.scene.Scene;
     import javafx.scene.control.*;
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
-    import javafx.scene.layout.HBox;
     import javafx.scene.layout.VBox;
     import javafx.scene.control.Label;
     import javafx.scene.control.TextField;
@@ -18,9 +15,9 @@
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
+    import java.time.LocalDate;
     import java.util.ArrayList;
     import java.util.Date;
-    import java.util.Objects;
 
     public class Application extends javafx.application.Application {
         private static final ValidationManager validationManager = new ValidationManager();
@@ -118,7 +115,7 @@
                     String email = emailField.getText();
                     String password = passwordField.getText();
                     String rewritePassword = RewritePasswordField.getText();
-                    java.time.LocalDate dob = dobField.getValue();
+                    LocalDate dob = dobField.getValue();
 
                     if (username.isEmpty() || name.isEmpty() || email.isEmpty() || password.isEmpty() || dob == null) {
                         showAlert(Alert.AlertType.ERROR, "Missing Fields", "All fields are required.");
@@ -429,6 +426,15 @@
                 viewSuggested.setOnAction(event -> handleSuggested(stage));
                 Button viewProfile = (Button) homeLoader.getNamespace().get("viewProfile");
                 viewProfile.setOnAction(event -> handleProfile(stage));
+                Button searchBtn=(Button) homeLoader.getNamespace().get("searchBtn");
+                searchBtn.setOnAction(event ->{
+                    try {
+                        handleSearch(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
                 Button addPost = (Button) homeLoader.getNamespace().get("addPost");
                 addPost.setOnAction(event -> {
                     try {
@@ -476,6 +482,7 @@
                 });
             } catch (IOException e) {
                 e.printStackTrace();
+
             }
         }
 
@@ -546,6 +553,74 @@
                 e.printStackTrace();
             }
         }
+        private void handleSearch(Stage stage) throws IOException {
+            try {
+
+                FXMLLoader searchLoader = new FXMLLoader(Application.class.getResource("searchPage.fxml"));
+                Scene searcSecene = new Scene(searchLoader.load(), 600, 400);
+                Stage newStage = new Stage();
+                newStage.setTitle("Search");
+                searcSecene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(searcSecene);
+                newStage.initOwner(stage);
+                newStage.show();
+
+                // Accessing FXML elements
+                TextField searchField = (TextField) searchLoader.getNamespace().get("searchField");
+                Button searchDone = (Button) searchLoader.getNamespace().get("searchDone");
+                ListView<SearchCell> searchListView = (ListView<SearchCell>) searchLoader.getNamespace().get("searchListView");
+
+                if (searchDone == null) {
+                    System.out.println("searchDone button not found!");
+                }
+
+                searchDone.setOnAction(event -> {
+                    searchListView.getItems().clear(); // Clear previous search results
+                    boolean isFound = false;
+                    boolean isFriend = true;
+
+                    try {
+                        User currentUser = Application.getCurrentUser();
+                        User searchedUser = null;
+                        ArrayList<User> userList = databaseManager.readUsers();
+
+                        // Check if search field is not empty
+                        if (!searchField.getText().isEmpty()) {
+                            String username = searchField.getText();
+
+                            // Search through the list of users
+                            for (int i = 0; i < userList.size(); i++) {
+                                if (username.equals(userList.get(i).getUsername())) {
+                                    searchedUser = userList.get(i);
+                                    isFound = true;
+                                    break; // Exit the loop once the user is found
+                                }
+                            }
+                            if (isFound) {
+                                if (!currentUser.getFriends().isBlocked(searchedUser)) {
+                                    showAlert(Alert.AlertType.WARNING, "Warning",Boolean.toString(currentUser.getFriends().isBlocked(searchedUser)));
+
+                                    SearchCell searchCell = new SearchCell(isFriend, searchedUser);
+                                    searchListView.getItems().add(searchCell); // Add to ListView
+                                } else {
+                                    showAlert(Alert.AlertType.WARNING, "Warning", "User not found.");
+                                }
+                            } else {
+                                showAlert(Alert.AlertType.ERROR, "Error", "User not found.");
+                            }
+                        } else {
+                            showAlert(Alert.AlertType.ERROR, "Error", "Enter a username.");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while processing the search.");
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         private void handleBlockRemove(Stage stage) {
             try {
