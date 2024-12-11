@@ -418,7 +418,7 @@
         private void handleHome(Stage stage) {
             try {
                 FXMLLoader homeLoader = new FXMLLoader(Application.class.getResource("homePage.fxml"));
-                Scene homeLoaderScene = new Scene(homeLoader.load(), 1200, 900);
+                Scene homeLoaderScene = new Scene(homeLoader.load(), 1550, 900);
                 stage.setTitle("Profile");
                 homeLoaderScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
                 VBox postContainer = (VBox) homeLoader.getNamespace().get("postContainer");

@@ -9,6 +9,7 @@ public class Post {
     private String content; // For text content
     private String image;   // For image content
     private LocalDate datePosted;
+    private String groupID;
 
     public Post(User owner, String content, String image) {
         this.owner = owner;
@@ -55,5 +56,14 @@ public class Post {
 
     public void setDatePosted(LocalDate datePosted) {
         this.datePosted = datePosted;
+    }
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
+    }
+    public String getGroupID() {
+        if(groupID == null || groupID.isEmpty()){
+            return "";
+        }
+        return groupID;
     }
 }

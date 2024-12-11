@@ -16,7 +16,8 @@ public class User {
     private String bio;
     private FriendManagement friends;
     private ArrayList<Post> posts;
-    private ArrayList<Story> stories; // New list to manage user stories
+    private ArrayList<Story> stories;
+    private ArrayList<Group> groups;// New list to manage user stories
 
     // Default constructor
     public User() {
@@ -141,5 +142,11 @@ public class User {
 
     public void addStory(Story story) {
         stories.add(story);
+    }
+    public ArrayList<Group> getGroups() {
+        return groups;
+    }
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
     }
 }

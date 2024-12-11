@@ -1,0 +1,63 @@
+[
+  {
+    "groupID": "1",
+    "creator": "1",
+    "groupName": "OOP Lovers",
+    "groupDescription": "Everyone here loves OOP.",
+    "groupIcon": "",
+    "hierarchy": {
+      "admins": ["2", "3"],
+      "members": ["1", "8", "5", "10"],
+      "requests": ["7", "9"]
+    }
+  },
+  {
+    "groupID": "2",
+    "creator": "4",
+    "groupName": "Data Science Enthusiasts",
+    "groupDescription": "A group for people passionate about data analysis and AI.",
+    "groupIcon": "",
+    "hierarchy": {
+      "admins": ["4", "6"],
+      "members": ["4", "11", "13", "14"],
+      "requests": ["12", "15"]
+    }
+  },
+  {
+    "groupID": "3",
+    "creator": "7",
+    "groupName": "Gaming Community",
+    "groupDescription": "For gamers who love to connect and play together.",
+    "groupIcon": "",
+    "hierarchy": {
+      "admins": ["7", "9"],
+      "members": ["7", "16", "8", "10"],
+      "requests": ["11", "12"]
+    }
+  },
+  {
+    "groupID": "4",
+    "creator": "10",
+    "groupName": "Travel Addicts",
+    "groupDescription": "Sharing travel stories and tips from around the world.",
+    "groupIcon": "",
+    "hierarchy": {
+      "admins": ["10", "11"],
+      "members": ["10", "12", "13", "14"],
+      "requests": ["15", "16"]
+    }
+  },
+  {
+    "groupID": "5",
+    "creator": "12",
+    "groupName": "Art and Design",
+    "groupDescription": "For creative minds interested in art and design.",
+    "groupIcon": "",
+    "hierarchy": {
+      "admins": ["12", "14"],
+      "members": ["12", "7", "8", "9"],
+      "requests": ["5", "6"]
+    }
+  }
+]
+

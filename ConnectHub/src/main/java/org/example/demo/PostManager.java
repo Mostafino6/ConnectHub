@@ -48,11 +48,13 @@ public class PostManager {
             String content = (String) jsonObject.get("content");
             String image = (String) jsonObject.get("image");
             String datePostedStr = (String) jsonObject.get("datePosted");
+            String groupID = (String) jsonObject.get("groupID");
             LocalDate datePosted = LocalDate.parse(datePostedStr);
             User user = getUserByID(userID);
                 if (user != null) {
                     Post post = new Post(user, content, image);
                     post.setDatePosted(datePosted);
+                    post.setGroupID(groupID);
                     postList.add(post);
                     user.addPost(post);  // Add post to the user's list
                 }
@@ -82,6 +84,7 @@ public class PostManager {
                 postImage = postImage.replace("\\", "\\\\");
             }
             jsonPost.put("image", postImage);
+            jsonPost.put("groupID", p.getGroupID());
             jsonArray.add(jsonPost);
         }
 
@@ -95,7 +98,8 @@ public class PostManager {
                 writer.write("    \"userID\": \"" + jsonPost.get("userID") + "\",\n");
                 writer.write("    \"content\": \"" + jsonPost.get("content") + "\",\n");
                 writer.write("    \"image\": \"" + jsonPost.get("image") + "\",\n");
-                writer.write("    \"datePosted\": \"" + jsonPost.get("datePosted") + "\"\n");
+                writer.write("    \"datePosted\": \"" + jsonPost.get("datePosted") + "\",\n");
+                writer.write("    \"groupID\": \"" + jsonPost.get("groupID") + "\"\n");
 
                 writer.write("  }");
 
