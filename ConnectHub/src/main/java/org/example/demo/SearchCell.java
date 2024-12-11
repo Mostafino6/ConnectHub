@@ -35,59 +35,54 @@ public class SearchCell extends ListCell<User> {
         name.setText(searched.getName());
         name.setStyle("-fx-font-weight: bold;");
         AddFriend = new Button();
-        AddFriend.setText("AddFriend");
-        AddFriend.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 50px;fx-min-height: 20px; -fx-background-color: #6135D2;");
+        AddFriend.setText("Add");
+        AddFriend.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 70px;fx-min-height: 20px; -fx-background-color: #6135D2;");
 
         RemoveFriend = new Button();
-        RemoveFriend.setText("RemoveFriend");
-        RemoveFriend.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 50px;fx-min-height: 20px; -fx-background-color: #6135D2;");
+        RemoveFriend.setText("Remove");
+        RemoveFriend.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 70px;fx-min-height: 20px; -fx-background-color: #6135D2;");
 
 
         block = new Button();
-        block.setText("block");
-        block.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 50px;fx-min-height: 20px; -fx-background-color: #6135D2;");
+        block.setText("Block");
+        block.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 70px;fx-min-height: 20px; -fx-background-color: #6135D2;");
 
         viewProfile = new Button();
-        viewProfile.setText("viewProfile");
-        viewProfile.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 50px;fx-min-height: 20px; -fx-background-color: #6135D2;");
+        viewProfile.setText("view");
+        viewProfile.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 70px;fx-min-height: 20px; -fx-background-color: #6135D2;");
 
         removeFriend = new Button();
-        removeFriend.setText("removeFriend");
-        removeFriend.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 50px;fx-min-height: 20px; -fx-background-color: #6135D2;");
+        removeFriend.setText("Remove");
+        removeFriend.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 70px;fx-min-height: 20px; -fx-background-color: #6135D2;");
 
        if (friend){
-           HBox text = new HBox(5,name,viewProfile,removeFriend,block);
+           HBox text = new HBox(5,viewProfile,removeFriend,block);
            text.setSpacing(10);
            userInfo = new HBox(15,pfp,text);
            userInfo.setPadding(new Insets(10));
            setGraphic(userInfo);
            removeFriend.setOnAction(e -> {
                if(searched != null){
-                   handleRemove(searched);
+                   handleRemoveButton(searched);
                }
            });
            block.setOnAction(e -> {
                if(searched != null){
-                   handleBlock(searched);
+                   handleBlockButton(searched);
                }
            });
 
        }
        else
        {
-           HBox text = new HBox(5,name,AddFriend,viewProfile,block);
+           HBox text = new HBox(5,AddFriend,viewProfile,block);
            text.setSpacing(10);
            userInfo = new HBox(15,pfp,text);
            userInfo.setPadding(new Insets(10));
            setGraphic(userInfo);
-           removeFriend.setOnAction(e -> {
-               if(searched != null){
-                   handleRemove(searched);
-               }
-           });
            block.setOnAction(e -> {
                if(searched != null){
-                   handleBlock(searched);
+                   handleBlockButton(searched);
                }
            });
            AddFriend.setOnAction(e -> {
@@ -102,14 +97,60 @@ public class SearchCell extends ListCell<User> {
            });
        }
     }
+    @Override
+    protected void updateItem(User user, boolean empty) {
+        super.updateItem(user, empty);
 
-    private void handleRemove(User searched){
+        if (empty || user == null) {
+            setGraphic(null);
+        } else {
+            pfp.setImage(new Image(user.getPfpPath()));
+            name.setText(user.getName());
+            setGraphic(userInfo);
+        }
+    }
+    private void handleBlockButton(User user){
+        User current = Application.getCurrentUser();
+        if(current != null){
+            JOptionPane.showMessageDialog(null,"User is Blocked!");
+            current.getFriends().getBlockedFriends().add(user);
+            current.getFriends().getFriendsList().remove(user);
+            user.getFriends().getFriendsList().remove(current);
+            user.getFriends().getBlockedFriends().add(current);
+
+            try {
+                Application.getDatabaseManager().writeUser(current);
+                Application.getDatabaseManager().writeUser(user);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void handleRemoveButton(User user){
+        User current = Application.getCurrentUser();
+        if(current != null){
+            JOptionPane.showMessageDialog(null,"User is Removed!");
+            current.getFriends().getFriendsList().remove(user);
+            user.getFriends().getFriendsList().remove(current);
+            current.getFriends().getSuggestedFriends().add(user);
+            user.getFriends().getSuggestedFriends().add(current);
+            try{
+                Application.getDatabaseManager().writeUser(current);
+                Application.getDatabaseManager().writeUser(user);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    private void handleAdd(User user){
         User currentUser = Application.getCurrentUser();
         if(currentUser != null){
             try {
-                currentUser.getFriends().removeFriend(searched);
-                JOptionPane.showMessageDialog(null,"Friend Removed");
-                Application.getDatabaseManager().writeUser(currentUser);
+                user.getFriends().getFriendRequests().add(currentUser);
+                currentUser.getFriends().getSuggestedFriends().remove(user);
+                JOptionPane.showMessageDialog(null,"Friend Request Sent!");
+                Application.getDatabaseManager().writeUser(user);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -118,27 +159,6 @@ public class SearchCell extends ListCell<User> {
             System.out.println("user not found");
         }
 
-    }
-    private void handleBlock(User searched){
-        User currentUser = Application.getCurrentUser();
-        if(currentUser != null){
-            try {
-                currentUser.getFriends().setBlockedFriends(searched);
-                JOptionPane.showMessageDialog(null,"User Blocked");
-                Application.getDatabaseManager().writeUser(currentUser);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-        else{
-            System.out.println("user not found");
-        }
-
-    }
-    private void handleAdd(User searched){
-        User currentUser = Application.getCurrentUser();
-        currentUser.getFriends().getFriendsList().add(searched);
-        JOptionPane.showMessageDialog(null,"Friend Added");
     }
 
 }

@@ -15,6 +15,7 @@
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
+    import java.time.LocalDate;
     import java.util.ArrayList;
     import java.util.Date;
 
@@ -114,7 +115,7 @@
                     String email = emailField.getText();
                     String password = passwordField.getText();
                     String rewritePassword = RewritePasswordField.getText();
-                    java.time.LocalDate dob = dobField.getValue();
+                    LocalDate dob = dobField.getValue();
 
                     if (username.isEmpty() || name.isEmpty() || email.isEmpty() || password.isEmpty() || dob == null) {
                         showAlert(Alert.AlertType.ERROR, "Missing Fields", "All fields are required.");
@@ -554,6 +555,7 @@
         }
         private void handleSearch(Stage stage) throws IOException {
             try {
+
                 FXMLLoader searchLoader = new FXMLLoader(Application.class.getResource("searchPage.fxml"));
                 Scene searcSecene = new Scene(searchLoader.load(), 600, 400);
                 Stage newStage = new Stage();
@@ -562,43 +564,58 @@
                 newStage.setScene(searcSecene);
                 newStage.initOwner(stage);
                 newStage.show();
-                TextField searchField = (TextField) searchLoader.getNamespace().get("searchField");                Button searchDone = (Button) searchLoader.getNamespace().get("searchDone");
+
+                // Accessing FXML elements
+                TextField searchField = (TextField) searchLoader.getNamespace().get("searchField");
+                Button searchDone = (Button) searchLoader.getNamespace().get("searchDone");
+                ListView<SearchCell> searchListView = (ListView<SearchCell>) searchLoader.getNamespace().get("searchListView");
+
                 if (searchDone == null) {
                     System.out.println("searchDone button not found!");
                 }
 
                 searchDone.setOnAction(event -> {
-                    boolean isfound = false;
-                    boolean isfriend =true;
+                    searchListView.getItems().clear(); // Clear previous search results
+                    boolean isFound = false;
+                    boolean isFriend = true;
+
                     try {
-                        ArrayList<User> userList=databaseManager.readUsers();
+                        User currentUser = Application.getCurrentUser();
+                        User searchedUser = null;
+                        ArrayList<User> userList = databaseManager.readUsers();
+
+                        // Check if search field is not empty
                         if (!searchField.getText().isEmpty()) {
-                            String username=searchField.getText();
+                            String username = searchField.getText();
+
+                            // Search through the list of users
                             for (int i = 0; i < userList.size(); i++) {
-                                if(username.equals(userList.get(i).getUsername())) {
-                                    User seachedUser =userList.get(i);
-                                    isfound=true;
-                                    showAlert(Alert.AlertType.ERROR,"Error", seachedUser.getUserID());
-                                    SearchCell searchCell=new SearchCell(isfriend,seachedUser);
+                                if (username.equals(userList.get(i).getUsername())) {
+                                    searchedUser = userList.get(i);
+                                    isFound = true;
+                                    break; // Exit the loop once the user is found
                                 }
                             }
-                            if (!isfound) {
-                                showAlert(Alert.AlertType.ERROR,"Error","user not found");
+                            if (isFound) {
+                                if (!currentUser.getFriends().isBlocked(searchedUser)) {
+                                    showAlert(Alert.AlertType.WARNING, "Warning",Boolean.toString(currentUser.getFriends().isBlocked(searchedUser)));
 
+                                    SearchCell searchCell = new SearchCell(isFriend, searchedUser);
+                                    searchListView.getItems().add(searchCell); // Add to ListView
+                                } else {
+                                    showAlert(Alert.AlertType.WARNING, "Warning", "User not found.");
+                                }
+                            } else {
+                                showAlert(Alert.AlertType.ERROR, "Error", "User not found.");
                             }
-                        }
-                        else {
-                            showAlert(Alert.AlertType.ERROR,"Error","Enter Username");
+                        } else {
+                            showAlert(Alert.AlertType.ERROR, "Error", "Enter a username.");
                         }
                     } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        e.printStackTrace();
+                        showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while processing the search.");
                     }
-
                 });
-
-
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
