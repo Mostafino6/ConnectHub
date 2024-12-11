@@ -62,15 +62,15 @@ public class GroupManager {
             JSONObject hierarchyObject = (JSONObject) jsonObject.get("hierarchy");
 
             JSONArray adminsArray = (JSONArray) hierarchyObject.get("admins");
-            group.getHierarchy().setAdmins(getUserIDsFromJSON(adminsArray));
-
+            ArrayList<User> admins = getUserIDsFromJSON(adminsArray);
+            group.getHierarchy().setAdmins(admins);
             JSONArray membersArray = (JSONArray) hierarchyObject.get("members");
-            group.getHierarchy().setMembers(getUserIDsFromJSON(membersArray));
-
+            ArrayList<User> members = getUserIDsFromJSON(membersArray);
+            group.getHierarchy().setMembers(members);
             JSONArray requestsArray = (JSONArray) hierarchyObject.get("requests");
-            group.getHierarchy().setRequests(getUserIDsFromJSON(requestsArray));
+            ArrayList<User> requests = getUserIDsFromJSON(requestsArray);
+            group.getHierarchy().setRequests(requests);
         }
-
         return groupList;
     }
 

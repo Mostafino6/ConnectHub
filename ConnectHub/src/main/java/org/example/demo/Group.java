@@ -39,7 +39,7 @@ public class Group {
         this.groupDescription = groupDescription;
     }
     public String getGroupIcon() {
-        return "file:///" + groupIcon;
+        return groupIcon;
     }
     public void setGroupIcon(String groupIcon) {
         this.groupIcon = "file:///" + groupIcon;
@@ -55,5 +55,11 @@ public class Group {
     }
     public void setPosts(ArrayList<Post> posts) {
         this.posts = posts;
+    }
+    public boolean isMember(User user) {
+        if (this.creator.equals(user) || hierarchy.getAdmins().contains(user) || hierarchy.getMembers().contains(user)) {
+            return true;
+        }
+        return false;
     }
 }

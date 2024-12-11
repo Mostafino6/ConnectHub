@@ -47,7 +47,6 @@
 
         @Override
         public void start(Stage stage) throws IOException {
-
             FXMLLoader home = new FXMLLoader(Application.class.getResource("hello-view.fxml"));
             Scene scene = new Scene(home.load(), 950, 580);
             stage.setTitle("Home");

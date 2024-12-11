@@ -24,6 +24,7 @@ public class User {
         this.friends = new FriendManagement();
         this.posts = new ArrayList<>();
         this.stories = new ArrayList<>(); // Initialize stories list
+        this.groups = new ArrayList<>();
         this.pfpPath = "";
         this.coverphotoPath = "";
         this.bio = "";
@@ -148,5 +149,19 @@ public class User {
     }
     public void setGroups(ArrayList<Group> groups) {
         this.groups = groups;
+    }
+    public void addGroup(Group group){
+        groups.add(group);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true; // Check if both references point to the same object
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false; // Check if the other object is null or of a different class
+        }
+        User other = (User) obj; // Cast the object to a User
+        return userID != null && userID.equals(other.userID); // Compare userID for equality
     }
 }

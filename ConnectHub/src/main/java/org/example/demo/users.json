@@ -282,7 +282,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": [],
+      "friendRequests": ["1","1"],
       "blockedFriends": []
     },
     "posts": []
