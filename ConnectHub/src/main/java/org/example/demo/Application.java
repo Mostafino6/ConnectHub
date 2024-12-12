@@ -578,6 +578,7 @@
                     searchListView.getItems().clear(); // Clear previous search results
                     boolean isFound = false;
                     boolean isFriend = true;
+                    boolean blocked=false;
 
                     try {
                         User currentUser = Application.getCurrentUser();
@@ -597,10 +598,10 @@
                                 }
                             }
                             if (isFound) {
-                                if (!currentUser.getFriends().isBlocked(searchedUser)) {
-                                    showAlert(Alert.AlertType.WARNING, "Warning",Boolean.toString(currentUser.getFriends().isBlocked(searchedUser)));
+                                if (!currentUser.getFriends().getBlockedFriends().contains(searchedUser)) {
+//                                    showAlert(Alert.AlertType.WARNING, "Warning",Boolean.toString(currentUser.getFriends().isBlocked(searchedUser)));
 
-                                    SearchCell searchCell = new SearchCell(isFriend, searchedUser);
+                                    SearchCell searchCell = new SearchCell(isFriend, searchedUser,stage);
                                     searchListView.getItems().add(searchCell); // Add to ListView
                                 } else {
                                     showAlert(Alert.AlertType.WARNING, "Warning", "User not found.");
