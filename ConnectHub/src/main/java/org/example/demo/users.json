@@ -9,11 +9,11 @@
     "status": true,
     "bio": "I love programming and oop its so fun!!!!!!",
     "profilePicture": "C:\\Users\\eyada\\OneDrive\\Desktop\\pp\\t1 1415 soft d 500x500 .JPG",
-    "coverPhoto": "C:\\Users\\eyada\\OneDrive\\Desktop\\pp\\cover.jpeg",
+    "coverPhoto": "C:\\Users\\eyada\\OneDrive\\Desktop\\ConnectHub (1).jpg",
     "friends": {
       "friendsList": ["13","12"],
       "friendRequests": [],
-      "blockedFriends": ["5","15","3","3","2","8","8","13"]
+      "blockedFriends": ["5","15","3","3","2","8","8","13","3","3","4","14","14","3","3"]
     },
     "posts": []
   },
@@ -48,8 +48,8 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": ["2","8"],
-      "friendRequests": [],
-      "blockedFriends": ["5","1"]
+      "friendRequests": ["3","3","3","3","3"],
+      "blockedFriends": ["5","1","1"]
     },
     "posts": []
   },
@@ -66,8 +66,8 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": ["1","1"],
-      "blockedFriends": []
+      "friendRequests": ["1","1","1","1","1","1","1"],
+      "blockedFriends": ["1"]
     },
     "posts": []
   },
@@ -102,7 +102,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": [],
+      "friendRequests": ["1"],
       "blockedFriends": []
     },
     "posts": []
@@ -120,7 +120,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": [],
+      "friendRequests": ["1"],
       "blockedFriends": []
     },
     "posts": []
@@ -246,8 +246,8 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": [],
-      "blockedFriends": []
+      "friendRequests": ["1"],
+      "blockedFriends": ["1"]
     },
     "posts": []
   },
