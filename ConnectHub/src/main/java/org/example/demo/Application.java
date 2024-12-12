@@ -487,12 +487,14 @@
                 Scene scene = new Scene(loader.load(), 600, 400);
                 Stage notificationStage = new Stage();
                 notificationStage.setTitle("Notifications");
+                scene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
 
                 NotificationWindow controller = loader.getController();
                 controller.initialize(); // Call the initialize method to load notifications
 
 
                 notificationStage.setScene(scene);
+                notificationStage.initOwner(stage);
                 notificationStage.show();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -12,7 +12,7 @@
     "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "friends": {
       "friendsList": ["8","13","12","3"],
-      "friendRequests": [],
+      "friendRequests": ["18","18"],
       "blockedFriends": ["5","15","2"]
     },
     "posts": []
@@ -264,7 +264,7 @@
     "coverPhoto": "D:\\Downloads\\Use Case.jpeg",
     "friends": {
       "friendsList": [],
-      "friendRequests": [],
+      "friendRequests": ["18"],
       "blockedFriends": []
     },
     "posts": []
@@ -282,7 +282,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": [],
+      "friendRequests": ["18"],
       "blockedFriends": []
     },
     "posts": []

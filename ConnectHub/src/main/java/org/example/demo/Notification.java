@@ -42,6 +42,6 @@ public class Notification {
     }
 
     public String toString(User user) {
-        return "[" + type + "] " + message + user.getUsername() + " - " + timestamp;
+        return "[" + type + "] " + message + " " + user.getUsername() + " - " + timestamp;
     }
 }

@@ -21,14 +21,16 @@ public class NotificationWindow {
     private static final User currentUser = Application.getCurrentUser();
 
     public void initialize() {
+        notificationContainer.getChildren().clear();
         // Get the notifications of the current user
         ArrayList<Notification> notifications = currentUser.getNotifications();
-
+        System.out.println("Initializing NotificationWindow");
         // Check if there are notifications to display
         if (notifications != null && !notifications.isEmpty()) {
             for (Notification notification : notifications) {
-                HBox notificationBox = new HBox(5); // Spacing between elements
-                notificationBox.getChildren().add(createNotificationBox(notification));
+                HBox notificationBox = createNotificationBox(notification
+                ); // Spacing between elements
+//                notificationBox.getChildren().add(createNotificationBox(notification));
                 notificationContainer.getChildren().add(notificationBox);
             }
         } else {
@@ -45,11 +47,6 @@ public class NotificationWindow {
         // Create a Label for the notification type and timestamp
         Label infoLabel = new Label("[" + notification.getType() + "] " + notification.getTimestamp());
         infoLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: gray;");
-
-        // Create a StackPane to hold the notification content
-//        StackPane notificationPane = new StackPane();
-//        notificationPane.getChildren().addAll(messageLabel, infoLabel);
-//        notificationPane.setStyle("-fx-padding: 10px; -fx-border-color: #cccccc; -fx-background-color: #f5f5f5;");
 
         // Combine the labels in a VBox
         HBox notificationBox = new HBox(5); // Spacing of 5px between elements

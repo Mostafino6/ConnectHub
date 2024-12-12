@@ -66,8 +66,10 @@ public class SFcell extends ListCell<User> {
 
                 Notification notification = new Notification("Friend Request", "Received friend request");
                 user.addNotification(notification);
-
-
+                System.out.println("Total notifications for user " + user.getUsername() + ": " + user.getNotifications().size());
+                for (Notification n : user.getNotifications()) {
+                    System.out.println(n.toString(user)); // Ensure your toString method is implemented properly
+                }
 
             }catch (Exception e){
                 e.printStackTrace();
