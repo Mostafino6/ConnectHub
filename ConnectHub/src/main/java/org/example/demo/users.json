@@ -14,8 +14,7 @@
       "friendsList": ["8","13","12","3"],
       "friendRequests": [],
       "blockedFriends": ["5","15","2"]
-    },
-    "posts": [org.example.demo.Post@5bb1ed6b,org.example.demo.Post@327f6684,org.example.demo.Post@650cb2f9,org.example.demo.Post@41249837,org.example.demo.Post@152aefcd,org.example.demo.Post@5c28e0aa,org.example.demo.Post@5cb30aac,org.example.demo.Post@39b3c42d,org.example.demo.Post@7ba50051,org.example.demo.Post@6093823f,org.example.demo.Post@24b112eb,org.example.demo.Post@30428fc,org.example.demo.Post@50700745,org.example.demo.Post@2c8ee50e,org.example.demo.Post@49c3e,org.example.demo.Post@2265170a,org.example.demo.Post@727f762c,org.example.demo.Post@29024bf8,org.example.demo.Post@dc3d78a,org.example.demo.Post@7145c7f,org.example.demo.Post@e5394a7,org.example.demo.Post@35b5431e,org.example.demo.Post@2659ada5,org.example.demo.Post@38bfab5,org.example.demo.Post@11efa0cf,org.example.demo.Post@e5dac5f,org.example.demo.Post@65820cb4,org.example.demo.Post@39800ce3,org.example.demo.Post@55853ac4,org.example.demo.Post@36d94b7f,org.example.demo.Post@434b16bc,org.example.demo.Post@7a95fd22,org.example.demo.Post@63aabae,org.example.demo.Post@7ac49aa5,org.example.demo.Post@61a19db7,org.example.demo.Post@3488104c,org.example.demo.Post@673cbaa8,org.example.demo.Post@39731558,org.example.demo.Post@54d27be4,org.example.demo.Post@202c1b42,org.example.demo.Post@22470c15,org.example.demo.Post@33f14d0,org.example.demo.Post@44754208,org.example.demo.Post@4c3b7cf,org.example.demo.Post@1e7e34e6,org.example.demo.Post@651c2a6d,org.example.demo.Post@b9741c4,org.example.demo.Post@12f3e2b6,org.example.demo.Post@7d452d0a,org.example.demo.Post@798e3f8d,org.example.demo.Post@4826c819,org.example.demo.Post@45cd75f9,org.example.demo.Post@11342d37,org.example.demo.Post@194e1acb,org.example.demo.Post@67566ffb,org.example.demo.Post@491aac55,org.example.demo.Post@79777dd4,org.example.demo.Post@1006b873,org.example.demo.Post@447b243f,org.example.demo.Post@581f50e1,org.example.demo.Post@1ac41feb,org.example.demo.Post@3f24f9e0,org.example.demo.Post@22e378e7,org.example.demo.Post@d9ac02,org.example.demo.Post@3ad8d0b5,org.example.demo.Post@222bc5f7,org.example.demo.Post@1bb6a515,org.example.demo.Post@56c2b3dd,org.example.demo.Post@2a639cc8,org.example.demo.Post@561bf00e]
+    }
   },
   {
     "userID": "2",
@@ -32,8 +31,7 @@
       "friendsList": ["3","8"],
       "friendRequests": [],
       "blockedFriends": ["1"]
-    },
-    "posts": []
+    }
   },
   {
     "userID": "3",
@@ -50,8 +48,7 @@
       "friendsList": ["2","1","8"],
       "friendRequests": [],
       "blockedFriends": ["5"]
-    },
-    "posts": []
+    }
   },
   {
     "userID": "4",
@@ -68,8 +65,7 @@
       "friendsList": [],
       "friendRequests": ["1"],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "5",
@@ -86,8 +82,7 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": ["1","3"]
-    },
-    "posts": []
+    }
   },
   {
     "userID": "6",
@@ -104,8 +99,7 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "7",
@@ -122,8 +116,7 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "8",
@@ -140,8 +133,7 @@
       "friendsList": ["1","2","3"],
       "friendRequests": [],
       "blockedFriends": ["3"]
-    },
-    "posts": []
+    }
   },
   {
     "userID": "9",
@@ -158,8 +150,7 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "10",
@@ -176,8 +167,7 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "11",
@@ -194,8 +184,7 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "12",
@@ -212,8 +201,7 @@
       "friendsList": ["1"],
       "friendRequests": [],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "13",
@@ -230,8 +218,7 @@
       "friendsList": ["1"],
       "friendRequests": [],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "14",
@@ -248,8 +235,7 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "15",
@@ -266,8 +252,7 @@
       "friendsList": [],
       "friendRequests": [],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "16",
@@ -284,7 +269,6 @@
       "friendsList": [],
       "friendRequests": ["1","1"],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   }
 ]

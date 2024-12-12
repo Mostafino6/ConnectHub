@@ -94,19 +94,6 @@ public class DatabaseManager {
 
             JSONArray blockedFriends = (JSONArray) friendsObject.get("blockedFriends");
             user.getFriends().setBlockedFriends(getUserObjectsFromIDs(blockedFriends, userMap));
-
-            // Parse posts and store them in the user's post list
-            JSONArray postIds = (JSONArray) jsonObject.get("posts");
-            ArrayList<Post> posts = new ArrayList<>();
-            for (Object postIdObj : postIds) {
-                String postId = (String) postIdObj;
-                Post post = postMap.get(postId); // Retrieve Post from postMap using postId
-                if (post != null) {
-                    System.out.println(post);
-                    posts.add(post); // Add the post to the user's list of posts
-                }
-            }
-            user.setPosts(posts); // Set the user's posts list
         }
 
         // Suggest friends for each user (existing logic)
@@ -216,14 +203,6 @@ public class DatabaseManager {
             friendsObject.put("friendRequests", getIDsFromUserObjects(existingUser.getFriends().getFriendRequests()));
             friendsObject.put("blockedFriends", getIDsFromUserObjects(existingUser.getFriends().getBlockedFriends()));
             jsonUser.put("friends", friendsObject);
-
-            // Posts information
-            JSONArray postsArray = new JSONArray();
-            for (Post post : existingUser.getPosts()) {
-                postsArray.add(post);
-            }
-            jsonUser.put("posts", postsArray);
-
             jsonArray.add(jsonUser);
         }
 
@@ -252,11 +231,7 @@ public class DatabaseManager {
                 writer.write("      \"friendsList\": " + friendsObject.get("friendsList").toString() + ",\n");
                 writer.write("      \"friendRequests\": " + friendsObject.get("friendRequests").toString() + ",\n");
                 writer.write("      \"blockedFriends\": " + friendsObject.get("blockedFriends").toString() + "\n");
-                writer.write("    },\n");
-
-                // Write posts
-                writer.write("    \"posts\": " + jsonUser.get("posts").toString() + "\n");
-
+                writer.write("    }\n");
                 // Close the user object
                 if (i < jsonArray.size() - 1) {
                     writer.write("  },\n");
