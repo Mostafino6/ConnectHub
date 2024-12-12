@@ -87,6 +87,69 @@ public class PostManager {
             jsonPost.put("groupID", p.getGroupID());
             jsonArray.add(jsonPost);
         }
+        // Write to the file
+        try (FileWriter writer = new FileWriter(POSTS_DATABASE_FILE)) {
+            writer.write("[\n");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject jsonPost = (JSONObject) jsonArray.get(i);
+                writer.write("  {\n");
+
+                writer.write("    \"userID\": \"" + jsonPost.get("userID") + "\",\n");
+                writer.write("    \"content\": \"" + jsonPost.get("content") + "\",\n");
+                writer.write("    \"image\": \"" + jsonPost.get("image") + "\",\n");
+                writer.write("    \"datePosted\": \"" + jsonPost.get("datePosted") + "\",\n");
+                writer.write("    \"groupID\": \"" + jsonPost.get("groupID") + "\"\n");
+
+                writer.write("  }");
+
+                if (i < jsonArray.size() - 1) {
+                    writer.write(",\n");
+                } else {
+                    writer.write("\n");
+                }
+            }
+            writer.write("]");
+        }
+    }
+    public void editPost(String userID, String oldContent, String newContent, String newImage) throws Exception {
+        ArrayList<Post> postList = readPosts();
+        for (Post post : postList) {
+            if (post.getOwner().getUserID().equals(userID) && post.getContent().equals(oldContent)) {
+                post.setContent(newContent);
+                if(newImage!=null) {
+                    post.setImage(newImage);
+                }
+                break;
+            }
+        }
+        // Rewrite the updated list to the JSON file
+        writePostsToFile(postList);
+    }
+    public void deletePost(String userID, String content) throws Exception {
+        ArrayList<Post> postList = readPosts();
+        postList.removeIf(post -> post.getOwner().getUserID().equals(userID) && post.getContent().equals(content));
+        // Rewrite the updated list to the JSON file
+        writePostsToFile(postList);
+    }
+    private void writePostsToFile(ArrayList<Post> postList) throws Exception {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Post post : postList) {
+            JSONObject jsonPost = new JSONObject();
+            jsonPost.put("userID", post.getOwner().getUserID());
+            jsonPost.put("content", post.getContent());
+            jsonPost.put("datePosted", post.getDatePosted().toString());
+            String postImage = post.getImage();
+            if (postImage != null && postImage.startsWith("file:///")) {
+                postImage = postImage.substring(8);
+            }
+            if (postImage != null) {
+                postImage = postImage.replace("\\", "\\\\");
+            }
+            jsonPost.put("image", postImage);
+            jsonPost.put("groupID", post.getGroupID());
+            jsonArray.add(jsonPost);
+        }
 
         // Write to the file
         try (FileWriter writer = new FileWriter(POSTS_DATABASE_FILE)) {
