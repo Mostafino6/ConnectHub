@@ -22,8 +22,8 @@
                 <Button fx:id="viewHome" mnemonicParsing="false" styleClass="btn4" text="View Home" />
             </VBox>
             <VBox styleClass="vPrfIn2">
-                <Label fx:id="nameuser" prefHeight="88.0" prefWidth="632.0" styleClass="name" stylesheets="@main.css" textAlignment="CENTER" />
-                <Label fx:id="bioplace" prefHeight="25.0" prefWidth="513.0" styleClass="lblsPass" stylesheets="@main.css" text="Your Bio Here." />
+                <Label fx:id="nameuser" prefHeight="88.0" prefWidth="946.0" styleClass="name" stylesheets="@main.css" textAlignment="CENTER" />
+                <Label fx:id="bioplace" prefHeight="25.0" prefWidth="952.0" styleClass="lblsPass" stylesheets="@main.css" text="Your Bio Here." />
             </VBox>
         </HBox>
     </StackPane>

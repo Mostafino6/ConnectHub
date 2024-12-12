@@ -63,6 +63,12 @@ public class Group {
         }
         return false;
     }
+    public boolean isAdmin(User user) {
+        if(hierarchy.getAdmins().contains(user)) {
+            return true;
+        }
+        return false;
+    }
     public void addMember(User user) {
         if(!hierarchy.getMembers().contains(user)) {
             hierarchy.getMembers().add(user);

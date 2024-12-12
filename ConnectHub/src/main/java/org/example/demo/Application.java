@@ -444,7 +444,7 @@
             try {
                 currentGroup = null;
                 FXMLLoader homeLoader = new FXMLLoader(Application.class.getResource("homePage.fxml"));
-                Scene homeLoaderScene = new Scene(homeLoader.load(), 1550, 900);
+                Scene homeLoaderScene = new Scene(homeLoader.load(), 1550, 925);
                 stage.setTitle("Profile");
                 homeLoaderScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
                 VBox postContainer = (VBox) homeLoader.getNamespace().get("postContainer");
@@ -499,6 +499,14 @@
                         throw new RuntimeException(e);
                     }
                     System.exit(0);
+                });
+                Button createGroup = (Button) homeLoader.getNamespace().get("createGroup");
+                createGroup.setOnAction(event -> {
+                    try {
+                        handleCreateGroup(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 });
             } catch (IOException e) {
                 e.printStackTrace();
@@ -724,6 +732,46 @@
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+        }
+        private void handleCreateGroup(Stage stage) throws IOException {
+            FXMLLoader grpCreationLoader = new FXMLLoader(Application.class.getResource("createGroup.fxml"));
+            Scene createGroupScene = new Scene(grpCreationLoader.load(), 600, 400);
+            Stage createGroupStage = new Stage();
+            createGroupStage.setTitle("Create Group");
+            createGroupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            createGroupStage.setScene(createGroupScene);
+            String selectedImagePath[] = {null};
+            TextField groupName = (TextField) grpCreationLoader.getNamespace().get("grpName");
+            TextField groupDescription = (TextField) grpCreationLoader.getNamespace().get("grpDescription");
+            Button selectImage = (Button) grpCreationLoader.getNamespace().get("selectImage");
+            selectImage.setOnAction(event -> {
+                FileChooser fileChooser = new FileChooser();
+                File file = fileChooser.showOpenDialog(createGroupStage);
+                if (file != null) {
+                    selectedImagePath[0] = file.getAbsolutePath();
+                }
+            });
+            Button createGroupButton = (Button) grpCreationLoader.getNamespace().get("create");
+            createGroupButton.setOnAction(event -> {
+                String name = groupName.getText();
+                String description = groupDescription.getText();
+                if (name.isEmpty() && description.isEmpty() && selectedImagePath[0] == null) {
+                    JOptionPane.showMessageDialog(null, "Empty Story");
+                } else {
+                    Group newGroup = new Group();
+                    newGroup.setCreator(currentUser);
+                    newGroup.setGroupName(name);
+                    newGroup.setGroupDescription(description);
+                    newGroup.setGroupIcon(selectedImagePath[0]);
+                    try {
+                        groupManager.writeGroup(newGroup);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    createGroupStage.close();
+                }
+            });
+            createGroupStage.show();
         }
     public static void main(String[] args) {
         launch();

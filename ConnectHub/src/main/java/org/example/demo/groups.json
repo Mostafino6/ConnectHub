@@ -7,7 +7,7 @@
     "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
       "admins": [],
-      "members": ["8","5","10","3"],
+      "members": ["8","5","10","3","1"],
       "requests": ["7","9"]
     }
   },
@@ -18,7 +18,7 @@
     "groupDescription": "A group for people passionate about data analysis and AI.",
     "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
-      "admins": ["1","6"],
+      "admins": ["6"],
       "members": ["11","13","14"],
       "requests": ["12","15"]
     }
@@ -57,6 +57,18 @@
       "admins": ["14"],
       "members": ["7","8","9","3"],
       "requests": ["5","6"]
+    }
+  },
+  {
+    "groupID": "6",
+    "creator": "1",
+    "groupName": "Knee surgery enthusiasts",
+    "groupDescription": "If your Knee surgery is tomorrow join this group",
+    "groupIcon": "D:/Downloads/images (4).jpg",
+    "hierarchy": {
+      "admins": [],
+      "members": ["3"],
+      "requests": []
     }
   }
 ]

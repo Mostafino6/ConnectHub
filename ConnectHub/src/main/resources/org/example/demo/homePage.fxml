@@ -12,17 +12,16 @@
     <fx:include source="storiesSection.fxml" />
     <BorderPane prefWidth="1100.0">
         <left>
-            <VBox prefHeight="747.0" prefWidth="348.0" styleClass="rightVBox">
+            <VBox prefHeight="760.0" prefWidth="348.0" styleClass="rightVBox">
                 <HBox prefHeight="30.0" prefWidth="267.0" styleClass="btnsHbox">
                     <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Groups" />
-                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="Manage Groups" textAlignment="CENTER" />
+                    <Button fx:id="createGroup" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="Create Group" textAlignment="CENTER" />
                 </HBox>
-                <fx:include source="viewGroups.fxml"/>
+                <fx:include source="viewGroups.fxml" />
                 <HBox prefHeight="30.0" prefWidth="228.0" styleClass="btnsHbox">
                         <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Suggested" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="View All" textAlignment="CENTER" />
                 </HBox>
-                <fx:include source="suggestedGroups.fxml"/>
+                <fx:include source="suggestedGroups.fxml" />
             </VBox>
         </left>
         <center>
