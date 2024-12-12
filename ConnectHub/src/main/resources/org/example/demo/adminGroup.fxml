@@ -44,6 +44,7 @@
         </left>
         <right>
             <VBox prefHeight="555.0" prefWidth="321.0" styleClass="rightVBox">
+            <Button fx:id="refresh" mnemonicParsing="false" styleClass="btn4" text="Refresh" />
                 <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
                     <children>
                         <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Members" />

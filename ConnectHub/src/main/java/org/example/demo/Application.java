@@ -727,6 +727,14 @@
                     JOptionPane.showMessageDialog(null, "Group left");
                     handleHome(stage);
                 });
+                Button refresh = (Button) groupLoader.getNamespace().get("refresh");
+                refresh.setOnAction(event -> {
+                    try {
+                        handleViewButton(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e) {
