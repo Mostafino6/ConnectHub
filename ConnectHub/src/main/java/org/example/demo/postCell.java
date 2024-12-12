@@ -149,7 +149,7 @@ public class postCell extends ListCell<Post> {
         deleteButton.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 50px; -fx-min-height: 20px; -fx-background-color: #6135D2;");
 
         // Add buttons based on the condition
-        if (post.getGroupFromGroupID()!=null && post.getGroupFromGroupID().getCreator().equals(currentUser) && post.getGroupFromGroupID().isAdmin(currentUser)){
+        if (post.getGroupFromGroupID()!=null && (post.getGroupFromGroupID().getCreator().equals(currentUser) || post.getGroupFromGroupID().isAdmin(currentUser))){
             userBox.getChildren().add(editButton);
             userBox.getChildren().add(deleteButton);
         }
