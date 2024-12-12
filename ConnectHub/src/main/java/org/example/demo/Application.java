@@ -22,10 +22,19 @@
     public class Application extends javafx.application.Application {
         private static final ValidationManager validationManager = new ValidationManager();
         private static User currentUser;
+        private static Stage primaryStage;
         private static final DatabaseManager databaseManager = new DatabaseManager();
         private static final PostManager postManager = new PostManager();
         private static final StoryManager storyManager = new StoryManager();
-
+        private static final GroupManager groupManager;
+        private static Group currentGroup;
+        static {
+            try {
+                groupManager = new GroupManager();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
         public static void setCurrentUser(User user) {
             currentUser = user;
         }
@@ -33,7 +42,9 @@
         public static User getCurrentUser() {
             return currentUser;
         }
-
+        public static Stage getPrimaryStage() {
+            return primaryStage;
+        }
         public static DatabaseManager getDatabaseManager() {
             return databaseManager;
         }
@@ -41,10 +52,24 @@
         public static ValidationManager getValidationManager() {
             return validationManager;
         }
-
+        public static PostManager getPostManager() {
+            return postManager;
+        }
+        public static StoryManager getStoryManager() {
+            return storyManager;
+        }
+        public static GroupManager getGroupManager() {
+            return groupManager;
+        }
+        public static void setCurrentGroup(Group group){
+            currentGroup = group;
+        }
+        public static Group getCurrentGroup() {
+            return currentGroup;
+        }
         @Override
         public void start(Stage stage) throws IOException {
-
+            primaryStage = stage;
             FXMLLoader home = new FXMLLoader(Application.class.getResource("hello-view.fxml"));
             Scene scene = new Scene(home.load(), 950, 580);
             stage.setTitle("Home");
@@ -414,8 +439,9 @@
 
         private void handleHome(Stage stage) {
             try {
+                currentGroup = null;
                 FXMLLoader homeLoader = new FXMLLoader(Application.class.getResource("homePage.fxml"));
-                Scene homeLoaderScene = new Scene(homeLoader.load(), 1200, 900);
+                Scene homeLoaderScene = new Scene(homeLoader.load(), 1550, 925);
                 stage.setTitle("Profile");
                 homeLoaderScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
                 VBox postContainer = (VBox) homeLoader.getNamespace().get("postContainer");
@@ -479,6 +505,14 @@
                         throw new RuntimeException(e);
                     }
                     System.exit(0);
+                });
+                Button createGroup = (Button) homeLoader.getNamespace().get("createGroup");
+                createGroup.setOnAction(event -> {
+                    try {
+                        handleCreateGroup(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 });
             } catch (IOException e) {
                 e.printStackTrace();
@@ -661,6 +695,9 @@
                     JOptionPane.showMessageDialog(null, "Empty Story");
                 } else {
                     Post newPost = new Post(currentUser, text, selectedImagePath[0]);
+                    if(currentGroup!=null){
+                        newPost.setGroupID(currentGroup.getGroupID());
+                    }
                     try {
                         postManager.addPost(newPost);
                     } catch (Exception e) {
@@ -709,6 +746,116 @@
                 }
             });
             addStoryStage.show();
+        }
+        public void handleViewButton(Stage stage) throws IOException {
+            try {
+                FXMLLoader groupLoader = new FXMLLoader(Application.class.getResource("memberGroup.fxml"));
+                if(currentGroup.getCreator().equals(currentUser) || currentGroup.getHierarchy().getAdmins().contains(currentUser)) {
+                    groupLoader = new FXMLLoader(Application.class.getResource("adminGroup.fxml"));
+                }
+                Scene groupScene = new Scene(groupLoader.load(), 1200, 875);
+                stage.setTitle("Group");
+                groupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                stage.setScene(groupScene);
+                Label nameLabel = (Label) groupLoader.getNamespace().get("nameuser");
+                if (nameLabel != null) {
+                    String groupName = currentGroup.getGroupName();
+                    System.out.println(groupName);
+                    nameLabel.setText(groupName);
+                } else {
+                    System.out.println("nameLabel is null");
+                }
+                ImageView imageView = (ImageView) stage.getScene().lookup("#imageView");
+                if (imageView != null) {
+                    if (!currentGroup.getGroupIcon().isEmpty()) {
+                        Circle clip = new Circle();
+                        clip.setRadius(imageView.getFitWidth() / 2);
+                        clip.setCenterX(imageView.getFitWidth() / 2);
+                        clip.setCenterY(imageView.getFitHeight() / 2);
+                        imageView.setClip(clip);
+                        imageView.setImage(new Image(currentGroup.getGroupIcon()));
+                    }
+                }
+                Label bioLabel = (Label) stage.getScene().lookup("#bioplace");
+                if (bioLabel != null) {
+                    if (!currentGroup.getGroupDescription().isEmpty()) {
+                        bioLabel.setText(currentGroup.getGroupDescription());
+                    }
+                }
+                Button viewHome = (Button) groupLoader.getNamespace().get("viewHome");
+                viewHome.setOnAction(event -> handleHome(stage));
+                Button addPost = (Button) groupLoader.getNamespace().get("addPost");
+                addPost.setOnAction(event -> {
+                    try {
+                        handleAddPost(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+                Button leaveGroup = (Button) groupLoader.getNamespace().get("leaveGroup");
+                leaveGroup.setOnAction(event -> {
+                    currentGroup.leaveGroup(currentUser);
+                    try {
+                        groupManager.writeGroup(currentGroup);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    JOptionPane.showMessageDialog(null, "Group left");
+                    handleHome(stage);
+                });
+                Button refresh = (Button) groupLoader.getNamespace().get("refresh");
+                refresh.setOnAction(event -> {
+                    try {
+                        handleViewButton(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        private void handleCreateGroup(Stage stage) throws IOException {
+            FXMLLoader grpCreationLoader = new FXMLLoader(Application.class.getResource("createGroup.fxml"));
+            Scene createGroupScene = new Scene(grpCreationLoader.load(), 600, 400);
+            Stage createGroupStage = new Stage();
+            createGroupStage.setTitle("Create Group");
+            createGroupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            createGroupStage.setScene(createGroupScene);
+            String selectedImagePath[] = {null};
+            TextField groupName = (TextField) grpCreationLoader.getNamespace().get("grpName");
+            TextField groupDescription = (TextField) grpCreationLoader.getNamespace().get("grpDescription");
+            Button selectImage = (Button) grpCreationLoader.getNamespace().get("selectImage");
+            selectImage.setOnAction(event -> {
+                FileChooser fileChooser = new FileChooser();
+                File file = fileChooser.showOpenDialog(createGroupStage);
+                if (file != null) {
+                    selectedImagePath[0] = file.getAbsolutePath();
+                }
+            });
+            Button createGroupButton = (Button) grpCreationLoader.getNamespace().get("create");
+            createGroupButton.setOnAction(event -> {
+                String name = groupName.getText();
+                String description = groupDescription.getText();
+                if (name.isEmpty() && description.isEmpty() && selectedImagePath[0] == null) {
+                    JOptionPane.showMessageDialog(null, "Empty Story");
+                } else {
+                    Group newGroup = new Group();
+                    newGroup.setCreator(currentUser);
+                    newGroup.setGroupName(name);
+                    newGroup.setGroupDescription(description);
+                    newGroup.setGroupIcon(selectedImagePath[0]);
+                    try {
+                        groupManager.writeGroup(newGroup);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    createGroupStage.close();
+                }
+            });
+            createGroupStage.show();
         }
     public static void main(String[] args) {
         launch();

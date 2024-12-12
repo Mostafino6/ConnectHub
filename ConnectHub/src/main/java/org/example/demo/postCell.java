@@ -2,6 +2,7 @@ package org.example.demo;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
@@ -18,10 +19,11 @@ public class postCell extends ListCell<Post> {
     private ImageView profilePic; // User profile picture
     private Label Name; // Name
     private Label userName; // UserName
-    private Label postDate;      // Date the post was created
+    private Label postDate;
+    private Label groupName;// Date the post was created
     private VBox postContentBox; // Contains text and image content
     private TextFlow postText;   // Flow for displaying text content
-    private ImageView postImage; // For displaying image content
+    private ImageView postImage;
 
     public postCell() {
         // Initialize components
@@ -41,8 +43,11 @@ public class postCell extends ListCell<Post> {
         postDate = new Label(); // Label to display the post date
         postDate.setStyle("-fx-font-size: 10px; -fx-text-fill: gray;");
 
+        groupName = new Label();
+        groupName.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+
         // Create the HBox for user and date with profile picture
-        userBox = new HBox(10, profilePic, Name, userName, postDate);
+        userBox = new HBox(10, profilePic, Name, userName, postDate, groupName);
         userBox.setAlignment(Pos.CENTER_LEFT);
 
         postText = new TextFlow();
@@ -69,36 +74,91 @@ public class postCell extends ListCell<Post> {
     protected void updateItem(Post post, boolean empty) {
         super.updateItem(post, empty);
 
+        // Clear the graphic and content if the cell is empty
         if (empty || post == null) {
             setGraphic(null);
-        } else {
-            // Update profile picture
-            if (post.getOwner().getPfpPath() != null && !post.getOwner().getPfpPath().isEmpty()) {
-                profilePic.setImage(new Image(post.getOwner().getPfpPath()));
-            }
-            Name.setText(post.getOwner().getName());
+            return;
+        }
 
-            userName.setText("@" + post.getOwner().getUsername());
+        // Clear existing content for proper reuse of the cell
+        userBox.getChildren().clear();
 
-            // Update post date (assuming you have a LocalDate for the datePosted)
-            postDate.setText(post.getDatePosted().toString());
+        // Add static content
+        userBox.getChildren().add(profilePic);
+        userBox.getChildren().add(Name);
+        userBox.getChildren().add(userName);
+        userBox.getChildren().add(postDate);
+        userBox.getChildren().add(groupName);
 
-            // Update post content (text or image)
-            postText.getChildren().clear();
-            if (post.hasContent()) {
-                Text textContent = new Text(post.getContent());
-                textContent.setStyle("-fx-font-size: 20px;");
-                postText.getChildren().add(textContent);
-            }
+        // Update dynamic content
+        if (post.getOwner().getPfpPath() != null && !post.getOwner().getPfpPath().isEmpty()) {
+            profilePic.setImage(new Image(post.getOwner().getPfpPath()));
+        }
 
-            // Check if the post has an image and update accordingly
-            if (post.hasImage()) {
-                postImage.setImage(new Image(post.getImage()));
-                postImage.setVisible(true);
+        Name.setText(post.getOwner().getName());
+        userName.setText("@" + post.getOwner().getUsername());
+        postDate.setText(post.getDatePosted().toString());
+
+        try {
+            if (post.getGroupFromGroupID() != null) {
+                groupName.setText("Posted in: " + post.getGroupFromGroupID().getGroupName());
             } else {
-                postImage.setVisible(false);
+                groupName.setText("");
             }
-            setGraphic(cellContainer);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        // Clear the post content area
+        postText.getChildren().clear();
+        if (post.hasContent()) {
+            Text textContent = new Text(post.getContent());
+            textContent.setStyle("-fx-font-size: 20px;");
+            postText.getChildren().add(textContent);
+        }
+
+        // Handle post image visibility
+        if (post.hasImage()) {
+            postImage.setImage(new Image(post.getImage()));
+            postImage.setVisible(true);
+        } else {
+            postImage.setVisible(false);
+        }
+
+        // Add conditional buttons
+        try {
+            addButtons(userBox, post);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        // Set the updated container as the graphic
+        setGraphic(cellContainer);
+    }
+    public void addButtons(HBox userBox, Post post) throws Exception {
+        User currentUser = Application.getCurrentUser();
+
+        // Clear any existing buttons (to avoid duplication)
+        userBox.getChildren().removeIf(node -> node instanceof Button);
+
+        // Create the buttons
+        Button editButton = new Button("Edit");
+        Button deleteButton = new Button("Delete");
+
+        editButton.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 50px; -fx-min-height: 20px; -fx-background-color: #6135D2;");
+        deleteButton.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 50px; -fx-min-height: 20px; -fx-background-color: #6135D2;");
+
+        // Add buttons based on the condition
+        if (post.getGroupFromGroupID()!=null && (post.getGroupFromGroupID().getCreator().equals(currentUser) || post.getGroupFromGroupID().isAdmin(currentUser))){
+            userBox.getChildren().add(editButton);
+            userBox.getChildren().add(deleteButton);
+        }
+        else if(post.getOwner().equals(currentUser)) {
+            userBox.getChildren().add(editButton);
+            userBox.getChildren().add(deleteButton);
         }
     }
+
 }
+
+

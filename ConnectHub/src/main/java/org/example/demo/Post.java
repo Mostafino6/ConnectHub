@@ -3,12 +3,14 @@ package org.example.demo;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Post {
     private User owner;
     private String content; // For text content
     private String image;   // For image content
     private LocalDate datePosted;
+    private String groupID;
 
     public Post(User owner, String content, String image) {
         this.owner = owner;
@@ -56,4 +58,23 @@ public class Post {
     public void setDatePosted(LocalDate datePosted) {
         this.datePosted = datePosted;
     }
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
+    }
+    public String getGroupID() {
+        if(groupID == null || groupID.isEmpty()){
+            return "";
+        }
+        return groupID;
+    }
+    public Group getGroupFromGroupID() throws Exception {
+        ArrayList<Group> groups = MainApplication.getGroupManager().readGroups();
+        for(Group group : groups){
+            if(group.getGroupID().equals(groupID)){
+                return group;
+            }
+        }
+        return null;
+    }
+
 }

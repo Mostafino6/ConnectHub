@@ -33,6 +33,17 @@ public class AllPosts {
                     }
                 }
             }
+            ArrayList<Post> validPosts = new ArrayList<>();
+            for (Post post : friendPosts) {
+                if (post.getGroupFromGroupID() != null) {
+                    if (post.getGroupFromGroupID().isMember(currentUser)) {
+                        validPosts.add(post); // Add only valid posts
+                    }
+                } else {
+                    validPosts.add(post); // Add posts that don't have a group
+                }
+            }
+            friendPosts = validPosts; // Update the original list with valid posts
             Collections.reverse(friendPosts);
             ObservableList<Post> postsList = FXCollections.observableArrayList(friendPosts);
             postListView.setItems(postsList);

@@ -115,6 +115,7 @@ public class ValidationManager {
             newUser.setPassword(hashedPassword);
             newUser.setUserID(databaseManager.getNextUserID(users));
             newUser.setStatus(true);
+            newUser.setPfpPath("D:\\Downloads\\defaultpfp.jpg");
             users.add(newUser);
             Application.setCurrentUser(newUser);
             databaseManager.writeUser(newUser);
