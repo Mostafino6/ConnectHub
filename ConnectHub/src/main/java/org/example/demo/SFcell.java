@@ -17,6 +17,7 @@ public class SFcell extends ListCell<User> {
     private ImageView pfp;
     private Label name;
     private Button addButton;
+    private NotificationWindow notificationWindow;
     public SFcell(){
         pfp = new ImageView();
         pfp.setFitHeight(50);
@@ -39,6 +40,7 @@ public class SFcell extends ListCell<User> {
                handleAddButton(user);
            }
         });
+        notificationWindow = new NotificationWindow();
     }
     @Override
     protected void updateItem(User user, boolean empty) {
@@ -59,7 +61,14 @@ public class SFcell extends ListCell<User> {
                 user.getFriends().getFriendRequests().add(currentUser);
                 currentUser.getFriends().getSuggestedFriends().remove(user);
                 JOptionPane.showMessageDialog(null,"Friend Request Sent!");
+
                 Application.getDatabaseManager().writeUser(user);
+
+                Notification notification = new Notification("Friend Request", "Received friend request");
+                user.addNotification(notification);
+
+
+
             }catch (Exception e){
                 e.printStackTrace();
             }

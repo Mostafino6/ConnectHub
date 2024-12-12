@@ -430,6 +430,8 @@
                 Button viewProfile = (Button) homeLoader.getNamespace().get("viewProfile");
                 viewProfile.setOnAction(event -> handleProfile(stage));
                 Button addPost = (Button) homeLoader.getNamespace().get("addPost");
+                Button viewNotifications = (Button) homeLoader.getNamespace().get("viewNotifications");
+                viewNotifications.setOnAction(event -> handleViewNotifications(stage));
                 addPost.setOnAction(event -> {
                     try {
                         handleAddPost(stage);
@@ -474,6 +476,24 @@
                     }
                     System.exit(0);
                 });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void handleViewNotifications(Stage stage) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("notificationWindow.fxml"));
+                Scene scene = new Scene(loader.load(), 600, 400);
+                Stage notificationStage = new Stage();
+                notificationStage.setTitle("Notifications");
+
+                NotificationWindow controller = loader.getController();
+                controller.initialize(); // Call the initialize method to load notifications
+
+
+                notificationStage.setScene(scene);
+                notificationStage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -6,7 +6,7 @@
     "email": "mostafaabayazeed@yahoo.com",
     "password": "1d5df648c48fd5aa23ef2220be26b28bfd42698c7d2f097cbb6e8813d902a674",
     "DOB": "2004-08-27",
-    "status": false,
+    "status": true,
     "bio": "I love programming and oop its so fun!!!!!!",
     "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
@@ -30,7 +30,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": ["3","8"],
-      "friendRequests": [],
+      "friendRequests": ["16","16","16","16"],
       "blockedFriends": ["1"]
     },
     "posts": []
@@ -66,7 +66,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": ["1"],
+      "friendRequests": ["1","16"],
       "blockedFriends": []
     },
     "posts": []
@@ -174,7 +174,7 @@
     "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "friends": {
       "friendsList": [],
-      "friendRequests": [],
+      "friendRequests": ["16"],
       "blockedFriends": []
     },
     "posts": []
@@ -262,6 +262,60 @@
     "bio": "biooooooo",
     "profilePicture": "D:\\Downloads\\UML.jpeg",
     "coverPhoto": "D:\\Downloads\\Use Case.jpeg",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    },
+    "posts": []
+  },
+  {
+    "userID": "16",
+    "username": "Belal",
+    "name": "Belal",
+    "email": "belal@gmail.com",
+    "password": "1ff31a714c66e08d4fa54eea78152ed68ab83af22e4d62560fd73c1002d6d8cd",
+    "DOB": "2023-12-06",
+    "status": true,
+    "bio": "too sexy for this world",
+    "profilePicture": "",
+    "coverPhoto": "",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": [],
+      "blockedFriends": []
+    },
+    "posts": []
+  },
+  {
+    "userID": "18",
+    "username": "Ali",
+    "name": "ali",
+    "email": "ali@gmail.com",
+    "password": "af2ee49dbf78ef9fa866c670ab7f41ead8bca89ee8b38c43932ac8fe2e726bc7",
+    "DOB": "2023-12-18",
+    "status": true,
+    "bio": "",
+    "profilePicture": "",
+    "coverPhoto": "",
+    "friends": {
+      "friendsList": [],
+      "friendRequests": ["19","19","19"],
+      "blockedFriends": []
+    },
+    "posts": []
+  },
+  {
+    "userID": "19",
+    "username": "kkk",
+    "name": "Kkk",
+    "email": "kkk@gmail.com",
+    "password": "536caf2a0eed9f947ace75ac4b5adfd4332c2883bba2d37cc10779f1dc01c657",
+    "DOB": "2023-12-06",
+    "status": true,
+    "bio": "",
+    "profilePicture": "",
+    "coverPhoto": "",
     "friends": {
       "friendsList": [],
       "friendRequests": [],
