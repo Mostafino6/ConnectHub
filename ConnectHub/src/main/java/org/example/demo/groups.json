@@ -7,7 +7,7 @@
     "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
       "admins": [],
-      "members": ["8","5","10","3"],
+      "members": ["8","5","10"],
       "requests": ["7","9"]
     }
   },
@@ -68,6 +68,18 @@
     "hierarchy": {
       "admins": [],
       "members": ["3"],
+      "requests": []
+    }
+  },
+  {
+    "groupID": "7",
+    "creator": "2",
+    "groupName": "Darius Lovers",
+    "groupDescription": "It darius day",
+    "groupIcon": "D:/Downloads/images (5).jpg",
+    "hierarchy": {
+      "admins": [],
+      "members": [],
       "requests": []
     }
   }

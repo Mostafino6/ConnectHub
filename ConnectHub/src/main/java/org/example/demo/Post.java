@@ -41,7 +41,7 @@ public class Post {
         return  "file:///" + image;
     }
     public void setImage(String image) {
-        this.image = "file:///" + image;
+        this.image = image;
     }
     public LocalDate getDatePosted() {
         return datePosted;
@@ -76,5 +76,27 @@ public class Post {
         }
         return null;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; // Check if the objects are the same reference
+        if (obj == null || getClass() != obj.getClass()) return false; // Ensure the same class type
 
+        Post other = (Post) obj;
+
+        // Compare all relevant fields
+        return (owner != null ? owner.equals(other.owner) : other.owner == null) &&
+                (content != null ? content.equals(other.content) : other.content == null) &&
+                (image != null ? image.equals(other.image) : other.image == null) &&
+                (datePosted != null ? datePosted.equals(other.datePosted) : other.datePosted == null) &&
+                (groupID != null ? groupID.equals(other.groupID) : other.groupID == null);
+    }
+    @Override
+    public int hashCode() {
+        int result = (owner != null ? owner.hashCode() : 0);
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (image != null ? image.hashCode() : 0);
+        result = 31 * result + (datePosted != null ? datePosted.hashCode() : 0);
+        result = 31 * result + (groupID != null ? groupID.hashCode() : 0);
+        return result;
+    }
 }

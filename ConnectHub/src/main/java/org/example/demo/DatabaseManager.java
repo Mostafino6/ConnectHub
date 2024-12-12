@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class DatabaseManager {
-    private static final String DATABASE_FILE = "C:\\Users\\eyada\\Onedrive\\Documents\\Github\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\users.json";
+    private static final String DATABASE_FILE = "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\users.json";
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     // Parses a date string into a Date object

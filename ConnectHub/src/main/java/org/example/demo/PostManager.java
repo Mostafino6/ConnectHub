@@ -111,13 +111,17 @@ public class PostManager {
             writer.write("]");
         }
     }
-    public void editPost(String userID, String oldContent, String newContent, String newImage) throws Exception {
+    public void editPost(User user, String oldContent, String newContent, String newImage) throws Exception {
         ArrayList<Post> postList = readPosts();
         for (Post post : postList) {
-            if (post.getOwner().getUserID().equals(userID) && post.getContent().equals(oldContent)) {
-                post.setContent(newContent);
-                if(newImage!=null) {
+            if (post.getOwner().equals(user) && post.getContent().equals(oldContent)) {
+                if(newContent != null) {
+                    post.setContent(newContent);
+                }
+                if(newImage!=null){
+                    System.out.println(newImage);
                     post.setImage(newImage);
+                    System.out.println(post.getImage());
                 }
                 break;
             }
@@ -125,9 +129,9 @@ public class PostManager {
         // Rewrite the updated list to the JSON file
         writePostsToFile(postList);
     }
-    public void deletePost(String userID, String content) throws Exception {
+    public void deletePost(User user,String content,String image) throws Exception {
         ArrayList<Post> postList = readPosts();
-        postList.removeIf(post -> post.getOwner().getUserID().equals(userID) && post.getContent().equals(content));
+        postList.removeIf(post -> post.getOwner().equals(user) && post.getContent().equals(content) && post.getImage().equals(image));
         // Rewrite the updated list to the JSON file
         writePostsToFile(postList);
     }
