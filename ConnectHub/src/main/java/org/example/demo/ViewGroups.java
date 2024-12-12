@@ -27,7 +27,7 @@ public class ViewGroups {
             return;
         }
         for(Group group : groups) {
-            if(group.isMember(currentUser)) {
+            if(group.isMember(currentUser) && !currentUser.getGroups().contains(group)) {
                 currentUser.addGroup(group);
             }
         }

@@ -1,5 +1,6 @@
 package org.example.demo;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Group {
@@ -61,5 +62,39 @@ public class Group {
             return true;
         }
         return false;
+    }
+    public void addMember(User user) {
+        if(!hierarchy.getMembers().contains(user)) {
+            hierarchy.getMembers().add(user);
+        }
+        else JOptionPane.showMessageDialog(null, user.getUsername() + " is already member of this group");
+    }
+    public void removeMember(User user) {
+        if(hierarchy.getMembers().contains(user)) {
+            hierarchy.getMembers().remove(user);
+        }
+        else JOptionPane.showMessageDialog(null, user.getUsername() + " is not a member of this group");
+    }
+    public ArrayList<User> getAllMembers() {
+        ArrayList<User> members = new ArrayList<>();
+        members.add(creator);
+        for(User user: hierarchy.getAdmins()){
+            members.add(user);
+        }
+        for(User user : hierarchy.getMembers()) {
+            members.add(user);
+        }
+        return members;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true; // Check if both references point to the same object
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false; // Check if the other object is null or of a different class
+        }
+        Group other = (Group) obj; // Cast the object to a User
+        return groupID != null && groupID.equals(other.groupID); // Compare userID for equality
     }
 }

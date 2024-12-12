@@ -11,9 +11,6 @@
 
 <VBox prefHeight="816.0" prefWidth="1200.0" styleClass="vPrf" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
     <StackPane>
-        <!-- Cover Image -->
-        <ImageView id="coverPhoto" fx:id="coverImageView" fitHeight="200.0" fitWidth="1164.0" preserveRatio="false" styleClass="cover">
-        </ImageView>
 
         <!-- Foreground Content -->
         <HBox prefHeight="221.0" prefWidth="995.0" styleClass="cover">
@@ -38,8 +35,8 @@
                     <Label styleClass="psts">Posts</Label>
                     <HBox styleClass="btnsHbox">
                         <Button fx:id="addPost" styleClass="btn4" text="Add Post">Add Post</Button>
-                        <Button fx:id="viewMembers" styleClass="btn4" text="View Members">Add Story</Button>
-                  <Button mnemonicParsing="false" styleClass="btn4" text="Join Requests" />
+                  <Button fx:id="joinRequests" mnemonicParsing="false" styleClass="btn4" text="Join Requests" />
+                  <Button fx:id="deleteGroup" mnemonicParsing="false" styleClass="btn4" text="Leave Group" />
                     </HBox>
                 </HBox>
                 <fx:include source="profilePosts.fxml" />
@@ -49,22 +46,16 @@
             <VBox prefHeight="555.0" prefWidth="321.0" styleClass="rightVBox">
                 <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
                     <children>
-                        <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Friends" />
-                        <Button fx:id="manageFriends" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="Manage Friends" textAlignment="CENTER" />
+                        <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Members" />
+                        <Button fx:id="manageMembers" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="Manage Members" textAlignment="CENTER" />
                     </children>
                 </HBox>
-                <fx:include source="viewFriends.fxml" />
+                <fx:include source="MemberList.fxml" />
                 <HBox prefHeight="30.0" prefWidth="69.0">
                     <children>
-                        <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox">
-                            <children>
-                                <Label prefHeight="30.0" prefWidth="152.0" styleClass="psts" text="Suggested" />
-                                <Button fx:id="viewSuggested" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn4" text="View All" textAlignment="CENTER" />
-                            </children>
-                        </HBox>
+                        <HBox prefHeight="4.0" prefWidth="289.0" styleClass="btnsHbox" />
                     </children>
                 </HBox>
-                <fx:include source="suggestedFriends.fxml" />
             </VBox>
         </right>
     </BorderPane>

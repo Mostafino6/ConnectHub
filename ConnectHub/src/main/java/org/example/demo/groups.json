@@ -4,11 +4,11 @@
     "creator": "1",
     "groupName": "OOP Lovers",
     "groupDescription": "Everyone here loves OOP.",
-    "groupIcon": "D:\\Downloads\\grpicn.png",
+    "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
-      "admins": ["2", "3"],
-      "members": ["1", "8", "5", "10"],
-      "requests": ["7", "9"]
+      "admins": ["2"],
+      "members": ["8","5","10","3"],
+      "requests": ["7","9"]
     }
   },
   {
@@ -16,11 +16,11 @@
     "creator": "4",
     "groupName": "Data Science Enthusiasts",
     "groupDescription": "A group for people passionate about data analysis and AI.",
-    "groupIcon": "D:\\Downloads\\grpicn.png",
+    "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
-      "admins": ["1", "4", "6"],
-      "members": ["4", "11", "13", "14"],
-      "requests": ["12", "15"]
+      "admins": ["1","6"],
+      "members": ["11","13","14"],
+      "requests": ["12","15"]
     }
   },
   {
@@ -28,11 +28,11 @@
     "creator": "7",
     "groupName": "Gaming Community",
     "groupDescription": "For gamers who love to connect and play together.",
-    "groupIcon": "D:\\Downloads\\grpicn.png",
+    "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
-      "admins": ["7", "9"],
-      "members": ["7", "16", "8", "10"],
-      "requests": ["11", "12"]
+      "admins": ["9"],
+      "members": ["16","8","10","1"],
+      "requests": ["11","12"]
     }
   },
   {
@@ -40,11 +40,11 @@
     "creator": "10",
     "groupName": "Travel Addicts",
     "groupDescription": "Sharing travel stories and tips from around the world.",
-    "groupIcon": "D:\\Downloads\\grpicn.png",
+    "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
-      "admins": ["10", "11"],
-      "members": ["10", "12", "13", "14"],
-      "requests": ["15", "16"]
+      "admins": ["11"],
+      "members": ["12","13","14","1"],
+      "requests": ["15","16"]
     }
   },
   {
@@ -52,12 +52,11 @@
     "creator": "12",
     "groupName": "Art and Design",
     "groupDescription": "For creative minds interested in art and design.",
-    "groupIcon": "D:\\Downloads\\grpicn.png",
+    "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
-      "admins": ["12", "14"],
-      "members": ["12", "7", "8", "9"],
-      "requests": ["5", "6"]
+      "admins": ["14"],
+      "members": ["7","8","9"],
+      "requests": ["5","6"]
     }
   }
 ]
-

@@ -14,7 +14,9 @@ public class sGroupCell extends ListCell<Group> {
     private ImageView groupIcon;
     private Label name;
     private Button joinButton;
+    private User currentUser;
     public sGroupCell(){
+        currentUser = Application.getCurrentUser();
         groupIcon = new ImageView();
         groupIcon.setFitHeight(50);
         groupIcon.setFitWidth(50);
@@ -30,6 +32,13 @@ public class sGroupCell extends ListCell<Group> {
         text.setSpacing(10);
         groupInfo = new HBox(15, groupIcon,text);
         groupInfo.setPadding(new Insets(10));
+        joinButton.setOnAction(event ->{
+            try {
+                handleJoinButton(currentUser);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
     @Override
     protected void updateItem(Group group, boolean empty) {
@@ -42,5 +51,11 @@ public class sGroupCell extends ListCell<Group> {
             name.setText(group.getGroupName());
             setGraphic(groupInfo);
         }
+    }
+    private void handleJoinButton(User user) throws Exception {
+        System.out.println("Button Clicked!");
+        Group group = getItem();
+        group.addMember(user);
+        Application.getGroupManager().writeGroup(group);
     }
 }
