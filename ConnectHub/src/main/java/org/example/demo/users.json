@@ -2,16 +2,16 @@
   {
     "userID": "1",
     "username": "mostafa43",
-    "name": "Mostafa Abayazeed",
-    "email": "mostafaabayazeed@yahoo.com",
+    "name": "Eyad Ahmed",
+    "email": "1",
     "password": "1d5df648c48fd5aa23ef2220be26b28bfd42698c7d2f097cbb6e8813d902a674",
     "DOB": "2004-08-27",
-    "status": false,
+    "status": true,
     "bio": "I love programming and oop its so fun!!!!!!",
-    "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
-    "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
+    "profilePicture": "C:\\Users\\eyada\\OneDrive\\Desktop\\pp\\t1 1415 soft d 500x500 .JPG",
+    "coverPhoto": "C:\\Users\\eyada\\OneDrive\\Desktop\\ConnectHub (1).jpg",
     "friends": {
-      "friendsList": ["8","13","12","3"],
+      "friendsList": ["13","12"],
       "friendRequests": [],
       "blockedFriends": ["5","15","2"]
     }
@@ -25,7 +25,7 @@
     "DOB": "1992-05-15",
     "status": false,
     "bio": "Loves coding and solving complex problems.",
-    "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
+    "profilePicture": "C:\\Users\\eyada\\OneDrive\\Desktop\\pp\\pp1.jpeg",
     "coverPhoto": "",
     "friends": {
       "friendsList": ["3","8"],
@@ -42,7 +42,7 @@
     "DOB": "1991-09-10",
     "status": false,
     "bio": "Enjoys hiking and traveling.",
-    "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\Screenshot 2024-12-05 123219.png",
+    "profilePicture": "C:\\Users\\eyada\\OneDrive\\Desktop\\pp\\pp2.jpeg",
     "coverPhoto": "",
     "friends": {
       "friendsList": ["2","1","8"],
@@ -97,7 +97,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": [],
+      "friendRequests": ["1"],
       "blockedFriends": []
     }
   },
@@ -114,7 +114,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": [],
+      "friendRequests": ["1"],
       "blockedFriends": []
     }
   },
@@ -130,7 +130,7 @@
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\img.png",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["1","2","3"],
+      "friendsList": ["2","3"],
       "friendRequests": [],
       "blockedFriends": ["3"]
     }
@@ -256,18 +256,18 @@
   },
   {
     "userID": "16",
-    "username": "newUser",
-    "name": "New",
-    "email": "newUser@example.com",
-    "password": "f5edf1f7774901fbad88e4c310f8818a16ac9e8e567494eed6b172110c1c67e5",
-    "DOB": "2018-12-04",
-    "status": false,
+    "username": "eyad_ahmedx",
+    "name": "eyad",
+    "email": "eyad@gmail.com",
+    "password": "a0c9feb8c86af13e56fdce403ce69865d72ad400bf1a68720579e35f90fbf303",
+    "DOB": "2003-12-30",
+    "status": true,
     "bio": "",
-    "profilePicture": "D:\\Downloads\\defaultpfp.jpg",
+    "profilePicture": "",
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": ["1","1"],
+      "friendRequests": [],
       "blockedFriends": []
     }
   }
