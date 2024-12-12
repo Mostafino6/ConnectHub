@@ -18,7 +18,8 @@ public class postCell extends ListCell<Post> {
     private ImageView profilePic; // User profile picture
     private Label Name; // Name
     private Label userName; // UserName
-    private Label postDate;      // Date the post was created
+    private Label postDate;
+    private Label groupName;// Date the post was created
     private VBox postContentBox; // Contains text and image content
     private TextFlow postText;   // Flow for displaying text content
     private ImageView postImage; // For displaying image content
@@ -41,8 +42,11 @@ public class postCell extends ListCell<Post> {
         postDate = new Label(); // Label to display the post date
         postDate.setStyle("-fx-font-size: 10px; -fx-text-fill: gray;");
 
+        groupName = new Label();
+        groupName.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+
         // Create the HBox for user and date with profile picture
-        userBox = new HBox(10, profilePic, Name, userName, postDate);
+        userBox = new HBox(10, profilePic, Name, userName, postDate, groupName);
         userBox.setAlignment(Pos.CENTER_LEFT);
 
         postText = new TextFlow();
@@ -83,7 +87,14 @@ public class postCell extends ListCell<Post> {
             // Update post date (assuming you have a LocalDate for the datePosted)
             postDate.setText(post.getDatePosted().toString());
 
-            // Update post content (text or image)
+            try {
+                if(post.getGroupFromGroupID()!=null){
+                    groupName.setText("Posted in: " + post.getGroupFromGroupID().getGroupName());
+                }
+                else groupName.setText("");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             postText.getChildren().clear();
             if (post.hasContent()) {
                 Text textContent = new Text(post.getContent());

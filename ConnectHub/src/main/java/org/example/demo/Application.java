@@ -442,6 +442,7 @@
 
         private void handleHome(Stage stage) {
             try {
+                currentGroup = null;
                 FXMLLoader homeLoader = new FXMLLoader(Application.class.getResource("homePage.fxml"));
                 Scene homeLoaderScene = new Scene(homeLoader.load(), 1550, 900);
                 stage.setTitle("Profile");
@@ -610,6 +611,9 @@
                     JOptionPane.showMessageDialog(null, "Empty Story");
                 } else {
                     Post newPost = new Post(currentUser, text, selectedImagePath[0]);
+                    if(currentGroup!=null){
+                        newPost.setGroupID(currentGroup.getGroupID());
+                    }
                     try {
                         postManager.addPost(newPost);
                     } catch (Exception e) {
@@ -665,7 +669,7 @@
                 if(currentGroup.getCreator().equals(currentUser) || currentGroup.getHierarchy().getAdmins().contains(currentUser)) {
                     groupLoader = new FXMLLoader(Application.class.getResource("adminGroup.fxml"));
                 }
-                Scene groupScene = new Scene(groupLoader.load(), 1200, 816);
+                Scene groupScene = new Scene(groupLoader.load(), 1200, 875);
                 stage.setTitle("Group");
                 groupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
                 stage.setScene(groupScene);
@@ -696,6 +700,25 @@
                 }
                 Button viewHome = (Button) groupLoader.getNamespace().get("viewHome");
                 viewHome.setOnAction(event -> handleHome(stage));
+                Button addPost = (Button) groupLoader.getNamespace().get("addPost");
+                addPost.setOnAction(event -> {
+                    try {
+                        handleAddPost(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+                Button leaveGroup = (Button) groupLoader.getNamespace().get("leaveGroup");
+                leaveGroup.setOnAction(event -> {
+                    currentGroup.leaveGroup(currentUser);
+                    try {
+                        groupManager.writeGroup(currentGroup);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    JOptionPane.showMessageDialog(null, "Group left");
+                    handleHome(stage);
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e) {

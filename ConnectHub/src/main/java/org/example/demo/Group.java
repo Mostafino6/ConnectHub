@@ -86,6 +86,18 @@ public class Group {
         }
         return members;
     }
+    public void leaveGroup(User user) {
+        if(creator.equals(user)) {
+            setCreator(hierarchy.getAdmins().getFirst());
+            hierarchy.getAdmins().remove(hierarchy.getAdmins().getFirst());
+            hierarchy.getAdmins().remove(user);
+            hierarchy.getMembers().remove(user);
+        }
+        else{
+            hierarchy.getMembers().remove(user);
+            hierarchy.getAdmins().remove(user);
+        }
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

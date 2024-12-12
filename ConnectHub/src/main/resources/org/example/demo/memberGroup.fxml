@@ -34,10 +34,10 @@
                     <Label styleClass="psts">Posts</Label>
                     <HBox styleClass="btnsHbox">
                         <Button fx:id="addPost" styleClass="btn4" text="Add Post">Add Post</Button>
-                        <Button fx:id="deleteGroup" mnemonicParsing="false" styleClass="btn4" text="Leave Group" />
+                        <Button fx:id="leaveGroup" mnemonicParsing="false" styleClass="btn4" text="Leave Group" />
                     </HBox>
                 </HBox>
-                <fx:include source="profilePosts.fxml" />
+                <fx:include source="groupPosts.fxml" />
             </VBox>
         </left>
         <right>

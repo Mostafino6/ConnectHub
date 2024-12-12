@@ -88,6 +88,48 @@
     "content": "I love babayez",
     "image": "null",
     "datePosted": "2024-12-12",
+    "groupID": "1"
+  },
+  {
+    "userID": "1",
+    "content": "Mabababababayez",
+    "image": "null",
+    "datePosted": "2024-12-12",
     "groupID": ""
+  },
+  {
+    "userID": "1",
+    "content": "Mabayezzzz broski",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "1"
+  },
+  {
+    "userID": "3",
+    "content": "Yo its chill guy, I love oop gang shi",
+    "image": "D:\\Downloads\\Screenshot 2024-12-05 123219.png",
+    "datePosted": "2024-12-12",
+    "groupID": "1"
+  },
+  {
+    "userID": "3",
+    "content": "Hey im chill guy and I love art",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "5"
+  },
+  {
+    "userID": "1",
+    "content": "I love datascience",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "2"
+  },
+  {
+    "userID": "3",
+    "content": "i still love art gang",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "5"
   }
 ]
