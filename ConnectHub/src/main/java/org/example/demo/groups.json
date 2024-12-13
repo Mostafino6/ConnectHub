@@ -6,8 +6,8 @@
     "groupDescription": "OOP is gay",
     "groupIcon": "D:/Downloads/UML.jpeg",
     "hierarchy": {
-      "admins": ["1"],
-      "members": ["8","5","10","3"],
+      "admins": ["1","3"],
+      "members": ["8","5","10"],
       "requests": ["7","9"]
     }
   },
@@ -25,13 +25,13 @@
   },
   {
     "groupID": "3",
-    "creator": "7",
+    "creator": "1",
     "groupName": "Gaming Community",
     "groupDescription": "For gamers who love to connect and play together.",
     "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
-      "admins": ["9"],
-      "members": ["16","8","10","1"],
+      "admins": ["9","8"],
+      "members": ["16","10","7"],
       "requests": ["11","12"]
     }
   },

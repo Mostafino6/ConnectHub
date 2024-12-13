@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.io.FileWriter;
 
 public class GroupManager {
-    private static final String DATABASE_FILE = "D:\\code\\connecthubL10\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\groups.json";
+    private static final String DATABASE_FILE = "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\groups.json";
     private static final DatabaseManager databaseManager = new DatabaseManager();
     private ArrayList<User> users = databaseManager.readUsers();
 
