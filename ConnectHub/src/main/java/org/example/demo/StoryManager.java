@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StoryManager {
-    private static final String STORIES_DATABASE_FILE = "D:\\CCE\\Term 5\\Programming-02\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\stories.json";  // Adjust path as needed
+    private static final String STORIES_DATABASE_FILE = "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\stories.json";  // Adjust path as needed
     private static final DatabaseManager databaseManager = new DatabaseManager();
     private Map<String, User> userMap = new HashMap<>();
 

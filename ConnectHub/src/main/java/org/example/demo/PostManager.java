@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PostManager {
-    private static final String POSTS_DATABASE_FILE = "C:\\Users\\eyada\\OneDrive\\Documents\\GitHub\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\posts.json";  // Adjust path as needed
+    private static final String POSTS_DATABASE_FILE = "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\posts.json";  // Adjust path as needed
     private static final DatabaseManager databaseManager = new DatabaseManager();
     private Map<String, User> userMap = new HashMap<>();
 
