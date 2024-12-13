@@ -35,6 +35,7 @@
 <!--                        change path here for the search icon-->
 
                     </HBox>
+                    <Button fx:id="viewNotifications" styleClass="btn4" text="View Notifications" />
                 </HBox>
                 <fx:include source="allPosts.fxml" />
             </VBox>

@@ -4,6 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/FRcell.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/FRcell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/NotificationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/NotificationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/NotificationWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/NotificationWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/SFcell.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/SFcell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/notificationWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/resources/org/example/demo/notificationWindow.fxml" afterDir="false" />
+    </list>
     <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +70,7 @@
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;LoginSignup&quot;,
     &quot;git-widget-placeholder&quot;: &quot;NewsFeed&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/json-simple-1.1.1.jar&quot;,
@@ -76,6 +88,7 @@
   }
 }</component>
   <component name="RunManager" selected="Application.MainApp">
+    <configuration name="MainApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
     <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.demo.MainApp" />
       <module name="demo" />
@@ -102,6 +115,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.MainApp" />
+      <item itemvalue="Application.ValidationManager" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApp" />
@@ -148,7 +165,8 @@
       <workItem from="1733430692004" duration="43000" />
       <workItem from="1733431142386" duration="1740000" />
       <workItem from="1733483272798" duration="9718000" />
-      <workItem from="1733494667716" duration="1336000" />
+      <workItem from="1733494667716" duration="1336000" /
+      <workItem from="1733990749227" duration="34717000" />
       <workItem from="1733919569257" duration="654000" />
       <workItem from="1733920238734" duration="196000" />
       <workItem from="1733920577536" duration="20000" />

@@ -61,7 +61,7 @@ public class FRcell extends ListCell<User> {
             setGraphic(userInfo);
         }
     }
-    private void handleAcceptButton(User user){
+    public void handleAcceptButton(User user){
         User currentUser = Application.getCurrentUser();
         if(currentUser != null){
             try {
@@ -79,7 +79,7 @@ public class FRcell extends ListCell<User> {
             System.out.println("user not found");
         }
     }
-    private void handleDeclineButton(User user){
+    public void handleDeclineButton(User user){
         User currentUser = Application.getCurrentUser();
         if(currentUser != null){
             try {
