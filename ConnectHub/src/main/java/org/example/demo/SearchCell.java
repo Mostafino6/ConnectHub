@@ -17,6 +17,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class SearchCell extends ListCell<User> {
+    MainApplication mainApp=MainApplication.getInstance();
     private HBox userInfo;
     private ImageView pfp;
     private Label name;
@@ -178,12 +179,22 @@ public class SearchCell extends ListCell<User> {
             setGraphic(userInfo);
             leave.setOnAction(e -> {
                 if(searchedGroup != null){
-                    handleaveGroup(searchedGroup);
+                    try {
+                        handleaveGroup(searchedGroup);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             });
             viewGroup.setOnAction(e -> {
                 if(searchedGroup != null){
-                    handleViewGroup(searchedGroup);
+
+                    try {
+                        Application.setCurrentGroup(searchedGroup);
+                        mainApp.handleViewButton(Application.getPrimaryStage());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                 }
             });
@@ -199,12 +210,19 @@ public class SearchCell extends ListCell<User> {
             setGraphic(userInfo);
             join.setOnAction(e -> {
                 if(searchedGroup != null){
-                    handleJoinGroup(searchedGroup);
+                    try {
+                        handleJoinGroup(searchedGroup);
+                    } catch (Exception ex) {
+
+                    }
                 }
             });
             viewGroup.setOnAction(e -> {
-                if(searchedGroup != null){
-                    handleViewGroup(searchedGroup);
+                try {
+                    Application.setCurrentGroup(searchedGroup);
+                    mainApp.handleViewButton(Application.getPrimaryStage());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             });
         }
@@ -379,89 +397,94 @@ public class SearchCell extends ListCell<User> {
         }
     }
 
-    private void handleaveGroup(Group searchedGroup){
+    private void handleaveGroup(Group searchedGroup) throws Exception {
         User currentUser = Application.getCurrentUser();
         if(currentUser != null){
             searchedGroup.leaveGroup(currentUser);
+            Application.getGroupManager().writeGroup(searchedGroup);
 
             JOptionPane.showMessageDialog(null,"Group Left");}
     }
-private void handleJoinGroup(Group searchedGroup){
+private void handleJoinGroup(Group searchedGroup) throws Exception {
         User currentUser = Application.getCurrentUser();
         if(currentUser != null){
             searchedGroup.addMember(currentUser);
+            Application.getGroupManager().writeGroup(searchedGroup);
+
             JOptionPane.showMessageDialog(null,"Group Joined");
         }
 }
 
-//private void handleViewGroup(Group searchedGroup)
-//{
+
+//public void handleViewGroup(Group searchedGroup) {
+//    try {
+//        User currentUser = Application.getCurrentUser();
+//        Stage st2 = new Stage();
+//        FXMLLoader groupLoader;
 //
+//        // Load the appropriate FXML based on user role
+//        if (searchedGroup.getCreator().equals(currentUser) || searchedGroup.getHierarchy().getAdmins().contains(currentUser)) {
+//            groupLoader = new FXMLLoader(Application.class.getResource("adminGroup.fxml"));
+//        } else {
+//            groupLoader = new FXMLLoader(Application.class.getResource("memberGroup.fxml"));
+//        }
+//
+//        // Load the scene and apply styles
+//        Scene groupScene = new Scene(groupLoader.load(), 1200, 875);
+//        st2.setTitle("Group");
+//        groupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+//        st2.setScene(groupScene);
+//
+//        // Set the group name if available
+//        Label nameLabel = (Label) groupLoader.getNamespace().get("nameuser");
+//        if (nameLabel != null) {
+//            String groupName = searchedGroup.getGroupName();
+//            System.out.println(groupName);
+//            nameLabel.setText(groupName);
+//        } else {
+//            System.out.println("nameLabel is null");
+//        }
+//
+//        // Set the group icon if available
+//        ImageView imageView = (ImageView) st2.getScene().lookup("#imageView");
+//        if (imageView != null && !searchedGroup.getGroupIcon().isEmpty()) {
+//            Circle clip = new Circle();
+//            clip.setRadius(imageView.getFitWidth() / 2);
+//            clip.setCenterX(imageView.getFitWidth() / 2);
+//            clip.setCenterY(imageView.getFitHeight() / 2);
+//            imageView.setClip(clip);
+//            imageView.setImage(new Image(searchedGroup.getGroupIcon()));
+//        }
+//
+//        // Set the group bio if available
+//        Label bioLabel = (Label) st2.getScene().lookup("#bioplace");
+//        if (bioLabel != null && !searchedGroup.getGroupDescription().isEmpty()) {
+//            bioLabel.setText(searchedGroup.getGroupDescription());
+//        }
+//
+//        // Handle button actions
+//        Button leaveGroup = (Button) groupLoader.getNamespace().get("leaveGroup");
+//        if (leaveGroup != null) {
+//            leaveGroup.setOnAction(event -> {
+//                try {
+//                    handleaveGroup(searchedGroup);
+//                } catch (Exception e) {
+//                    throw new RuntimeException(e);
+//                }
+//            });
+//        }
+//
+//
+//        // Show the stage
+//        st2.show();
+//        Button home = (Button) groupLoader.getNamespace().get("viewHome");
+//        home.setOnAction(event -> st2.close());
+//    } catch (IOException e) {
+//        e.printStackTrace();
+//    } catch (Exception e) {
+//        throw new RuntimeException(e);
+//    }
 //}
-public void handleViewGroup(Group searchedGroup) {
-    try {
-        User currentUser = Application.getCurrentUser();
-        Stage st2 = new Stage();
-        FXMLLoader groupLoader;
-
-        // Load the appropriate FXML based on user role
-        if (searchedGroup.getCreator().equals(currentUser) || searchedGroup.getHierarchy().getAdmins().contains(currentUser)) {
-            groupLoader = new FXMLLoader(Application.class.getResource("adminGroup.fxml"));
-        } else {
-            groupLoader = new FXMLLoader(Application.class.getResource("memberGroup.fxml"));
-        }
-
-        // Load the scene and apply styles
-        Scene groupScene = new Scene(groupLoader.load(), 1200, 875);
-        st2.setTitle("Group");
-        groupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-        st2.setScene(groupScene);
-
-        // Set the group name if available
-        Label nameLabel = (Label) groupLoader.getNamespace().get("nameuser");
-        if (nameLabel != null) {
-            String groupName = searchedGroup.getGroupName();
-            System.out.println(groupName);
-            nameLabel.setText(groupName);
-        } else {
-            System.out.println("nameLabel is null");
-        }
-
-        // Set the group icon if available
-        ImageView imageView = (ImageView) st2.getScene().lookup("#imageView");
-        if (imageView != null && !searchedGroup.getGroupIcon().isEmpty()) {
-            Circle clip = new Circle();
-            clip.setRadius(imageView.getFitWidth() / 2);
-            clip.setCenterX(imageView.getFitWidth() / 2);
-            clip.setCenterY(imageView.getFitHeight() / 2);
-            imageView.setClip(clip);
-            imageView.setImage(new Image(searchedGroup.getGroupIcon()));
-        }
-
-        // Set the group bio if available
-        Label bioLabel = (Label) st2.getScene().lookup("#bioplace");
-        if (bioLabel != null && !searchedGroup.getGroupDescription().isEmpty()) {
-            bioLabel.setText(searchedGroup.getGroupDescription());
-        }
-
-        // Handle button actions
-        Button leaveGroup = (Button) groupLoader.getNamespace().get("leaveGroup");
-        if (leaveGroup != null) {
-            leaveGroup.setOnAction(event -> handleaveGroup(searchedGroup));
-        }
-
-
-        // Show the stage
-        st2.show();
-
-        Button home = (Button) groupLoader.getNamespace().get("viewHome");
-        home.setOnAction(event -> st2.close());
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch (Exception e) {
-        throw new RuntimeException(e);
-    }
-}
 
 
 
