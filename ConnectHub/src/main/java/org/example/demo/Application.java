@@ -914,30 +914,18 @@
             fileChooser.getExtensionFilters().add(
                     new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
             );
+            String[] selectedImagePath = new String[1];
             File selectedFile = fileChooser.showOpenDialog(stage);
-
             if (selectedFile != null) {
                 try {
-                    String newImagePath = selectedFile.toURI().toString();
-                    Image newImage = new Image(newImagePath);
-                    // Locate the ImageView in the current scene
-                    ImageView imageView = (ImageView) stage.getScene().lookup("#imageView");
-                    if (imageView != null) {
-                        Circle clip = new Circle();
-                        clip.setRadius(imageView.getFitWidth() / 2);
-                        clip.setCenterX(imageView.getFitWidth() / 2);
-                        clip.setCenterY(imageView.getFitHeight() / 2);
-                        imageView.setClip(clip);
-                        imageView.setImage(newImage);
-                        currentGroup.setGroupIcon(selectedFile.getAbsolutePath());
+                    selectedImagePath[0] = selectedFile.getAbsolutePath();
+                    System.out.println(selectedImagePath[0]);
+                        currentGroup.setGroupIcon(selectedImagePath[0]);
                         try {
                             groupManager.writeGroup(currentGroup);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
-                    } else {
-                        System.out.println("ImageView not found in the current scene.");
-                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

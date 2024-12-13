@@ -6,6 +6,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.File;
 import java.io.FileReader;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.FileWriter;
@@ -111,6 +112,9 @@ public class GroupManager {
             jsonGroup.put("groupDescription", existingGroup.getGroupDescription());
 
             String icon = existingGroup.getGroupIcon();
+            if (icon != null && icon.startsWith("file:/")) {
+                icon = icon.replace("file:/", "");
+            }
             if (icon != null && icon.startsWith("file:///")) {
                 icon = icon.substring(8); // Strip "file:///" prefix
             }
@@ -216,7 +220,7 @@ public class GroupManager {
         writeGroupsToFile(groupList);
     }
 
-    private void writeGroupsToFile(ArrayList<Group> groupList) throws Exception {
+    public void writeGroupsToFile(ArrayList<Group> groupList) throws Exception {
         JSONArray jsonArray = new JSONArray();
 
         for (Group group : groupList) {
@@ -227,6 +231,10 @@ public class GroupManager {
             jsonGroup.put("groupDescription", group.getGroupDescription());
 
             String icon = group.getGroupIcon();
+            System.out.println(group.getGroupIcon());
+            if (icon != null && icon.startsWith("file:/")) {
+                icon = icon.replace("file:/", "");
+            }
             if (icon != null && icon.startsWith("file:///")) {
                 icon = icon.substring(8);
             }

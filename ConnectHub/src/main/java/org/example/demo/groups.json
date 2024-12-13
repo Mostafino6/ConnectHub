@@ -2,12 +2,12 @@
   {
     "groupID": "1",
     "creator": "2",
-    "groupName": "OOP Lovers",
-    "groupDescription": "Everyone here loves OOP.",
-    "groupIcon": "file:/C:/Users/Gebriel/Desktop/Term%205/Programming%20II/Lab9/ConnectHub/ConnectHub/file:/C:/Users/eyada/OneDrive/Pictures/Screenshots/Screenshot%25202024-08-02%2520193830.png",
+    "groupName": "OOP Haters",
+    "groupDescription": "OOP is gay",
+    "groupIcon": "D:/Downloads/UML.jpeg",
     "hierarchy": {
-      "admins": [],
-      "members": ["8","5","10","3","1"],
+      "admins": ["1"],
+      "members": ["8","5","10","3"],
       "requests": ["7","9"]
     }
   },
@@ -16,7 +16,7 @@
     "creator": "4",
     "groupName": "Data Science Enthusiasts",
     "groupDescription": "A group for people passionate about data analysis and AI.",
-    "groupIcon": "file:/C:/Users/Gebriel/Desktop/Term%205/Programming%20II/Lab9/ConnectHub/ConnectHub/file:/D:/Downloads/grpicn.png",
+    "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
       "admins": ["6"],
       "members": ["11","13","14"],
@@ -28,7 +28,7 @@
     "creator": "7",
     "groupName": "Gaming Community",
     "groupDescription": "For gamers who love to connect and play together.",
-    "groupIcon": "file:/C:/Users/Gebriel/Desktop/Term%205/Programming%20II/Lab9/ConnectHub/ConnectHub/file:/D:/Downloads/grpicn.png",
+    "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
       "admins": ["9"],
       "members": ["16","8","10","1"],
@@ -40,7 +40,7 @@
     "creator": "10",
     "groupName": "Travel Addicts",
     "groupDescription": "Sharing travel stories and tips from around the world.",
-    "groupIcon": "file:/C:/Users/Gebriel/Desktop/Term%205/Programming%20II/Lab9/ConnectHub/ConnectHub/file:/D:/Downloads/grpicn.png",
+    "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
       "admins": ["11"],
       "members": ["12","13","14","1"],
@@ -52,7 +52,7 @@
     "creator": "12",
     "groupName": "Art and Design",
     "groupDescription": "For creative minds interested in art and design.",
-    "groupIcon": "file:/C:/Users/Gebriel/Desktop/Term%205/Programming%20II/Lab9/ConnectHub/ConnectHub/file:/D:/Downloads/grpicn.png",
+    "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
       "admins": ["14"],
       "members": ["7","8","9","3"],
@@ -60,23 +60,11 @@
     }
   },
   {
-    "groupID": "6",
-    "creator": "1",
-    "groupName": "Knee surgery enthusiasts",
-    "groupDescription": "If your Knee surgery is tomorrow join this group",
-    "groupIcon": "file:/D:/Downloads/images%20(4).jpg",
-    "hierarchy": {
-      "admins": [],
-      "members": ["3"],
-      "requests": []
-    }
-  },
-  {
     "groupID": "7",
     "creator": "2",
     "groupName": "Darius Lovers",
     "groupDescription": "It darius day",
-    "groupIcon": "file:/C:/Users/Gebriel/Desktop/Term%205/Programming%20II/Lab9/ConnectHub/ConnectHub/file:/D:/Downloads/images%2520(5).jpg",
+    "groupIcon": "D:/Downloads/images(5).jpg",
     "hierarchy": {
       "admins": [],
       "members": [],
