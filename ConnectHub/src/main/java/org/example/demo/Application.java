@@ -1050,39 +1050,11 @@
                     handleDeleteGroup(stage);
                 });
 
-                Button creatorGroupHierarchyButton = (Button) creatorEditGroupLoader.getNamespace().get("creatorHier");
-                creatorGroupHierarchyButton.setOnAction(event -> {
-                    System.out.println("Edit Group Hierarchy button clicked");
-                    handleEditGroupHierarchy(stage);
-                });
 
             } catch (IOException | RuntimeException e) {
                 e.printStackTrace();
             }
         }
-
-        private void handleEditGroupHierarchy(Stage stage) {
-            try {
-                FXMLLoader editHierLoader = new FXMLLoader(Application.class.getResource("Choosehier.fxml"));
-                Scene editHierScene = new Scene(editHierLoader.load(), 700, 400);
-                Stage newStage = new Stage();
-                newStage.setTitle("Edit Group Hierarchy");
-                editHierScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
-                newStage.setScene(editHierScene);
-                newStage.initOwner(stage);
-                newStage.show();
-                Button promote = (Button) editHierLoader.getNamespace().get("promote");
-                promote.setOnAction(event -> {
-                    System.out.println("Promote button clicked");
-                    handlePromoteNewAdmin(newStage);
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-private void handlePromoteNewAdmin(Stage stage) {
-
-}
 
         private void handleDeleteGroup(Stage stage) {
             try {

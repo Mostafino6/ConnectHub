@@ -106,7 +106,37 @@ public class groupMemberCell extends ListCell<User>{
                 throw new RuntimeException(e);
             }
         } );
+
+        demoteButton.setOnAction(event -> {
+            try {
+                handledemoteButton(chosen);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } );
+        removeButton.setOnAction(event -> {
+            try {
+                handleRemoveButton(chosen);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } );
+
     }
+
+    private void handleRemoveButton(User user) throws Exception {
+        if(currentGroup.isAdmin(user)){currentGroup.getHierarchy().getAdmins().remove(user);}
+        else if(currentGroup.isMember(user)){currentGroup.getHierarchy().getMembers().remove(user);}
+        groupManager.writeGroup(currentGroup);
+    }
+
+    private void handledemoteButton(User user)  throws Exception {
+        currentGroup.getHierarchy().getMembers().add(user);
+        currentGroup.getHierarchy().getAdmins().remove(user);
+        groupManager.writeGroup(currentGroup);
+
+    }
+
     private void handlePromoteButton(User user) throws Exception {
         currentGroup.getHierarchy().getAdmins().add(user);
         currentGroup.getHierarchy().getMembers().remove(user);
