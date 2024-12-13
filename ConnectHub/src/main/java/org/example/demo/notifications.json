@@ -1,34 +1,42 @@
 [
   {
-    "sender": "4",
-    "type": "Friend Request",
-    "message": "You have a new friend request from User 4.",
-    "timestamp": "2024-12-13T10:30",
-    "recievers": ["5","9"],
-    "readBy": ["2","6","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"]
-  },
-  {
-    "sender": "2",
-    "type": "Group Activity",
-    "message": "A new event has been scheduled in the Study Group.",
-    "timestamp": "2024-12-13T12:45",
-    "recievers": ["7","11"],
-    "readBy": ["4","8","3"]
-  },
-  {
-    "sender": "2",
-    "type": "Group Activity",
-    "message": "John Pork has posted a new update in the 'Tech Enthusiasts' group.",
-    "timestamp": "2024-12-13T14:00",
-    "recievers": ["2","4","6"],
-    "readBy": ["1","5","1","1","1","1","1","1"]
-  },
-  {
     "sender": "1",
     "type": "Friend Request",
     "message": "Friend Request Sent By Mostafa Abayazeed",
     "timestamp": "2024-12-13T16:47:56.191296100",
     "recievers": [],
-    "readBy": ["3","3","3","3","3","3","3"]
+    "readBy": ["3"]
+  },
+  {
+    "sender": "8",
+    "type": "Group Activity - 3",
+    "message": "Freakbob added a post in Gaming Community",
+    "timestamp": "2024-12-13T17:58:28.328217600",
+    "recievers": ["7","9","16","10"],
+    "readBy": ["1"]
+  },
+  {
+    "sender": "1",
+    "type": "Friend Request",
+    "message": "Friend Request Sent By Mostafa Abayazeed",
+    "timestamp": "2024-12-13T18:03:42.376355600",
+    "recievers": ["8"],
+    "readBy": []
+  },
+  {
+    "sender": "1",
+    "type": "Friend Request",
+    "message": "Friend Request Sent By Mostafa Abayazeed",
+    "timestamp": "2024-12-13T18:06:22.311205700",
+    "recievers": ["7"],
+    "readBy": []
+  },
+  {
+    "sender": "7",
+    "type": "Sent Friend Request",
+    "message": "Friend Request Sent to Belal Mohamed",
+    "timestamp": "2024-12-13T18:06:22.315206800",
+    "recievers": [],
+    "readBy": ["1"]
   }
 ]

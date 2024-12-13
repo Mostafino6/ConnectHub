@@ -173,5 +173,26 @@
     "image": "null",
     "datePosted": "2024-12-13",
     "groupID": "7"
+  },
+  {
+    "userID": "1",
+    "content": "I love games",
+    "image": "null",
+    "datePosted": "2024-12-13",
+    "groupID": "3"
+  },
+  {
+    "userID": "1",
+    "content": "I still love games",
+    "image": "null",
+    "datePosted": "2024-12-13",
+    "groupID": "3"
+  },
+  {
+    "userID": "8",
+    "content": "FreakBob",
+    "image": "null",
+    "datePosted": "2024-12-13",
+    "groupID": "3"
   }
 ]

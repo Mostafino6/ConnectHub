@@ -28,6 +28,7 @@
         private static final StoryManager storyManager = new StoryManager();
         private static final GroupManager groupManager;
         private static Group currentGroup;
+        private static NotificationManager notificationManager = new NotificationManager();
 
         static {
             try {
@@ -67,6 +68,12 @@
         }
         public static Group getCurrentGroup() {
             return currentGroup;
+        }
+        public static NotificationManager getNotificationManager() {
+            return notificationManager;
+        }
+        public static void setNotificationManager(NotificationManager noti) {
+            notificationManager = noti;
         }
         @Override
         public void start(Stage stage) throws IOException {
@@ -745,6 +752,20 @@
                     Post newPost = new Post(currentUser, text, selectedImagePath[0]);
                     if(currentGroup!=null){
                         newPost.setGroupID(currentGroup.getGroupID());
+                        Notification noti = new Notification();
+                        noti.setSender(currentUser);
+                        noti.setType("Group Activity - " + currentGroup.getGroupID());
+                        noti.setMessage(currentUser.getName() + " added a post in " + currentGroup.getGroupName());
+                        for(User member : currentGroup.getAllMembers()){
+                            if(!currentUser.equals(member)) {
+                                noti.addReciever(member);
+                            }
+                        }
+                        try {
+                            notificationManager.addNotification(noti);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     try {
                         postManager.addPost(newPost);

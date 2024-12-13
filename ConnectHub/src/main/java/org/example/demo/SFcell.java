@@ -70,6 +70,12 @@ public class SFcell extends ListCell<User> {
                 notification.setType("Friend Request");
                 notification.addReciever(user);
                 notificationManager.addNotification(notification);
+                Notification noti2 = new Notification();
+                noti2.setSender(user);
+                noti2.setType("Sent Friend Request");
+                noti2.setMessage("Friend Request Sent to " + user.getName());
+                noti2.addReciever(currentUser);
+                notificationManager.addNotification(noti2);
             }catch (Exception e){
                 e.printStackTrace();
             }
