@@ -30,7 +30,7 @@
     "groupDescription": "For gamers who love to connect and play together.",
     "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
-      "admins": ["9","8"],
+      "admins": [],
       "members": ["16","10","7"],
       "requests": ["11","12"]
     }
