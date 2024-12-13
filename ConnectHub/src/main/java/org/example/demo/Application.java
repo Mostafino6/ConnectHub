@@ -1148,13 +1148,18 @@
                 String name = groupName.getText();
                 String description = groupDescription.getText();
                 if (name.isEmpty() && description.isEmpty() && selectedImagePath[0] == null) {
-                    JOptionPane.showMessageDialog(null, "Empty Story");
+                    JOptionPane.showMessageDialog(null, "Empty Group");
                 } else {
                     Group newGroup = new Group();
                     newGroup.setCreator(currentUser);
                     newGroup.setGroupName(name);
                     newGroup.setGroupDescription(description);
-                    newGroup.setGroupIcon(selectedImagePath[0]);
+                    if(selectedImagePath[0] == null) {
+                        newGroup.setGroupIcon("D:/Downloads/grpicn.png");
+                    }
+                    else {
+                        newGroup.setGroupIcon(selectedImagePath[0]);
+                    }
                     try {
                         groupManager.writeGroup(newGroup);
                     } catch (Exception e) {
