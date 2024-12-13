@@ -28,6 +28,7 @@
         private static final StoryManager storyManager = new StoryManager();
         private static final GroupManager groupManager;
         private static Group currentGroup;
+
         static {
             try {
                 groupManager = new GroupManager();
@@ -365,7 +366,7 @@
             }
         }
 
-        private void handleUpdatefpfp(Stage stage) {
+        void handleUpdatefpfp(Stage stage) {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choose Profile Picture");
             fileChooser.getExtensionFilters().add(
@@ -378,7 +379,6 @@
                     // Convert the file path to an image
                     String newImagePath = selectedFile.toURI().toString();
                     Image newImage = new Image(newImagePath);
-
                     // Locate the ImageView in the current scene
                     ImageView imageView = (ImageView) stage.getScene().lookup("#imageView");
                     if (imageView != null) {
@@ -405,6 +405,7 @@
                 }
             }
         }
+
 
         private void handleupdateCoverPhoto(Stage stage) {
             // Open file chooser for selecting a cover photo
@@ -858,12 +859,252 @@
                         throw new RuntimeException(e);
                     }
                 });
+
+                Button editGroupButton =(Button) groupLoader.getNamespace().get("editGroupButton");
+                editGroupButton.setOnAction(event -> {
+                    if(currentGroup.getHierarchy().getAdmins().contains(currentUser))
+                    {handleEditGroupAdmin(stage);}
+                    else{handleEditGroupCreator(stage);}
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
+        private void handleEditGroupAdmin(Stage stage) {
+            try {
+                FXMLLoader adminEditGroupLoader = new FXMLLoader(Application.class.getResource("adminEditGroup.fxml"));
+                Scene adminEditGroupScene = new Scene(adminEditGroupLoader.load(), 600, 400);
+                Stage newStage = new Stage();
+                newStage.setTitle("Edit Group");
+                adminEditGroupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(adminEditGroupScene);
+                newStage.initOwner(stage);
+                newStage.show();
+
+                // Access buttons from the FXML and set actions
+                Button adminGroupNameButton = (Button) adminEditGroupLoader.getNamespace().get("adminGroupName");
+                adminGroupNameButton.setOnAction(event -> {
+                    System.out.println("Edit Group Name button clicked");
+                    handleEditGroupName(stage);
+                });
+
+                Button adminGroupDescriptionButton = (Button) adminEditGroupLoader.getNamespace().get("adminGroupDescription");
+                adminGroupDescriptionButton.setOnAction(event -> {
+                    System.out.println("Edit Group Description button clicked");
+                    handleEditGroupDescription(stage);
+                });
+
+                Button adminGroupPfpButton = (Button) adminEditGroupLoader.getNamespace().get("adminGroupPfp");
+                adminGroupPfpButton.setOnAction(event -> {
+                    System.out.println("Edit Group Profile Photo button clicked");
+                    handleEditGroupPfp(stage);
+                });
+
+
+            } catch (IOException | RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+
+        void handleEditGroupPfp(Stage stage) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose Group Profile Picture");
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+            );
+            File selectedFile = fileChooser.showOpenDialog(stage);
+
+            if (selectedFile != null) {
+                try {
+                    String newImagePath = selectedFile.toURI().toString();
+                    Image newImage = new Image(newImagePath);
+                    // Locate the ImageView in the current scene
+                    ImageView imageView = (ImageView) stage.getScene().lookup("#imageView");
+                    if (imageView != null) {
+                        Circle clip = new Circle();
+                        clip.setRadius(imageView.getFitWidth() / 2);
+                        clip.setCenterX(imageView.getFitWidth() / 2);
+                        clip.setCenterY(imageView.getFitHeight() / 2);
+                        imageView.setClip(clip);
+                        imageView.setImage(newImage);
+                        currentGroup.setGroupIcon(selectedFile.getAbsolutePath());
+                        try {
+                            groupManager.writeGroup(currentGroup);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        System.out.println("ImageView not found in the current scene.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        private void handleEditGroupDescription(Stage stage) {
+            try {
+                // Load the Bio FXML (for entering the new bio)
+                FXMLLoader bioLoader = new FXMLLoader(Application.class.getResource("Bio.fxml"));
+                Scene bioScene = new Scene(bioLoader.load(), 600, 400);
+                Stage newStage = new Stage();
+                newStage.setTitle("Update Bio");
+                bioScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(bioScene);
+                newStage.initOwner(stage);
+                newStage.initModality(Modality.WINDOW_MODAL); // Make the Bio window modal
+                newStage.show();
+                Button biodoneButton = (Button) bioLoader.getNamespace().get("BIODONE");
+                biodoneButton.setOnAction(event -> {
+                    try {
+                        // Get the new bio from the text field
+                        TextField bioTextField = (TextField) bioLoader.getNamespace().get("bioTextField");
+                        String newBio = bioTextField.getText();
+                        // Update the bio in the current user's profile
+                        currentGroup.setGroupDescription(newBio);
+                        // Find the bio Label in the current scene and update it
+                        Label bioLabel = (Label) stage.getScene().lookup("#bioplace");
+                        if (bioLabel != null) {
+                            bioLabel.setText(newBio);
+                        }
+                        // Close the Bio window
+                        newStage.close();
+                        groupManager.writeGroup(currentGroup);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void handleEditGroupName(Stage stage) {
+            try {
+                // Load the Edit Group Name FXML
+                FXMLLoader editGroupNameLoader = new FXMLLoader(Application.class.getResource("editGroupName.fxml"));
+                Scene editGroupNameScene = new Scene(editGroupNameLoader.load(), 600, 400);
+                Stage newStage = new Stage();
+                newStage.setTitle("Update Group Name");
+                editGroupNameScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(editGroupNameScene);
+                newStage.initOwner(stage);
+                newStage.initModality(Modality.WINDOW_MODAL); // Make the Edit Group Name window modal
+                newStage.show();
+
+                TextField newGroupNameTextField = (TextField) editGroupNameLoader.getNamespace().get("newGroupName");
+                Button editGroupNameButton = (Button) editGroupNameLoader.getNamespace().get("DoneNameEdit");
+
+                editGroupNameButton.setOnAction(event -> {
+                    String newGroupName = newGroupNameTextField.getText();
+                    if (newGroupName != null && !newGroupName.trim().isEmpty()) {
+                        currentGroup.setGroupName(newGroupName);
+                        Label nameLabel = (Label) stage.getScene().lookup("#nameuser");
+                        if (nameLabel != null) {
+                            nameLabel.setText(newGroupName);
+                        }
+                        newStage.close();
+                        try {
+                            groupManager.writeGroup(currentGroup);
+                            System.out.println("Group name updated successfully: " + newGroupName);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("Error saving group data");
+                        }
+                    } else {
+                        System.out.println("Group name cannot be empty.");
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        private void handleEditGroupCreator(Stage stage) {
+            try {
+
+                FXMLLoader creatorEditGroupLoader = new FXMLLoader(Application.class.getResource("CreatorEditGroup.fxml"));
+                Scene creatorEditGroupScene = new Scene(creatorEditGroupLoader.load(), 600, 400);
+                Stage newStage = new Stage();
+                newStage.setTitle("Edit Group");
+                creatorEditGroupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(creatorEditGroupScene);
+                newStage.initOwner(stage);
+                newStage.show();
+
+                Button creatorGroupNameButton = (Button) creatorEditGroupLoader.getNamespace().get("creatorGroupName");
+                creatorGroupNameButton.setOnAction(event -> {
+                    System.out.println("Edit Group Name button clicked");
+                    handleEditGroupName(stage);
+                });
+
+
+                Button creatorGroupDescriptionButton = (Button) creatorEditGroupLoader.getNamespace().get("creatorGroupDescription");
+                creatorGroupDescriptionButton.setOnAction(event -> {
+                    System.out.println("Edit Group Description button clicked");
+                    handleEditGroupDescription(stage);
+                });
+
+                Button creatorGroupPfpButton = (Button) creatorEditGroupLoader.getNamespace().get("creatorGroupPfp");
+                creatorGroupPfpButton.setOnAction(event -> {
+                    System.out.println("Edit Group Profile Photo button clicked");
+                    handleEditGroupPfp(stage);
+                });
+
+                Button creatorDeleteGroupButton = (Button) creatorEditGroupLoader.getNamespace().get("creatorDeleteGroup");
+                creatorDeleteGroupButton.setOnAction(event -> {
+                    System.out.println("Delete Group button clicked");
+                    handleDeleteGroup(stage);
+                });
+
+                Button creatorGroupHierarchyButton = (Button) creatorEditGroupLoader.getNamespace().get("creatorHier");
+                creatorGroupHierarchyButton.setOnAction(event -> {
+                    System.out.println("Edit Group Hierarchy button clicked");
+                    handleEditGroupHierarchy(stage);
+                });
+
+            } catch (IOException | RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void handleEditGroupHierarchy(Stage stage) {
+        }
+
+        private void handleDeleteGroup(Stage stage) {
+            try {
+                FXMLLoader deleteGroupLoader = new FXMLLoader(Application.class.getResource("deleteGroup.fxml"));
+                Scene deleteGroupScene = new Scene(deleteGroupLoader.load(), 700, 400);
+                Stage newStage = new Stage();
+                newStage.setTitle("Delete Group");
+                deleteGroupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(deleteGroupScene);
+                newStage.initOwner(stage);
+                newStage.show();
+
+                Button deleteGroupButton = (Button) deleteGroupLoader.getNamespace().get("deleteMyGroup");
+                deleteGroupButton.setOnAction(event -> {
+                    if (currentGroup != null) {
+                        try {
+                            // Call the GroupManager to delete the group
+                            groupManager.deleteGroup(currentGroup);
+                            JOptionPane.showMessageDialog(null, "Group deleted successfully");
+                            newStage.close();
+                            // Show the home page
+                        } catch (Exception e) {
+                            // Handle any exceptions during the deletion process if needed, silently
+                            newStage.close();  // Close the window even if there's an error
+                        }
+                    }
+                });
+
+            } catch (RuntimeException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         private void handleCreateGroup(Stage stage) throws IOException {
             FXMLLoader grpCreationLoader = new FXMLLoader(Application.class.getResource("createGroup.fxml"));
             Scene createGroupScene = new Scene(grpCreationLoader.load(), 600, 400);

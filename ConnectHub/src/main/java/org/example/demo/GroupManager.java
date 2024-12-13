@@ -209,4 +209,81 @@ public class GroupManager {
         }
         return String.valueOf(maxID + 1);
     }
+    public void deleteGroup(Group groupToDelete) throws Exception {
+        ArrayList<Group> groupList = readGroups();
+        groupList.removeIf(group -> group.getGroupID().equals(groupToDelete.getGroupID()));
+        // Rewrite the updated list to the JSON file
+        writeGroupsToFile(groupList);
+    }
+
+    private void writeGroupsToFile(ArrayList<Group> groupList) throws Exception {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Group group : groupList) {
+            JSONObject jsonGroup = new JSONObject();
+            jsonGroup.put("groupID", group.getGroupID());
+            jsonGroup.put("creator", group.getCreator().getUserID());
+            jsonGroup.put("groupName", group.getGroupName());
+            jsonGroup.put("groupDescription", group.getGroupDescription());
+
+            String icon = group.getGroupIcon();
+            if (icon != null && icon.startsWith("file:///")) {
+                icon = icon.substring(8);
+            }
+            if (icon != null) {
+                icon = icon.replace("\\", "/");
+            }
+            jsonGroup.put("groupIcon", icon);
+
+            // Hierarchy information
+            JSONObject hierarchyObject = new JSONObject();
+            hierarchyObject.put("admins", getJSONFromUserIDs(group.getHierarchy().getAdmins()));
+            hierarchyObject.put("members", getJSONFromUserIDs(group.getHierarchy().getMembers()));
+            hierarchyObject.put("requests", getJSONFromUserIDs(group.getHierarchy().getRequests()));
+            jsonGroup.put("hierarchy", hierarchyObject);
+
+            jsonArray.add(jsonGroup);
+        }
+
+        // Write to the file
+        try (FileWriter writer = new FileWriter(DATABASE_FILE)) {
+            writer.write("[\n");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject jsonGroup = (JSONObject) jsonArray.get(i);
+                writer.write("  {\n");
+
+                writer.write("    \"groupID\": \"" + jsonGroup.get("groupID") + "\",\n");
+                writer.write("    \"creator\": \"" + jsonGroup.get("creator") + "\",\n");
+                writer.write("    \"groupName\": \"" + jsonGroup.get("groupName") + "\",\n");
+                writer.write("    \"groupDescription\": \"" + jsonGroup.get("groupDescription") + "\",\n");
+                writer.write("    \"groupIcon\": \"" + jsonGroup.get("groupIcon") + "\",\n");
+
+                // Write hierarchy object (admins, members, requests)
+                JSONObject hierarchyObject = (JSONObject) jsonGroup.get("hierarchy");
+                writer.write("    \"hierarchy\": {\n");
+
+                // Write admins
+                JSONArray adminsArray = (JSONArray) hierarchyObject.get("admins");
+                writer.write("      \"admins\": " + adminsArray.toString() + ",\n");
+
+                // Write members
+                JSONArray membersArray = (JSONArray) hierarchyObject.get("members");
+                writer.write("      \"members\": " + membersArray.toString() + ",\n");
+
+                // Write requests
+                JSONArray requestsArray = (JSONArray) hierarchyObject.get("requests");
+                writer.write("      \"requests\": " + requestsArray.toString() + "\n");
+
+                writer.write("    }\n");
+
+                // Close the group object
+                if (i < jsonArray.size() - 1) {
+                    writer.write("  },\n");
+                } else {
+                    writer.write("  }\n");
+                }
+            }
+            writer.write("]");
+        }
+    }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+   <children>
+      <Button fx:id="adminGroupName" layoutX="175.0" layoutY="65.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="257.0" styleClass="btn1" stylesheets="@main.css" text="Edit Group Name" />
+      <Button fx:id="adminGroupDescription" layoutX="172.0" layoutY="140.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="257.0" styleClass="btn1" stylesheets="@main.css" text="Edit Group Description" />
+      <Button fx:id="adminGroupPfp" layoutX="172.0" layoutY="215.0" mnemonicParsing="false" styleClass="btn1" stylesheets="@main.css" text="Edit Group Profile Photo" />
+   </children>
+</AnchorPane>
