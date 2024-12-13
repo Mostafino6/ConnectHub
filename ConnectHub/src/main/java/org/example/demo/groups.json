@@ -3,7 +3,7 @@
     "groupID": "1",
     "creator": "2",
     "groupName": "OOP Haters",
-    "groupDescription": "OOP is gay",
+    "groupDescription": "We hate OOP",
     "groupIcon": "D:/Downloads/UML.jpeg",
     "hierarchy": {
       "admins": ["1","3"],
@@ -31,8 +31,8 @@
     "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
       "admins": [],
-      "members": ["16","10","7"],
-      "requests": ["11","12"]
+      "members": ["16","10","7","12"],
+      "requests": ["11"]
     }
   },
   {
