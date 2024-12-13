@@ -492,6 +492,8 @@
                 NotificationWindow controller = loader.getController();
                 controller.initialize(); // Call the initialize method to load notifications
 
+                Button refreshButton = (Button) loader.getNamespace().get("refreshButton");
+                refreshButton.setOnAction(event -> controller.initialize());
 
                 notificationStage.setScene(scene);
                 notificationStage.initOwner(stage);

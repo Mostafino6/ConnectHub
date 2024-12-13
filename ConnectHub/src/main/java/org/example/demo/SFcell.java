@@ -18,6 +18,7 @@ public class SFcell extends ListCell<User> {
     private Label name;
     private Button addButton;
     private NotificationWindow notificationWindow;
+    private NotificationManager notificationManager;
     public SFcell(){
         pfp = new ImageView();
         pfp.setFitHeight(50);
@@ -41,6 +42,7 @@ public class SFcell extends ListCell<User> {
            }
         });
         notificationWindow = new NotificationWindow();
+        notificationManager = new NotificationManager();
     }
     @Override
     protected void updateItem(User user, boolean empty) {
@@ -64,8 +66,8 @@ public class SFcell extends ListCell<User> {
 
                 Application.getDatabaseManager().writeUser(user);
 
-                Notification notification = new Notification("Friend Request", "Received friend request");
-                user.addNotification(notification);
+                Notification notification = new Notification(user, "Friend Request", "Received friend request");
+                notificationManager.addNotification(notification);
                 System.out.println("Total notifications for user " + user.getUsername() + ": " + user.getNotifications().size());
                 for (Notification n : user.getNotifications()) {
                     System.out.println(n.toString(user)); // Ensure your toString method is implemented properly

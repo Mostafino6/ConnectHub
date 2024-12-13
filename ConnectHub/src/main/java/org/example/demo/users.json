@@ -11,7 +11,7 @@
     "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "friends": {
-      "friendsList": ["8","13","12","3"],
+      "friendsList": ["8","13","12","3","1","1","1","1"],
       "friendRequests": ["18","18"],
       "blockedFriends": ["5","15","2"]
     },
@@ -318,7 +318,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": [],
+      "friendRequests": ["1","1","1"],
       "blockedFriends": []
     },
     "posts": []
