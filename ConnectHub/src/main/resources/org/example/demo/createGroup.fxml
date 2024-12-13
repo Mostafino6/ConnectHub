@@ -13,7 +13,7 @@
       <Label layoutX="43.0" layoutY="244.0" styleClass="psts" text="Group Icon: " />
       <TextField fx:id="grpName" layoutX="184.0" layoutY="48.0" prefHeight="25.0" prefWidth="372.0" />
       <TextField fx:id="grpDescription" layoutX="44.0" layoutY="140.0" prefHeight="77.0" prefWidth="515.0" />
-      <Button fx:id="selectImage" layoutX="308.0" layoutY="241.0" minHeight="25.0" minWidth="211.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" styleClass="btn4" text="Select Image..." />
+      <Button fx:id="ImageView" layoutX="308.0" layoutY="241.0" minHeight="25.0" minWidth="211.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" styleClass="btn4" text="Select Image..." />
       <Button fx:id="create" layoutX="176.0" layoutY="327.0" mnemonicParsing="false" styleClass="btn1" text="Create Group"/>
    </children>
 </AnchorPane>
