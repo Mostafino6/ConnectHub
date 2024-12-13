@@ -598,7 +598,7 @@
             }
         }
 
-        private void handleFR(Stage stage) {
+        public void handleFR(Stage stage) {
             try {
                 FXMLLoader FRLoader = new FXMLLoader(Application.class.getResource("friendRequests.fxml"));
                 Scene FRScene = new Scene(FRLoader.load(), 389, 225);
