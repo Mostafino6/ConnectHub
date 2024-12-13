@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PostManager {
-    private static final String POSTS_DATABASE_FILE = "D:\\CCE\\Term 5\\Programming-02\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\posts.json";  // Adjust path as needed
+    private static final String POSTS_DATABASE_FILE = "C:\\Users\\eyada\\OneDrive\\Documents\\GitHub\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\posts.json";  // Adjust path as needed
     private static final DatabaseManager databaseManager = new DatabaseManager();
     private Map<String, User> userMap = new HashMap<>();
 
@@ -48,11 +48,13 @@ public class PostManager {
             String content = (String) jsonObject.get("content");
             String image = (String) jsonObject.get("image");
             String datePostedStr = (String) jsonObject.get("datePosted");
+            String groupID = (String) jsonObject.get("groupID");
             LocalDate datePosted = LocalDate.parse(datePostedStr);
             User user = getUserByID(userID);
                 if (user != null) {
                     Post post = new Post(user, content, image);
                     post.setDatePosted(datePosted);
+                    post.setGroupID(groupID);
                     postList.add(post);
                     user.addPost(post);  // Add post to the user's list
                 }
@@ -82,6 +84,74 @@ public class PostManager {
                 postImage = postImage.replace("\\", "\\\\");
             }
             jsonPost.put("image", postImage);
+            jsonPost.put("groupID", p.getGroupID());
+            jsonArray.add(jsonPost);
+        }
+        // Write to the file
+        try (FileWriter writer = new FileWriter(POSTS_DATABASE_FILE)) {
+            writer.write("[\n");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject jsonPost = (JSONObject) jsonArray.get(i);
+                writer.write("  {\n");
+
+                writer.write("    \"userID\": \"" + jsonPost.get("userID") + "\",\n");
+                writer.write("    \"content\": \"" + jsonPost.get("content") + "\",\n");
+                writer.write("    \"image\": \"" + jsonPost.get("image") + "\",\n");
+                writer.write("    \"datePosted\": \"" + jsonPost.get("datePosted") + "\",\n");
+                writer.write("    \"groupID\": \"" + jsonPost.get("groupID") + "\"\n");
+
+                writer.write("  }");
+
+                if (i < jsonArray.size() - 1) {
+                    writer.write(",\n");
+                } else {
+                    writer.write("\n");
+                }
+            }
+            writer.write("]");
+        }
+    }
+    public void editPost(User user, String oldContent, String newContent, String newImage) throws Exception {
+        ArrayList<Post> postList = readPosts();
+        for (Post post : postList) {
+            if (post.getOwner().equals(user) && post.getContent().equals(oldContent)) {
+                if(newContent != null) {
+                    post.setContent(newContent);
+                }
+                if(newImage!=null){
+                    System.out.println(newImage);
+                    post.setImage(newImage);
+                    System.out.println(post.getImage());
+                }
+                break;
+            }
+        }
+        // Rewrite the updated list to the JSON file
+        writePostsToFile(postList);
+    }
+    public void deletePost(User user,String content,String image) throws Exception {
+        ArrayList<Post> postList = readPosts();
+        postList.removeIf(post -> post.getOwner().equals(user) && post.getContent().equals(content) && post.getImage().equals(image));
+        // Rewrite the updated list to the JSON file
+        writePostsToFile(postList);
+    }
+    private void writePostsToFile(ArrayList<Post> postList) throws Exception {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Post post : postList) {
+            JSONObject jsonPost = new JSONObject();
+            jsonPost.put("userID", post.getOwner().getUserID());
+            jsonPost.put("content", post.getContent());
+            jsonPost.put("datePosted", post.getDatePosted().toString());
+            String postImage = post.getImage();
+            if (postImage != null && postImage.startsWith("file:///")) {
+                postImage = postImage.substring(8);
+            }
+            if (postImage != null) {
+                postImage = postImage.replace("\\", "\\\\");
+            }
+            jsonPost.put("image", postImage);
+            jsonPost.put("groupID", post.getGroupID());
             jsonArray.add(jsonPost);
         }
 
@@ -95,7 +165,8 @@ public class PostManager {
                 writer.write("    \"userID\": \"" + jsonPost.get("userID") + "\",\n");
                 writer.write("    \"content\": \"" + jsonPost.get("content") + "\",\n");
                 writer.write("    \"image\": \"" + jsonPost.get("image") + "\",\n");
-                writer.write("    \"datePosted\": \"" + jsonPost.get("datePosted") + "\"\n");
+                writer.write("    \"datePosted\": \"" + jsonPost.get("datePosted") + "\",\n");
+                writer.write("    \"groupID\": \"" + jsonPost.get("groupID") + "\"\n");
 
                 writer.write("  }");
 

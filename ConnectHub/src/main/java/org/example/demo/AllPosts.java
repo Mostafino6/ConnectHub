@@ -24,12 +24,15 @@ public class AllPosts {
             ArrayList<Post> posts = postManager.readPosts();
             ArrayList<Post> friendPosts = new ArrayList<>();
             for(Post post : posts) {
-                if(currentUser.getUserID().equals(post.getOwner().getUserID())) {
+                if(currentUser.getUserID().equals(post.getOwner().getUserID()) || (post.getGroupFromGroupID()!=null && post.getGroupFromGroupID().isMember(currentUser))){
                     friendPosts.add(post);
                 }
                 for(User users : currentUser.getFriends().getFriendsList()){
-                    if(users.getUserID().equals(post.getOwner().getUserID())){
-                        friendPosts.add(post);
+                    if(users.getUserID().equals(post.getOwner().getUserID()) && !friendPosts.contains(post)){
+                        if(post.getGroupFromGroupID()!=null && !post.getGroupFromGroupID().isMember(currentUser)){}
+                        else {
+                            friendPosts.add(post);
+                        }
                     }
                 }
             }

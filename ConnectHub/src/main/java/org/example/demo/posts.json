@@ -2,73 +2,176 @@
   {
     "userID": "1",
     "content": "This is my first post!",
-    "image": "D:\\CCE\\Term 5\\Programming-02\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg",
-    "datePosted": "2024-12-05"
+    "image": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg",
+    "datePosted": "2024-12-05",
+    "groupID": ""
   },
   {
     "userID": "2",
     "content": "Enjoying a beautiful day outside!",
     "image": "null",
-    "datePosted": "2024-12-06"
-  },
-  {
-    "userID": "3",
-    "content": "Just finished reading a great book!",
-    "image": "null",
-    "datePosted": "2024-12-07"
+    "datePosted": "2024-12-06",
+    "groupID": ""
   },
   {
     "userID": "1",
     "content": "Had an amazing workout session today!",
     "image": "null",
-    "datePosted": "2024-12-08"
+    "datePosted": "2024-12-08",
+    "groupID": ""
   },
   {
     "userID": "1",
     "content": "I love this ish",
     "image": "null",
-    "datePosted": "2024-12-08"
+    "datePosted": "2024-12-08",
+    "groupID": ""
   },
   {
     "userID": "1",
     "content": "Ws in the chat mane",
     "image": "null",
-    "datePosted": "2024-12-08"
+    "datePosted": "2024-12-08",
+    "groupID": ""
   },
   {
     "userID": "1",
     "content": "I love skibidi rizz plus john pork",
-    "image": "D:\\CCE\\Term 5\\Programming-02\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
-    "datePosted": "2024-12-08"
+    "image": "D:\\Downloads\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
+    "datePosted": "2024-12-08",
+    "groupID": ""
   },
   {
     "userID": "1",
     "content": "i love hoss el shazly",
     "image": "D:\\Downloads\\Screenshot 2024-12-08 234833.png",
-    "datePosted": "2024-12-08"
+    "datePosted": "2024-12-08",
+    "groupID": ""
   },
   {
     "userID": "2",
     "content": "Im john pork, where the huzz at doe",
     "image": "null",
-    "datePosted": "2024-12-09"
+    "datePosted": "2024-12-09",
+    "groupID": ""
   },
   {
     "userID": "1",
     "content": "I love programming look at the UML diagram I just created",
     "image": "D:\\Downloads\\UML.jpeg",
-    "datePosted": "2024-12-09"
+    "datePosted": "2024-12-09",
+    "groupID": ""
   },
   {
     "userID": "1",
-    "content": "I love belal mohamed",
+    "content": "I love mabayez",
     "image": "null",
-    "datePosted": "2024-12-09"
+    "datePosted": "2024-12-09",
+    "groupID": ""
   },
   {
-    "userID": "16",
-    "content": "xcxvb",
-    "image": "C:\\Users\\DELL\\Pictures\\be.JPG",
-    "datePosted": "2024-12-11"
+    "userID": "1",
+    "content": "mostafaaaaaa",
+    "image": "null",
+    "datePosted": "2024-12-11",
+    "groupID": ""
+  },
+  {
+    "userID": "1",
+    "content": "I love babayez",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "1"
+  },
+  {
+    "userID": "1",
+    "content": "Mabababababayez",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": ""
+  },
+  {
+    "userID": "1",
+    "content": "Mabayezzzz broski",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "1"
+  },
+  {
+    "userID": "3",
+    "content": "Yo its chill guy, I love oop gang shiiiiiiiiiiiiiiii",
+    "image": "D:\\Downloads\\Screenshot 2024-12-05 123219.png",
+    "datePosted": "2024-12-12",
+    "groupID": "1"
+  },
+  {
+    "userID": "3",
+    "content": "Hey im chill guy and I love art",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "5"
+  },
+  {
+    "userID": "1",
+    "content": "I love datascience",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "2"
+  },
+  {
+    "userID": "3",
+    "content": "i still love art gang",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "5"
+  },
+  {
+    "userID": "1",
+    "content": "Yo marvel rivals is sick dawg but fuck that lil ass shark",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "3"
+  },
+  {
+    "userID": "1",
+    "content": "OOOOOOOOOOOOOOOOOOOOOOOOOp",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "1"
+  },
+  {
+    "userID": "1",
+    "content": "Welcome and good luck in you knee surgery",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "6"
+  },
+  {
+    "userID": "3",
+    "content": "i'm worried about my knee surgery guys and im a goofy ass nigga - mabayez",
+    "image": "D:\\Downloads\\images (4).jpg",
+    "datePosted": "2024-12-12",
+    "groupID": "6"
+  },
+  {
+    "userID": "1",
+    "content": "W oop",
+    "image": "null",
+    "datePosted": "2024-12-12",
+    "groupID": "1"
+  },
+  {
+    "userID": "3",
+    "content": "hello everybody it's markiplier here",
+    "image": "null",
+    "datePosted": "2024-12-13",
+    "groupID": ""
+  },
+  {
+    "userID": "2",
+    "content": "it darius day it darius day it darius dayit darius day it darius day it darius day it darius day it darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius dayit darius day",
+    "image": "null",
+    "datePosted": "2024-12-13",
+    "groupID": "7"
   }
 ]

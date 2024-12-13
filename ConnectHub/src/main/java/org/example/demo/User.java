@@ -19,6 +19,7 @@ public class User {
     private ArrayList<Post> posts;
     private ArrayList<Story> stories; // New list to manage user stories
     private ArrayList<Notification> notifications;
+    private ArrayList<Group> groups;
 
     // Default constructor
     public User() {
@@ -26,6 +27,7 @@ public class User {
         this.posts = new ArrayList<>();
         this.stories = new ArrayList<>(); // Initialize stories list
         this.notifications = new ArrayList<>();
+        this.groups = new ArrayList<>();
         this.pfpPath = "";
         this.coverphotoPath = "";
         this.bio = "";
@@ -145,7 +147,6 @@ public class User {
     public void addStory(Story story) {
         stories.add(story);
     }
-
     public void addNotification(Notification notification) {
         notifications.add(notification);
     }
@@ -158,5 +159,24 @@ public class User {
         for (Notification notification : notifications) {
             notification.setRead(true);
         }
+    public ArrayList<Group> getGroups() {
+        return groups;
+    }
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
+    }
+    public void addGroup(Group group){
+        groups.add(group);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true; // Check if both references point to the same object
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false; // Check if the other object is null or of a different class
+        }
+        User other = (User) obj; // Cast the object to a User
+        return userID != null && userID.equals(other.userID); // Compare userID for equality
     }
 }

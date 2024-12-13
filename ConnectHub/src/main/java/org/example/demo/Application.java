@@ -1,13 +1,10 @@
     package org.example.demo;
 
-    import eu.hansolo.tilesfx.skins.TestTileSkin;
     import javafx.fxml.FXMLLoader;
-    import javafx.scene.Parent;
     import javafx.scene.Scene;
     import javafx.scene.control.*;
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
-    import javafx.scene.layout.HBox;
     import javafx.scene.layout.VBox;
     import javafx.scene.control.Label;
     import javafx.scene.control.TextField;
@@ -18,17 +15,26 @@
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
+    import java.time.LocalDate;
     import java.util.ArrayList;
     import java.util.Date;
-    import java.util.Objects;
 
     public class Application extends javafx.application.Application {
         private static final ValidationManager validationManager = new ValidationManager();
         private static User currentUser;
+        private static Stage primaryStage;
         private static final DatabaseManager databaseManager = new DatabaseManager();
         private static final PostManager postManager = new PostManager();
         private static final StoryManager storyManager = new StoryManager();
-
+        private static final GroupManager groupManager;
+        private static Group currentGroup;
+        static {
+            try {
+                groupManager = new GroupManager();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
         public static void setCurrentUser(User user) {
             currentUser = user;
         }
@@ -36,7 +42,9 @@
         public static User getCurrentUser() {
             return currentUser;
         }
-
+        public static Stage getPrimaryStage() {
+            return primaryStage;
+        }
         public static DatabaseManager getDatabaseManager() {
             return databaseManager;
         }
@@ -44,10 +52,24 @@
         public static ValidationManager getValidationManager() {
             return validationManager;
         }
-
+        public static PostManager getPostManager() {
+            return postManager;
+        }
+        public static StoryManager getStoryManager() {
+            return storyManager;
+        }
+        public static GroupManager getGroupManager() {
+            return groupManager;
+        }
+        public static void setCurrentGroup(Group group){
+            currentGroup = group;
+        }
+        public static Group getCurrentGroup() {
+            return currentGroup;
+        }
         @Override
         public void start(Stage stage) throws IOException {
-
+            primaryStage = stage;
             FXMLLoader home = new FXMLLoader(Application.class.getResource("hello-view.fxml"));
             Scene scene = new Scene(home.load(), 950, 580);
             stage.setTitle("Home");
@@ -118,7 +140,7 @@
                     String email = emailField.getText();
                     String password = passwordField.getText();
                     String rewritePassword = RewritePasswordField.getText();
-                    java.time.LocalDate dob = dobField.getValue();
+                    LocalDate dob = dobField.getValue();
 
                     if (username.isEmpty() || name.isEmpty() || email.isEmpty() || password.isEmpty() || dob == null) {
                         showAlert(Alert.AlertType.ERROR, "Missing Fields", "All fields are required.");
@@ -417,8 +439,9 @@
 
         private void handleHome(Stage stage) {
             try {
+                currentGroup = null;
                 FXMLLoader homeLoader = new FXMLLoader(Application.class.getResource("homePage.fxml"));
-                Scene homeLoaderScene = new Scene(homeLoader.load(), 1200, 900);
+                Scene homeLoaderScene = new Scene(homeLoader.load(), 1550, 925);
                 stage.setTitle("Profile");
                 homeLoaderScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
                 VBox postContainer = (VBox) homeLoader.getNamespace().get("postContainer");
@@ -429,6 +452,15 @@
                 viewSuggested.setOnAction(event -> handleSuggested(stage));
                 Button viewProfile = (Button) homeLoader.getNamespace().get("viewProfile");
                 viewProfile.setOnAction(event -> handleProfile(stage));
+                Button searchBtn=(Button) homeLoader.getNamespace().get("searchBtn");
+                searchBtn.setOnAction(event ->{
+                    try {
+                        handleSearch(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
                 Button addPost = (Button) homeLoader.getNamespace().get("addPost");
                 Button viewNotifications = (Button) homeLoader.getNamespace().get("viewNotifications");
                 viewNotifications.setOnAction(event -> handleViewNotifications(stage));
@@ -476,8 +508,17 @@
                     }
                     System.exit(0);
                 });
+                Button createGroup = (Button) homeLoader.getNamespace().get("createGroup");
+                createGroup.setOnAction(event -> {
+                    try {
+                        handleCreateGroup(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
+
             }
         }
 
@@ -570,6 +611,98 @@
                 e.printStackTrace();
             }
         }
+        private void handleSearch(Stage stage) throws IOException {
+            try {
+
+                FXMLLoader searchLoader = new FXMLLoader(Application.class.getResource("searchPage.fxml"));
+                Scene searcSecene = new Scene(searchLoader.load(), 600, 400);
+                Stage newStage = new Stage();
+                newStage.setTitle("Search");
+                searcSecene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(searcSecene);
+                newStage.initOwner(stage);
+                newStage.show();
+
+                // Accessing FXML elements
+                TextField searchField = (TextField) searchLoader.getNamespace().get("searchField");
+                Button searchDone = (Button) searchLoader.getNamespace().get("searchDone");
+                ListView<SearchCell> searchListView = (ListView<SearchCell>) searchLoader.getNamespace().get("searchListView");
+
+                if (searchDone == null) {
+                    System.out.println("searchDone button not found!");
+                }
+
+                searchDone.setOnAction(event -> {
+                    searchListView.getItems().clear(); // Clear previous search results
+                    boolean isFound = false;
+                    boolean isFriend = true;
+                    boolean blocked=false;
+                    boolean grpFound = false;
+                    boolean member=false;
+
+                    try {
+                        User currentUser = Application.getCurrentUser();
+                        User searchedUser = null;
+                        Group searchedGroup = null;
+                        ArrayList<User> userList = databaseManager.readUsers();
+
+                        // Check if search field is not empty
+                        if (!searchField.getText().isEmpty()) {
+                            String username = searchField.getText();
+
+                            // Search through the list of users
+                            for (int i = 0; i < userList.size(); i++) {
+                                if (username.equals(userList.get(i).getUsername())) {
+                                    searchedUser = userList.get(i);
+                                    isFound = true;
+                                    break; // Exit the loop once the user is found
+                                }
+                            }
+                            if (isFound) {
+                                if (!currentUser.getFriends().getBlockedFriends().contains(searchedUser)) {
+//                                    showAlert(Alert.AlertType.WARNING, "Warning",Boolean.toString(currentUser.getFriends().isBlocked(searchedUser)));
+
+                                    SearchCell searchCell = new SearchCell(isFriend, searchedUser,stage);
+                                    searchListView.getItems().add(searchCell); // Add to ListView
+                                }
+                            }
+
+                        }
+
+                        if (!searchField.getText().isEmpty() && !isFound) {
+                            String groupName = searchField.getText();
+
+
+                            for (int i = 0; i < groupManager.readGroups().size(); i++) {
+                                if (groupName.equals(groupManager.readGroups().get(i).getGroupName())) {
+
+                                    searchedGroup = groupManager.readGroups().get(i);
+                                    grpFound = true;
+                                    break; // Exit the loop once the user is found
+                                }
+                            }
+                            if (grpFound) {
+
+
+                                if (!currentUser.getFriends().getBlockedFriends().contains(searchedUser)) {
+                                    SearchCell searchCell = new SearchCell(member, searchedGroup);
+                                    searchListView.getItems().add(searchCell);
+                                }
+                            }
+                        }
+                        if (!isFound && !grpFound ) {
+                            showAlert(Alert.AlertType.ERROR, "Error", "No Results");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while processing the search.");
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         private void handleBlockRemove(Stage stage) {
             try {
@@ -609,6 +742,9 @@
                     JOptionPane.showMessageDialog(null, "Empty Story");
                 } else {
                     Post newPost = new Post(currentUser, text, selectedImagePath[0]);
+                    if(currentGroup!=null){
+                        newPost.setGroupID(currentGroup.getGroupID());
+                    }
                     try {
                         postManager.addPost(newPost);
                     } catch (Exception e) {
@@ -657,6 +793,116 @@
                 }
             });
             addStoryStage.show();
+        }
+        public void handleViewButton(Stage stage) throws IOException {
+            try {
+                FXMLLoader groupLoader = new FXMLLoader(Application.class.getResource("memberGroup.fxml"));
+                if(currentGroup.getCreator().equals(currentUser) || currentGroup.getHierarchy().getAdmins().contains(currentUser)) {
+                    groupLoader = new FXMLLoader(Application.class.getResource("adminGroup.fxml"));
+                }
+                Scene groupScene = new Scene(groupLoader.load(), 1200, 875);
+                stage.setTitle("Group");
+                groupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                stage.setScene(groupScene);
+                Label nameLabel = (Label) groupLoader.getNamespace().get("nameuser");
+                if (nameLabel != null) {
+                    String groupName = currentGroup.getGroupName();
+                    System.out.println(groupName);
+                    nameLabel.setText(groupName);
+                } else {
+                    System.out.println("nameLabel is null");
+                }
+                ImageView imageView = (ImageView) stage.getScene().lookup("#imageView");
+                if (imageView != null) {
+                    if (!currentGroup.getGroupIcon().isEmpty()) {
+                        Circle clip = new Circle();
+                        clip.setRadius(imageView.getFitWidth() / 2);
+                        clip.setCenterX(imageView.getFitWidth() / 2);
+                        clip.setCenterY(imageView.getFitHeight() / 2);
+                        imageView.setClip(clip);
+                        imageView.setImage(new Image(currentGroup.getGroupIcon()));
+                    }
+                }
+                Label bioLabel = (Label) stage.getScene().lookup("#bioplace");
+                if (bioLabel != null) {
+                    if (!currentGroup.getGroupDescription().isEmpty()) {
+                        bioLabel.setText(currentGroup.getGroupDescription());
+                    }
+                }
+                Button viewHome = (Button) groupLoader.getNamespace().get("viewHome");
+                viewHome.setOnAction(event -> handleHome(stage));
+                Button addPost = (Button) groupLoader.getNamespace().get("addPost");
+                addPost.setOnAction(event -> {
+                    try {
+                        handleAddPost(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+                Button leaveGroup = (Button) groupLoader.getNamespace().get("leaveGroup");
+                leaveGroup.setOnAction(event -> {
+                    currentGroup.leaveGroup(currentUser);
+                    try {
+                        groupManager.writeGroup(currentGroup);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    JOptionPane.showMessageDialog(null, "Group left");
+                    handleHome(stage);
+                });
+                Button refresh = (Button) groupLoader.getNamespace().get("refresh");
+                refresh.setOnAction(event -> {
+                    try {
+                        handleViewButton(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        private void handleCreateGroup(Stage stage) throws IOException {
+            FXMLLoader grpCreationLoader = new FXMLLoader(Application.class.getResource("createGroup.fxml"));
+            Scene createGroupScene = new Scene(grpCreationLoader.load(), 600, 400);
+            Stage createGroupStage = new Stage();
+            createGroupStage.setTitle("Create Group");
+            createGroupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            createGroupStage.setScene(createGroupScene);
+            String selectedImagePath[] = {null};
+            TextField groupName = (TextField) grpCreationLoader.getNamespace().get("grpName");
+            TextField groupDescription = (TextField) grpCreationLoader.getNamespace().get("grpDescription");
+            Button selectImage = (Button) grpCreationLoader.getNamespace().get("selectImage");
+            selectImage.setOnAction(event -> {
+                FileChooser fileChooser = new FileChooser();
+                File file = fileChooser.showOpenDialog(createGroupStage);
+                if (file != null) {
+                    selectedImagePath[0] = file.getAbsolutePath();
+                }
+            });
+            Button createGroupButton = (Button) grpCreationLoader.getNamespace().get("create");
+            createGroupButton.setOnAction(event -> {
+                String name = groupName.getText();
+                String description = groupDescription.getText();
+                if (name.isEmpty() && description.isEmpty() && selectedImagePath[0] == null) {
+                    JOptionPane.showMessageDialog(null, "Empty Story");
+                } else {
+                    Group newGroup = new Group();
+                    newGroup.setCreator(currentUser);
+                    newGroup.setGroupName(name);
+                    newGroup.setGroupDescription(description);
+                    newGroup.setGroupIcon(selectedImagePath[0]);
+                    try {
+                        groupManager.writeGroup(newGroup);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    createGroupStage.close();
+                }
+            });
+            createGroupStage.show();
         }
     public static void main(String[] args) {
         launch();

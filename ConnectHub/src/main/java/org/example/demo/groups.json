@@ -1,0 +1,86 @@
+[
+  {
+    "groupID": "1",
+    "creator": "2",
+    "groupName": "OOP Lovers",
+    "groupDescription": "Everyone here loves OOP.",
+    "groupIcon": "C:/Users/eyada/OneDrive/Pictures/Screenshots/Screenshot 2024-08-02 193830.png",
+    "hierarchy": {
+      "admins": [],
+      "members": ["8","5","10","3","1"],
+      "requests": ["7","9"]
+    }
+  },
+  {
+    "groupID": "2",
+    "creator": "4",
+    "groupName": "Data Science Enthusiasts",
+    "groupDescription": "A group for people passionate about data analysis and AI.",
+    "groupIcon": "D:/Downloads/grpicn.png",
+    "hierarchy": {
+      "admins": ["6"],
+      "members": ["11","13","14"],
+      "requests": ["12","15"]
+    }
+  },
+  {
+    "groupID": "3",
+    "creator": "7",
+    "groupName": "Gaming Community",
+    "groupDescription": "For gamers who love to connect and play together.",
+    "groupIcon": "D:/Downloads/grpicn.png",
+    "hierarchy": {
+      "admins": ["9"],
+      "members": ["16","8","10","1"],
+      "requests": ["11","12"]
+    }
+  },
+  {
+    "groupID": "4",
+    "creator": "10",
+    "groupName": "Travel Addicts",
+    "groupDescription": "Sharing travel stories and tips from around the world.",
+    "groupIcon": "D:/Downloads/grpicn.png",
+    "hierarchy": {
+      "admins": ["11"],
+      "members": ["12","13","14","1"],
+      "requests": ["15","16"]
+    }
+  },
+  {
+    "groupID": "5",
+    "creator": "12",
+    "groupName": "Art and Design",
+    "groupDescription": "For creative minds interested in art and design.",
+    "groupIcon": "D:/Downloads/grpicn.png",
+    "hierarchy": {
+      "admins": ["14"],
+      "members": ["7","8","9","3"],
+      "requests": ["5","6"]
+    }
+  },
+  {
+    "groupID": "6",
+    "creator": "1",
+    "groupName": "Knee surgery enthusiasts",
+    "groupDescription": "If your Knee surgery is tomorrow join this group",
+    "groupIcon": "D:/Downloads/images (4).jpg",
+    "hierarchy": {
+      "admins": [],
+      "members": ["3"],
+      "requests": []
+    }
+  },
+  {
+    "groupID": "7",
+    "creator": "2",
+    "groupName": "Darius Lovers",
+    "groupDescription": "It darius day",
+    "groupIcon": "D:/Downloads/images (5).jpg",
+    "hierarchy": {
+      "admins": [],
+      "members": [],
+      "requests": []
+    }
+  }
+]
