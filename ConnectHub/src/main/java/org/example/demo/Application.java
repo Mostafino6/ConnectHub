@@ -613,10 +613,13 @@
                     boolean isFound = false;
                     boolean isFriend = true;
                     boolean blocked=false;
+                    boolean grpFound = false;
+                    boolean member=false;
 
                     try {
                         User currentUser = Application.getCurrentUser();
                         User searchedUser = null;
+                        Group searchedGroup = null;
                         ArrayList<User> userList = databaseManager.readUsers();
 
                         // Check if search field is not empty
@@ -637,14 +640,34 @@
 
                                     SearchCell searchCell = new SearchCell(isFriend, searchedUser,stage);
                                     searchListView.getItems().add(searchCell); // Add to ListView
-                                } else {
-                                    showAlert(Alert.AlertType.WARNING, "Warning", "User not found.");
                                 }
-                            } else {
-                                showAlert(Alert.AlertType.ERROR, "Error", "User not found.");
                             }
-                        } else {
-                            showAlert(Alert.AlertType.ERROR, "Error", "Enter a username.");
+
+                        }
+
+                        if (!searchField.getText().isEmpty() && !isFound) {
+                            String groupName = searchField.getText();
+
+
+                            for (int i = 0; i < groupManager.readGroups().size(); i++) {
+                                if (groupName.equals(groupManager.readGroups().get(i).getGroupName())) {
+
+                                    searchedGroup = groupManager.readGroups().get(i);
+                                    grpFound = true;
+                                    break; // Exit the loop once the user is found
+                                }
+                            }
+                            if (grpFound) {
+
+
+                                if (!currentUser.getFriends().getBlockedFriends().contains(searchedUser)) {
+                                    SearchCell searchCell = new SearchCell(member, searchedGroup);
+                                    searchListView.getItems().add(searchCell);
+                                }
+                            }
+                        }
+                        if (!isFound && !grpFound ) {
+                            showAlert(Alert.AlertType.ERROR, "Error", "No Results");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

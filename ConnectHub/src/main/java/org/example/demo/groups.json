@@ -4,10 +4,10 @@
     "creator": "2",
     "groupName": "OOP Lovers",
     "groupDescription": "Everyone here loves OOP.",
-    "groupIcon": "D:/Downloads/grpicn.png",
+    "groupIcon": "C:/Users/eyada/OneDrive/Pictures/Screenshots/Screenshot 2024-08-02 193830.png",
     "hierarchy": {
       "admins": [],
-      "members": ["8","5","10"],
+      "members": ["8","5","10","3","1"],
       "requests": ["7","9"]
     }
   },
