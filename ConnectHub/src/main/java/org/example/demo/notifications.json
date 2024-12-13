@@ -1,30 +1,42 @@
 [
   {
-    "userID": "1",
+    "sender": "1",
     "type": "Friend Request",
-    "message": "You have received a friend request from Jane Doe.",
-    "timeStamp": "2024-06-10T15:52:15",
-    "read": false
+    "message": "Friend Request Sent By Mostafa Abayazeed",
+    "timestamp": "2024-12-13T16:47:56.191296100",
+    "recievers": [],
+    "readBy": ["3"]
   },
   {
-    "userID": "1",
-    "type": "Group Activity",
-    "message": "You have been added to the group 'Developers Hub'.",
-    "timeStamp": "2024-06-11T10:30",
-    "read": false
+    "sender": "8",
+    "type": "Group Activity - 3",
+    "message": "Freakbob added a post in Gaming Community",
+    "timestamp": "2024-12-13T17:58:28.328217600",
+    "recievers": ["7","9","16","10"],
+    "readBy": ["1"]
   },
   {
-    "userID": "1",
-    "type": "New Post",
-    "message": "A new post was added in your group 'Coding Enthusiasts'.",
-    "timeStamp": "2024-06-12T08:45",
-    "read": false
-  },
-  {
-    "userID": "3",
+    "sender": "1",
     "type": "Friend Request",
-    "message": "Received friend request",
-    "timeStamp": "2024-12-13T14:00:35.837512700",
-    "read": false
+    "message": "Friend Request Sent By Mostafa Abayazeed",
+    "timestamp": "2024-12-13T18:03:42.376355600",
+    "recievers": ["8"],
+    "readBy": []
+  },
+  {
+    "sender": "1",
+    "type": "Friend Request",
+    "message": "Friend Request Sent By Mostafa Abayazeed",
+    "timestamp": "2024-12-13T18:06:22.311205700",
+    "recievers": ["7"],
+    "readBy": []
+  },
+  {
+    "sender": "7",
+    "type": "Sent Friend Request",
+    "message": "Friend Request Sent to Belal Mohamed",
+    "timestamp": "2024-12-13T18:06:22.315206800",
+    "recievers": [],
+    "readBy": ["1"]
   }
 ]

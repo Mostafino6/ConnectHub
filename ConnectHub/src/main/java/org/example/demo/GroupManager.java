@@ -294,4 +294,13 @@ public class GroupManager {
             writer.write("]");
         }
     }
+    public Group getGroupById(String groupID) throws Exception {
+        ArrayList<Group> groupList = readGroups(); // Read all groups from the database
+        for (Group group : groupList) {
+            if (group.getGroupID().equals(groupID)) {
+                return group; // Return the group if the groupID matches
+            }
+        }
+        return null; // Return null if no group with the given groupID is found
+    }
 }
