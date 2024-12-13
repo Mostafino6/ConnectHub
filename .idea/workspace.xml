@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_4_2024_6_17_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_4_2024_6_17_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/SearchCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/SearchCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/users.json" afterDir="false" />
-    </list>
+    <list default="true" id="486beb2c-7c98-4b65-8ee0-5333b124b403" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,8 +14,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="module-info" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -163,6 +156,9 @@
       <workItem from="1733926936996" duration="13105000" />
       <workItem from="1733979204660" duration="5847000" />
       <workItem from="1733985192016" duration="3794000" />
+      <workItem from="1734065995908" duration="5000" />
+      <workItem from="1734066030749" duration="451000" />
+      <workItem from="1734079175703" duration="5340000" />
     </task>
     <servers />
   </component>
@@ -185,7 +181,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ConnectHub/src/main/java/org/example/demo/SearchCell.java</url>
-          <line>219</line>
+          <line>307</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>

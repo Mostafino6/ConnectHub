@@ -27,7 +27,14 @@ public class SearchCell extends ListCell<User> {
     private Button viewProfile;
     private User searched;
     private Stage stage;
+    private Group searchedGroup;
     private boolean blocked = false;
+    boolean member = false;
+    private Button viewGroup;
+    private Button join;
+    private Button leave;
+
+
     public SearchCell(boolean friend, User searched,Stage stage) {
         this.searched=searched;
         this.stage=stage;
@@ -120,6 +127,87 @@ public class SearchCell extends ListCell<User> {
                }
            });
        }
+    }
+
+
+
+    public SearchCell(boolean member ,Group searchedGroup)
+    {
+        this.searchedGroup=searchedGroup;
+        this.member=member;
+        pfp = new ImageView();
+        pfp.setFitHeight(50);
+        pfp.setFitWidth(50);
+        Image img=new Image(searchedGroup.getGroupIcon());
+        pfp.setImage(img);
+        pfp.setPreserveRatio(true);
+        Circle clip = new Circle(25, 25, 25);
+        pfp.setClip(clip);
+        name = new Label();
+        name.setText(searchedGroup.getGroupName());
+        name.setStyle("-fx-font-weight: bold;");
+        join = new Button();
+        join.setText("Join");
+        join.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 70px;fx-min-height: 20px; -fx-background-color: #6135D2;");
+
+        leave = new Button();
+        leave.setText("Leave");
+        leave.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 70px;fx-min-height: 20px; -fx-background-color: #6135D2;");
+
+        viewGroup = new Button();
+        viewGroup.setText("view");
+        viewGroup.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 700; -fx-min-width: 70px;fx-min-height: 20px; -fx-background-color: #6135D2;");
+
+        User current = Application.getCurrentUser();
+        for (int i = 0; i < current.getGroups().size(); i++) {
+            if (searchedGroup.isMember(current))
+            {
+                member=true;
+                break;
+            }
+            else {
+                member=false;
+            }
+
+        }
+        if (member){
+            HBox text = new HBox(5,leave,viewGroup);
+            text.setSpacing(10);
+            userInfo = new HBox(15,pfp,text);
+            userInfo.setPadding(new Insets(10));
+            setGraphic(userInfo);
+            leave.setOnAction(e -> {
+                if(searchedGroup != null){
+                    handleaveGroup(searchedGroup);
+                }
+            });
+            viewGroup.setOnAction(e -> {
+                if(searchedGroup != null){
+                    handleViewGroup(searchedGroup);
+
+                }
+            });
+
+        }
+        if (!member)
+        {
+
+            HBox text = new HBox(5,join,viewGroup);
+            text.setSpacing(10);
+            userInfo = new HBox(15,pfp,text);
+            userInfo.setPadding(new Insets(10));
+            setGraphic(userInfo);
+            join.setOnAction(e -> {
+                if(searchedGroup != null){
+                    handleJoinGroup(searchedGroup);
+                }
+            });
+            viewGroup.setOnAction(e -> {
+                if(searchedGroup != null){
+                    handleViewGroup(searchedGroup);
+                }
+            });
+        }
     }
     @Override
     protected void updateItem(User user, boolean empty) {
@@ -291,7 +379,89 @@ public class SearchCell extends ListCell<User> {
         }
     }
 
-    
+    private void handleaveGroup(Group searchedGroup){
+        User currentUser = Application.getCurrentUser();
+        if(currentUser != null){
+            searchedGroup.leaveGroup(currentUser);
+
+            JOptionPane.showMessageDialog(null,"Group Left");}
+    }
+private void handleJoinGroup(Group searchedGroup){
+        User currentUser = Application.getCurrentUser();
+        if(currentUser != null){
+            searchedGroup.addMember(currentUser);
+            JOptionPane.showMessageDialog(null,"Group Joined");
+        }
+}
+
+//private void handleViewGroup(Group searchedGroup)
+//{
+//
+//}
+public void handleViewGroup(Group searchedGroup) {
+    try {
+        User currentUser = Application.getCurrentUser();
+        Stage st2 = new Stage();
+        FXMLLoader groupLoader;
+
+        // Load the appropriate FXML based on user role
+        if (searchedGroup.getCreator().equals(currentUser) || searchedGroup.getHierarchy().getAdmins().contains(currentUser)) {
+            groupLoader = new FXMLLoader(Application.class.getResource("adminGroup.fxml"));
+        } else {
+            groupLoader = new FXMLLoader(Application.class.getResource("memberGroup.fxml"));
+        }
+
+        // Load the scene and apply styles
+        Scene groupScene = new Scene(groupLoader.load(), 1200, 875);
+        st2.setTitle("Group");
+        groupScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+        st2.setScene(groupScene);
+
+        // Set the group name if available
+        Label nameLabel = (Label) groupLoader.getNamespace().get("nameuser");
+        if (nameLabel != null) {
+            String groupName = searchedGroup.getGroupName();
+            System.out.println(groupName);
+            nameLabel.setText(groupName);
+        } else {
+            System.out.println("nameLabel is null");
+        }
+
+        // Set the group icon if available
+        ImageView imageView = (ImageView) st2.getScene().lookup("#imageView");
+        if (imageView != null && !searchedGroup.getGroupIcon().isEmpty()) {
+            Circle clip = new Circle();
+            clip.setRadius(imageView.getFitWidth() / 2);
+            clip.setCenterX(imageView.getFitWidth() / 2);
+            clip.setCenterY(imageView.getFitHeight() / 2);
+            imageView.setClip(clip);
+            imageView.setImage(new Image(searchedGroup.getGroupIcon()));
+        }
+
+        // Set the group bio if available
+        Label bioLabel = (Label) st2.getScene().lookup("#bioplace");
+        if (bioLabel != null && !searchedGroup.getGroupDescription().isEmpty()) {
+            bioLabel.setText(searchedGroup.getGroupDescription());
+        }
+
+        // Handle button actions
+        Button leaveGroup = (Button) groupLoader.getNamespace().get("leaveGroup");
+        if (leaveGroup != null) {
+            leaveGroup.setOnAction(event -> handleaveGroup(searchedGroup));
+        }
+
+
+        // Show the stage
+        st2.show();
+
+        Button home = (Button) groupLoader.getNamespace().get("viewHome");
+        home.setOnAction(event -> st2.close());
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+}
 
 
 
