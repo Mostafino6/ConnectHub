@@ -890,6 +890,15 @@
                     {handleEditGroupAdmin(stage);}
                     else{handleEditGroupCreator(stage);}
                 });
+
+                Button joinRequests = (Button) groupLoader.getNamespace().get("joinRequests");
+                joinRequests.setOnAction(event -> {
+                    try {
+                        handleJoinRequests(stage);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e) {
@@ -1148,6 +1157,15 @@
                 }
             });
             createGroupStage.show();
+        }
+        private void handleJoinRequests(Stage stage) throws IOException {
+            FXMLLoader joinRequestsLoader = new FXMLLoader(Application.class.getResource("joinRequests.fxml"));
+            Scene joinRequestsScene = new Scene(joinRequestsLoader.load(), 350, 528);
+            Stage joinRequestsStage = new Stage();
+            joinRequestsStage.setTitle("Join Requests");
+            joinRequestsScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+            joinRequestsStage.setScene(joinRequestsScene);
+            joinRequestsStage.show();
         }
     public static void main(String[] args) {
         launch();

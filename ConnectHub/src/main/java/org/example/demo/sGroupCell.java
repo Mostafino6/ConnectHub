@@ -53,9 +53,8 @@ public class sGroupCell extends ListCell<Group> {
         }
     }
     private void handleJoinButton(User user) throws Exception {
-        System.out.println("Button Clicked!");
         Group group = getItem();
-        group.addMember(user);
+        group.getHierarchy().addRequest(user);
         Application.getGroupManager().writeGroup(group);
     }
 }

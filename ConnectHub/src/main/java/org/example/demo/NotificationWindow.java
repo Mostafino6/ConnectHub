@@ -31,7 +31,7 @@ public class NotificationWindow {
             throw new RuntimeException(e);
         }
     }
-    MainApplication mainApp = new MainApplication();
+    MainApplication mainApp = MainApplication.getInstance();
 
     public void initialize() {
         loadNotifications();

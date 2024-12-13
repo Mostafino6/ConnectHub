@@ -105,8 +105,8 @@ public class Stories {
         double imageHeight = image.getHeight();
 
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(imageWidth);
-        imageView.setFitHeight(imageHeight);
+        imageView.setFitWidth(500);
+        imageView.setFitHeight(700);
         imageView.setPreserveRatio(true);  // Maintain aspect ratio
 
         // Create a VBox to hold the ImageView, caption, and button
@@ -157,9 +157,8 @@ public class Stories {
         storyContent.getChildren().add(buttons);
 
         // Set the scene and size of the Stage
-        Scene storyScene = new Scene(storyContent, imageWidth, imageHeight + 100);  // Add space for caption and button
+        Scene storyScene = new Scene(storyContent, imageView.getFitWidth(),  imageView.getFitHeight() + 100);  // Add space for caption and button
         storyStage.setScene(storyScene);
-
         // Show the new window
         storyStage.show();
     }

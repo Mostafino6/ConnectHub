@@ -38,5 +38,77 @@
     "timestamp": "2024-12-13T18:06:22.315206800",
     "recievers": [],
     "readBy": ["1"]
+  },
+  {
+    "sender": "3",
+    "type": "Group Activity - 3",
+    "message": "You have joined Gaming Community",
+    "timestamp": "2024-12-13T19:38:32.735993900",
+    "recievers": [],
+    "readBy": ["3"]
+  },
+  {
+    "sender": "3",
+    "type": "Group Activity - 3",
+    "message": "Chill Guy has joined Gaming Community",
+    "timestamp": "2024-12-13T19:38:32.735993900",
+    "recievers": ["16","10","7"],
+    "readBy": ["1"]
+  },
+  {
+    "sender": "12",
+    "type": "Group Activity - 3",
+    "message": "You have joined Gaming Community",
+    "timestamp": "2024-12-13T19:39:21.878535700",
+    "recievers": ["12"],
+    "readBy": []
+  },
+  {
+    "sender": "12",
+    "type": "Group Activity - 3",
+    "message": "YN Huzz has joined Gaming Community",
+    "timestamp": "2024-12-13T19:39:21.878535700",
+    "recievers": ["16","10","7"],
+    "readBy": ["1","3"]
+  },
+  {
+    "sender": "1",
+    "type": "Group Activity - 3",
+    "message": "Mostafa Abayazeed added a post in Gaming Community",
+    "timestamp": "2024-12-13T19:41:26.281939200",
+    "recievers": ["16","10","7","12"],
+    "readBy": ["3"]
+  },
+  {
+    "sender": "3",
+    "type": "Group Activity - 3",
+    "message": "Chill Guy added a post in Gaming Community",
+    "timestamp": "2024-12-13T19:56:17.322533",
+    "recievers": ["16","10","7","12"],
+    "readBy": ["1"]
+  },
+  {
+    "sender": "3",
+    "type": "Group Activity - 3",
+    "message": "You have been promoted to admin in Gaming Community",
+    "timestamp": "2024-12-13T19:58:19.836934700",
+    "recievers": [],
+    "readBy": ["3"]
+  },
+  {
+    "sender": "3",
+    "type": "Group Activity - 3",
+    "message": "You have been demoted to member in Gaming Community",
+    "timestamp": "2024-12-13T19:59:15.476817100",
+    "recievers": [],
+    "readBy": ["3"]
+  },
+  {
+    "sender": "3",
+    "type": "Group Activity - 3",
+    "message": "You have been removed from Gaming Community",
+    "timestamp": "2024-12-13T19:59:32.875965900",
+    "recievers": [],
+    "readBy": ["3"]
   }
 ]

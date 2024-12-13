@@ -25,6 +25,7 @@ public class groupMemberCell extends ListCell<User>{
             throw new RuntimeException(e);
         }
     }
+    private static final NotificationManager notificationManager = Application.getNotificationManager();
     public groupMemberCell(Group group){
         currentGroup = group;
         pfp = new ImageView();
@@ -128,19 +129,35 @@ public class groupMemberCell extends ListCell<User>{
         if(currentGroup.isAdmin(user)){currentGroup.getHierarchy().getAdmins().remove(user);}
         else if(currentGroup.isMember(user)){currentGroup.getHierarchy().getMembers().remove(user);}
         groupManager.writeGroup(currentGroup);
+        Notification noti = new Notification();
+        noti.setSender(user);
+        noti.setType("Group Activity - " + currentGroup.getGroupID());
+        noti.setMessage("You have been removed from " + currentGroup.getGroupName());
+        noti.addReciever(user);
+        notificationManager.addNotification(noti);
     }
 
     private void handledemoteButton(User user)  throws Exception {
         currentGroup.getHierarchy().getMembers().add(user);
         currentGroup.getHierarchy().getAdmins().remove(user);
         groupManager.writeGroup(currentGroup);
-
+        Notification noti = new Notification();
+        noti.setSender(user);
+        noti.setType("Group Activity - " + currentGroup.getGroupID());
+        noti.setMessage("You have been demoted to member in " + currentGroup.getGroupName());
+        noti.addReciever(user);
+        notificationManager.addNotification(noti);
     }
 
     private void handlePromoteButton(User user) throws Exception {
         currentGroup.getHierarchy().getAdmins().add(user);
         currentGroup.getHierarchy().getMembers().remove(user);
         groupManager.writeGroup(currentGroup);
-
+        Notification noti = new Notification();
+        noti.setSender(user);
+        noti.setType("Group Activity - " + currentGroup.getGroupID());
+        noti.setMessage("You have been promoted to admin in " + currentGroup.getGroupName());
+        noti.addReciever(user);
+        notificationManager.addNotification(noti);
     }
 }
