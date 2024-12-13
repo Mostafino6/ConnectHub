@@ -6,7 +6,7 @@
     "email": "1",
     "password": "1d5df648c48fd5aa23ef2220be26b28bfd42698c7d2f097cbb6e8813d902a674",
     "DOB": "2004-08-27",
-    "status": true,
+    "status": false,
     "bio": "I love programming and oop its so fun!!!!!!",
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
@@ -252,8 +252,7 @@
       "friendsList": [],
       "friendRequests": ["18"],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "16",
@@ -268,10 +267,9 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": ["18"],
+      "friendRequests": [],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "18",
@@ -288,8 +286,7 @@
       "friendsList": [],
       "friendRequests": ["19","19","19"],
       "blockedFriends": []
-    },
-    "posts": []
+    }
   },
   {
     "userID": "19",

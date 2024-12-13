@@ -104,6 +104,25 @@ public class Group {
             hierarchy.getAdmins().remove(user);
         }
     }
+    public void promoteMember(User user){
+        if(hierarchy.getMembers().contains(user)) {
+            hierarchy.getMembers().remove(user);
+            hierarchy.getAdmins().add(user);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, user.getUsername() + " is not a member of this group");
+        }
+    }
+    public void demoteAdmin(User user){
+        if(hierarchy.getAdmins().contains(user)) {
+            hierarchy.getAdmins().remove(user);
+            hierarchy.getMembers().add(user);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, user.getUsername() + " is not an admin of this group");
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

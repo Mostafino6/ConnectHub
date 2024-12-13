@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class NotificationManager {
-    private static final String NOTIFICATION_FILE = "D:\\CCE\\Term 5\\Programming-02\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\notifications.json";
+    private static final String NOTIFICATION_FILE = "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\java\\org\\example\\demo\\notifications.json";
     private static final DatabaseManager databaseManager = new DatabaseManager();
     private Map<String, User> userMap = new HashMap<>();
 

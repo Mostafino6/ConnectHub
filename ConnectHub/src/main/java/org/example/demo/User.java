@@ -159,6 +159,7 @@ public class User {
         for (Notification notification : notifications) {
             notification.setRead(true);
         }
+    }
     public ArrayList<Group> getGroups() {
         return groups;
     }
