@@ -107,6 +107,12 @@ public class Group {
         members.addAll(hierarchy.getMembers());
         return members;
     }
+    public ArrayList<User> getAllMembersOnlyNoAdmins() {
+        ArrayList<User> members = new ArrayList<>();
+        members.add(creator);
+        members.addAll(hierarchy.getMembers());
+        return members;
+    }
 
     public void leaveGroup(User user) {
         if (creator.equals(user)) {

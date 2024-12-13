@@ -5,6 +5,7 @@
     import javafx.scene.control.*;
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
+    import javafx.scene.layout.HBox;
     import javafx.scene.layout.VBox;
     import javafx.scene.control.Label;
     import javafx.scene.control.TextField;
@@ -12,6 +13,8 @@
     import javafx.stage.FileChooser;
     import javafx.stage.Modality;
     import javafx.stage.Stage;
+    import org.w3c.dom.Text;
+
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
@@ -1068,18 +1071,10 @@
                     handleDeleteGroup(stage);
                 });
 
-                Button creatorGroupHierarchyButton = (Button) creatorEditGroupLoader.getNamespace().get("creatorHier");
-                creatorGroupHierarchyButton.setOnAction(event -> {
-                    System.out.println("Edit Group Hierarchy button clicked");
-                    handleEditGroupHierarchy(stage);
-                });
 
             } catch (IOException | RuntimeException e) {
                 e.printStackTrace();
             }
-        }
-
-        private void handleEditGroupHierarchy(Stage stage) {
         }
 
         private void handleDeleteGroup(Stage stage) {
