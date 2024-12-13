@@ -43,7 +43,7 @@
     "groupIcon": "D:/Downloads/grpicn.png",
     "hierarchy": {
       "admins": ["11"],
-      "members": ["12","13","14","1"],
+      "members": ["12","13","14"],
       "requests": ["15","16"]
     }
   },
@@ -67,7 +67,7 @@
     "groupIcon": "D:/Downloads/images(5).jpg",
     "hierarchy": {
       "admins": [],
-      "members": [],
+      "members": ["1"],
       "requests": []
     }
   },

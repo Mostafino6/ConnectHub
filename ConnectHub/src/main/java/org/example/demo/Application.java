@@ -32,6 +32,7 @@
         private static final GroupManager groupManager;
         private static Group currentGroup;
         private static NotificationManager notificationManager = new NotificationManager();
+        private static User searchedUser;
 
         static {
             try {
@@ -77,6 +78,12 @@
         }
         public static void setNotificationManager(NotificationManager noti) {
             notificationManager = noti;
+        }
+        public static User getSearchedUser() {
+            return searchedUser;
+        }
+        public static void setSearchedUser(User user) {
+            searchedUser = user;
         }
         @Override
         public void start(Stage stage) throws IOException {
@@ -448,7 +455,7 @@
             }
         }
 
-        private void handleHome(Stage stage) {
+        public void handleHome(Stage stage) {
             try {
                 currentGroup = null;
                 FXMLLoader homeLoader = new FXMLLoader(Application.class.getResource("homePage.fxml"));

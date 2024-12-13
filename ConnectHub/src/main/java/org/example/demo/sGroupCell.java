@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.geometry.Insets;
 import javafx.scene.shape.Circle;
 
+import javax.swing.*;
+
 public class sGroupCell extends ListCell<Group> {
     private HBox groupInfo;
     private ImageView groupIcon;
@@ -56,5 +58,6 @@ public class sGroupCell extends ListCell<Group> {
         Group group = getItem();
         group.getHierarchy().addRequest(user);
         Application.getGroupManager().writeGroup(group);
+        JOptionPane.showMessageDialog(null,"Join Request Sent!");
     }
 }

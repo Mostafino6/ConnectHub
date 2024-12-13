@@ -34,7 +34,7 @@ public class SearchCell extends ListCell<User> {
     private Button viewGroup;
     private Button join;
     private Button leave;
-
+    private static final User currentUser = Application.getCurrentUser();
 
     public SearchCell(boolean friend, User searched,Stage stage) {
         this.searched=searched;
@@ -329,31 +329,33 @@ public class SearchCell extends ListCell<User> {
     }
     private void handleProfile(User searched) {
         try {
-            // Load FXML and create a new stage
+            Application.setSearchedUser(searched);
+            System.out.println(Application.getSearchedUser().getName());
             Stage st2 = new Stage();
-            FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("viewProfile.fxml"));
-            Scene profileScene = new Scene(profileLoader.load(), 800, 600);
-
-            // Set the scene and apply styles
+            FXMLLoader profileLoader = new FXMLLoader(Application.class.getResource("friendProfile.fxml"));
+            Scene profileScene = new Scene(profileLoader.load(), 900, 816);  ;
+            if(currentUser.getFriends().isFriend(searched)) {
+                profileLoader = new FXMLLoader(Application.class.getResource("friendProfile.fxml"));
+                profileScene = new Scene(profileLoader.load(), 900, 816);
+            }
+            else{
+                profileLoader = new FXMLLoader(Application.class.getResource("strangerProfile.fxml"));
+                profileScene = new Scene(profileLoader.load(), 900, 245);
+            }
             st2.setTitle("Profile");
             profileScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             st2.setScene(profileScene);
-
-
             Label nameLabel = (Label) profileLoader.getNamespace().get("nameuser");
             if (nameLabel != null) {
                 String username = searched.getName();
-                System.out.println(username);
                 nameLabel.setText(username);
             } else {
                 System.out.println("nameLabel is null");
             }
-            ImageView pfpView=(ImageView) profileLoader.getNamespace().get("pfpView");
-//            ImageView pfpView = (ImageView) st2.getScene().lookup("pfpView");
+            ImageView pfpView=(ImageView) profileLoader.getNamespace().get("imageView");
             if (pfpView != null) {
                 if (searched.getPfpPath() !=null) {
                     String pfpPath = searched.getPfpPath();
-                    System.out.println(pfpPath);
                     Circle clip = new Circle();
                     clip.setRadius(pfpView.getFitWidth() / 2);
                     clip.setCenterX(pfpView.getFitWidth() / 2);
@@ -362,7 +364,7 @@ public class SearchCell extends ListCell<User> {
                     pfpView.setImage(new Image(searched.getPfpPath()));
                 }
             }
-            ImageView coverPhotoView = (ImageView) profileLoader.getNamespace().get("coverPhoto");
+            ImageView coverPhotoView = (ImageView) profileLoader.getNamespace().get("coverImageView");
             if (coverPhotoView != null) {
                 if (!searched.getCoverphotoPath().isEmpty()) {
                     coverPhotoView.setImage(new Image(searched.getCoverphotoPath()));
@@ -374,20 +376,70 @@ public class SearchCell extends ListCell<User> {
                     bioLabel.setText(searched.getBio());
                 }
             }
-            VBox postContainer = (VBox) profileLoader.getNamespace().get("postContainer");
-            Button addFriend = (Button) profileLoader.getNamespace().get("addFriend");
-            Button block = (Button) profileLoader.getNamespace().get("block");
-            addFriend.setOnAction(e -> {
-             handleAdd(searched);
-
+            Button removeFriendButton = (Button) profileLoader.getNamespace().get("removeFriendButton");
+            if (removeFriendButton != null) {
+                removeFriendButton.setOnAction(event -> {
+                    currentUser.getFriends().removeFriend(searched);
+                    searched.getFriends().removeFriend(currentUser);
+                    try {
+                        Application.getDatabaseManager().writeUser(searched);
+                        Application.getDatabaseManager().writeUser(currentUser);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    JOptionPane.showMessageDialog(null, "Friend Removed!");
+                    st2.close();
+                });
+            }
+            Button addFriend = (Button) profileLoader.getNamespace().get("addFriendButton");
+            if (addFriend != null) {
+                addFriend.setOnAction(event -> {
+                    searched.getFriends().getFriendRequests().add(currentUser);
+                    try {
+                        Application.getDatabaseManager().writeUser(searched);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    JOptionPane.showMessageDialog(null, "Friend Request Sent!");
+                    Notification notification = new Notification();
+                    notification.setSender(currentUser);
+                    notification.setMessage("Friend Request Sent By " + currentUser.getName());
+                    notification.setType("Friend Request");
+                    notification.addReciever(searched);
+                    try {
+                        Application.getNotificationManager().addNotification(notification);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    Notification noti2 = new Notification();
+                    noti2.setSender(searched);
+                    noti2.setType("Sent Friend Request");
+                    noti2.setMessage("Friend Request Sent to " + searched.getName());
+                    noti2.addReciever(currentUser);
+                    try {
+                        Application.getNotificationManager().addNotification(noti2);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    st2.close();
+                });
+            }
+            Button blockFriend = (Button) profileLoader.getNamespace().get("blockFriendButton");
+            blockFriend.setOnAction(event -> {
+                currentUser.getFriends().removeFriend(searched);
+                currentUser.getFriends().getBlockedFriends().add(searched);
+                searched.getFriends().removeFriend(currentUser);
+                searched.getFriends().getBlockedFriends().add(currentUser);
+                try {
+                    Application.getDatabaseManager().writeUser(searched);
+                    Application.getDatabaseManager().writeUser(currentUser);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                JOptionPane.showMessageDialog(null,"Friend Blocked!");
+                st2.close();
             });
-
-            block.setOnAction(e -> {
-            handleBlockButton(searched);
-            st2.close();
-            });
-                                st2.show();
-
+            st2.show();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -406,10 +458,10 @@ public class SearchCell extends ListCell<User> {
 private void handleJoinGroup(Group searchedGroup) throws Exception {
         User currentUser = Application.getCurrentUser();
         if(currentUser != null){
-            searchedGroup.addMember(currentUser);
+            searchedGroup.getHierarchy().getRequests().add(searched);
             Application.getGroupManager().writeGroup(searchedGroup);
 
-            JOptionPane.showMessageDialog(null,"Group Joined");
+            JOptionPane.showMessageDialog(null,"Requested to Join Group");
         }
 }
 }

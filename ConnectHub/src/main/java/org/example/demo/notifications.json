@@ -110,5 +110,69 @@
     "timestamp": "2024-12-13T19:59:32.875965900",
     "recievers": [],
     "readBy": ["3"]
+  },
+  {
+    "sender": "13",
+    "type": "Friend Request",
+    "message": "Friend Request Sent By Mango Buzz",
+    "timestamp": "2024-12-13T22:15:42.405000500",
+    "recievers": [],
+    "readBy": ["3"]
+  },
+  {
+    "sender": "3",
+    "type": "Sent Friend Request",
+    "message": "Friend Request Sent to Chill Guy",
+    "timestamp": "2024-12-13T22:15:42.415516200",
+    "recievers": ["13"],
+    "readBy": []
+  },
+  {
+    "sender": "3",
+    "type": "Friend Request",
+    "message": "Friend Request Sent By Chill Guy",
+    "timestamp": "2024-12-13T22:16:19.548687800",
+    "recievers": [],
+    "readBy": ["1"]
+  },
+  {
+    "sender": "1",
+    "type": "Sent Friend Request",
+    "message": "Friend Request Sent to Mostafa Abayazeed",
+    "timestamp": "2024-12-13T22:16:19.551687900",
+    "recievers": [],
+    "readBy": ["3"]
+  },
+  {
+    "sender": "1",
+    "type": "Friend Request",
+    "message": "Friend Request Sent By Mostafa Abayazeed",
+    "timestamp": "2024-12-13T23:08:12.632539500",
+    "recievers": [],
+    "readBy": ["3"]
+  },
+  {
+    "sender": "3",
+    "type": "Sent Friend Request",
+    "message": "Friend Request Sent to Chill Guy",
+    "timestamp": "2024-12-13T23:08:12.637541",
+    "recievers": [],
+    "readBy": ["1"]
+  },
+  {
+    "sender": "1",
+    "type": "Group Activity - 7",
+    "message": "You have joined Darius Lovers",
+    "timestamp": "2024-12-13T23:09:52.323941100",
+    "recievers": [],
+    "readBy": ["1"]
+  },
+  {
+    "sender": "1",
+    "type": "Group Activity - 7",
+    "message": "Mostafa Abayazeed has joined Darius Lovers",
+    "timestamp": "2024-12-13T23:09:52.323941100",
+    "recievers": [],
+    "readBy": ["2"]
   }
 ]

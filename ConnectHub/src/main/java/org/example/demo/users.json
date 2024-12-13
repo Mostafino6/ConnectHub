@@ -11,9 +11,9 @@
     "profilePicture": "D:\\Downloads\\418082197_838209324966104_1493215685447874660_n.jpg",
     "coverPhoto": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "friends": {
-      "friendsList": ["13"],
+      "friendsList": ["13","3"],
       "friendRequests": [],
-      "blockedFriends": ["5","15","2"]
+      "blockedFriends": ["5","15","2","14"]
     }
   },
   {
@@ -45,8 +45,8 @@
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\Screenshot 2024-12-05 123219.png",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["2","8"],
-      "friendRequests": [],
+      "friendsList": ["2","8","1"],
+      "friendRequests": ["13"],
       "blockedFriends": ["5"]
     }
   },
@@ -234,7 +234,7 @@
     "friends": {
       "friendsList": [],
       "friendRequests": [],
-      "blockedFriends": []
+      "blockedFriends": ["1"]
     }
   },
   {

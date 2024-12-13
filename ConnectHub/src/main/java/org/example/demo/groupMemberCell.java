@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.geometry.Insets;
 import javafx.scene.shape.Circle;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class groupMemberCell extends ListCell<User>{
@@ -135,6 +136,7 @@ public class groupMemberCell extends ListCell<User>{
         noti.setMessage("You have been removed from " + currentGroup.getGroupName());
         noti.addReciever(user);
         notificationManager.addNotification(noti);
+        JOptionPane.showMessageDialog(null,"Member Removed!");
     }
 
     private void handledemoteButton(User user)  throws Exception {
@@ -147,6 +149,7 @@ public class groupMemberCell extends ListCell<User>{
         noti.setMessage("You have been demoted to member in " + currentGroup.getGroupName());
         noti.addReciever(user);
         notificationManager.addNotification(noti);
+        JOptionPane.showMessageDialog(null,"Member Demoted!");
     }
 
     private void handlePromoteButton(User user) throws Exception {
@@ -159,5 +162,6 @@ public class groupMemberCell extends ListCell<User>{
         noti.setMessage("You have been promoted to admin in " + currentGroup.getGroupName());
         noti.addReciever(user);
         notificationManager.addNotification(noti);
+        JOptionPane.showMessageDialog(null,"Member Promoted!");
     }
 }
