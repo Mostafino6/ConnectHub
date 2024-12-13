@@ -1,0 +1,30 @@
+[
+  {
+    "userID": "1",
+    "type": "Friend Request",
+    "message": "You have received a friend request from Jane Doe.",
+    "timeStamp": "2024-06-10T15:52:15",
+    "read": false
+  },
+  {
+    "userID": "1",
+    "type": "Group Activity",
+    "message": "You have been added to the group 'Developers Hub'.",
+    "timeStamp": "2024-06-11T10:30",
+    "read": false
+  },
+  {
+    "userID": "1",
+    "type": "New Post",
+    "message": "A new post was added in your group 'Coding Enthusiasts'.",
+    "timeStamp": "2024-06-12T08:45",
+    "read": false
+  },
+  {
+    "userID": "3",
+    "type": "Friend Request",
+    "message": "Received friend request",
+    "timeStamp": "2024-12-13T14:00:35.837512700",
+    "read": false
+  }
+]

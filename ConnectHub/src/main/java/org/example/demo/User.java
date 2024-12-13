@@ -2,6 +2,7 @@ package org.example.demo;
 
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private String userID;
@@ -16,14 +17,16 @@ public class User {
     private String bio;
     private FriendManagement friends;
     private ArrayList<Post> posts;
-    private ArrayList<Story> stories;
-    private ArrayList<Group> groups;// New list to manage user stories
+    private ArrayList<Story> stories; // New list to manage user stories
+    private ArrayList<Notification> notifications;
+    private ArrayList<Group> groups;
 
     // Default constructor
     public User() {
         this.friends = new FriendManagement();
         this.posts = new ArrayList<>();
         this.stories = new ArrayList<>(); // Initialize stories list
+        this.notifications = new ArrayList<>();
         this.groups = new ArrayList<>();
         this.pfpPath = "";
         this.coverphotoPath = "";
@@ -143,6 +146,19 @@ public class User {
 
     public void addStory(Story story) {
         stories.add(story);
+    }
+    public void addNotification(Notification notification) {
+        notifications.add(notification);
+    }
+
+    public ArrayList<Notification> getNotifications() {
+        return new ArrayList<>(notifications);
+    }
+
+    public void markAllAsRead() {
+        for (Notification notification : notifications) {
+            notification.setRead(true);
+        }
     }
     public ArrayList<Group> getGroups() {
         return groups;

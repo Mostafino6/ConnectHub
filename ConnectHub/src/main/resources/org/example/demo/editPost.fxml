@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.Controller">
+    <children>
+        <Label layoutX="44.0" layoutY="60.0" styleClass="psts" text="Post Content:" />
+        <Label layoutX="43.0" layoutY="244.0" styleClass="psts" text="Post Image:" />
+        <TextField fx:id="newContent" layoutX="44.0" layoutY="96.0" prefHeight="77.0" prefWidth="515.0" />
+        <Button fx:id="selectImage" layoutX="308.0" layoutY="241.0" minHeight="25.0" minWidth="211.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="250.0" styleClass="btn4" text="Select Image..." />
+        <Button fx:id="edit" layoutX="176.0" layoutY="327.0" mnemonicParsing="false" styleClass="btn1" text="Edit Post" />
+    </children>
+</AnchorPane>

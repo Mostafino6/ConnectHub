@@ -1,10 +1,13 @@
 package org.example.demo;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -12,6 +15,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 
 public class postCell extends ListCell<Post> {
     private VBox cellContainer;  // Main container for the cell (VBox)
@@ -24,7 +33,7 @@ public class postCell extends ListCell<Post> {
     private VBox postContentBox; // Contains text and image content
     private TextFlow postText;   // Flow for displaying text content
     private ImageView postImage;
-
+    private static final PostManager postManager = new PostManager();
     public postCell() {
         // Initialize components
         profilePic = new ImageView();
@@ -157,8 +166,57 @@ public class postCell extends ListCell<Post> {
             userBox.getChildren().add(editButton);
             userBox.getChildren().add(deleteButton);
         }
+        Post currentPost = getItem();
+        editButton.setOnAction(event -> {
+            try {
+                handleEditButton(currentPost);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        deleteButton.setOnAction(event -> {
+            try {
+                handleDeletePost(currentPost);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
-
+    private void handleEditButton(Post post) throws IOException {
+        FXMLLoader editLoader = new FXMLLoader(Application.class.getResource("editPost.fxml"));
+        Scene editPostScene = new Scene(editLoader.load(), 600, 400);
+        Stage editPostStage = new Stage();
+        editPostStage.setTitle("Edit Post");
+        editPostScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+        editPostStage.setScene(editPostScene);
+        String selectedImagePath[] = {null};
+        TextField newContent = (TextField) editLoader.getNamespace().get("newContent");
+        newContent.setText(post.getContent());
+        Button selectImage = (Button) editLoader.getNamespace().get("selectImage");
+        selectImage.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            File file = fileChooser.showOpenDialog(editPostStage);
+            if (file != null) {
+                selectedImagePath[0] = file.getAbsolutePath();
+            }
+        });
+        Button editPostButton = (Button) editLoader.getNamespace().get("edit");
+        editPostButton.setOnAction(event -> {
+            String newText = newContent.getText();
+            try {
+                postManager.editPost(post.getOwner(),post.getContent(),newText,selectedImagePath[0]);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            editPostStage.close();
+            JOptionPane.showMessageDialog(null,"Post edited, Please refresh page");
+        });
+        editPostStage.show();
+    }
+    private void handleDeletePost(Post post) throws Exception {
+        postManager.deletePost(post.getOwner(),post.getContent(),post.getImage());
+        JOptionPane.showMessageDialog(null,"Post Deleted, Please refresh page");
+    }
 }
 
 
