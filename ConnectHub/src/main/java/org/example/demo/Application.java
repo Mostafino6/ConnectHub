@@ -5,6 +5,7 @@
     import javafx.scene.control.*;
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
+    import javafx.scene.layout.HBox;
     import javafx.scene.layout.VBox;
     import javafx.scene.control.Label;
     import javafx.scene.control.TextField;
@@ -12,6 +13,8 @@
     import javafx.stage.FileChooser;
     import javafx.stage.Modality;
     import javafx.stage.Stage;
+    import org.w3c.dom.Text;
+
     import javax.swing.*;
     import java.io.File;
     import java.io.IOException;
@@ -1059,7 +1062,27 @@
         }
 
         private void handleEditGroupHierarchy(Stage stage) {
+            try {
+                FXMLLoader editHierLoader = new FXMLLoader(Application.class.getResource("Choosehier.fxml"));
+                Scene editHierScene = new Scene(editHierLoader.load(), 700, 400);
+                Stage newStage = new Stage();
+                newStage.setTitle("Edit Group Hierarchy");
+                editHierScene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+                newStage.setScene(editHierScene);
+                newStage.initOwner(stage);
+                newStage.show();
+                Button promote = (Button) editHierLoader.getNamespace().get("promote");
+                promote.setOnAction(event -> {
+                    System.out.println("Promote button clicked");
+                    handlePromoteNewAdmin(newStage);
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+private void handlePromoteNewAdmin(Stage stage) {
+
+}
 
         private void handleDeleteGroup(Stage stage) {
             try {
