@@ -11,7 +11,7 @@
     "profilePicture": "D:\\02112007067.jpg",
     "coverPhoto": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\artworks-D1z0mq71bQhEyABg-cL8hUA-t500x500.jpg",
     "friends": {
-      "friendsList": ["13","12"],
+      "friendsList": ["13","12","3"],
       "friendRequests": [],
       "blockedFriends": ["5","15","2"]
     }
@@ -45,7 +45,7 @@
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\Screenshot 2024-12-05 123219.png",
     "coverPhoto": "",
     "friends": {
-      "friendsList": ["2","8"],
+      "friendsList": ["2","8","1"],
       "friendRequests": [],
       "blockedFriends": ["5"]
     }
@@ -114,7 +114,7 @@
     "coverPhoto": "",
     "friends": {
       "friendsList": [],
-      "friendRequests": ["1"],
+      "friendRequests": ["1","1"],
       "blockedFriends": []
     }
   },
@@ -125,13 +125,13 @@
     "email": "freakbob@example.com",
     "password": "54bfc34cd0653e5709d8390e145824c3bb9977970658eb2a964c1cc21f2e9e2d",
     "DOB": "2023-12-23",
-    "status": false,
+    "status": true,
     "bio": "",
     "profilePicture": "C:\\Users\\Gebriel\\Desktop\\Term 5\\Programming II\\Lab9\\ConnectHub\\ConnectHub\\src\\main\\resources\\org\\example\\demo\\img.png",
     "coverPhoto": "",
     "friends": {
       "friendsList": ["2","3"],
-      "friendRequests": [],
+      "friendRequests": ["1"],
       "blockedFriends": ["3"]
     }
   },

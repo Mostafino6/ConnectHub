@@ -7,11 +7,9 @@ import org.json.simple.parser.JSONParser;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class NotificationManager {
@@ -44,22 +42,47 @@ public class NotificationManager {
         for (Object obj : jsonArray) {
             JSONObject jsonObject = (JSONObject) obj;
 
-            // Extract story details
-            String userID = (String) jsonObject.get("userID");
+            // Extract notification details
+            String senderID = (String) jsonObject.get("sender");
             String type = (String) jsonObject.get("type");
             String message = (String) jsonObject.get("message");
-            String timeStampStr = (String) jsonObject.get("timeStamp");
-            boolean read = Boolean.parseBoolean(jsonObject.get("read").toString());
-            LocalDateTime timeStamp = LocalDateTime.parse(timeStampStr);
-            User user = getUserByID(userID);
+            String timeStampStr = (String) jsonObject.get("timestamp");
+            JSONArray recieversArray = (JSONArray) jsonObject.get("recievers");
+            JSONArray readByArray = (JSONArray) jsonObject.get("readBy");
 
-            if (user != null) {
-                Notification notification = new Notification(user, type, message);
-                notification.setTimestamp(timeStamp);
-                if (!notificationList.contains(notification)) notificationList.add(notification);
-                if (!user.getNotifications().contains(notification)) user.addNotification(notification);
+            LocalDateTime timeStamp = LocalDateTime.parse(timeStampStr);
+
+            // Create notification based on the extracted data
+            Notification notification = new Notification();
+            notification.setSender(getUserByID(senderID));
+            notification.setType(type);
+            notification.setMessage(message);
+            notification.setTimestamp(timeStamp);
+
+            // Set recievers and readBy as lists of User objects
+            ArrayList<User> recievers = new ArrayList<>();
+            for (Object receiverID : recieversArray) {
+                String userID = (String) receiverID;
+                User user = getUserByID(userID);
+                if (user != null) {
+                    recievers.add(user);
+                }
             }
+            notification.setRecievers(recievers);
+
+            ArrayList<User> readBy = new ArrayList<>();
+            for (Object readUserID : readByArray) {
+                String userID = (String) readUserID;
+                User user = getUserByID(userID);
+                if (user != null) {
+                    readBy.add(user);
+                }
+            }
+            notification.setReadBy(readBy);
+
+            notificationList.add(notification);
         }
+
         return notificationList;
     }
 
@@ -70,11 +93,24 @@ public class NotificationManager {
         JSONArray jsonArray = new JSONArray();
         for (Notification n : notificationList) {
             JSONObject jsonNotification = new JSONObject();
-            jsonNotification.put("userID", n.getOwner().getUserID());
+            jsonNotification.put("sender", n.getSender().getUserID());  // Save sender's ID
             jsonNotification.put("type", n.getType());
             jsonNotification.put("message", n.getMessage());
-            jsonNotification.put("timeStamp", n.getTimestamp().toString());
-            jsonNotification.put("read", n.isRead());
+            jsonNotification.put("timestamp", n.getTimestamp().toString());
+
+            // Add recievers and readBy as arrays of user IDs
+            JSONArray recieversArray = new JSONArray();
+            for (User receiver : n.getRecievers()) {
+                recieversArray.add(receiver.getUserID());  // Add userID of each receiver
+            }
+            jsonNotification.put("recievers", recieversArray);
+
+            JSONArray readByArray = new JSONArray();
+            for (User reader : n.getReadBy()) {
+                readByArray.add(reader.getUserID());  // Add userID of each user who has read
+            }
+            jsonNotification.put("readBy", readByArray);
+
             jsonArray.add(jsonNotification);
         }
 
@@ -85,11 +121,12 @@ public class NotificationManager {
                 JSONObject jsonNotification = (JSONObject) jsonArray.get(i);
                 writer.write("  {\n");
 
-                writer.write("    \"userID\": \"" + jsonNotification.get("userID") + "\",\n");
+                writer.write("    \"sender\": \"" + jsonNotification.get("sender") + "\",\n");
                 writer.write("    \"type\": \"" + jsonNotification.get("type") + "\",\n");
                 writer.write("    \"message\": \"" + jsonNotification.get("message") + "\",\n");
-                writer.write("    \"timeStamp\": \"" + jsonNotification.get("timeStamp") + "\",\n");
-                writer.write("    \"read\": " + jsonNotification.get("read") + "\n");
+                writer.write("    \"timestamp\": \"" + jsonNotification.get("timestamp") + "\",\n");
+                writer.write("    \"recievers\": " + jsonNotification.get("recievers") + ",\n");
+                writer.write("    \"readBy\": " + jsonNotification.get("readBy") + "\n");
 
                 writer.write("  }");
 
@@ -103,12 +140,11 @@ public class NotificationManager {
         }
     }
 
-    public ArrayList<Notification> getNotificationsForUser(String userID) throws Exception {
+    public ArrayList<Notification> getNotificationsForUser(User user) throws Exception {
         ArrayList<Notification> allNotifications = readNotifications();
         ArrayList<Notification> userNotifications = new ArrayList<>();
-
         for (Notification notification : allNotifications) {
-            if (notification.getOwner().getUserID().equals(userID)) {
+            if(notification.getRecievers().contains(user) || notification.getReadBy().contains(user)) {
                 userNotifications.add(notification);
             }
         }
@@ -117,21 +153,34 @@ public class NotificationManager {
     }
 
     public void removeNotification(Notification notification) throws Exception {
-        // Step 1: Remove the notification from the user's notification list
+        // Step 1: Remove the notification from the list
         ArrayList<Notification> notificationList = readNotifications();
 
-        // Find the notification to remove in the list
-        notificationList.removeIf(n -> n.equals(notification));  // Uses equals() method to match notifications
+        // Find the notification to remove
+        notificationList.removeIf(n -> n.equals(notification));
 
         // Step 2: Write the updated list back to the JSON file
         JSONArray jsonArray = new JSONArray();
         for (Notification n : notificationList) {
             JSONObject jsonNotification = new JSONObject();
-            jsonNotification.put("userID", n.getOwner().getUserID());
+            jsonNotification.put("sender", n.getSender().getUserID());  // Save sender's ID
             jsonNotification.put("type", n.getType());
             jsonNotification.put("message", n.getMessage());
-            jsonNotification.put("timeStamp", n.getTimestamp().toString());
-            jsonNotification.put("read", n.isRead());
+            jsonNotification.put("timestamp", n.getTimestamp().toString());
+
+            // Add recievers and readBy as arrays of user IDs
+            JSONArray recieversArray = new JSONArray();
+            for (User receiver : n.getRecievers()) {
+                recieversArray.add(receiver.getUserID());  // Add userID of each receiver
+            }
+            jsonNotification.put("recievers", recieversArray);
+
+            JSONArray readByArray = new JSONArray();
+            for (User reader : n.getReadBy()) {
+                readByArray.add(reader.getUserID());  // Add userID of each user who has read
+            }
+            jsonNotification.put("readBy", readByArray);
+
             jsonArray.add(jsonNotification);
         }
 
@@ -142,11 +191,12 @@ public class NotificationManager {
                 JSONObject jsonNotification = (JSONObject) jsonArray.get(i);
                 writer.write("  {\n");
 
-                writer.write("    \"userID\": \"" + jsonNotification.get("userID") + "\",\n");
+                writer.write("    \"sender\": \"" + jsonNotification.get("sender") + "\",\n");
                 writer.write("    \"type\": \"" + jsonNotification.get("type") + "\",\n");
                 writer.write("    \"message\": \"" + jsonNotification.get("message") + "\",\n");
-                writer.write("    \"timeStamp\": \"" + jsonNotification.get("timeStamp") + "\",\n");
-                writer.write("    \"read\": " + jsonNotification.get("read") + "\n");
+                writer.write("    \"timestamp\": \"" + jsonNotification.get("timestamp") + "\",\n");
+                writer.write("    \"recievers\": " + jsonNotification.get("recievers") + ",\n");
+                writer.write("    \"readBy\": " + jsonNotification.get("readBy") + "\n");
 
                 writer.write("  }");
 
@@ -159,6 +209,69 @@ public class NotificationManager {
             writer.write("]");
         }
     }
+    public void updateNotification(Notification updatedNotification) throws Exception {
+        // Step 1: Read the current notifications from the JSON file
+        ArrayList<Notification> notificationList = readNotifications();
+        // Step 2: Find the notification to update
+        for (int i = 0; i < notificationList.size(); i++) {
+            Notification existingNotification = notificationList.get(i);
+            System.out.println(existingNotification.equals(updatedNotification));
+            // Compare notifications by their unique fields (e.g., sender, type, timestamp)
+            if (existingNotification.equals(updatedNotification)) {
+                // Step 3: Update the notification
+                notificationList.set(i, updatedNotification);  // Replace the old notification with the updated one
+                break;
+            }
+        }
+        // Step 4: Rewrite the entire notification list back to the JSON file
+        JSONArray jsonArray = new JSONArray();
+        for (Notification n : notificationList) {
+            JSONObject jsonNotification = new JSONObject();
+            jsonNotification.put("sender", n.getSender().getUserID());  // Save sender's ID
+            jsonNotification.put("type", n.getType());
+            jsonNotification.put("message", n.getMessage());
+            jsonNotification.put("timestamp", n.getTimestamp().toString());
 
+            // Add recievers and readBy as arrays of user IDs
+            JSONArray recieversArray = new JSONArray();
+            for (User receiver : n.getRecievers()) {
+                recieversArray.add(receiver.getUserID());  // Add userID of each receiver
+            }
+            jsonNotification.put("recievers", recieversArray);
+
+            JSONArray readByArray = new JSONArray();
+            for (User reader : n.getReadBy()) {
+                readByArray.add(reader.getUserID());  // Add userID of each user who has read
+            }
+            jsonNotification.put("readBy", readByArray);
+
+            jsonArray.add(jsonNotification);
+        }
+
+        // Step 5: Write the updated notifications back to the file
+        try (FileWriter writer = new FileWriter(NOTIFICATION_FILE)) {
+            writer.write("[\n");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject jsonNotification = (JSONObject) jsonArray.get(i);
+                writer.write("  {\n");
+
+                writer.write("    \"sender\": \"" + jsonNotification.get("sender") + "\",\n");
+                writer.write("    \"type\": \"" + jsonNotification.get("type") + "\",\n");
+                writer.write("    \"message\": \"" + jsonNotification.get("message") + "\",\n");
+                writer.write("    \"timestamp\": \"" + jsonNotification.get("timestamp") + "\",\n");
+                writer.write("    \"recievers\": " + jsonNotification.get("recievers") + ",\n");
+                writer.write("    \"readBy\": " + jsonNotification.get("readBy") + "\n");
+
+                writer.write("  }");
+
+                if (i < jsonArray.size() - 1) {
+                    writer.write(",\n");
+                } else {
+                    writer.write("\n");
+                }
+            }
+            writer.write("]");
+        }
+    }
 
 }

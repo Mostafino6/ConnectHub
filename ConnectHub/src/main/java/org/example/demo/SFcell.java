@@ -63,16 +63,19 @@ public class SFcell extends ListCell<User> {
                 user.getFriends().getFriendRequests().add(currentUser);
                 currentUser.getFriends().getSuggestedFriends().remove(user);
                 JOptionPane.showMessageDialog(null,"Friend Request Sent!");
-
                 Application.getDatabaseManager().writeUser(user);
-
-                Notification notification = new Notification(user, "Friend Request", "Received friend request");
+                Notification notification = new Notification();
+                notification.setSender(currentUser);
+                notification.setMessage("Friend Request Sent By " + currentUser.getName());
+                notification.setType("Friend Request");
+                notification.addReciever(user);
                 notificationManager.addNotification(notification);
-                System.out.println("Total notifications for user " + user.getUsername() + ": " + user.getNotifications().size());
-                for (Notification n : user.getNotifications()) {
-                    System.out.println(n.toString(user)); // Ensure your toString method is implemented properly
-                }
-
+                Notification noti2 = new Notification();
+                noti2.setSender(user);
+                noti2.setType("Sent Friend Request");
+                noti2.setMessage("Friend Request Sent to " + user.getName());
+                noti2.addReciever(currentUser);
+                notificationManager.addNotification(noti2);
             }catch (Exception e){
                 e.printStackTrace();
             }

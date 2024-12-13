@@ -157,7 +157,7 @@ public class User {
 
     public void markAllAsRead() {
         for (Notification notification : notifications) {
-            notification.setRead(true);
+            notification.getReadBy().add(this);
         }
     }
     public ArrayList<Group> getGroups() {
